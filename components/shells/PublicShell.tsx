@@ -122,7 +122,7 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
                 <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">API reference</Link></li>
                 <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">SDK docs</Link></li>
                 <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Security overview</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">POPIA compliance</Link></li>
+                <li><Link href="/popia" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">POPIA compliance</Link></li>
                 <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">DPA</Link></li>
                 <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Status page</Link></li>
               </ul>
@@ -166,7 +166,7 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
               <Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Privacy</Link>
               <Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Terms of use</Link>
               <Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Trademarks</Link>
-              <Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">POPIA</Link>
+              <Link href="/popia" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">POPIA</Link>
               <Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">About our ads</Link>
             </div>
           </div>
