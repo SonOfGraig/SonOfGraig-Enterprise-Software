@@ -1,0 +1,757 @@
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-h">
+  <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <nav class="hero-crumb rv" aria-label="Breadcrumb">
+          <a href="/">Home</a><span class="hero-crumb-sep" aria-hidden="true">/</span>
+          <span aria-current="page">Changelog</span>
+        </nav>
+        <h1 class="hero-h rv d1" id="hero-h">
+          What we shipped, <span class="g">as we shipped it.</span>
+        </h1>
+        <p class="hero-lead rv d2">
+          A continuous, source-of-truth log of every platform release, service-level update, security advisory, deprecation, and policy change. Updated by the engineer who wrote the code &mdash; not a marketing team. <strong style="color:var(--t2)">Build in public</strong> means the full picture is here, including what's slower than planned.
+        </p>
+        <div class="hero-actions rv d3">
+          <a href="/changelog.rss" class="hero-btn-rss">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+            Subscribe via RSS
+          </a>
+          <a href="#subscribe" class="btn btn-s">Email updates</a>
+          <a href="https://status.sonofgraig.com" target="_blank" rel="noopener" class="btn btn-s">Status page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        </div>
+      </div>
+
+      <aside class="status-card rv d3" aria-label="Current platform status">
+        <div style="font-family:var(--fm);font-size:10.5px;font-weight:600;color:var(--t4);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--bd)">Current build state</div>
+
+        <div class="status-row">
+          <span class="status-dot up"></span>
+          <div class="status-meta">
+            <div class="status-name">RAG Studio</div>
+            <div class="status-detail">Live · af-south-1</div>
+          </div>
+          <span class="status-ver live">v0.6.2</span>
+        </div>
+
+        <div class="status-row">
+          <span class="status-dot dev"></span>
+          <div class="status-meta">
+            <div class="status-name">Agent Builder</div>
+            <div class="status-detail">Beta · founding customers</div>
+          </div>
+          <span class="status-ver beta">v0.3.0</span>
+        </div>
+
+        <div class="status-row">
+          <span class="status-dot warn"></span>
+          <div class="status-meta">
+            <div class="status-name">Governance Hub</div>
+            <div class="status-detail">In development &middot; Q1 2027</div>
+          </div>
+          <span class="status-ver dev">In dev</span>
+        </div>
+
+        <div class="status-row">
+          <span class="status-dot up"></span>
+          <div class="status-meta">
+            <div class="status-name">Platform shell</div>
+            <div class="status-detail">Auth &middot; billing &middot; org admin</div>
+          </div>
+          <span class="status-ver live">v1.4.0</span>
+        </div>
+
+        <div class="status-row">
+          <span class="status-dot up"></span>
+          <div class="status-meta">
+            <div class="status-name">SOC 2 Type I</div>
+            <div class="status-detail">Audit in progress</div>
+          </div>
+          <span class="status-ver">~50%</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER STRIP -->
+<div class="filter-strip" role="navigation" aria-label="Filter changelog entries">
+  <div class="wrap">
+    <div class="filter-row">
+      <div class="filter-pills" role="group" aria-label="Categories">
+        <span class="fp-label">Filter:</span>
+        <button class="fpill active" data-cat="all">All</button>
+        <button class="fpill" data-cat="release"><i></i>Releases</button>
+        <button class="fpill" data-cat="service"><i></i>Service</button>
+        <button class="fpill" data-cat="security"><i></i>Security</button>
+        <button class="fpill" data-cat="policy"><i></i>Policy</button>
+        <button class="fpill" data-cat="deprecation"><i></i>Deprecations</button>
+      </div>
+      <div class="filter-search" role="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" placeholder="Search 'PII', 'EKS', 'Q3 2026'…">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHANGELOG TIMELINE -->
+<section class="cl-section">
+  <div class="wrap-narrow">
+
+    <!-- ────────── MAY 2026 ────────── -->
+    <div class="cl-month-header rv">
+      <span class="cl-month-h">May 2026</span>
+      <span class="cl-month-rule"></span>
+      <span class="cl-month-cnt">3 entries</span>
+    </div>
+
+    <!-- May 2: Founding-customer onboarding -->
+    <article class="cl-entry rv" data-cat="service">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>02</strong>May 2026</div>
+        <span class="cl-tag service"><i></i>Service</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">Second founding-customer slot taken &mdash; 3 of 5 remaining</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Programme update</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod a">Founding programme</span>
+          <span class="cl-prod">Phase 1 beachhead</span>
+        </div>
+        <p class="cl-summary">A second founding-customer agreement signed this week &mdash; bringing the programme to <strong>2 of 5 slots taken</strong>. The customer name remains confidential under NDA, as it will for every founding customer unless they explicitly opt to be named. Current waitlist depth is 247 organisations. The window stays open until RAG Studio reaches general availability in Q3 2026.</p>
+        <div class="cl-callout amber">
+          <div class="cl-callout-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Three slots remaining</div>
+          70% off year one (R5,999/month vs R19,999/month on Growth) &middot; direct founding-team access &middot; quarterly roadmap-shaping call &middot; 50% locked through year three. <a href="/platform/early-access" style="color:var(--amber);font-weight:600">Apply &rarr;</a>
+        </div>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="/platform/early-access" class="cl-link">View programme <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- May 1: RAG Studio v0.6.2 -->
+    <article class="cl-entry rv" data-cat="release">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>01</strong>May 2026</div>
+        <span class="cl-tag release"><i></i>Release</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">RAG Studio v0.6.2 &mdash; semantic chunking and Notion connector</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="20 6 9 17 4 12"/></svg>Patch release</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod g">RAG Studio</span>
+          <span class="cl-prod">Phase 1 &middot; Cluster 1</span>
+        </div>
+        <p class="cl-summary">Semantic chunking joins recursive and sentence chunking on the chunk-and-embed configuration page. Particularly useful for long-form policy documents where natural topic shifts are more meaningful than character or sentence boundaries. The Airbyte-based Notion connector ships behind a feature flag for founding customers; general availability follows in v0.7.</p>
+        <ul class="cl-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; semantic chunking strategy.</strong> Available on <code>/rag/[id]/configure</code> alongside recursive and sentence options.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; Notion connector (beta).</strong> Airbyte-based source connector covering pages, databases, and inline blocks.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Improved &mdash; Ragas eval reliability.</strong> Faithfulness scoring now retries on rate limit; eliminates a failure mode that affected 3% of evaluation runs.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Fixed &mdash; PDF page-number citation off-by-one.</strong> Citations on PDFs now correctly reference the displayed page rather than the zero-indexed page.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Fixed &mdash; embed widget CSS isolation.</strong> Embeddable chat no longer inherits host-page form styling.</li>
+        </ul>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="/products/rag-studio" class="cl-link">Product page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- May 1: Insights newsletter -->
+    <article class="cl-entry rv" data-cat="service">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>01</strong>May 2026</div>
+        <span class="cl-tag service"><i></i>Service</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">Insights newsletter goes weekly</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Cadence change</span>
+        </div>
+        <div class="cl-product-row"><span class="cl-prod">Insights</span></div>
+        <p class="cl-summary">The Insights newsletter moves from monthly to weekly. Each issue is one technical guide written by the founder &mdash; POPIA-compliant RAG patterns, AI agent architecture, enterprise procurement realities. <strong>Always one click to unsubscribe.</strong> Existing subscribers do not need to re-confirm; new subscribers can opt in from any contact form or directly at <code>/insights</code>.</p>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="/insights" class="cl-link">Insights archive <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ────────── APRIL 2026 ────────── -->
+    <div class="cl-month-header rv">
+      <span class="cl-month-h">April 2026</span>
+      <span class="cl-month-rule"></span>
+      <span class="cl-month-cnt">5 entries</span>
+    </div>
+
+    <!-- Apr 28: Privacy Policy v2.0 -->
+    <article class="cl-entry rv" data-cat="policy">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>28</strong>Apr 2026</div>
+        <span class="cl-tag policy"><i></i>Policy</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">Privacy Policy v2.0 &mdash; AI-specific processing disclosures added</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>v2.0</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod p">POPIA s.18</span>
+          <span class="cl-prod">Privacy Policy</span>
+          <span class="cl-prod">All products</span>
+        </div>
+        <p class="cl-summary">Privacy Policy version 2.0 adds explicit, plain-language disclosures about AI and large-language-model processing &mdash; an area POPIA's original 2013 drafting did not anticipate but where the eight conditions for lawful processing apply fully. The new sections cover model-training disclosure, query-content handling, vendor LLM transfer mechanisms, and how SonOfGraig treats every AI-processed document and query as personal information by default.</p>
+        <div class="cl-callout purple">
+          <div class="cl-callout-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>The headline guarantee, restated</div>
+          <strong>SonOfGraig does not use customer data &mdash; including documents uploaded to RAG Studio, Agent Builder configurations, or any query content &mdash; to train shared foundation models.</strong> AI personalisation features improve your experience inside your own account only.
+        </div>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Information Officer</div></div>
+          <a href="/privacy-policy" class="cl-link">Read full policy <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Apr 22: Agent Builder v0.3.0 -->
+    <article class="cl-entry rv" data-cat="release">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>22</strong>Apr 2026</div>
+        <span class="cl-tag release"><i></i>Release</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">Agent Builder v0.3.0 &mdash; human-in-the-loop approval gates</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="20 6 9 17 4 12"/></svg>Minor release</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod b">Agent Builder</span>
+          <span class="cl-prod">Beta &middot; founding customers</span>
+        </div>
+        <p class="cl-summary">Human-in-the-loop approval gates land in Agent Builder beta. Built on LangGraph's <code>interrupt_for_approval</code> pattern, allowing customers to define checkpoints where an agent pauses for human review before executing high-impact tool calls &mdash; sending external emails, writing to production databases, posting to public channels. Critical for any regulated-industry agent. Approval requests route to Slack by default.</p>
+        <ul class="cl-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; approval gates.</strong> Drag the new "Human Review" node onto the canvas to define a pause point.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; trace viewer enhancements.</strong> Per-step timing, per-step cost, and per-step reasoning chain visible on <code>/agents/[id]/traces</code>.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; kill-switch SLA.</strong> Once toggled, an agent halts within 5 seconds; existing in-flight tool calls are cancelled or rolled back where supported.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Improved &mdash; multi-agent message-passing.</strong> Supervisor-to-worker patterns from AutoGen now correctly preserve context across handoffs.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Fixed &mdash; sandbox session leak.</strong> Closing the sandbox tab now cleanly terminates the LangGraph runner.</li>
+        </ul>
+        <div class="cl-callout">
+          <div class="cl-callout-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Founding-customer note</div>
+          Agent Builder is in <strong>beta</strong>. Available exclusively to founding customers (currently 2 organisations) until Q4 2026 general availability. Founding-customer Slack Connect channel is the right place for feedback &mdash; the founder reads every message.
+        </div>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="/products/agent-builder" class="cl-link">Product page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Apr 18: Security advisory CVE-2026-001 -->
+    <article class="cl-entry rv" data-cat="security">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>18</strong>Apr 2026</div>
+        <span class="cl-tag security"><i></i>Security</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">SG-2026-001 &mdash; LiteLLM upstream prompt-injection vector mitigated</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>SG-2026-001</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod r">Security advisory</span>
+          <span class="cl-prod g">RAG Studio</span>
+          <span class="cl-prod b">Agent Builder</span>
+        </div>
+        <p class="cl-summary">An upstream LiteLLM input-handling issue could allow malicious users to inject hidden instructions into LLM context windows under specific configurations. <strong>SonOfGraig customers were not affected at any point</strong>. The upstream maintainers issued a fix; we deployed the patched version platform-wide on 18 April. Detailed disclosure follows the responsible-disclosure window closing.</p>
+        <ul class="cl-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Severity:</strong> Medium &mdash; CVSS 6.4 (estimated, awaiting upstream score)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Affected:</strong> No SonOfGraig customers. Configuration filtering at our middleware layer prevented exploitation.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Mitigation:</strong> Upstream LiteLLM patched and deployed within 4 hours of upstream release.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Customer action required:</strong> None.</li>
+        </ul>
+        <div class="cl-callout red">
+          <div class="cl-callout-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Security disclosure policy</div>
+          We publish every security advisory affecting the platform &mdash; including those where no customer was impacted. Coordinated disclosure: report to <code>security@sonofgraig.com</code> &middot; 1-hour response 24/7 &middot; researchers credited where appropriate.
+        </div>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="/security" class="cl-link">Security trust centre <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Apr 14: POPIA-Compliant RAG essay -->
+    <article class="cl-entry rv" data-cat="service">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>14</strong>Apr 2026</div>
+        <span class="cl-tag service"><i></i>Service</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">Long-form essay published &mdash; "How to Build POPIA-Compliant RAG Systems"</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Insights</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod">Insights</span>
+          <span class="cl-prod p">POPIA</span>
+          <span class="cl-prod g">RAG</span>
+        </div>
+        <p class="cl-summary">An 18-minute technical guide on the architectural decisions required to make a Retrieval-Augmented Generation system genuinely POPIA-compliant &mdash; not just "compliant on paper". The essay covers PII scrubbing in middleware, residency at the IAM layer, audit logs that cannot be deleted, and the eight conditions for lawful processing applied to AI activities. Reference architecture for SonOfGraig's own platform &mdash; nothing held back.</p>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="/insights/popia-compliant-rag-systems" class="cl-link">Read the essay <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Apr 8: RAG Studio v0.6.0 -->
+    <article class="cl-entry rv" data-cat="release">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>08</strong>Apr 2026</div>
+        <span class="cl-tag release"><i></i>Release</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">RAG Studio v0.6.0 &mdash; document-level access control GA</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="20 6 9 17 4 12"/></svg>Minor release</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod g">RAG Studio</span>
+          <span class="cl-prod">Phase 1 &middot; Cluster 1</span>
+        </div>
+        <p class="cl-summary">Document-level access control reaches general availability after 6 weeks in beta. User groups map to document groups during scoping; the retrieval layer enforces this at the chunk level &mdash; the LLM never receives a chunk the user is not authorised to see. Critical for legal, HR, and finance use cases where document-level access matters. Audit log records which documents were considered for each query.</p>
+        <ul class="cl-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; access control GA.</strong> Configure user-group to document-group mapping on <code>/rag/[id]/access</code>.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; query audit log.</strong> Each query records the user, the documents considered, similarity scores, and the final answer hash.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Improved &mdash; embed widget mobile rendering.</strong> Better behaviour on iOS Safari and Android Chrome.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Improved &mdash; ingestion progress visibility.</strong> Per-document progress indicators during bulk ingestion.</li>
+        </ul>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="/products/rag-studio" class="cl-link">Product page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ────────── MARCH 2026 ────────── -->
+    <div class="cl-month-header rv">
+      <span class="cl-month-h">March 2026</span>
+      <span class="cl-month-rule"></span>
+      <span class="cl-month-cnt">4 entries</span>
+    </div>
+
+    <!-- Mar 31: SaaS Transformation Strategy v1.0 -->
+    <article class="cl-entry rv" data-cat="policy">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>31</strong>Mar 2026</div>
+        <span class="cl-tag policy"><i></i>Policy</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">SaaS Transformation Strategy v1.0 published</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Strategy v1.0</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod">Company strategy</span>
+          <span class="cl-prod">Roadmap</span>
+        </div>
+        <p class="cl-summary">The full SaaS Transformation Strategy is now published on the About page &mdash; the canonical document explaining how SonOfGraig converts 18 service lines into 5 SaaS product clusters across three phases. <strong>Customer and ARR targets are real internal goals,</strong> not marketing puff. Phase 1 beachhead: 10 customers, R500K ARR. Phase 2 expansion: 50 customers, R3M ARR, SOC 2 Type II + POPIA cert. Phase 3 ecosystem: 200 customers, R50M ARR, all five clusters, Nigeria + Kenya, ISO 27001.</p>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="/about#roadmap" class="cl-link">View roadmap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Mar 22: Design System v3.0 -->
+    <article class="cl-entry rv" data-cat="release">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>22</strong>Mar 2026</div>
+        <span class="cl-tag release"><i></i>Release</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">Enterprise Design System v3.0 shipped &mdash; full rebuild</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>Major v3.0</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod">Design system</span>
+          <span class="cl-prod">All products</span>
+        </div>
+        <p class="cl-summary">Enterprise Design System version 3.0 lands &mdash; a full rebuild from the previous service-agency aesthetic. Light and dark mode (no longer dark-only), single primary blue (#0EA5E9), Sora + Inter + JetBrains Mono type stack, custom SVG icon system, complete component library, skeleton loaders, empty states. <strong>Amber is now accent-only</strong> &mdash; reserved for pricing, upgrade flows, and premium contexts. Token discipline is enforced: no hard-coded hex values in component code.</p>
+        <ul class="cl-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; light mode</strong> across the entire platform and marketing site, with system-preference detection</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; component library:</strong> data table, product nav, sidebar, cluster cards, dropdown, skeleton loaders, empty states</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; type stack:</strong> Sora (display), Inter (body), JetBrains Mono (code &amp; metadata)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Changed &mdash; dual-primary palette retired.</strong> Single primary; amber accent-only</li>
+        </ul>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="/design-system" class="cl-link">View design system <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Mar 14: First founding customer signed -->
+    <article class="cl-entry rv" data-cat="service">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>14</strong>Mar 2026</div>
+        <span class="cl-tag service"><i></i>Service</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">First founding-customer agreement signed</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Programme milestone</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod a">Founding programme</span>
+          <span class="cl-prod">Phase 1</span>
+        </div>
+        <p class="cl-summary">The first founding-customer agreement was executed today. A South African enterprise organisation in the legal sector becomes founding customer #1, with onboarding to RAG Studio scheduled within 5 business days. The customer name remains confidential under NDA. Onboarding follows the published guided session pattern: environment provisioned in af-south-1, founder-led setup, Slack Connect channel opened. <strong>4 of 5 founding slots remain</strong> as of this entry.</p>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="/platform/early-access" class="cl-link">Founding programme <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Mar 5: RAG Studio v0.5.0 -->
+    <article class="cl-entry rv" data-cat="release">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>05</strong>Mar 2026</div>
+        <span class="cl-tag release"><i></i>Release</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">RAG Studio v0.5.0 &mdash; embeddable chat widget</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="20 6 9 17 4 12"/></svg>Minor release</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod g">RAG Studio</span>
+          <span class="cl-prod">Phase 1 &middot; Cluster 1</span>
+        </div>
+        <p class="cl-summary">The embeddable chat widget reaches feature-complete: configurable styling, system-prompt editor, domain whitelist, and a copy-paste embed snippet. Customers can now stand up a styled, branded RAG chat experience on their intranet, support portal, or internal tooling without writing any frontend code. The widget uses the same retrieval API and access controls as the rest of the product &mdash; no separate compliance posture.</p>
+        <ul class="cl-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; embeddable chat widget.</strong> Configure on <code>/rag/[id]/deploy</code>; embed via single <code>&lt;script&gt;</code> tag.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; chunk &amp; embed configuration page.</strong> Live preview of how chunking strategy affects retrieved chunks.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; Confluence connector.</strong> Spaces and pages, including inline blocks.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Improved &mdash; query latency.</strong> Average end-to-end query time down from 3.4 seconds to 2.8 seconds.</li>
+        </ul>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="/products/rag-studio" class="cl-link">Product page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ────────── FEBRUARY 2026 ────────── -->
+    <div class="cl-month-header rv">
+      <span class="cl-month-h">February 2026</span>
+      <span class="cl-month-rule"></span>
+      <span class="cl-month-cnt">4 entries</span>
+    </div>
+
+    <!-- Feb 28: Status page launched -->
+    <article class="cl-entry rv" data-cat="service">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>28</strong>Feb 2026</div>
+        <span class="cl-tag service"><i></i>Service</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">Public status page launched at <code>status.sonofgraig.com</code></div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Operational</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod">Status page</span>
+          <span class="cl-prod">All products</span>
+        </div>
+        <p class="cl-summary">The public status page goes live at <code>status.sonofgraig.com</code>. Real-time uptime per service (RAG Studio query API, Agent Builder runtime, ingestion pipeline, auth, billing), historical incident log, and a subscribe-by-email option for status updates. Driven by synthetic checks running from inside af-south-1 every 60 seconds &mdash; not a vendor's cached snapshot.</p>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="https://status.sonofgraig.com" target="_blank" rel="noopener" class="cl-link">View status page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Feb 24: ZAR pricing essay -->
+    <article class="cl-entry rv" data-cat="service">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>24</strong>Feb 2026</div>
+        <span class="cl-tag service"><i></i>Service</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">Insights essay published &mdash; "ZAR pricing: how we decided what to charge"</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Insights</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod">Insights</span>
+          <span class="cl-prod a">Pricing</span>
+        </div>
+        <p class="cl-summary">A 5-minute essay walking through how SonOfGraig priced its tiers in ZAR &mdash; the FX-risk reasoning, the local market reference points, and why "translate from USD" produces the wrong answer for South African enterprise procurement. Written for buyers preparing to defend ZAR-denominated SaaS spend to their CFO.</p>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="/insights/zar-pricing" class="cl-link">Read the essay <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Feb 18: Deprecation -->
+    <article class="cl-entry rv" data-cat="deprecation">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>18</strong>Feb 2026</div>
+        <span class="cl-tag deprecation"><i></i>Deprecation</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">Magic-link auth deprecated for new accounts</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>30-day notice</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod">Auth</span>
+          <span class="cl-prod">Platform shell</span>
+        </div>
+        <p class="cl-summary">Magic-link email authentication is deprecated for new account sign-ups. Existing magic-link users continue working unchanged. New sign-ups default to <strong>Google SSO + MFA</strong> for individual accounts and <strong>SAML 2.0 SSO</strong> for organisation-managed accounts. The change reduces the credential-loss risk surface and aligns the platform with where enterprise auth is moving.</p>
+        <ul class="cl-list minus">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><strong>Removed:</strong> Magic-link sign-up for new accounts</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Replaced by:</strong> Google SSO + MFA (individual) or SAML 2.0 SSO (org-managed)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Existing users:</strong> No action required &mdash; magic-link sign-in continues to work for accounts created before this date</li>
+        </ul>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="/security#authentication" class="cl-link">Security details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Feb 5: RAG Studio v0.4.0 -->
+    <article class="cl-entry rv" data-cat="release">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>05</strong>Feb 2026</div>
+        <span class="cl-tag release"><i></i>Release</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">RAG Studio v0.4.0 &mdash; Ragas eval dashboard</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="20 6 9 17 4 12"/></svg>Minor release</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod g">RAG Studio</span>
+          <span class="cl-prod">Phase 1 &middot; Cluster 1</span>
+        </div>
+        <p class="cl-summary">The Ragas evaluation dashboard ships on <code>/rag/[id]/eval</code>. Faithfulness, answer relevancy, context precision, and context recall metrics computed per query and aggregated over time. Customers can now define test query sets and watch metrics change as they iterate on chunking strategy, embedding model, and retrieval mode. <strong>Numbers, not adjectives.</strong></p>
+        <ul class="cl-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; Ragas eval dashboard.</strong> Four standard metrics + custom thresholds.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; Google Drive connector via Airbyte.</strong> Sync schedules, OAuth scoped to selected folders only.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; Unstructured.io integration.</strong> Reliable text and table extraction from PDF, Word, PowerPoint, scanned documents.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Improved &mdash; query tester UX.</strong> Inline citation hover-cards show the retrieved chunk in context.</li>
+        </ul>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="/products/rag-studio" class="cl-link">Product page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ────────── JANUARY 2026 ────────── -->
+    <div class="cl-month-header rv">
+      <span class="cl-month-h">January 2026</span>
+      <span class="cl-month-rule"></span>
+      <span class="cl-month-cnt">3 entries</span>
+    </div>
+
+    <!-- Jan 28: SOC 2 Type I audit kickoff -->
+    <article class="cl-entry rv" data-cat="security">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>28</strong>Jan 2026</div>
+        <span class="cl-tag security"><i></i>Security</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">SOC 2 Type I audit kicked off &mdash; targeting completion mid-2026</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>Audit in progress</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod r">Security</span>
+          <span class="cl-prod p">SOC 2</span>
+        </div>
+        <p class="cl-summary">SOC 2 Type I audit officially kicked off with a SOC 2-accredited assessor. Evidence collection runs through Q2; expected completion mid-2026 in line with Phase 1 closing milestones. SOC 2 Type II (the 6-month evidence period) starts immediately after Type I, targeting completion alongside the Phase 2 milestone of POPIA certification. Customers receive the SOC 2 report under NDA on request once issued.</p>
+        <ul class="cl-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>SOC 2 Type I:</strong> targeting completion mid-2026 &mdash; Phase 1 close</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>SOC 2 Type II:</strong> Phase 2 milestone &mdash; with POPIA certification</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>ISO 27001:</strong> Phase 3 deliverable</li>
+        </ul>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Information Officer</div></div>
+          <a href="/security" class="cl-link">Security trust centre <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Jan 22: Agent Builder beta opens -->
+    <article class="cl-entry rv" data-cat="release">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>22</strong>Jan 2026</div>
+        <span class="cl-tag release"><i></i>Release</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">Agent Builder beta opens to founding customers</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>v0.1.0 &middot; beta</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod b">Agent Builder</span>
+          <span class="cl-prod">Phase 1 &middot; Cluster 1</span>
+        </div>
+        <p class="cl-summary">Agent Builder enters beta with the core surface live: visual canvas (React Flow), single-agent runtime (LangGraph), tool integration (Composio for Slack, Gmail, web search, code execution), test sandbox, and trace viewer. Available to founding customers only. <strong>This is the second product in Phase 1 &mdash; after RAG Studio &mdash; and the second of the four AI Dev Platform surfaces to ship.</strong> General availability targets Q4 2026.</p>
+        <ul class="cl-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; visual canvas.</strong> React Flow-powered drag-and-drop agent designer.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; LangGraph runtime.</strong> Stateful agent execution with checkpointing.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; tool integrations via Composio.</strong> Slack, Gmail, web search, code execution &mdash; ~200+ tools available.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; LiteLLM proxy.</strong> Anthropic Claude default; Google Gemini available on Growth.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; trace viewer &amp; sandbox.</strong> Full execution trace logging from day one.</li>
+        </ul>
+        <div class="cl-callout">
+          <div class="cl-callout-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Beta access</div>
+          Agent Builder beta is currently restricted to founding customers. Standard customers gain access at GA in Q4 2026 in line with the published roadmap.
+        </div>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="/products/agent-builder" class="cl-link">Product page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Jan 8: RAG Studio v0.3 query latency improvements -->
+    <article class="cl-entry rv" data-cat="release">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>08</strong>Jan 2026</div>
+        <span class="cl-tag release"><i></i>Release</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">RAG Studio v0.3.0 &mdash; hybrid retrieval (dense + BM25)</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="20 6 9 17 4 12"/></svg>Minor release</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod g">RAG Studio</span>
+          <span class="cl-prod">Phase 1 &middot; Cluster 1</span>
+        </div>
+        <p class="cl-summary">Hybrid retrieval ships &mdash; combining dense semantic search with BM25 keyword search for higher accuracy than either alone. Particularly meaningful for legal and policy documents where exact phrasing matters and semantic-only retrieval can miss precise terminology. The default retrieval mode for new knowledge bases moves from semantic-only to hybrid.</p>
+        <ul class="cl-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; hybrid retrieval (default).</strong> Dense semantic + BM25 sparse keyword fusion.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>New &mdash; sentence chunking strategy.</strong> Better for legal text where paragraph boundaries matter.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Improved &mdash; per-tenant Qdrant collection naming.</strong> Convention now <code>{org_id}_{kb_id}</code> for clearer ops.</li>
+        </ul>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="/products/rag-studio" class="cl-link">Product page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ────────── DECEMBER 2025 ────────── -->
+    <div class="cl-month-header rv">
+      <span class="cl-month-h">December 2025</span>
+      <span class="cl-month-rule"></span>
+      <span class="cl-month-cnt">2 entries</span>
+    </div>
+
+    <!-- Dec 12: RAG Studio v0.2 GA -->
+    <article class="cl-entry rv" data-cat="release">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>12</strong>Dec 2025</div>
+        <span class="cl-tag release"><i></i>Release</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">RAG Studio reaches general availability &mdash; v0.2.0</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>v0.2.0 &middot; GA</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod g">RAG Studio</span>
+          <span class="cl-prod">Phase 1 &middot; first product</span>
+        </div>
+        <p class="cl-summary">RAG Studio reaches general availability &mdash; the <strong>first SaaS product to ship on the SonOfGraig platform</strong>. Three months from day one, in line with the published Phase 1 build sequence. The full surface is live: knowledge base list, ingestion pipeline (Drive, S3, direct upload), chunk &amp; embed configuration, query tester, and a basic eval dashboard. Per-tenant Qdrant collections in af-south-1, end-to-end PII scrubbing, source citation on every answer.</p>
+        <div class="cl-callout">
+          <div class="cl-callout-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Phase 1 milestone</div>
+          RAG Studio is the platform's land-and-expand vehicle &mdash; the fastest-to-ship product, immediately legible value, lowest barrier to trial. Customers who succeed with RAG Studio almost always expand to Agent Builder, then Governance Hub.
+        </div>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="/products/rag-studio" class="cl-link">Product page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Dec 1: Platform shell live -->
+    <article class="cl-entry rv" data-cat="release">
+      <div class="cl-meta">
+        <div class="cl-date"><strong>01</strong>Dec 2025</div>
+        <span class="cl-tag release"><i></i>Release</span>
+      </div>
+      <div class="cl-content">
+        <div class="cl-head">
+          <div class="cl-h">Platform shell live &mdash; auth, billing, org management, API keys</div>
+          <span class="cl-ver-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="20 6 9 17 4 12"/></svg>Shell v1.0</span>
+        </div>
+        <div class="cl-product-row">
+          <span class="cl-prod">Platform shell</span>
+          <span class="cl-prod">Phase 1 foundation</span>
+        </div>
+        <p class="cl-summary">The platform shell goes live: Auth.js with Google SSO, magic link, and session management; Stripe + Lago billing integration with Starter and Growth metering; Next.js shell with navigation, organisation creation, team invite, and API key management; Cloudflare WAF, rate limiting, and CDN at the edge. <strong>This is the foundation</strong> &mdash; every subsequent product (RAG Studio, Agent Builder, Governance Hub) sits on top of it.</p>
+        <ul class="cl-list dot">
+          <li><svg></svg>AWS EKS cluster setup via Terraform &mdash; af-south-1 region for POPIA compliance</li>
+          <li><svg></svg>Supabase PostgreSQL &mdash; tenant schema, RLS policies, migrations</li>
+          <li><svg></svg>Auth.js &mdash; Google SSO, magic link, session management</li>
+          <li><svg></svg>Stripe + Lago &mdash; subscription billing with usage metering</li>
+          <li><svg></svg>Cloudflare &mdash; WAF, rate limiting, edge caching</li>
+        </ul>
+        <div class="cl-foot">
+          <div class="cl-author"><div class="cl-author-av">TG</div><div>By <strong>Tumiso Graig Ramaboya</strong> &middot; Founder</div></div>
+          <a href="/security" class="cl-link">Architecture details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ────────── EMPTY STATE ────────── -->
+    <div class="empty-state" id="emptyState">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <div class="empty-state-h">No entries match</div>
+      <div class="empty-state-d">Try a different filter, clear the search, or <a href="javascript:clearAllFilters()" style="color:var(--blue);text-decoration:underline">show everything</a>.</div>
+    </div>
+
+    <!-- ────────── SUBSCRIBE ────────── -->
+    <div class="sub-card rv" id="subscribe">
+      <div class="sub-grid">
+        <div>
+          <div class="sub-eyebrow"><i></i>Stay in the loop</div>
+          <div class="sub-h">Get changelog updates by email</div>
+          <p class="sub-d">One email per significant release. Major version bumps, security advisories, policy changes, and Phase milestones &mdash; never patch-level noise. Always one click to unsubscribe. Or follow the RSS feed if that is more your style.</p>
+        </div>
+        <div>
+          <form class="sub-form">
+            <input type="email" class="sub-input" placeholder="thandi@acme.co.za" required>
+            <button type="submit" class="btn btn-p">Subscribe</button>
+          </form>
+          <div class="sub-meta">
+            <div class="sub-m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Stored in af-south-1 &middot; POPIA s.11 consent</div>
+            <div class="sub-m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>One-click unsubscribe in every email</div>
+            <div class="sub-m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Or use the <a href="/changelog.rss" style="color:var(--blue);font-weight:600">RSS feed</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

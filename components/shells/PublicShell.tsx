@@ -163,7 +163,7 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
               <Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Sitemap</Link>
               <Link href="/contact" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Contact</Link>
-              <Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Privacy</Link>
+              <Link href="/privacy-policy" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Privacy</Link>
               <Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Terms of use</Link>
               <Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Trademarks</Link>
               <Link href="/popia" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">POPIA</Link>

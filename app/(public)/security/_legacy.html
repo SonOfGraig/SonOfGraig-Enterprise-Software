@@ -1,0 +1,1031 @@
+<!-- ════════════════════════
+     HERO
+════════════════════════ -->
+<section class="hero" aria-labelledby="hero-h">
+  <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <nav class="hero-crumb rv" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="hero-crumb-sep" aria-hidden="true">/</span>
+        <a href="/trust">Trust</a><span class="hero-crumb-sep" aria-hidden="true">/</span>
+        <span aria-current="page">Security</span>
+      </nav>
+      <div class="eyebrow rv d1" style="margin-bottom:16px">
+        <i style="background:var(--green)"></i>
+        Trust centre · POPIA-native · SOC 2 Type II in progress
+      </div>
+      <h1 class="hero-h rv d2" id="hero-h">
+        Security <span class="g">built into</span><br>the architecture.
+      </h1>
+      <p class="hero-lead rv d3">
+        Defence in depth from edge to embedding. TLS 1.3 in transit, AES-256 at rest, every byte processed in AWS af-south-1 (Cape Town). Multi-tenant isolation via PostgreSQL row-level security. PII scrubbed before any document content reaches an AI pipeline. Immutable audit logs that prove POPIA Section 19 compliance.
+      </p>
+      <div class="hero-ctas rv d4">
+        <a href="#documentation" class="btn btn-p">
+          Download documentation
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </a>
+        <a href="mailto:security@sonofgraig.com" class="btn btn-s">
+          Report a vulnerability
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </a>
+      </div>
+      <div class="hero-trust rv d5">
+        <div class="ht-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>POPIA Section 19 enforced</div>
+        <div class="ht-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>AWS af-south-1 only</div>
+        <div class="ht-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>MFA enforced for staff</div>
+        <div class="ht-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>BYOK on Enterprise tier</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     STATUS STRIP
+════════════════════════ -->
+<div class="status-strip" aria-label="Live security posture">
+  <div class="wrap">
+    <div class="status-g">
+      <div class="status-i">
+        <div class="status-dot ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="status-meta">
+          <div class="status-label">Platform status</div>
+          <div class="status-val">All systems operational</div>
+        </div>
+      </div>
+      <div class="status-i">
+        <div class="status-dot ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
+        <div class="status-meta">
+          <div class="status-label">Region</div>
+          <div class="status-val">af-south-1 · Cape Town</div>
+        </div>
+      </div>
+      <div class="status-i">
+        <div class="status-dot ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div class="status-meta">
+          <div class="status-label">Encryption</div>
+          <div class="status-val">TLS 1.3 · AES-256</div>
+        </div>
+      </div>
+      <div class="status-i">
+        <div class="status-dot ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="status-meta">
+          <div class="status-label">SOC 2 Type II</div>
+          <div class="status-val">Controls in implementation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════
+     TOC TAB STRIP
+════════════════════════ -->
+<div class="toc-strip" role="navigation" aria-label="Security sections">
+  <div class="wrap">
+    <div class="toc-inner">
+      <a class="toc-tab active" data-target="pillars" href="#pillars"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Pillars</a>
+      <a class="toc-tab" data-target="architecture" href="#architecture"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Architecture</a>
+      <a class="toc-tab" data-target="compliance" href="#compliance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>Compliance</a>
+      <a class="toc-tab" data-target="controls" href="#controls"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4"/></svg>Controls</a>
+      <a class="toc-tab" data-target="incident" href="#incident"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>Incident response</a>
+      <a class="toc-tab" data-target="responsibility" href="#responsibility"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6"/><path d="M23 11h-6"/></svg>Shared responsibility</a>
+      <a class="toc-tab" data-target="subprocessors" href="#subprocessors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Sub-processors</a>
+      <a class="toc-tab" data-target="documentation" href="#documentation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Documentation</a>
+      <a class="toc-tab" data-target="faq" href="#faq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>FAQ</a>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════
+     PILLARS — Defence in depth
+════════════════════════ -->
+<section class="section" id="pillars" aria-labelledby="pillars-h">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow" style="margin-bottom:16px"><i style="background:var(--blue)"></i>01 · Defence in depth</div>
+      <h2 class="section-h" id="pillars-h">Six security pillars. <span class="g">Every product. Every cluster.</span></h2>
+      <p class="section-lead">Security is not a feature on the SonOfGraig platform — it is the architecture itself. Each of the six pillars below is implemented at the infrastructure or database layer, not by application-level checks. That distinction matters: a misbehaving service cannot bypass a firewall, a residency rule, or a row-level security policy.</p>
+    </div>
+
+    <div class="pillar-g">
+      <div class="pillar rv d1">
+        <div class="pillar-num">Pillar 01</div>
+        <div class="pillar-ico" style="background:var(--green-g);border:1px solid var(--green-b)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+        </div>
+        <div class="pillar-t">Data residency</div>
+        <div class="pillar-d">All production data is processed and stored in AWS Cape Town (af-south-1). Data residency is enforced at the infrastructure layer — not by contract.</div>
+        <ul class="pillar-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>POPIA Section 72 enforced by VPC, not policy</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Self-hosted Qdrant inside af-south-1 VPC</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Egress allow-listed for approved endpoints</li>
+        </ul>
+      </div>
+
+      <div class="pillar rv d2">
+        <div class="pillar-num">Pillar 02</div>
+        <div class="pillar-ico" style="background:var(--blue-g);border:1px solid var(--blue-b)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div class="pillar-t">Encryption everywhere</div>
+        <div class="pillar-d">TLS 1.3 for everything moving. AES-256 for everything at rest, enforced by AWS at the storage layer. Secrets never sit in code or environment files.</div>
+        <ul class="pillar-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>TLS 1.3 with strong cipher suite enforcement</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>AES-256 at rest on Postgres, Qdrant, S3</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>HashiCorp Vault &amp; AWS Secrets Manager</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>BYOK encryption keys on Enterprise tier</li>
+        </ul>
+      </div>
+
+      <div class="pillar green rv d3">
+        <div class="pillar-num">Pillar 03</div>
+        <div class="pillar-ico" style="background:var(--green-g);border:1px solid var(--green-b)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="pillar-t">Identity &amp; access</div>
+        <div class="pillar-d">Role-based access at the application layer. Row-level security at the database layer. The principle of least privilege is enforced for every internal service component.</div>
+        <ul class="pillar-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Supabase RLS scopes every tenant query</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>MFA mandatory for all staff in production</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Short-lived JWTs with token rotation</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>SSO/SAML on Enterprise tier</li>
+        </ul>
+      </div>
+
+      <div class="pillar amber rv d1">
+        <div class="pillar-num">Pillar 04</div>
+        <div class="pillar-ico" style="background:var(--amber-g);border:1px solid var(--amber-b)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div class="pillar-t">PII protection in AI</div>
+        <div class="pillar-d">South-African PII is detected and redacted by middleware before any content reaches an embedding model, vector store, or external LLM API. AI safety is a pipeline guarantee, not a prompt instruction.</div>
+        <ul class="pillar-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Detects ID numbers, phones, emails, passports</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Runs synchronously before vectorisation</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Tested in CI as part of every deployment</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Zero raw PII transmitted to external models</li>
+        </ul>
+      </div>
+
+      <div class="pillar purple rv d2">
+        <div class="pillar-num">Pillar 05</div>
+        <div class="pillar-ico" style="background:var(--purple-g);border:1px solid var(--purple-b)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="pillar-t">Auditability</div>
+        <div class="pillar-d">Every RAG query, every agent execution, every administrative action is logged immutably. Hashes are stored — not raw content — so the audit log is a compliance record and not a secondary copy of personal information.</div>
+        <ul class="pillar-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>SHA-256 hashes of user IDs and queries</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>PostgreSQL rules prevent log deletion</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Synchronous logging — no race conditions</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Records POPIA s.11 processing basis</li>
+        </ul>
+      </div>
+
+      <div class="pillar rv d3">
+        <div class="pillar-num">Pillar 06</div>
+        <div class="pillar-ico" style="background:var(--blue-g);border:1px solid var(--blue-b)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </div>
+        <div class="pillar-t">Edge &amp; network</div>
+        <div class="pillar-d">Cloudflare sits in front of every public endpoint with WAF, bot protection, rate limiting, and DDoS mitigation. Backend services run in private subnets with no public IPs.</div>
+        <ul class="pillar-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Cloudflare WAF with managed rule sets</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Per-IP and per-org rate limiting</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>VPC private subnets for all backends</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>ALB-only ingress, no direct DB exposure</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════
+     ARCHITECTURE — Layered
+════════════════════════ -->
+<section class="section section-alt" id="architecture" aria-labelledby="arch-h">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow" style="margin-bottom:16px"><i style="background:var(--purple)"></i>02 · Architecture</div>
+      <h2 class="section-h" id="arch-h">Five layers. <span class="g">One enforced posture.</span></h2>
+      <p class="section-lead">From the edge router that receives a request to the AWS storage block that returns an embedding, every layer of the SonOfGraig platform contributes a security control. The diagram below traces a single tenant request from Cloudflare into af-south-1 and back, naming every component and the safeguard it provides.</p>
+    </div>
+
+    <div class="arch-wrap">
+      <div class="arch-stack">
+
+        <div class="arch-layer rv d1">
+          <div class="arch-layer-rail" style="background:var(--blue)"></div>
+          <div class="arch-layer-head">
+            <div class="arch-layer-num">L01</div>
+            <div class="arch-layer-ico" style="background:var(--blue-g);border:1px solid var(--blue-b)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
+            <div>
+              <div class="arch-layer-title">Edge — Cloudflare global network</div>
+            </div>
+          </div>
+          <div class="arch-layer-desc">Every request hits Cloudflare first. WAF rules block OWASP Top 10 patterns. Bot protection neutralises automated scraping. Rate limits are applied per-IP and per-organisation. DDoS mitigation runs continuously across 300+ points of presence.</div>
+          <div class="arch-layer-tech">
+            <span class="arch-tech-chip">Cloudflare WAF</span>
+            <span class="arch-tech-chip">DDoS L3/L4/L7</span>
+            <span class="arch-tech-chip">Bot Management</span>
+            <span class="arch-tech-chip">Rate limiting</span>
+          </div>
+        </div>
+
+        <div class="arch-layer rv d2">
+          <div class="arch-layer-rail" style="background:var(--green)"></div>
+          <div class="arch-layer-head">
+            <div class="arch-layer-num">L02</div>
+            <div class="arch-layer-ico" style="background:var(--green-g);border:1px solid var(--green-b)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/></svg></div>
+            <div>
+              <div class="arch-layer-title">Ingress — TLS 1.3 termination &amp; auth</div>
+            </div>
+          </div>
+          <div class="arch-layer-desc">TLS 1.3 is terminated at the AWS Application Load Balancer in af-south-1. Authentication tokens (short-lived JWTs) are validated. The organisation ID is extracted from the JWT claims and propagated through the request lifecycle for downstream RLS scoping.</div>
+          <div class="arch-layer-tech">
+            <span class="arch-tech-chip">TLS 1.3</span>
+            <span class="arch-tech-chip">AWS ALB</span>
+            <span class="arch-tech-chip">JWT (short-lived)</span>
+            <span class="arch-tech-chip">MFA enforced</span>
+          </div>
+        </div>
+
+        <div class="arch-layer rv d3">
+          <div class="arch-layer-rail" style="background:var(--amber)"></div>
+          <div class="arch-layer-head">
+            <div class="arch-layer-num">L03</div>
+            <div class="arch-layer-ico" style="background:var(--amber-g);border:1px solid var(--amber-b)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+            <div>
+              <div class="arch-layer-title">Application — PII scrubbing &amp; AI gateway</div>
+            </div>
+          </div>
+          <div class="arch-layer-desc">Document content passes through the PII scrubber before it ever reaches an embedding model. South-African personal identifiers are detected and redacted. The LiteLLM gateway sits between application services and any external LLM provider, enforcing that PII-scrubbed content is the only payload that leaves our network.</div>
+          <div class="arch-layer-tech">
+            <span class="arch-tech-chip">PII Scrubber middleware</span>
+            <span class="arch-tech-chip">LiteLLM gateway</span>
+            <span class="arch-tech-chip">FastAPI</span>
+            <span class="arch-tech-chip">tRPC</span>
+          </div>
+        </div>
+
+        <div class="arch-layer rv d4">
+          <div class="arch-layer-rail" style="background:var(--purple)"></div>
+          <div class="arch-layer-head">
+            <div class="arch-layer-num">L04</div>
+            <div class="arch-layer-ico" style="background:var(--purple-g);border:1px solid var(--purple-b)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg></div>
+            <div>
+              <div class="arch-layer-title">Data — Multi-tenant isolation via RLS</div>
+            </div>
+          </div>
+          <div class="arch-layer-desc">PostgreSQL row-level security policies scope every query to the authenticated organisation automatically. There is no application-layer filter to forget. Qdrant uses one named, independently encrypted collection per tenant. Cross-tenant access requires a database root credential, not an application bug.</div>
+          <div class="arch-layer-tech">
+            <span class="arch-tech-chip">PostgreSQL 16</span>
+            <span class="arch-tech-chip">Supabase RLS</span>
+            <span class="arch-tech-chip">Qdrant per-tenant</span>
+            <span class="arch-tech-chip">AES-256 at rest</span>
+          </div>
+        </div>
+
+        <div class="arch-layer rv d5">
+          <div class="arch-layer-rail" style="background:var(--blue-dim)"></div>
+          <div class="arch-layer-head">
+            <div class="arch-layer-num">L05</div>
+            <div class="arch-layer-ico" style="background:var(--blue-g);border:1px solid var(--blue-b)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
+            <div>
+              <div class="arch-layer-title">Infrastructure — AWS af-south-1 only</div>
+            </div>
+          </div>
+          <div class="arch-layer-desc">All production workloads run in Cape Town. EC2, RDS, S3, Secrets Manager, EKS — every service is anchored to af-south-1. The VPC has no internet gateway by default; egress to approved endpoints is allow-listed. Infrastructure is defined in Terraform — every change is reviewable and auditable.</div>
+          <div class="arch-layer-tech">
+            <span class="arch-tech-chip">AWS af-south-1</span>
+            <span class="arch-tech-chip">EKS Kubernetes</span>
+            <span class="arch-tech-chip">Terraform IaC</span>
+            <span class="arch-tech-chip">VPC private subnets</span>
+            <span class="arch-tech-chip">Prometheus + Grafana</span>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="arch-right">
+        <div class="arch-stat rv d1" style="border-color:var(--green-b)">
+          <div class="arch-stat-val" style="color:var(--green)">100%</div>
+          <div class="arch-stat-label">Production data processed in South Africa — AWS af-south-1, Cape Town</div>
+        </div>
+        <div class="arch-stat rv d2">
+          <div class="arch-stat-val">Zero</div>
+          <div class="arch-stat-label">Personal information transmitted to external LLM APIs without PII scrubbing</div>
+        </div>
+        <div class="arch-stat rv d3">
+          <div class="arch-stat-val">TLS 1.3</div>
+          <div class="arch-stat-label">All data in transit encrypted with modern cipher suites</div>
+        </div>
+        <div class="arch-stat rv d4">
+          <div class="arch-stat-val">AES-256</div>
+          <div class="arch-stat-label">All data at rest, enforced at the AWS storage layer</div>
+        </div>
+        <div class="arch-stat rv d5" style="border-color:var(--amber-b)">
+          <div class="arch-stat-val" style="color:var(--amber)">99.95%</div>
+          <div class="arch-stat-label">Uptime SLA on Enterprise tier · 99.9% on Growth · 99.5% on Starter</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════
+     COMPLIANCE
+════════════════════════ -->
+<section class="section" id="compliance" aria-labelledby="comp-h">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow" style="margin-bottom:16px"><i style="background:var(--green)"></i>03 · Compliance &amp; certifications</div>
+      <h2 class="section-h" id="comp-h">Compliance posture, <span class="g">documented honestly.</span></h2>
+      <p class="section-lead">We list every framework with its real status — active, in progress, or planned. We will never claim a certificate that has not been issued. The South African market deserves honest compliance reporting, and our enterprise procurement counterparties require it.</p>
+    </div>
+
+    <div class="comp-table rv">
+      <div class="comp-row head">
+        <div class="comp-cell head-c">Framework</div>
+        <div class="comp-cell head-c">What it covers</div>
+        <div class="comp-cell head-c">Status</div>
+      </div>
+
+      <div class="comp-row">
+        <div class="comp-cell">
+          <div class="comp-cert-ico" style="background:var(--green-g);border:1px solid var(--green-b)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div>
+            <div class="comp-cert-name">POPIA</div>
+            <div class="comp-cert-sub">Act 4 of 2013 · ZA</div>
+          </div>
+        </div>
+        <div class="comp-cell">South African Protection of Personal Information Act. We comply across Section 11 (lawful processing), Section 13 (data minimisation), Section 19 (security safeguards), Section 22 (breach notification), Section 26 (special PI), and Section 72 (data residency). Information Officer registered with the Information Regulator.</div>
+        <div class="comp-cell"><span class="comp-status ok">Active</span></div>
+      </div>
+
+      <div class="comp-row">
+        <div class="comp-cell">
+          <div class="comp-cert-ico" style="background:var(--blue-g);border:1px solid var(--blue-b)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.6"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></div>
+          <div>
+            <div class="comp-cert-name">SOC 2 Type II</div>
+            <div class="comp-cert-sub">AICPA · Trust Services</div>
+          </div>
+        </div>
+        <div class="comp-cell">Annual third-party audit of security, availability, and confidentiality controls — required by most enterprise procurement processes globally. Audit process initiated; controls implementation is the current phase. Vanta is our continuous-control monitoring platform during readiness.</div>
+        <div class="comp-cell"><span class="comp-status prog">In progress</span></div>
+      </div>
+
+      <div class="comp-row">
+        <div class="comp-cell">
+          <div class="comp-cert-ico" style="background:var(--purple-g);border:1px solid var(--purple-b)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div>
+            <div class="comp-cert-name">ISO/IEC 27001</div>
+            <div class="comp-cert-sub">Information Security</div>
+          </div>
+        </div>
+        <div class="comp-cell">International information security management standard. Provides enterprise customers with assurance of systematic security controls across 14 control domains. Gap analysis complete; ISMS scope defined for the platform; Stage 1 audit planned.</div>
+        <div class="comp-cell"><span class="comp-status plan">Planned · 2026 H2</span></div>
+      </div>
+
+      <div class="comp-row">
+        <div class="comp-cell">
+          <div class="comp-cert-ico" style="background:var(--amber-g);border:1px solid var(--amber-b)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.6"><path d="M12 2L2 7l10 5 10-5-10-5z"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+          <div>
+            <div class="comp-cert-name">EU AI Act readiness</div>
+            <div class="comp-cert-sub">Regulation (EU) 2024/1689</div>
+          </div>
+        </div>
+        <div class="comp-cell">Risk classification and documentation of AI systems per the EU AI Act taxonomy. Required for customers serving EU data subjects or operating in EU jurisdictions. Risk register maintained; technical documentation produced for each platform AI system.</div>
+        <div class="comp-cell"><span class="comp-status prog">Readiness phase</span></div>
+      </div>
+
+      <div class="comp-row">
+        <div class="comp-cell">
+          <div class="comp-cert-ico" style="background:var(--green-g);border:1px solid var(--green-b)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div>
+            <div class="comp-cert-name">GDPR alignment</div>
+            <div class="comp-cert-sub">Regulation (EU) 2016/679</div>
+          </div>
+        </div>
+        <div class="comp-cell">Data Processing Agreements and privacy-by-design controls for customers with EU data subjects. POPIA alignment provides most baseline GDPR controls; Standard Contractual Clauses available for cross-border data transfer where lawful.</div>
+        <div class="comp-cell"><span class="comp-status ok">Aligned</span></div>
+      </div>
+
+      <div class="comp-row">
+        <div class="comp-cell">
+          <div class="comp-cert-ico" style="background:var(--blue-g);border:1px solid var(--blue-b)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <div>
+            <div class="comp-cert-name">PAIA manual</div>
+            <div class="comp-cert-sub">Promotion of Access to Information Act, ZA</div>
+          </div>
+        </div>
+        <div class="comp-cell">Promotion of Access to Information Act manual published and available to data subjects. Covers categories of records held, requestor procedure, and the Information Officer&rsquo;s contact details.</div>
+        <div class="comp-cell"><span class="comp-status ok">Published</span></div>
+      </div>
+
+      <div class="comp-row">
+        <div class="comp-cell">
+          <div class="comp-cert-ico" style="background:var(--amber-g);border:1px solid var(--amber-b)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.6"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/></svg></div>
+          <div>
+            <div class="comp-cert-name">B-BBEE certification</div>
+            <div class="comp-cert-sub">B-BBEE Act, ZA</div>
+          </div>
+        </div>
+        <div class="comp-cell">Broad-Based Black Economic Empowerment certificate. Available to enterprise procurement teams on request — required for many South African enterprise and public-sector customers as part of supplier assessment.</div>
+        <div class="comp-cell"><span class="comp-status ok">Certified</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════
+     CONTROL CARDS
+════════════════════════ -->
+<section class="section section-alt" id="controls" aria-labelledby="ctrl-h">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow" style="margin-bottom:16px"><i style="background:var(--amber)"></i>04 · Security controls</div>
+      <h2 class="section-h" id="ctrl-h">The control catalogue. <span class="g">Implementation, not aspiration.</span></h2>
+      <p class="section-lead">Security questionnaires move faster when answers are precise. The controls below are grouped by domain and describe what is implemented today — the technology, the enforcement point, and the operational frequency where applicable.</p>
+    </div>
+
+    <div class="ctrl-g">
+
+      <!-- 01 -->
+      <div class="ctrl rv d1">
+        <div class="ctrl-head">
+          <div class="ctrl-ico" style="background:var(--blue-g);border:1px solid var(--blue-b)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div>
+            <div class="ctrl-cat">A — Cryptography</div>
+            <div class="ctrl-t">Encryption &amp; key management</div>
+          </div>
+        </div>
+        <div class="ctrl-rows">
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>TLS 1.3</strong> for all data in transit. Strong cipher suites enforced; legacy protocols disabled.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>AES-256</strong> at rest on PostgreSQL, Qdrant, S3, and EBS volumes.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>HashiCorp Vault</strong> and <strong>AWS Secrets Manager</strong> for credentials. No hardcoded secrets in source.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>BYOK</strong> (bring-your-own-key) encryption available on Enterprise tier.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>JWT rotation</strong> on short-lived authentication tokens.</span></div>
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="ctrl rv d2">
+        <div class="ctrl-head">
+          <div class="ctrl-ico" style="background:var(--green-g);border:1px solid var(--green-b)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <div class="ctrl-cat">B — Identity</div>
+            <div class="ctrl-t">Access &amp; authentication</div>
+          </div>
+        </div>
+        <div class="ctrl-rows">
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Role-based access control</strong> at the application layer with four built-in roles (Admin, Builder, Viewer, Compliance).</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Supabase Row-Level Security</strong> at the database layer — every query is scoped to the authenticated organisation.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>MFA required</strong> for all SonOfGraig staff accessing production systems.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>SSO / SAML</strong> available on Enterprise tier; customers can enforce MFA for their users.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Principle of least privilege</strong> applied to every internal service component.</span></div>
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="ctrl rv d3">
+        <div class="ctrl-head">
+          <div class="ctrl-ico" style="background:var(--purple-g);border:1px solid var(--purple-b)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
+          </div>
+          <div>
+            <div class="ctrl-cat">C — Data</div>
+            <div class="ctrl-t">Multi-tenant isolation</div>
+          </div>
+        </div>
+        <div class="ctrl-rows">
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Per-tenant Qdrant collections</strong> — each is independently encrypted; the collection name pattern is <code style="font-family:var(--fm);font-size:11px;color:var(--blue)">{org_id}_{kb_id}</code>.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Postgres organisation_id column</strong> on every customer-data table; RLS policy enforces scoping with no application code involvement.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Dedicated inference endpoints</strong> for Enterprise tier customers requiring total compute isolation.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Customer data residency controls</strong> — data never leaves South African infrastructure for any tenant.</span></div>
+        </div>
+      </div>
+
+      <!-- 04 -->
+      <div class="ctrl rv d4">
+        <div class="ctrl-head">
+          <div class="ctrl-ico" style="background:var(--amber-g);border:1px solid var(--amber-b)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div>
+            <div class="ctrl-cat">D — AI safety</div>
+            <div class="ctrl-t">PII scrubbing &amp; pipeline integrity</div>
+          </div>
+        </div>
+        <div class="ctrl-rows">
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>SA-specific PII detection</strong> for ID numbers, mobile numbers, email addresses, and passport numbers — applied before any document is embedded.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Synchronous middleware</strong> — content cannot reach the embedding model unless the scrubber returns clean output.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>LiteLLM gateway</strong> normalises and inspects every external LLM call. PII-scrubbed payloads only.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Tested in CI</strong> — synthetic PII test corpus runs on every deploy. A PII leak fails the build.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Customer data is never used to train shared models.</strong> Tenant fine-tunes are tenant-scoped.</span></div>
+        </div>
+      </div>
+
+      <!-- 05 -->
+      <div class="ctrl rv d1">
+        <div class="ctrl-head">
+          <div class="ctrl-ico" style="background:var(--blue-g);border:1px solid var(--blue-b)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div>
+            <div class="ctrl-cat">E — Audit</div>
+            <div class="ctrl-t">Immutable logging</div>
+          </div>
+        </div>
+        <div class="ctrl-rows">
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Synchronous query-level audit log</strong> — written before the response is returned. A missed log fails the operation.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>SHA-256 hashes of user IDs and queries</strong> — the audit log is a compliance record, not a secondary data copy.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>PostgreSQL deletion rules</strong> reject log row deletes — append-only semantics.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>POPIA Section 11 processing basis</strong> recorded against every operation.</span></div>
+        </div>
+      </div>
+
+      <!-- 06 -->
+      <div class="ctrl rv d2">
+        <div class="ctrl-head">
+          <div class="ctrl-ico" style="background:var(--green-g);border:1px solid var(--green-b)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </div>
+          <div>
+            <div class="ctrl-cat">F — Network</div>
+            <div class="ctrl-t">Edge &amp; perimeter</div>
+          </div>
+        </div>
+        <div class="ctrl-rows">
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Cloudflare WAF</strong> with managed OWASP rule sets; bot management and rate limiting per IP and per organisation.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>VPC private subnets</strong> for databases and application servers — no public IPs on backend infrastructure.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>AWS Application Load Balancer</strong> as the sole ingress point. All other traffic blocked at the security-group level.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Egress allow-listing</strong> for approved external endpoints; default-deny on outbound traffic.</span></div>
+        </div>
+      </div>
+
+      <!-- 07 -->
+      <div class="ctrl rv d3">
+        <div class="ctrl-head">
+          <div class="ctrl-ico" style="background:var(--purple-g);border:1px solid var(--purple-b)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div>
+            <div class="ctrl-cat">G — Operations</div>
+            <div class="ctrl-t">Monitoring &amp; observability</div>
+          </div>
+        </div>
+        <div class="ctrl-rows">
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Prometheus &amp; Grafana</strong> for infrastructure metrics, request rates, error rates, and SLO tracking.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Sentry</strong> for frontend and backend error tracking and session replay.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>OpenTelemetry</strong> for distributed tracing across all services — vendor-agnostic instrumentation.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Langfuse (self-hosted)</strong> for LLM observability — prompt traces, token costs, evaluation scores.</span></div>
+        </div>
+      </div>
+
+      <!-- 08 -->
+      <div class="ctrl rv d4">
+        <div class="ctrl-head">
+          <div class="ctrl-ico" style="background:var(--amber-g);border:1px solid var(--amber-b)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div>
+            <div class="ctrl-cat">H — Engineering</div>
+            <div class="ctrl-t">Secure SDLC</div>
+          </div>
+        </div>
+        <div class="ctrl-rows">
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Mandatory peer review</strong> on every pull request to a protected branch.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Static analysis (SAST)</strong> and <strong>dependency scanning (SCA)</strong> on every commit. Critical findings block merge.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Infrastructure as Code</strong> via Terraform — every change reviewable.</span></div>
+          <div class="ctrl-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Annual penetration testing</strong> by an external assessor; remediation tracked to closure.</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════
+     INCIDENT RESPONSE
+════════════════════════ -->
+<section class="section" id="incident" aria-labelledby="inc-h">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow" style="margin-bottom:16px"><i style="background:var(--red)"></i>05 · Incident response</div>
+      <h2 class="section-h" id="inc-h">If the worst happens, <span class="g">we already know what we&rsquo;re doing.</span></h2>
+      <p class="section-lead">The breach response procedure is documented, rehearsed annually, and aligned to POPIA Section 22. The Information Regulator is notified within 72 hours of confirmed breach. Affected data subjects are notified as soon as reasonably possible. The timeline below is the public version of our internal runbook.</p>
+    </div>
+
+    <div class="inc-timeline rv">
+
+      <div class="inc-step">
+        <div class="inc-dot r" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/></svg>
+        </div>
+        <div class="inc-time r">T+0 · Detection</div>
+        <div class="inc-title">Containment &amp; assessment</div>
+        <div class="inc-text">Detection sources include automated alerts (Sentry, Cloudflare, AWS GuardDuty), customer reports via security@sonofgraig.com, and internal review. The on-call engineer escalates to the Information Officer immediately. Affected systems are isolated. Scope of exposure is assessed: what data, whose data, how it was accessed. A formal incident record is opened.</div>
+      </div>
+
+      <div class="inc-step">
+        <div class="inc-dot a" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="inc-time a">T + 24 hours</div>
+        <div class="inc-title">Internal review &amp; notification decision</div>
+        <div class="inc-text">The Information Officer determines whether the incident creates a risk to affected data subjects. If personal information has been accessed by an unauthorised person, formal notification is required under POPIA Section 22. Legal counsel is engaged where appropriate. Customer Information Officers of impacted tenants are contacted directly.</div>
+      </div>
+
+      <div class="inc-step">
+        <div class="inc-dot b" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="inc-time b">T + 72 hours</div>
+        <div class="inc-title">Information Regulator notification</div>
+        <div class="inc-text">The Information Regulator of South Africa is formally notified within 72 hours of confirmed breach. The notification includes nature of the breach, categories of personal information affected, estimated number of data subjects impacted, likely consequences, and the measures taken or proposed to address the breach.</div>
+      </div>
+
+      <div class="inc-step">
+        <div class="inc-dot b" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        </div>
+        <div class="inc-time b">As soon as reasonably possible</div>
+        <div class="inc-title">Data subject notification</div>
+        <div class="inc-text">Affected data subjects are notified directly by email and in-app where contact information is available, unless a public communication is more effective. The notification describes the breach in plain language, the categories of personal information involved, the likely consequences, and the steps the data subject can take to protect themselves.</div>
+      </div>
+
+      <div class="inc-step">
+        <div class="inc-dot g" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="inc-time g">Post-incident</div>
+        <div class="inc-title">Root-cause analysis &amp; remediation</div>
+        <div class="inc-text">A blameless post-mortem is conducted within 14 days. Root cause is identified, remediations are tracked to closure, and platform-wide changes are made to prevent recurrence. A public incident report is published for material incidents on the status page. The breach scenario test is revised based on lessons learned.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════
+     SHARED RESPONSIBILITY
+════════════════════════ -->
+<section class="section section-alt" id="responsibility" aria-labelledby="resp-h">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow" style="margin-bottom:16px"><i style="background:var(--blue)"></i>06 · Shared responsibility</div>
+      <h2 class="section-h" id="resp-h">Where SonOfGraig stops <span class="g">and you begin.</span></h2>
+      <p class="section-lead">A platform secures the platform. The customer secures the customer&rsquo;s configuration and use. The boundaries below are explicit so there are no surprises for an enterprise security team performing a third-party risk assessment.</p>
+    </div>
+
+    <div class="shared-g">
+      <div class="shared us rv d1">
+        <div class="shared-h">
+          <div class="shared-h-ico" style="background:var(--blue-g);border:1px solid var(--blue-b)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="shared-h-sub">Provided by</div>
+            <div class="shared-h-txt">SonOfGraig</div>
+          </div>
+        </div>
+        <ul class="shared-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Platform infrastructure security in AWS af-south-1</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Encryption at rest and in transit</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Multi-tenant isolation via RLS &amp; per-tenant Qdrant collections</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>PII scrubbing middleware and AI gateway controls</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Cloudflare WAF, rate limiting, DDoS mitigation</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Patching of platform services and dependencies</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Immutable audit logging of platform operations</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Breach detection, response, and Section 22 notification</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Annual third-party penetration testing</li>
+        </ul>
+      </div>
+
+      <div class="shared you rv d2">
+        <div class="shared-h">
+          <div class="shared-h-ico" style="background:var(--amber-g);border:1px solid var(--amber-b)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.66V18a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2.66"/></svg>
+          </div>
+          <div>
+            <div class="shared-h-sub">Owned by</div>
+            <div class="shared-h-txt">Customer</div>
+          </div>
+        </div>
+        <ul class="shared-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>User account management within your tenant</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Role assignment to internal users (Admin / Builder / Viewer / Compliance)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Enforcing MFA for your users (recommended)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>SSO / SAML configuration on Enterprise tier</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Lawful basis for processing of any personal information you upload</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Document purpose statement at ingestion</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>API key rotation for keys you generate</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Securing the integrations you build on top of the platform</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Notification to your own data subjects of any breach affecting them</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════
+     SUB-PROCESSORS
+════════════════════════ -->
+<section class="section" id="subprocessors" aria-labelledby="sp-h">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow" style="margin-bottom:16px"><i style="background:var(--purple)"></i>07 · Sub-processors</div>
+      <h2 class="section-h" id="sp-h">A complete list of <span class="g">who touches what.</span></h2>
+      <p class="section-lead">A sub-processor is any third party that may process personal information on our behalf. The list below is the entire current set; we will notify customers in writing before adding a sub-processor in line with the commitments in our Data Processing Agreement.</p>
+    </div>
+
+    <div class="sp-table rv">
+      <div class="sp-row head">
+        <div class="sp-cell head-c">Sub-processor</div>
+        <div class="sp-cell head-c">Region</div>
+        <div class="sp-cell head-c">Purpose</div>
+        <div class="sp-cell head-c">Data type</div>
+      </div>
+
+      <div class="sp-row">
+        <div class="sp-cell"><span class="sp-name">Amazon Web Services</span></div>
+        <div class="sp-cell"><span class="sp-region za">af-south-1 · ZA</span></div>
+        <div class="sp-cell">Primary infrastructure — EC2, S3, RDS, Secrets Manager, EKS, VPC.</div>
+        <div class="sp-cell">All production data</div>
+      </div>
+
+      <div class="sp-row">
+        <div class="sp-cell"><span class="sp-name">Cloudflare</span></div>
+        <div class="sp-cell"><span class="sp-region">Global edge</span></div>
+        <div class="sp-cell">Edge CDN, WAF, DDoS mitigation, bot protection, rate limiting.</div>
+        <div class="sp-cell">Request metadata</div>
+      </div>
+
+      <div class="sp-row">
+        <div class="sp-cell"><span class="sp-name">Supabase</span></div>
+        <div class="sp-cell"><span class="sp-region za">af-south-1 · ZA</span></div>
+        <div class="sp-cell">Managed PostgreSQL, auth primitives, realtime, storage. RLS-scoped multi-tenancy.</div>
+        <div class="sp-cell">Tenant data</div>
+      </div>
+
+      <div class="sp-row">
+        <div class="sp-cell"><span class="sp-name">Anthropic / Claude API</span></div>
+        <div class="sp-cell"><span class="sp-region">US</span></div>
+        <div class="sp-cell">LLM inference for agent execution and RAG generation. PII-scrubbed payloads only.</div>
+        <div class="sp-cell">Scrubbed prompts</div>
+      </div>
+
+      <div class="sp-row">
+        <div class="sp-cell"><span class="sp-name">Stripe</span></div>
+        <div class="sp-cell"><span class="sp-region">US / EU</span></div>
+        <div class="sp-cell">Subscription management, ZAR payment processing, invoicing, customer billing portal.</div>
+        <div class="sp-cell">Billing only</div>
+      </div>
+
+      <div class="sp-row">
+        <div class="sp-cell"><span class="sp-name">Resend</span></div>
+        <div class="sp-cell"><span class="sp-region">EU / US</span></div>
+        <div class="sp-cell">Transactional email — onboarding, billing alerts, team invitations.</div>
+        <div class="sp-cell">Email + name</div>
+      </div>
+
+      <div class="sp-row">
+        <div class="sp-cell"><span class="sp-name">Sentry</span></div>
+        <div class="sp-cell"><span class="sp-region">EU region</span></div>
+        <div class="sp-cell">Error tracking and performance monitoring. PII-scrubbed via SDK config.</div>
+        <div class="sp-cell">Error metadata</div>
+      </div>
+
+      <div class="sp-row">
+        <div class="sp-cell"><span class="sp-name">Vanta</span></div>
+        <div class="sp-cell"><span class="sp-region">US</span></div>
+        <div class="sp-cell">SOC 2 / ISO 27001 readiness — continuous control monitoring, evidence collection.</div>
+        <div class="sp-cell">Control metadata</div>
+      </div>
+
+      <div class="sp-row">
+        <div class="sp-cell"><span class="sp-name">HubSpot</span></div>
+        <div class="sp-cell"><span class="sp-region">EU region</span></div>
+        <div class="sp-cell">CRM for enterprise deal tracking and account onboarding.</div>
+        <div class="sp-cell">Business contacts</div>
+      </div>
+    </div>
+
+    <p style="font-size:12.5px;color:var(--t4);margin-top:14px;line-height:1.7;font-style:italic">
+      Customers using a SonOfGraig product on the Enterprise tier may opt out of any non-essential sub-processor through their Data Processing Agreement. Where a sub-processor sits outside af-south-1, transfer is governed by Standard Contractual Clauses or an equivalent lawful basis under POPIA Section 72 and explicit customer consent.
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════
+     DOCUMENTATION & CONTACT
+════════════════════════ -->
+<section class="section section-alt" id="documentation" aria-labelledby="docs-h">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow" style="margin-bottom:16px"><i style="background:var(--blue)"></i>08 · Documentation &amp; contact</div>
+      <h2 class="section-h" id="docs-h">For procurement, legal, <span class="g">and security teams.</span></h2>
+      <p class="section-lead">Most third-party risk assessments require the same set of documents. We have packaged these for download — and for any document you cannot find, your account team can supply it under NDA on request.</p>
+    </div>
+
+    <div class="contact-g">
+      <div class="contact rv d1">
+        <div class="contact-ico" style="background:var(--blue-g);border:1px solid var(--blue-b)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="contact-t">Data Processing Agreement</div>
+        <div class="contact-d">Our DPA covers all processing activities, legal basis, security controls, sub-processors, and transfer mechanisms. Pre-signed and ready to counter-sign.</div>
+        <a href="/dpa" class="contact-link" style="color:var(--blue)">Download DPA <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+
+      <div class="contact rv d2">
+        <div class="contact-ico" style="background:var(--green-g);border:1px solid var(--green-b)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="contact-t">SOC 2 status letter</div>
+        <div class="contact-d">A current letter from our auditor describing the SOC 2 Type II readiness phase. Available under NDA. Final report will be issued at audit completion.</div>
+        <a href="mailto:trust@sonofgraig.com" class="contact-link" style="color:var(--green)">Request letter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+
+      <div class="contact rv d3">
+        <div class="contact-ico" style="background:var(--purple-g);border:1px solid var(--purple-b)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="contact-t">Security questionnaire</div>
+        <div class="contact-d">Pre-completed responses to standard questionnaires including CAIQ, SIG-Lite, and a full POPIA Section 19 questionnaire. Saves your team weeks.</div>
+        <a href="mailto:trust@sonofgraig.com" class="contact-link" style="color:var(--purple)">Request package <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+
+      <div class="contact rv d1">
+        <div class="contact-ico" style="background:var(--amber-g);border:1px solid var(--amber-b)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="contact-t">Report a vulnerability</div>
+        <div class="contact-d">Found a security issue? Report it directly to our team. We respond to all reports within one business day and credit reporters in our public security advisories where appropriate.</div>
+        <a href="mailto:security@sonofgraig.com" class="contact-link" style="color:var(--amber)">security@sonofgraig.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+
+      <div class="contact rv d2">
+        <div class="contact-ico" style="background:var(--blue-g);border:1px solid var(--blue-b)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <div class="contact-t">Information Officer</div>
+        <div class="contact-d">For all POPIA-related queries — data subject access requests, processing complaints, and consent inquiries. Our Information Officer is registered with the Information Regulator.</div>
+        <a href="mailto:popia@sonofgraig.com" class="contact-link" style="color:var(--blue)">popia@sonofgraig.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+
+      <div class="contact rv d3">
+        <div class="contact-ico" style="background:var(--green-g);border:1px solid var(--green-b)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="contact-t">Status &amp; uptime</div>
+        <div class="contact-d">Live platform status across all five clusters, historical incident reports, and scheduled maintenance windows. Subscribe via RSS, email, or SMS.</div>
+        <a href="https://status.sonofgraig.com" class="contact-link" style="color:var(--green)" target="_blank" rel="noopener">status.sonofgraig.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════
+     FAQ
+════════════════════════ -->
+<section class="section" id="faq" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow" style="margin-bottom:16px"><i style="background:var(--amber)"></i>09 · Frequently asked</div>
+      <h2 class="section-h" id="faq-h">Questions enterprise procurement <span class="g">always asks.</span></h2>
+      <p class="section-lead">If your security team is preparing for a vendor review, the answers below cover ninety per cent of what gets raised. For anything more specific, your account team can route the question to engineering directly.</p>
+    </div>
+
+    <div class="faq-list">
+
+      <details class="faq-item rv">
+        <summary class="faq-q">
+          Where does our data physically reside?
+          <span class="faq-q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </summary>
+        <div class="faq-a">All production data is processed and stored in <strong>AWS af-south-1 (Cape Town, South Africa)</strong>. Data residency is enforced at the infrastructure layer through VPC and storage configuration — it is not a contractual claim that depends on application behaviour. The only data that ever leaves af-south-1 is PII-scrubbed prompts sent to external LLM providers (when your tenant is configured to use them), and minimal payment metadata sent to Stripe.</div>
+      </details>
+
+      <details class="faq-item rv">
+        <summary class="faq-q">
+          Do you train your shared models on customer data?
+          <span class="faq-q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </summary>
+        <div class="faq-a">No. Customer data is never used to train any model that is shared across tenants. Tenant fine-tunes are <strong>tenant-scoped</strong> — the resulting weights are accessible only to the originating organisation. Aggregated, anonymised usage telemetry (which prompts perform best, which models succeed at which tasks) is collected to improve platform suggestions, but raw customer content is never part of that telemetry.</div>
+      </details>
+
+      <details class="faq-item rv">
+        <summary class="faq-q">
+          How is one tenant&rsquo;s data prevented from leaking to another?
+          <span class="faq-q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </summary>
+        <div class="faq-a">Two enforcement layers, neither of which depends on application code being correct. (1) PostgreSQL <strong>row-level security policies</strong> on every customer-data table — every query is automatically scoped to the authenticated <code>organisation_id</code>. (2) Qdrant uses a <strong>separate, independently encrypted collection per tenant</strong>, named <code>{org_id}_{kb_id}</code>. Cross-tenant access requires a database root credential, not an application bug. Enterprise tier customers may also receive dedicated inference endpoints for total compute isolation.</div>
+      </details>
+
+      <details class="faq-item rv">
+        <summary class="faq-q">
+          What happens when an external LLM provider receives a request?
+          <span class="faq-q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </summary>
+        <div class="faq-a">All external LLM calls flow through the <strong>LiteLLM gateway</strong>, which sits between application services and any third-party model provider (such as Anthropic). Before the gateway is reached, content has already passed through the <strong>PII scrubber middleware</strong>. South-African personal identifiers — ID numbers, mobile numbers, email addresses, passport numbers — are detected and redacted. The provider receives only PII-scrubbed payloads and sees no raw personal information from your documents.</div>
+      </details>
+
+      <details class="faq-item rv">
+        <summary class="faq-q">
+          What is your SLA and how do you measure it?
+          <span class="faq-q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </summary>
+        <div class="faq-a">SLA is tier-dependent. <strong>Starter — 99.5%</strong> uptime, best-effort support, 48-hour response time. <strong>Growth — 99.9%</strong> uptime, business-hours support, 8-hour response time. <strong>Enterprise — 99.95%</strong> uptime, 24/7 dedicated support, 1-hour response time, assigned Customer Success Manager. Uptime is measured on a per-cluster basis on our public status page, calculated monthly with credit issued automatically against breaches.</div>
+      </details>
+
+      <details class="faq-item rv">
+        <summary class="faq-q">
+          Can we bring our own encryption keys?
+          <span class="faq-q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </summary>
+        <div class="faq-a">Yes, on the <strong>Enterprise tier</strong>. BYOK (bring-your-own-key) lets your organisation manage its own master encryption keys via AWS KMS, retaining the ability to revoke at any time. Combined with custom data residency controls and dedicated inference endpoints, it gives the highest isolation tier available on the platform.</div>
+      </details>
+
+      <details class="faq-item rv">
+        <summary class="faq-q">
+          Do you support SSO and SCIM for user management?
+          <span class="faq-q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </summary>
+        <div class="faq-a">SSO/SAML is available on the Enterprise tier. SCIM-based user provisioning and de-provisioning is on the platform roadmap; Enterprise customers can request a status update from their account team. Until SCIM ships, role assignment is performed in the team management UI by an organisation Admin.</div>
+      </details>
+
+      <details class="faq-item rv">
+        <summary class="faq-q">
+          What is your patching and dependency policy?
+          <span class="faq-q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </summary>
+        <div class="faq-a">All container images are built from minimal, regularly rebuilt base images. Critical CVEs are remediated within 72 hours of public disclosure. High-severity CVEs are remediated within 7 days. SCA scanning runs on every commit and blocks merge for unresolved critical findings. Production dependencies are pinned and reproducible builds are enforced.</div>
+      </details>
+
+      <details class="faq-item rv">
+        <summary class="faq-q">
+          How do we delete our data when we leave?
+          <span class="faq-q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </summary>
+        <div class="faq-a">On contract termination, all tenant data — relational records, vector collections, object storage, and tenant-specific fine-tuned model weights — is purged from production systems within <strong>30 days</strong>. Backup retention extends this period to a maximum of 90 days, after which the data is unrecoverable. A deletion attestation is issued to the customer&rsquo;s Information Officer on request. Audit log records are retained in hashed form for the regulatory retention period required by POPIA and applicable financial-records legislation.</div>
+      </details>
+
+      <details class="faq-item rv">
+        <summary class="faq-q">
+          Are you VAT-registered, B-BBEE certified, and CIPC registered?
+          <span class="faq-q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </summary>
+        <div class="faq-a">Yes — SonOfGraig Digital Solutions is VAT-registered with SARS, B-BBEE certified, and CIPC registered. All commercial documentation is available to enterprise procurement teams in support of supplier on-boarding.</div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════
+     CTA
+════════════════════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="cta-blk rv">
+      <div class="cta-grid">
+        <div>
+          <div class="eyebrow" style="margin-bottom:14px"><i style="background:var(--blue)"></i>For procurement &amp; legal teams</div>
+          <h2 class="cta-h">Need a complete due-diligence package?</h2>
+          <p class="cta-p">DPA, SOC 2 status letter, B-BBEE certificate, PAIA manual, security questionnaire responses (CAIQ &amp; SIG-Lite), and architecture diagrams under NDA. Sent within one business day.</p>
+        </div>
+        <div class="cta-actions">
+          <a href="mailto:trust@sonofgraig.com" class="btn btn-cta">Request package <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="/contact" class="btn btn-s">Talk to sales</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
