@@ -6,7 +6,7 @@ const services = [
   {
     category: 'AI & Intelligence',
     title: 'AI Agent Implementation',
-    slug: 'ai-agent',
+    slug: 'ai-agent-implementation',
     desc: 'Design, build, and deploy autonomous AI agents using LangGraph and Composio — the same stack powering our future Agent Builder product.',
     deliverables: [
       'Agent workflow design',
@@ -26,7 +26,7 @@ const services = [
   {
     category: 'AI & Intelligence',
     title: 'RAG Knowledge Base Setup',
-    slug: 'rag-setup',
+    slug: 'rag-knowledge-base-setup',
     desc: 'Connect your company documents to AI. Ingestion pipeline, hybrid retrieval, evaluation framework, and chat interface.',
     deliverables: [
       'Google Drive, SharePoint, Notion connectors',
@@ -46,7 +46,7 @@ const services = [
   {
     category: 'Infrastructure',
     title: 'Cloud Architecture & DevOps',
-    slug: 'cloud-devops',
+    slug: 'cloud-architecture',
     desc: 'Zero-trust cloud setup, Kubernetes, CI/CD pipelines, and observability stacks. POPIA-compliant from day one.',
     deliverables: [
       'Terraform IaC',
@@ -66,7 +66,7 @@ const services = [
   {
     category: 'Compliance',
     title: 'AI Governance & Ethics Audit',
-    slug: 'governance-audit',
+    slug: 'ai-governance-audit',
     desc: 'Bias detection, SHAP explainability reports, POPIA compliance documentation, and EU AI Act risk classification.',
     deliverables: [
       'Algorithmic bias audit (Fairlearn)',

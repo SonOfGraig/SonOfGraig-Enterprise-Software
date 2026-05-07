@@ -96,10 +96,10 @@ const links: NavLink[] = [
   { 
     label: 'Services',
     dropdown: [
-      { href: '/services/ai-agents', label: 'AI Agent Implementation', icon: <Blocks size={16} strokeWidth={1.5} /> },
-      { href: '/services/rag', label: 'RAG Knowledge Base', icon: <Database size={16} strokeWidth={1.5} /> },
-      { href: '/services/cloud', label: 'Cloud Architecture', icon: <Cloud size={16} strokeWidth={1.5} /> },
-      { href: '/services/governance', label: 'AI Governance Audit', icon: <ShieldCheck size={16} strokeWidth={1.5} /> },
+      { href: '/services/ai-agent-implementation', label: 'AI Agent Implementation', icon: <Blocks size={16} strokeWidth={1.5} /> },
+      { href: '/services/rag-knowledge-base-setup', label: 'RAG Knowledge Base', icon: <Database size={16} strokeWidth={1.5} /> },
+      { href: '/services/cloud-architecture', label: 'Cloud Architecture', icon: <Cloud size={16} strokeWidth={1.5} /> },
+      { href: '/services/ai-governance-audit', label: 'AI Governance Audit', icon: <ShieldCheck size={16} strokeWidth={1.5} /> },
       { divider: true },
       { href: '/services', label: 'View all services', icon: <ArrowRight size={14} strokeWidth={1.5} />, isAction: true },
     ]
