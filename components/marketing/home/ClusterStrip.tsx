@@ -10,61 +10,13 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import styles from './ClusterStrip.module.css';
-
-const AIDevIcon = (props: any) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 180" {...props}>
-    <title>AI Dev Platform — favicon</title>
-    <polygon points="100,20 148,48 100,76 52,48"    fill="#0B9EDE"/>
-    <polygon points="52,48 100,76 100,148 52,120"   fill="#044E73"/>
-    <polygon points="100,76 148,48 148,120 100,148" fill="#044E73"/>
-  </svg>
-);
-
-const CloudDevOpsIcon = (props: any) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 190" {...props}>
-    <title>Cloud & DevOps Suite — favicon</title>
-    <polygon points="100,110 136,130 100,150 64,130" fill="#C2530A"/>
-    <polygon points="64,130 100,150 100,170 64,150"  fill="#7A3208"/>
-    <polygon points="100,150 136,130 136,150 100,170" fill="#7A3208"/>
-    <polygon points="100,75 122,88 100,100 78,88"    fill="#EA580C"/>
-    <polygon points="78,88 100,100 100,115 78,103"   fill="#922F06"/>
-    <polygon points="100,100 122,88 122,103 100,115" fill="#922F06"/>
-    <polygon points="100,44 116,53 100,62 84,53"     fill="#F97316"/>
-    <polygon points="84,53 100,62 100,75 84,66"      fill="#C2530A"/>
-    <polygon points="100,62 116,53 116,66 100,75"    fill="#C2530A"/>
-  </svg>
-);
-
-const DataAnalyticsIcon = (props: any) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 190" {...props}>
-    <title>Data & Analytics OS — favicon</title>
-    <polygon points="100,20 148,48 100,70 52,48"  fill="#16A34A"/>
-    <polygon points="52,48 100,70 100,88 52,66"   fill="#0D5C2E"/>
-    <polygon points="100,70 148,48 148,66 100,88" fill="#0D5C2E"/>
-    <line x1="40" y1="96" x2="160" y2="96" stroke="#16A34A" strokeWidth="4"/>
-    <polygon points="100,104 148,132 100,154 52,132"  fill="#0F7A3C"/>
-    <polygon points="52,132 100,154 100,178 52,156"   fill="#0D5C2E"/>
-    <polygon points="100,154 148,132 148,156 100,178" fill="#0D5C2E"/>
-  </svg>
-);
-
-const CreativeXRIcon = (props: any) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 180" {...props}>
-    <title>Creative & XR Studio — favicon</title>
-    <polygon points="100,160 148,132 100,104 52,132" fill="#7C3AED"/>
-    <polygon points="52,132 100,104 100,32 52,60"    fill="#3B1A73"/>
-    <polygon points="100,104 148,132 148,60 100,32"  fill="#3B1A73"/>
-  </svg>
-);
-
-const DevPlatformIcon = (props: any) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 200" {...props}>
-    <title>Dev Platform — favicon</title>
-    <polygon points="110,10 158,38 110,66 62,38"    fill="#6B7280"/>
-    <polygon points="48,54 96,82 96,154 48,126"     fill="#374151"/>
-    <polygon points="124,82 172,54 172,126 124,154" fill="#4B5563"/>
-  </svg>
-);
+import {
+  AIDevIcon,
+  CloudDevOpsIcon,
+  DataAnalyticsIcon,
+  CreativeXRIcon,
+  DevPlatformIcon,
+} from '@/components/ui/PlatformIcons';
 
 const clusters = [
   {
@@ -350,7 +302,7 @@ export function ClusterStrip() {
                 <div className={styles.expandMetaRow}><Database strokeWidth={1.5} /><span>Data residency: <strong>AWS af-south-1</strong></span></div>
                 <div className={styles.expandMetaRow}><Activity strokeWidth={1.5} /><span>Pricing: <strong>from R4,999/month ZAR</strong></span></div>
               </div>
-              <Link href="/waitlist" className={cn(styles.expandCta, styles.c1)} style={{ background: 'var(--sg-blue-glow)', borderColor: 'border-color:var(--sg-blue-border)', color: 'var(--sg-blue)' }}>
+              <Link href="/early-access" className={cn(styles.expandCta, styles.c1)} style={{ background: 'var(--sg-blue-glow)', borderColor: 'border-color:var(--sg-blue-border)', color: 'var(--sg-blue)' }}>
                 <Workflow strokeWidth={1.5} size={14} />
                 Apply for early access
               </Link>
@@ -396,7 +348,7 @@ export function ClusterStrip() {
                 <div className={styles.expandMetaRow}><Activity strokeWidth={1.5} /><span>Viability: <strong>4/5 — High</strong></span></div>
                 <div className={styles.expandMetaRow}><Activity strokeWidth={1.5} /><span>Funded by: <strong>Phase 1 services revenue</strong></span></div>
               </div>
-              <Link href="/waitlist" className={styles.expandCta} style={{ background: 'var(--sg-amber-glow, rgba(249,115,22,.08))', border: '1px solid rgba(249,115,22,.18)', color: 'var(--sg-amber)' }}>
+              <Link href="/early-access" className={styles.expandCta} style={{ background: 'var(--sg-amber-glow, rgba(249,115,22,.08))', border: '1px solid rgba(249,115,22,.18)', color: 'var(--sg-amber)' }}>
                 <Cloud strokeWidth={1.5} size={14} />
                 Join early interest list
               </Link>
@@ -442,7 +394,7 @@ export function ClusterStrip() {
                 <div className={styles.expandMetaRow}><Activity strokeWidth={1.5} /><span>Viability: <strong>4/5 — High</strong></span></div>
                 <div className={styles.expandMetaRow}><ShieldCheck strokeWidth={1.5} /><span>Compliance: <strong>POPIA data lineage built-in</strong></span></div>
               </div>
-              <Link href="/waitlist" className={styles.expandCta} style={{ background: 'rgba(22,163,74,.08)', border: '1px solid rgba(22,163,74,.18)', color: 'var(--sg-success)' }}>
+              <Link href="/early-access" className={styles.expandCta} style={{ background: 'rgba(22,163,74,.08)', border: '1px solid rgba(22,163,74,.18)', color: 'var(--sg-success)' }}>
                 <Cloud strokeWidth={1.5} size={14} />
                 Join early interest list
               </Link>

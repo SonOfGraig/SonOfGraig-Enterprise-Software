@@ -65,7 +65,7 @@ export function MobileMenu() {
             
             <div className="p-6 border-t border-[var(--sg-border)] bg-[var(--sg-surface)] flex flex-col gap-3 shrink-0 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
               <Button variant="secondary" size="lg" className="w-full justify-center" asChild onClick={() => setIsOpen(false)}>
-                <Link href="/waitlist">Join waitlist</Link>
+                <Link href="/early-access">Join early access</Link>
               </Button>
               <Button variant="primary" size="lg" className="w-full justify-center" asChild onClick={() => setIsOpen(false)}>
                 <Link href="/contact">Talk to us</Link>

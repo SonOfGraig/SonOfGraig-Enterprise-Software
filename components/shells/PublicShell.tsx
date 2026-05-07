@@ -9,6 +9,9 @@ import { MobileMenu } from './MobileMenu';
 import { CookieBanner } from '@/components/marketing/CookieBanner';
 import { QuickActionsSidebar } from './QuickActionsSidebar';
 
+const linkClass =
+  'text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors';
+
 export function PublicShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col" style={{ background: 'var(--sg-bg)' }}>
@@ -29,11 +32,11 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
           </Link>
           <NavLinks />
         </div>
-        
+
         <div className="flex items-center gap-3">
           <div className="hidden sm:flex items-center gap-3">
             <Button variant="secondary" size="sm" asChild>
-              <Link href="/waitlist">Join waitlist</Link>
+              <Link href="/early-access">Join early access</Link>
             </Button>
             <Button variant="primary" size="sm" asChild>
               <Link href="/contact">Talk to us</Link>
@@ -53,7 +56,7 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
       <footer className="bg-[var(--sg-surface)] border-t border-[var(--sg-border)] pt-[var(--sp-16)] px-4 sm:px-8">
         <div className="max-w-[1080px] mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-12">
-            
+
             {/* Brand column */}
             <div className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-1 lg:pr-4">
               <div className="flex gap-2 items-start mb-4">
@@ -81,12 +84,12 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
             <div>
               <h5 className="text-[13px] font-semibold text-[var(--sg-text-1)] mb-4">Products</h5>
               <ul className="space-y-3">
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Agent Builder</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">RAG Studio</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">ML Ops</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Governance Hub</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Cloud Console</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Pipeline Builder</Link></li>
+                <li><Link href="/platform/ai-dev-platform" className={linkClass}>Agent Builder</Link></li>
+                <li><Link href="/platform/ai-dev-platform" className={linkClass}>RAG Studio</Link></li>
+                <li><Link href="/platform/ai-dev-platform" className={linkClass}>ML Ops</Link></li>
+                <li><Link href="/platform/ai-dev-platform" className={linkClass}>Governance Hub</Link></li>
+                <li><Link href="/platform/cloud-devops" className={linkClass}>Cloud Console</Link></li>
+                <li><Link href="/platform/cloud-devops" className={linkClass}>Pipeline Builder</Link></li>
               </ul>
             </div>
 
@@ -94,12 +97,12 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
             <div>
               <h5 className="text-[13px] font-semibold text-[var(--sg-text-1)] mb-4">Platform</h5>
               <ul className="space-y-3">
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Overview</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Build timeline</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Early access</Link></li>
-                <li><Link href="/pricing" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Pricing</Link></li>
-                <li><Link href="/changelog" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Changelog</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Roadmap</Link></li>
+                <li><Link href="/platform" className={linkClass}>Overview</Link></li>
+                <li><Link href="/platform/timeline" className={linkClass}>Build timeline</Link></li>
+                <li><Link href="/early-access" className={linkClass}>Early access</Link></li>
+                <li><Link href="/pricing" className={linkClass}>Pricing</Link></li>
+                <li><Link href="/changelog" className={linkClass}>Changelog</Link></li>
+                <li><Link href="/roadmap" className={linkClass}>Roadmap</Link></li>
               </ul>
             </div>
 
@@ -107,11 +110,11 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
             <div>
               <h5 className="text-[13px] font-semibold text-[var(--sg-text-1)] mb-4">Services</h5>
               <ul className="space-y-3">
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">AI Agent Setup</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">RAG Knowledge Base</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Cloud Architecture</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">AI Governance Audit</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Data Analytics</Link></li>
+                <li><Link href="/services/ai-agent-implementation" className={linkClass}>AI Agent Setup</Link></li>
+                <li><Link href="/services/rag-knowledge-base-setup" className={linkClass}>RAG Knowledge Base</Link></li>
+                <li><Link href="/services/cloud-architecture" className={linkClass}>Cloud Architecture</Link></li>
+                <li><Link href="/services/ai-governance-audit" className={linkClass}>AI Governance Audit</Link></li>
+                <li><Link href="/platform/data-analytics" className={linkClass}>Data Analytics</Link></li>
               </ul>
             </div>
 
@@ -119,12 +122,12 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
             <div>
               <h5 className="text-[13px] font-semibold text-[var(--sg-text-1)] mb-4">Developer & IT</h5>
               <ul className="space-y-3">
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">API reference</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">SDK docs</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Security overview</Link></li>
-                <li><Link href="/popia" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">POPIA compliance</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">DPA</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Status page</Link></li>
+                <li><Link href="/api-reference" className={linkClass}>API reference</Link></li>
+                <li><Link href="/sdk-docs" className={linkClass}>SDK docs</Link></li>
+                <li><Link href="/security" className={linkClass}>Security overview</Link></li>
+                <li><Link href="/popia" className={linkClass}>POPIA compliance</Link></li>
+                <li><Link href="/dpa" className={linkClass}>DPA</Link></li>
+                <li><Link href="/status" className={linkClass}>Status page</Link></li>
               </ul>
             </div>
 
@@ -132,12 +135,12 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
             <div>
               <h5 className="text-[13px] font-semibold text-[var(--sg-text-1)] mb-4">Company</h5>
               <ul className="space-y-3">
-                <li><Link href="/about" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">About</Link></li>
-                <li><Link href="/blog" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Insights</Link></li>
-                <li><Link href="/careers" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Careers</Link></li>
-                <li><Link href="/contact" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Contact</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Press</Link></li>
-                <li><Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Partners</Link></li>
+                <li><Link href="/about" className={linkClass}>About</Link></li>
+                <li><Link href="/blog" className={linkClass}>Insights</Link></li>
+                <li><Link href="/careers" className={linkClass}>Careers</Link></li>
+                <li><Link href="/contact" className={linkClass}>Contact</Link></li>
+                <li><Link href="/press" className={linkClass}>Press</Link></li>
+                <li><Link href="/partners" className={linkClass}>Partners</Link></li>
               </ul>
             </div>
 
@@ -145,7 +148,7 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
 
           {/* Sitemap strip */}
           <div className="border-t border-[var(--sg-border)] py-4">
-            <Link href="#" className="flex items-center gap-2 text-[11px] font-semibold text-[var(--sg-text-2)] hover:text-[var(--sg-text-1)] tracking-wider uppercase transition-colors w-fit">
+            <Link href="/sitemap" className="flex items-center gap-2 text-[11px] font-semibold text-[var(--sg-text-2)] hover:text-[var(--sg-text-1)] tracking-wider uppercase transition-colors w-fit">
               View Sitemap
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </Link>
@@ -161,13 +164,13 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
               <span className="text-[13px] text-[var(--sg-text-4)]">© SonOfGraig {new Date().getFullYear()}</span>
             </div>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-              <Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Sitemap</Link>
-              <Link href="/contact" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Contact</Link>
-              <Link href="/privacy-policy" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Privacy</Link>
-              <Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Terms of use</Link>
-              <Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">Trademarks</Link>
-              <Link href="/popia" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">POPIA</Link>
-              <Link href="#" className="text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors">About our ads</Link>
+              <Link href="/sitemap" className={linkClass}>Sitemap</Link>
+              <Link href="/contact" className={linkClass}>Contact</Link>
+              <Link href="/privacy-policy" className={linkClass}>Privacy</Link>
+              <Link href="/terms" className={linkClass}>Terms of use</Link>
+              <Link href="/trademarks" className={linkClass}>Trademarks</Link>
+              <Link href="/popia" className={linkClass}>POPIA</Link>
+              <Link href="/about-ads" className={linkClass}>About our ads</Link>
             </div>
           </div>
 

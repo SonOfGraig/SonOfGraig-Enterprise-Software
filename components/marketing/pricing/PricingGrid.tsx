@@ -95,7 +95,7 @@ export function PricingGrid() {
             </ul>
             
             <Button variant="secondary" size="md" fullWidth asChild>
-              <Link href="/waitlist">Join waitlist</Link>
+              <Link href="/early-access">Join waitlist</Link>
             </Button>
           </motion.div>
 
@@ -130,7 +130,7 @@ export function PricingGrid() {
             </ul>
             
             <Button variant="primary" size="md" fullWidth asChild>
-              <Link href="/waitlist">Join waitlist</Link>
+              <Link href="/early-access">Join waitlist</Link>
             </Button>
           </motion.div>
 

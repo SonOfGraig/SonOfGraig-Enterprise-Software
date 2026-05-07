@@ -59,6 +59,13 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
   const resolvedParams = await params;
   const article = await getArticle(resolvedParams.slug);
 
+  const siteUrl =
+    process.env.APP_URL ??
+    'https://sonofgraig-enterprise-179668402458.africa-south1.run.app';
+  const articleUrl = `${siteUrl}/blog/${article.slug}`;
+  const twitterShare = `https://twitter.com/intent/tweet?url=${encodeURIComponent(articleUrl)}&text=${encodeURIComponent(article.title)}`;
+  const linkedInShare = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`;
+
   return (
     <article className="w-full py-[var(--sp-16)]">
       <div className="max-w-[720px] mx-auto px-8">
@@ -95,8 +102,8 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
           <div className="flex items-center justify-between mb-[var(--sp-12)]">
             <div className="font-sans text-[14px] font-semibold text-[var(--sg-text-1)]">Share this article</div>
             <div className="flex items-center gap-4">
-              <a href="#" className="font-sans text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-blue)] transition-colors">Twitter/X</a>
-              <a href="#" className="font-sans text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-blue)] transition-colors">LinkedIn</a>
+              <a href={twitterShare} target="_blank" rel="noopener noreferrer" className="font-sans text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-blue)] transition-colors">Twitter/X</a>
+              <a href={linkedInShare} target="_blank" rel="noopener noreferrer" className="font-sans text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-blue)] transition-colors">LinkedIn</a>
             </div>
           </div>
 

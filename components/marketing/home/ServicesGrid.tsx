@@ -10,6 +10,7 @@ const services = [
   {
     category: 'AI & Intelligence',
     title: 'AI Agent Implementation',
+    slug: 'ai-agent-implementation',
     desc: 'Design, build, and deploy autonomous AI agents using LangGraph and Composio — the same stack powering our future Agent Builder product.',
     features: [
       'Agent workflow design',
@@ -23,6 +24,7 @@ const services = [
   {
     category: 'AI & Intelligence',
     title: 'RAG Knowledge Base Setup',
+    slug: 'rag-knowledge-base-setup',
     desc: 'Connect your company documents to AI. Ingestion pipeline, hybrid retrieval, evaluation framework, and chat interface.',
     features: [
       'Google Drive, SharePoint, Notion connectors',
@@ -36,6 +38,7 @@ const services = [
   {
     category: 'Infrastructure',
     title: 'Cloud Architecture & DevOps',
+    slug: 'cloud-architecture',
     desc: 'Zero-trust cloud setup, Kubernetes, CI/CD pipelines, and observability stacks. POPIA-compliant from day one.',
     features: [
       'Terraform IaC',
@@ -49,6 +52,7 @@ const services = [
   {
     category: 'Compliance',
     title: 'AI Governance & Ethics Audit',
+    slug: 'ai-governance-audit',
     desc: 'Bias detection, SHAP explainability reports, POPIA compliance documentation, and EU AI Act risk classification.',
     features: [
       'Algorithmic bias audit (Fairlearn)',
@@ -101,8 +105,8 @@ export function ServicesGrid() {
                   <div className="font-mono text-[13px] font-medium text-[var(--sg-text-2)] mb-1">{service.price}</div>
                   <div className="font-sans text-[12px] text-[var(--sg-text-4)]">{service.meta}</div>
                 </div>
-                <Link 
-                  href="#"
+                <Link
+                  href={`/services/${service.slug}`}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] border border-[var(--sg-blue-border)] bg-transparent text-[var(--sg-blue)] hover:bg-[var(--sg-blue-glow)] hover:border-[var(--sg-blue)] transition-colors font-sans text-[13px] font-medium"
                 >
                   <ExternalLink size={14} strokeWidth={1.8} />

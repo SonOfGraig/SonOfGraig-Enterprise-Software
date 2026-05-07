@@ -37,35 +37,35 @@ const links: NavLink[] = [
         {
           title: 'AI Dev Platform',
           links: [
-            { href: '#', label: 'Agent Builder', icon: <Blocks size={16} strokeWidth={1.5} /> },
-            { href: '#', label: 'RAG Studio', icon: <Database size={16} strokeWidth={1.5} /> },
-            { href: '#', label: 'ML Ops', icon: <Cpu size={16} strokeWidth={1.5} /> },
-            { href: '#', label: 'Governance Hub', icon: <ShieldCheck size={16} strokeWidth={1.5} /> },
+            { href: '/platform/ai-dev-platform', label: 'Agent Builder', icon: <Blocks size={16} strokeWidth={1.5} /> },
+            { href: '/platform/ai-dev-platform', label: 'RAG Studio', icon: <Database size={16} strokeWidth={1.5} /> },
+            { href: '/platform/ai-dev-platform', label: 'ML Ops', icon: <Cpu size={16} strokeWidth={1.5} /> },
+            { href: '/platform/ai-dev-platform', label: 'Governance Hub', icon: <ShieldCheck size={16} strokeWidth={1.5} /> },
           ]
         },
         {
           title: 'Cloud & DevOps',
           links: [
-            { href: '#', label: 'Cloud Console', icon: <Cloud size={16} strokeWidth={1.5} /> },
-            { href: '#', label: 'Pipeline Builder', icon: <GitMerge size={16} strokeWidth={1.5} /> },
-            { href: '#', label: 'FinOps Dashboard', icon: <LineChart size={16} strokeWidth={1.5} /> },
-            { href: '#', label: 'Security Posture', icon: <ShieldAlert size={16} strokeWidth={1.5} /> },
+            { href: '/platform/cloud-devops', label: 'Cloud Console', icon: <Cloud size={16} strokeWidth={1.5} /> },
+            { href: '/platform/cloud-devops', label: 'Pipeline Builder', icon: <GitMerge size={16} strokeWidth={1.5} /> },
+            { href: '/platform/cloud-devops', label: 'FinOps Dashboard', icon: <LineChart size={16} strokeWidth={1.5} /> },
+            { href: '/platform/cloud-devops', label: 'Security Posture', icon: <ShieldAlert size={16} strokeWidth={1.5} /> },
           ]
         },
         {
           title: 'Data & Analytics',
           links: [
-            { href: '#', label: 'Analytics Studio', icon: <PieChart size={16} strokeWidth={1.5} /> },
-            { href: '#', label: 'Workflow Engine', icon: <GitPullRequest size={16} strokeWidth={1.5} /> },
-            { href: '#', label: 'Data Pipelines', icon: <Share2 size={16} strokeWidth={1.5} /> },
+            { href: '/platform/data-analytics', label: 'Analytics Studio', icon: <PieChart size={16} strokeWidth={1.5} /> },
+            { href: '/platform/data-analytics', label: 'Workflow Engine', icon: <GitPullRequest size={16} strokeWidth={1.5} /> },
+            { href: '/platform/data-analytics', label: 'Data Pipelines', icon: <Share2 size={16} strokeWidth={1.5} /> },
           ]
         },
         {
           title: 'Creative & XR',
           links: [
-            { href: '#', label: 'Design System Gen', icon: <Palette size={16} strokeWidth={1.5} /> },
-            { href: '#', label: 'XR Builder', icon: <Glasses size={16} strokeWidth={1.5} /> },
-            { href: '#', label: 'Brand Studio', icon: <Sparkles size={16} strokeWidth={1.5} /> },
+            { href: '/platform/creative-xr', label: 'Design System Gen', icon: <Palette size={16} strokeWidth={1.5} /> },
+            { href: '/platform/creative-xr', label: 'XR Builder', icon: <Glasses size={16} strokeWidth={1.5} /> },
+            { href: '/platform/creative-xr', label: 'Brand Studio', icon: <Sparkles size={16} strokeWidth={1.5} /> },
           ]
         }
       ],
@@ -73,13 +73,13 @@ const links: NavLink[] = [
         title: 'New in v3.0',
         badge: 'Phase 1 Live',
         cards: [
-          { title: 'RAG Studio', sub: 'Connect your company documents to AI. Hybrid retrieval, source citation, enterprise-grade.', cta: 'Join early access', href: '#' },
-          { title: 'Agent Builder', sub: 'Visual canvas for autonomous AI agents. Beta Q4 2026.', cta: 'Learn more', href: '#' }
+          { title: 'RAG Studio', sub: 'Connect your company documents to AI. Hybrid retrieval, source citation, enterprise-grade.', cta: 'Join early access', href: '/platform/ai-dev-platform' },
+          { title: 'Agent Builder', sub: 'Visual canvas for autonomous AI agents. Beta Q4 2026.', cta: 'Learn more', href: '/platform/ai-dev-platform' }
         ]
       },
       footer: [
-        { href: '#', label: 'View all products', icon: <Grid size={12} strokeWidth={1.5} /> },
-        { href: '#', label: 'Developer docs', icon: <FileText size={12} strokeWidth={1.5} /> },
+        { href: '/platform', label: 'View all products', icon: <Grid size={12} strokeWidth={1.5} /> },
+        { href: '/api-reference', label: 'Developer docs', icon: <FileText size={12} strokeWidth={1.5} /> },
         { href: '/contact', label: 'Talk to sales', icon: <MessageSquare size={12} strokeWidth={1.5} /> },
       ]
     }
