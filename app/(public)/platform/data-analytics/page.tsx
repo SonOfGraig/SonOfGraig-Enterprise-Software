@@ -1,25 +1,38 @@
 import type { Metadata } from 'next';
-import { UnderConstruction } from '@/components/marketing/UnderConstruction';
+import { LegacyShell } from '../../_shared/LegacyShell';
+import { loadLegacyHtml } from '../../_shared/loadLegacy';
+import './_legacy.css';
 
 export const metadata: Metadata = {
-  title: 'Data & Analytics OS — SonOfGraig',
+  title:
+    'Data & Analytics OS — SonOfGraig | Analytics Studio, Data Pipelines, Workflow Engine',
   description:
-    'Analytics Studio, Data Pipelines, and Workflow Engine. Embedded BI with no-SQL access. POPIA data lineage built in.',
+    'The intelligence operations layer of the SonOfGraig platform. Visual ETL/ELT, embedded BI dashboards, and 500+ workflow integrations — with POPIA data lineage tracked from the first pipeline stage. Hosted in AWS af-south-1, ZAR-priced.',
+  keywords: [
+    'Data Analytics South Africa',
+    'no-code ETL',
+    'embedded BI',
+    'workflow automation',
+    'RPA',
+    'document intelligence',
+    'POPIA data lineage',
+    'af-south-1',
+    'hyper-automation',
+    'process mining',
+  ],
   alternates: { canonical: '/platform/data-analytics' },
-  robots: { index: false, follow: true },
+  openGraph: {
+    title: 'Data & Analytics OS — Cluster 03 — SonOfGraig',
+    description:
+      'Analytics, ETL, and automation in one platform. POPIA-native lineage. Hosted in af-south-1. ZAR-priced.',
+    type: 'website',
+    url: '/platform/data-analytics',
+    locale: 'en_ZA',
+  },
+  robots: { index: true, follow: true },
 };
 
-export default function DataAnalyticsPage() {
-  return (
-    <UnderConstruction
-      title="Data & Analytics OS"
-      description="Analytics Studio for embedded BI, Data Pipelines for visual ETL/ELT with 200+ connectors, and Workflow Engine for cross-system automation. POPIA data lineage tracked end-to-end."
-      eta="Q2 2027"
-      relatedLinks={[
-        { href: '/platform', label: 'Platform overview' },
-        { href: '/services/rag-knowledge-base-setup', label: 'RAG Knowledge Base' },
-        { href: '/early-access', label: 'Early access' },
-      ]}
-    />
-  );
+export default async function DataAnalyticsPage() {
+  const html = await loadLegacyHtml('platform', 'data-analytics');
+  return <LegacyShell html={html} scope="lp-cluster-data" />;
 }

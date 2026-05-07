@@ -1,25 +1,37 @@
 import type { Metadata } from 'next';
-import { UnderConstruction } from '@/components/marketing/UnderConstruction';
+import { LegacyShell } from '../../_shared/LegacyShell';
+import { loadLegacyHtml } from '../../_shared/loadLegacy';
+import './_legacy.css';
 
 export const metadata: Metadata = {
-  title: 'Cloud & DevOps Suite — SonOfGraig',
+  title:
+    'Cloud & DevOps Suite — SonOfGraig | Cloud Console, Pipeline Builder, Security Posture, FinOps',
   description:
-    'Cloud Console, Pipeline Builder, Security Posture, and FinOps Dashboard. Zero-trust multi-cloud control with POPIA residency built in.',
+    'The infrastructure layer of the SonOfGraig platform. Multi-cloud control, CI/CD pipelines, zero-trust security, and FinOps cost management — POPIA Section 72 enforced at provisioning, hosted in AWS af-south-1. Cloud Console & Pipeline Builder Q2 2027, Security & FinOps Q3 2027.',
+  keywords: [
+    'Cloud DevOps South Africa',
+    'multi-cloud console',
+    'FinOps Dashboard',
+    'Pipeline Builder',
+    'Security Posture Manager',
+    'POPIA Section 72',
+    'af-south-1',
+    'Kubernetes orchestration',
+    'zero-trust',
+  ],
   alternates: { canonical: '/platform/cloud-devops' },
-  robots: { index: false, follow: true },
+  openGraph: {
+    title: 'Cloud & DevOps Suite — Cluster 02 — SonOfGraig',
+    description:
+      'Multi-cloud control, CI/CD, zero-trust security, FinOps. POPIA-native. Hosted in af-south-1. ZAR-priced.',
+    type: 'website',
+    url: '/platform/cloud-devops',
+    locale: 'en_ZA',
+  },
+  robots: { index: true, follow: true },
 };
 
-export default function CloudDevopsPage() {
-  return (
-    <UnderConstruction
-      title="Cloud & DevOps Suite"
-      description="Multi-cloud management, CI/CD pipelines, infrastructure-as-code, and FinOps from one console. Zero-trust by default, POPIA-native residency controls. Ships in Phase 2."
-      eta="Q2 2027"
-      relatedLinks={[
-        { href: '/platform', label: 'Platform overview' },
-        { href: '/services/cloud-architecture', label: 'Cloud Architecture services' },
-        { href: '/early-access', label: 'Early access' },
-      ]}
-    />
-  );
+export default async function CloudDevopsPage() {
+  const html = await loadLegacyHtml('platform', 'cloud-devops');
+  return <LegacyShell html={html} scope="lp-cluster-cloud" />;
 }
