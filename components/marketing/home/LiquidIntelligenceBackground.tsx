@@ -31,7 +31,7 @@ const BLOBS = [
     animate: { x: ['0%', '-16%', '8%', '0%'], y: ['0%', '10%', '-12%', '0%'] },
     duration: 30,
   },
-] as const;
+];
 
 export function LiquidIntelligenceBackground() {
   const reduced = useReducedMotion();
