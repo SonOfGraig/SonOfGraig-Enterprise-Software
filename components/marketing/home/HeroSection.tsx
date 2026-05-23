@@ -98,14 +98,32 @@ export function HeroSection() {
             </motion.div>
           </div>
 
-          {/* RIGHT COLUMN — dashboard mockup */}
+          {/* RIGHT COLUMN — dashboard rendered at native 1200px, scaled to fit column */}
           <motion.div
             initial={{ opacity: 0, y: reduced ? 0 : 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 mt-[var(--sp-10)] lg:mt-0"
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 mt-[var(--sp-10)] lg:mt-0 w-full"
           >
-            <DashboardPreview />
+            <div
+              className="relative w-full"
+              style={{
+                containerType: 'inline-size',
+                aspectRatio: '1200 / 820',
+                filter: 'drop-shadow(0 30px 60px rgba(11, 158, 222, 0.22)) drop-shadow(0 12px 24px rgba(0, 0, 0, 0.14))',
+              }}
+            >
+              <div
+                className="absolute top-0 left-0 pointer-events-auto"
+                style={{
+                  width: '1200px',
+                  transformOrigin: 'top left',
+                  transform: 'scale(calc(100cqw / 1200px))',
+                }}
+              >
+                <DashboardPreview />
+              </div>
+            </div>
           </motion.div>
 
         </div>
