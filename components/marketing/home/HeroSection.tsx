@@ -6,19 +6,18 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useReducedMotion } from 'framer-motion';
 import { DashboardPreview } from './DashboardPreview';
+import { LiquidIntelligenceBackground } from './LiquidIntelligenceBackground';
 
 export function HeroSection() {
   const reduced = useReducedMotion();
 
   return (
     <section
-      className="pt-[var(--sp-20)] pb-[var(--sp-16)] overflow-hidden"
-      style={{
-        backgroundColor: 'var(--sg-surface)',
-        backgroundImage: 'radial-gradient(ellipse 120% 80% at 0% 0%, rgba(11,158,222,.15) 0%, transparent 50%), radial-gradient(ellipse 100% 90% at 100% 100%, rgba(249,115,22,.1) 0%, transparent 50%), radial-gradient(ellipse 60% 60% at 50% 50%, rgba(22,163,74,.08) 0%, transparent 60%)'
-      }}
+      className="relative pt-[var(--sp-20)] pb-[var(--sp-16)] overflow-hidden"
+      style={{ backgroundColor: 'var(--sg-surface)' }}
     >
-      <div className="max-w-[1440px] mx-auto px-[var(--sp-4)] sm:px-[var(--sp-8)]">
+      <LiquidIntelligenceBackground />
+      <div className="relative z-10 max-w-[1440px] mx-auto px-[var(--sp-4)] sm:px-[var(--sp-8)]">
         <div className="grid lg:grid-cols-12 gap-[var(--sp-8)] lg:gap-[var(--sp-10)] items-center">
 
           {/* LEFT COLUMN — copy + CTAs + trust pills */}
