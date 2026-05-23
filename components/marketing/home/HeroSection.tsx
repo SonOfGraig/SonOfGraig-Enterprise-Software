@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useReducedMotion } from 'framer-motion';
 import { DashboardPreview } from './DashboardPreview';
-import { VolumetricRays } from './VolumetricRays';
+import { BlueprintGridBackground } from './BlueprintGridBackground';
 
 export function HeroSection() {
   const reduced = useReducedMotion();
@@ -16,7 +16,7 @@ export function HeroSection() {
       className="relative pt-[var(--sp-20)] pb-[var(--sp-16)] overflow-hidden"
       style={{ backgroundColor: 'var(--sg-surface)' }}
     >
-      <VolumetricRays />
+      <BlueprintGridBackground />
       <div className="relative z-10 max-w-[1440px] mx-auto px-[var(--sp-4)] sm:px-[var(--sp-8)]">
         <div className="grid lg:grid-cols-12 gap-[var(--sp-8)] lg:gap-[var(--sp-10)] items-center">
 
