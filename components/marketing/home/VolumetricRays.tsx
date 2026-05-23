@@ -86,8 +86,9 @@ export function VolumetricRays() {
 
         const grad = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, width * 2.2);
 
-        // Light + dark mode tuning from reference
-        const baseOpacity = isDark ? currentOpacity : currentOpacity * 0.45;
+        // Light + dark mode tuning. Light mode uses straight alpha compositing
+        // (no multiply blend) so the rays read against the near-white surface.
+        const baseOpacity = isDark ? currentOpacity : currentOpacity * 0.85;
         const blueHue = isDark ? '0, 163, 255' : '0, 136, 204';
 
         grad.addColorStop(0, `rgba(${blueHue}, ${baseOpacity})`);
@@ -128,7 +129,7 @@ export function VolumetricRays() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="absolute inset-0 w-full h-full pointer-events-none z-0 mix-blend-multiply dark:mix-blend-screen transition-opacity duration-1000"
+      className="absolute inset-0 w-full h-full pointer-events-none z-0 dark:mix-blend-screen transition-opacity duration-1000"
     />
   );
 }
