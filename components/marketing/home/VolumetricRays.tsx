@@ -73,9 +73,6 @@ export function VolumetricRays() {
       const centerX = width / 2 + mouseRef.current.x;
       const centerY = -height * 0.1 + mouseRef.current.y + (rayYOffset.get() as number);
 
-      // SonOfGraig brand blue (--sg-blue: #0B9EDE)
-      const blueHue = '11, 158, 222';
-
       rays.forEach((ray) => {
         const currentAngle = ray.angle + Math.sin(time * ray.speed + ray.offset) * 0.35;
         const breathe = Math.sin(time * ray.pulseSpeed + ray.offset) * 0.45 + 0.55;
@@ -88,16 +85,14 @@ export function VolumetricRays() {
         const y2 = centerY + Math.sin(currentAngle + ray.width) * reach;
 
         const grad = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, width * 2.2);
-        if (isDark) {
-          grad.addColorStop(0, `rgba(${blueHue}, ${currentOpacity})`);
-          grad.addColorStop(0.3, `rgba(${blueHue}, ${currentOpacity * 0.3})`);
-          grad.addColorStop(0.7, `rgba(${blueHue}, 0)`);
-        } else {
-          const lightOpacity = currentOpacity * 0.32;
-          grad.addColorStop(0, `rgba(${blueHue}, ${lightOpacity})`);
-          grad.addColorStop(0.22, `rgba(${blueHue}, ${lightOpacity * 0.5})`);
-          grad.addColorStop(0.55, `rgba(${blueHue}, 0)`);
-        }
+
+        // Light + dark mode tuning from reference
+        const baseOpacity = isDark ? currentOpacity : currentOpacity * 0.45;
+        const blueHue = isDark ? '0, 163, 255' : '0, 136, 204';
+
+        grad.addColorStop(0, `rgba(${blueHue}, ${baseOpacity})`);
+        grad.addColorStop(0.3, `rgba(${blueHue}, ${baseOpacity * 0.3})`);
+        grad.addColorStop(0.7, `rgba(${blueHue}, 0)`);
 
         ctx.fillStyle = grad;
         ctx.beginPath();
@@ -133,7 +128,7 @@ export function VolumetricRays() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="absolute inset-0 w-full h-full pointer-events-none z-0 dark:mix-blend-screen"
+      className="absolute inset-0 w-full h-full pointer-events-none z-0 mix-blend-multiply dark:mix-blend-screen transition-opacity duration-1000"
     />
   );
 }
