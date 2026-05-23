@@ -88,10 +88,16 @@ export function VolumetricRays() {
         const y2 = centerY + Math.sin(currentAngle + ray.width) * reach;
 
         const grad = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, width * 2.2);
-        const baseOpacity = isDark ? currentOpacity : currentOpacity * 0.7;
-        grad.addColorStop(0, `rgba(${blueHue}, ${baseOpacity})`);
-        grad.addColorStop(0.3, `rgba(${blueHue}, ${baseOpacity * 0.3})`);
-        grad.addColorStop(0.7, `rgba(${blueHue}, 0)`);
+        if (isDark) {
+          grad.addColorStop(0, `rgba(${blueHue}, ${currentOpacity})`);
+          grad.addColorStop(0.3, `rgba(${blueHue}, ${currentOpacity * 0.3})`);
+          grad.addColorStop(0.7, `rgba(${blueHue}, 0)`);
+        } else {
+          const lightOpacity = currentOpacity * 0.32;
+          grad.addColorStop(0, `rgba(${blueHue}, ${lightOpacity})`);
+          grad.addColorStop(0.22, `rgba(${blueHue}, ${lightOpacity * 0.5})`);
+          grad.addColorStop(0.55, `rgba(${blueHue}, 0)`);
+        }
 
         ctx.fillStyle = grad;
         ctx.beginPath();
@@ -127,7 +133,7 @@ export function VolumetricRays() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="absolute inset-0 w-full h-full pointer-events-none z-0 mix-blend-multiply dark:mix-blend-screen"
+      className="absolute inset-0 w-full h-full pointer-events-none z-0 dark:mix-blend-screen"
     />
   );
 }
