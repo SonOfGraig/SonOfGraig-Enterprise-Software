@@ -86,12 +86,15 @@ export function VolumetricRays() {
 
         const grad = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, width * 2.2);
 
-        // Identical math in both modes; the blend mode does the work.
-        // Dark mode: mix-blend-screen brightens the cyan-blue against the dark surface.
-        // Light mode: mix-blend-multiply tints the cyan-blue against the light surface.
+        // Same cyan source in both modes. Dark mode amplifies via mix-blend-screen
+        // (on the canvas element). Light mode uses straight alpha compositing with
+        // a boosted opacity so the rays read as visible cyan beams on the near-white
+        // surface — multiply blend is intentionally avoided here because it cancels
+        // bright cyan against white.
         const blueHue = '0, 163, 255';
-        grad.addColorStop(0, `rgba(${blueHue}, ${currentOpacity})`);
-        grad.addColorStop(0.3, `rgba(${blueHue}, ${currentOpacity * 0.3})`);
+        const a = isDark ? currentOpacity : currentOpacity * 1.8;
+        grad.addColorStop(0, `rgba(${blueHue}, ${a})`);
+        grad.addColorStop(0.3, `rgba(${blueHue}, ${a * 0.3})`);
         grad.addColorStop(0.7, `rgba(${blueHue}, 0)`);
 
         ctx.fillStyle = grad;
@@ -128,7 +131,7 @@ export function VolumetricRays() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="absolute inset-0 w-full h-full pointer-events-none z-0 mix-blend-multiply dark:mix-blend-screen transition-opacity duration-1000"
+      className="absolute inset-0 w-full h-full pointer-events-none z-0 dark:mix-blend-screen transition-opacity duration-1000"
     />
   );
 }
