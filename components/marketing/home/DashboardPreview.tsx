@@ -136,7 +136,7 @@ export function DashboardPreview() {
   ];
 
   return (
-    <div className={cn("w-full relative px-[var(--sp-4)] sm:px-[var(--sp-8)] pb-[var(--sp-12)] max-w-[1280px] mx-auto", styles.varsWrapper)}>
+    <div className={cn("w-full relative", styles.varsWrapper)}>
           
       {/* LOADING OVERLAY */}
       {!overlayHidden && (

@@ -1,5 +1,4 @@
 import { HeroSection } from '@/components/marketing/home/HeroSection';
-import { DashboardPreview } from '@/components/marketing/home/DashboardPreview';
 import { LogosBar } from '@/components/marketing/home/LogosBar';
 import { TransitionExplainer } from '@/components/marketing/home/TransitionExplainer';
 import { ClusterStrip } from '@/components/marketing/home/ClusterStrip';
@@ -12,7 +11,6 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <DashboardPreview />
       <LogosBar />
       <TransitionExplainer />
       <ClusterStrip />
