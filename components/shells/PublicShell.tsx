@@ -7,7 +7,6 @@ import { AnnouncementBar } from '@/components/marketing/AnnouncementBar';
 import { PageTransition } from './PageTransition';
 import { MobileMenu } from './MobileMenu';
 import { CookieBanner } from '@/components/marketing/CookieBanner';
-import { QuickActionsSidebar } from './QuickActionsSidebar';
 
 const linkClass =
   'text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors';
@@ -46,8 +45,6 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
           <MobileMenu />
         </div>
       </header>
-
-      <QuickActionsSidebar />
 
       <PageTransition>
         {children}
