@@ -19,7 +19,7 @@ export function AnnouncementBar() {
       <div className="flex items-start sm:items-center gap-2 text-left sm:text-center max-w-[90%]">
         <div className="w-[6px] h-[6px] rounded-full bg-[var(--sg-amber)] mt-1.5 sm:mt-0 flex-shrink-0" />
         <span className="font-sans text-[12px] sm:text-[13px] font-medium text-[rgba(255,255,255,0.85)] leading-snug">
-          Transitioning to enterprise software. Services live now. First product, RAG Studio, ships Q3 2026.{' '}
+          Transitioning to enterprise software. Services live now. First product, RAG Studio, ships Q4 2026.{' '}
           <Link href="/roadmap" className="font-semibold whitespace-nowrap text-white hover:text-white underline underline-offset-4 decoration-[rgba(255,255,255,0.3)] hover:decoration-white transition-colors sm:ml-1">
             Learn more &rarr;
           </Link>

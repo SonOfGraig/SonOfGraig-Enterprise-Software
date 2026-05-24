@@ -14,7 +14,7 @@ export default function PartnersPage() {
     <UnderConstruction
       title="Partners"
       description="Our partner programmes for system integrators, resellers, and technology partners are launching alongside the platform."
-      eta="Q3 2026"
+      eta="Q4 2026"
       relatedLinks={[
         { href: '/about', label: 'About' },
         { href: '/services', label: 'Services' },

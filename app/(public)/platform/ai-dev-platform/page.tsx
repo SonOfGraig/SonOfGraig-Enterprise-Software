@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title:
     'AI Dev Platform — SonOfGraig | Agent Builder, RAG Studio, Fine-Tuning Ops, Governance Hub',
   description:
-    'The intelligence layer of the SonOfGraig platform. Build, deploy, fine-tune, and govern enterprise AI from one POPIA-native environment hosted in AWS af-south-1. RAG Studio Q3 2026, Agent Builder Q4 2026, ML Ops & Governance Hub Q1 2027.',
+    'The intelligence layer of the SonOfGraig platform. Build, deploy, fine-tune, and govern enterprise AI from one POPIA-native environment hosted in AWS af-south-1. RAG Studio Q4 2026, Agent Builder Q1 2027, ML Ops & Governance Hub Q1 2027.',
   keywords: [
     'AI Dev Platform',
     'Agent Builder',

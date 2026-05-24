@@ -7,7 +7,7 @@ export interface UnderConstructionProps {
   title: string;
   /** Optional one-paragraph description. Falls back to a generic message. */
   description?: string;
-  /** Optional ETA badge, e.g. "Q3 2026". Renders amber "ETA <eta>" pill. */
+  /** Optional ETA badge, e.g. "Q4 2026". Renders amber "ETA <eta>" pill. */
   eta?: string;
   /** Optional list of related links shown beneath the CTAs. */
   relatedLinks?: { href: string; label: string }[];

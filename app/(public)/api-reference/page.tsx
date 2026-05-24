@@ -14,7 +14,7 @@ export default function ApiReferencePage() {
     <UnderConstruction
       title="API Reference"
       description="Our developer API documentation is in active preparation alongside the platform build. Expect REST and GraphQL references, OpenAPI specs, and authentication guides."
-      eta="Q3 2026"
+      eta="Q4 2026"
       relatedLinks={[
         { href: '/platform', label: 'Platform overview' },
         { href: '/sdk-docs', label: 'SDK docs' },

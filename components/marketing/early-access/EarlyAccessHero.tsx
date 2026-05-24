@@ -17,9 +17,9 @@ export function EarlyAccessHero() {
 
         <div className="max-w-[320px] mx-auto mb-[var(--sp-10)]">
           <div className="flex justify-between items-center mb-2">
-            <span className="font-sans text-[13px] font-semibold text-[var(--sg-text-1)]">3 of 5 slots remaining</span>
+            <span className="font-sans text-[13px] font-semibold text-[var(--sg-text-1)]">5 slots available</span>
           </div>
-          <ProgressBar value={60} variant="blue" />
+          <ProgressBar value={0} variant="blue" />
         </div>
 
         <div className="flex justify-center gap-[var(--sp-3)]">

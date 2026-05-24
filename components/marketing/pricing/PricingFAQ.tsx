@@ -9,7 +9,7 @@ export function PricingFAQ() {
   const faqs = [
     {
       q: 'When will the platform be available?',
-      a: 'The platform is currently in active development. We anticipate launching RAG Studio to early access customers in Q3 2026, followed by Agent Builder in Q4 2026.'
+      a: 'The platform is currently in active development. We anticipate launching RAG Studio to early access customers in Q4 2026, followed by Agent Builder in Q1 2027.'
     },
     {
       q: 'What currencies do you accept?',

@@ -19,7 +19,7 @@ const services = [
       { icon: Workflow, label: 'Composio' },
       { icon: TerminalSquare, label: 'Python' }
     ],
-    platformConnection: 'Feeds into Agent Builder (Q4 2026)',
+    platformConnection: 'Feeds into Agent Builder (Q1 2027)',
     price: 'from R95,000',
     meta: '6-8 weeks · Fixed scope'
   },
@@ -39,7 +39,7 @@ const services = [
       { icon: FileText, label: 'LlamaIndex' },
       { icon: Code2, label: 'Next.js' }
     ],
-    platformConnection: 'Feeds into RAG Studio (Q3 2026)',
+    platformConnection: 'Feeds into RAG Studio (Q4 2026)',
     price: 'from R65,000',
     meta: '4-6 weeks · Fixed scope'
   },

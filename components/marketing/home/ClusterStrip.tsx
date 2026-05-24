@@ -181,7 +181,7 @@ export function ClusterStrip() {
                 <div className={styles.cardProducts}>
                   {idx === 0 && (
                     <>
-                      <div className={styles.cardProduct}><div className={styles.cardProductDot}></div><span>Agent Builder</span><span className={cn(styles.cardProductStatus, styles.badgeBlue)}>Beta Q4</span></div>
+                      <div className={styles.cardProduct}><div className={styles.cardProductDot}></div><span>Agent Builder</span><span className={cn(styles.cardProductStatus, styles.badgeBlue)}>Beta Q1</span></div>
                       <div className={styles.cardProduct}><div className={styles.cardProductDot}></div><span>RAG Studio</span><span className={cn(styles.cardProductStatus, styles.badgeGreen)}>Early access</span></div>
                       <div className={styles.cardProduct}><div className={styles.cardProductDot}></div><span>ML Ops</span><span className={cn(styles.cardProductStatus, styles.badgeGray)}>Q1 2027</span></div>
                       <div className={styles.cardProduct}><div className={styles.cardProductDot}></div><span>Governance Hub</span><span className={cn(styles.cardProductStatus, styles.badgeGray)}>Q1 2027</span></div>
@@ -261,7 +261,7 @@ export function ClusterStrip() {
                     <div className={styles.expandProductName}>Agent Builder</div>
                     <div className={styles.expandProductDesc}>Visual canvas. Multi-agent orchestration. Execution trace.</div>
                   </div>
-                  <span className={cn(styles.expandProductBadge, styles.badgeBlue)}>Beta Q4 2026</span>
+                  <span className={cn(styles.expandProductBadge, styles.badgeBlue)}>Beta Q1 2027</span>
                 </div>
                 <div className={styles.expandProduct}>
                   <div className={cn(styles.expandProductIco, styles.badgeGray)}><ShieldCheck strokeWidth={1.5} size={14} /></div>
@@ -297,7 +297,7 @@ export function ClusterStrip() {
             <div className={styles.expandSection}>
               <div className={styles.expandSectionLabel}>Cluster details</div>
               <div className={styles.expandMeta}>
-                <div className={styles.expandMetaRow}><Map strokeWidth={1.5} /><span>Ships: <strong>Q3 2026</strong> (RAG Studio first)</span></div>
+                <div className={styles.expandMetaRow}><Map strokeWidth={1.5} /><span>Ships: <strong>Q4 2026</strong> (RAG Studio first)</span></div>
                 <div className={styles.expandMetaRow}><ShieldCheck strokeWidth={1.5} /><span>POPIA: <strong>Section 11, 19, 26 compliant</strong></span></div>
                 <div className={styles.expandMetaRow}><Database strokeWidth={1.5} /><span>Data residency: <strong>AWS af-south-1</strong></span></div>
                 <div className={styles.expandMetaRow}><Activity strokeWidth={1.5} /><span>Pricing: <strong>from R4,999/month ZAR</strong></span></div>
@@ -437,7 +437,7 @@ export function ClusterStrip() {
       <div className={styles.summaryRow}>
         <div className={styles.summaryItem}>
           <div className={styles.summaryDot} style={{ background: 'var(--sg-success)' }}></div>
-          1 cluster shipping Q3 2026
+          1 cluster shipping Q4 2026
         </div>
         <div className={styles.summarySep}></div>
         <div className={styles.summaryItem}>

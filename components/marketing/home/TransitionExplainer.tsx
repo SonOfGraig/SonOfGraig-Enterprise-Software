@@ -57,7 +57,7 @@ export function TransitionExplainer() {
           <motion.div variants={revealVariants.child}>
             <Link href="/platform" className="block group h-full">
               <div className="h-full bg-[var(--sg-bg)] border border-[var(--sg-border)] rounded-[var(--r-xl)] p-[var(--sp-6)] transition-all duration-200 ease-out group-hover:-translate-y-[1px] group-hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] cursor-pointer">
-                <div className="text-label text-[var(--sg-text-4)] mb-3">PHASE 2 -- Q3 2026</div>
+                <div className="text-label text-[var(--sg-text-4)] mb-3">PHASE 2 -- Q4 2026</div>
                 <h3 className="text-h3 text-[var(--sg-text-1)] mb-3">Early access software</h3>
                 <p className="text-body text-[var(--sg-text-3)]">
                   RAG Studio ships to early access customers. Agent Builder enters beta. Services and software revenue run in parallel.

@@ -14,7 +14,7 @@ export default function SdkDocsPage() {
     <UnderConstruction
       title="SDK Documentation"
       description="TypeScript and Python SDK documentation will ship with the first product release. Comprehensive examples, type definitions, and authentication patterns included."
-      eta="Q3 2026"
+      eta="Q4 2026"
       relatedLinks={[
         { href: '/platform', label: 'Platform overview' },
         { href: '/api-reference', label: 'API reference' },

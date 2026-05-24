@@ -6,7 +6,7 @@ import { Body } from './Body';
 export const metadata: Metadata = {
   title: 'Platform — SonOfGraig | 5 Enterprise AI Clusters, One Unified Subscription',
   description:
-    "SonOfGraig's enterprise AI platform: 5 SaaS clusters — AI Dev Platform, Cloud & DevOps, Data & Analytics, Creative & XR, and Dev Platform. POPIA-native, ZAR-priced, hosted in AWS af-south-1. RAG Studio and Agent Builder shipping Q3 2026.",
+    "SonOfGraig's enterprise AI platform: 5 SaaS clusters — AI Dev Platform, Cloud & DevOps, Data & Analytics, Creative & XR, and Dev Platform. POPIA-native, ZAR-priced, hosted in AWS af-south-1. RAG Studio shipping Q4 2026 and Agent Builder Q1 2027.",
   alternates: { canonical: '/platform' },
   openGraph: {
     title: 'SonOfGraig Platform — 5 Enterprise AI Clusters',

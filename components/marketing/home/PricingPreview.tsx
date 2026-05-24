@@ -11,7 +11,7 @@ export function PricingPreview() {
     <section className="w-full py-[var(--sp-16)]">
       <div className="max-w-[1080px] mx-auto px-8 text-center">
         
-        <div className="text-label text-[var(--sg-text-4)] mb-2">PRICING -- AVAILABLE FROM Q3 2026</div>
+        <div className="text-label text-[var(--sg-text-4)] mb-2">PRICING -- AVAILABLE FROM Q4 2026</div>
         <h2 className="text-h2 text-[var(--sg-text-1)] mb-3">Transparent ZAR pricing. No surprises.</h2>
         <p className="font-sans text-[16px] text-[var(--sg-text-3)] max-w-[600px] mx-auto">
           Join the waitlist. Early access customers receive the first year significantly discounted.

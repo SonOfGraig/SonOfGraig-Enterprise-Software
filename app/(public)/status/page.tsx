@@ -14,7 +14,7 @@ export default function StatusPage() {
     <UnderConstruction
       title="System Status"
       description="A public status page with live component health, incident history, and uptime SLA reporting will launch alongside the first product. For platform incidents during the build phase, follow our changelog."
-      eta="Q3 2026"
+      eta="Q4 2026"
       relatedLinks={[
         { href: '/changelog', label: 'Changelog' },
         { href: '/security', label: 'Security overview' },

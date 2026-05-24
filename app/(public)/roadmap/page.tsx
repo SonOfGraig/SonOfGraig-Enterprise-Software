@@ -14,7 +14,7 @@ export default function RoadmapPage() {
     <UnderConstruction
       title="Roadmap"
       description="Our public product and platform roadmap is being prepared. Sign up for early access to receive direct updates."
-      eta="Q3 2026"
+      eta="Q4 2026"
       relatedLinks={[
         { href: '/platform', label: 'Platform overview' },
         { href: '/changelog', label: 'Changelog' },

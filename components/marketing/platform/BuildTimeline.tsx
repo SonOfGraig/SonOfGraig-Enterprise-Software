@@ -14,13 +14,13 @@ export function BuildTimeline() {
       desc: 'Delivering projects. Designing the platform architecture. Accepting founding customer applications.'
     },
     {
-      date: 'Q3 2026',
+      date: 'Q4 2026',
       active: false,
       title: 'RAG Studio -- early access',
       desc: 'First product ships to pilot customers. Connect documents, get cited AI answers. Heavily discounted for early access members.'
     },
     {
-      date: 'Q4 2026',
+      date: 'Q1 2027',
       active: false,
       title: 'Agent Builder -- beta',
       desc: 'Visual canvas for building and deploying autonomous AI agents. Multi-agent orchestration. Full execution trace logging.'
@@ -29,7 +29,7 @@ export function BuildTimeline() {
       date: 'Q1 2027',
       active: false,
       title: 'Governance Hub + Fine-Tuning Ops',
-      desc: 'Automated bias audits, POPIA compliance reporting, and custom model training on enterprise data.'
+      desc: 'Automated bias audits, POPIA compliance reporting, and custom model training on enterprise data. Lands alongside Agent Builder.'
     },
     {
       date: '2027+',

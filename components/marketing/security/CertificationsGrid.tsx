@@ -9,7 +9,7 @@ export function CertificationsGrid() {
       status: 'In Progress',
       statusVariant: 'warn' as const,
       desc: 'Continuous third-party security audit. Evidence collection started Q1 2026.',
-      timeline: 'Targeting Q4 2026'
+      timeline: 'Targeting Q1 2027'
     },
     {
       icon: FileCheck,

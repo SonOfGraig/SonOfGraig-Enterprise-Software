@@ -14,7 +14,7 @@ export default function PlatformTimelinePage() {
     <UnderConstruction
       title="Build Timeline"
       description="A milestone-by-milestone view of the platform build — Phase 1 (services + AI Dev Platform), Phase 2 (Cloud, DevOps, Data, Analytics), Phase 3 (Creative XR, Dev Platform). Detailed page coming alongside the public roadmap."
-      eta="Q3 2026"
+      eta="Q4 2026"
       relatedLinks={[
         { href: '/platform', label: 'Platform overview' },
         { href: '/roadmap', label: 'Roadmap' },

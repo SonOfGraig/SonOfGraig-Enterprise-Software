@@ -74,7 +74,7 @@ const links: NavLink[] = [
         badge: 'Phase 1 Live',
         cards: [
           { title: 'RAG Studio', sub: 'Connect your company documents to AI. Hybrid retrieval, source citation, enterprise-grade.', cta: 'Join early access', href: '/platform/ai-dev-platform' },
-          { title: 'Agent Builder', sub: 'Visual canvas for autonomous AI agents. Beta Q4 2026.', cta: 'Learn more', href: '/platform/ai-dev-platform' }
+          { title: 'Agent Builder', sub: 'Visual canvas for autonomous AI agents. Beta Q1 2027.', cta: 'Learn more', href: '/platform/ai-dev-platform' }
         ]
       },
       footer: [
