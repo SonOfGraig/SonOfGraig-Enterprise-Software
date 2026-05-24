@@ -35,7 +35,7 @@
   --red:#DC2626;--red-g:rgba(220,38,38,.07);--red-b:rgba(220,38,38,.18);
   --slate:#475569;--slate-g:rgba(71,85,105,.06);--slate-b:rgba(71,85,105,.14);
 }
-a{text-decoration:none;color:inherit}
+.lp-contact-root a{text-decoration:none;color:inherit}
 .skip{position:fixed;top:8px;left:8px;z-index:9999;padding:8px 16px;background:var(--blue);color:#fff;border-radius:8px;font-weight:600;font-size:13px;transform:translateY(-80px);transition:transform .2s}
 .skip:focus{transform:translateY(0)}
 .wrap{max-width:1180px;margin:0 auto;padding:0 48px}
