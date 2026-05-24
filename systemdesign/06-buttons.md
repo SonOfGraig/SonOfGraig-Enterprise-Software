@@ -9,8 +9,8 @@ Use the existing `Button` primitive at [`../components/ui/Button.tsx`](../compon
 | Variant | Background | Text | Border | Use |
 |---|---|---|---|---|
 | `primary` | `--sg-blue` | `#FFFFFF` | none | The most important action on a view. **One per page section.** |
-| `secondary` | `--sg-surface-2` | `--sg-text-1` | `--sg-border-md` | Supporting actions: Export, Duplicate, View Details |
-| `ghost` | transparent | `--sg-blue` | `--sg-blue-border` | Tertiary, contextual, inline-link-as-button |
+| `secondary` | `--sg-surface-2` | `--sg-text-2` (hover `--sg-text-1`) | `--sg-border-md` | Supporting actions: Export, Duplicate, View Details |
+| `ghost` | transparent (hover `--sg-surface-2`) | `--sg-blue` | `--sg-blue-border` | Tertiary, contextual, inline-link-as-button |
 | `cta` (amber) | amber gradient | `#FFFFFF` | none | Pricing conversions, upgrades, plan changes only |
 | `danger` | `--sg-danger-bg` | `--sg-danger` | `--sg-danger-bd` | Delete, revoke, reset — always behind a confirm dialog |
 
