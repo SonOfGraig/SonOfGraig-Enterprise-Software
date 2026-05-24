@@ -175,7 +175,7 @@ export default function PrivacyPolicyPage() {
                 </li>
                 <li>
                   <strong>Account &amp; commercial</strong> — organisation name, billing
-                  address, VAT number, plan and billing-cycle preference. We do{' '}
+                  address, plan and billing-cycle preference. We do{' '}
                   <strong>not</strong> store full payment card numbers; payments are processed
                   by Stripe and tokenised at the point of capture.
                 </li>
