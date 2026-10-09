@@ -3,6 +3,27 @@ import { z } from 'zod';
 import { verifyTurnstile } from './turnstile';
 import { rateLimit, getClientIp } from './rate-limit';
 
+const MAX_BODY_BYTES = 32 * 1024;
+
+/** Reads the request body as text, or returns null once it exceeds `limit` bytes. */
+async function readLimited(req: NextRequest, limit: number): Promise<string | null> {
+  if (!req.body) return '';
+  const reader = req.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let size = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    size += value.byteLength;
+    if (size > limit) {
+      await reader.cancel();
+      return null;
+    }
+    chunks.push(value);
+  }
+  return new TextDecoder().decode(Buffer.concat(chunks));
+}
+
 /**
  * Factory that builds a Next.js POST route handler from a Zod schema and a
  * sender function. Wraps the standard checks: rate limit → JSON parse →
@@ -29,9 +50,22 @@ export function createFormHandler<T extends z.ZodTypeAny>(
       );
     }
 
+    // Cap the body before reading it: the largest legitimate submission (a
+    // 5,000-character use case plus fields) is well under 32 KB.
+    const declared = Number(req.headers.get('content-length') ?? 0);
+    if (declared > MAX_BODY_BYTES) {
+      return NextResponse.json({ ok: false, error: 'too_large' }, { status: 413 });
+    }
+
     let body: unknown;
     try {
-      body = await req.json();
+      // content-length can be absent (chunked) or wrong, so the stream itself
+      // is cut off at the limit rather than buffered whole.
+      const raw = await readLimited(req, MAX_BODY_BYTES);
+      if (raw === null) {
+        return NextResponse.json({ ok: false, error: 'too_large' }, { status: 413 });
+      }
+      body = JSON.parse(raw);
     } catch {
       return NextResponse.json(
         { ok: false, error: 'invalid_json' },
@@ -62,11 +96,10 @@ export function createFormHandler<T extends z.ZodTypeAny>(
 
     const tv = await verifyTurnstile(data.turnstileToken, ip);
     if (!tv.ok) {
+      // The reason (missing secret, network error, Cloudflare error codes)
+      // stays in the server log; the client only learns that the check failed.
       console.log(`[forms ${requestId}] turnstile failed: ${tv.reason}`);
-      return NextResponse.json(
-        { ok: false, error: `turnstile:${tv.reason}` },
-        { status: 403 },
-      );
+      return NextResponse.json({ ok: false, error: 'turnstile' }, { status: 403 });
     }
 
     try {
@@ -78,10 +111,8 @@ export function createFormHandler<T extends z.ZodTypeAny>(
     } catch (err) {
       const errMsg = err instanceof Error ? err.message : String(err);
       console.error(`[forms ${requestId}] send failed: ${errMsg}`, err);
-      return NextResponse.json(
-        { ok: false, error: 'send_failed', detail: errMsg },
-        { status: 500 },
-      );
+      // No error detail to the client — provider messages can reveal config.
+      return NextResponse.json({ ok: false, error: 'send_failed' }, { status: 500 });
     }
 
     return NextResponse.json({ ok: true });

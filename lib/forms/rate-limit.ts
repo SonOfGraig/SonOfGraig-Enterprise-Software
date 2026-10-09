@@ -39,11 +39,14 @@ export function rateLimit(ip: string): { allowed: boolean; retryAfterSec: number
 }
 
 export function getClientIp(headers: Headers): string {
-  // Cloud Run sets X-Forwarded-For; Cloudflare adds CF-Connecting-IP which
-  // is the most reliable original client IP (set by the proxy at the edge).
-  return (
-    headers.get('cf-connecting-ip') ??
-    headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
-    'unknown'
-  );
+  // Production runs behind a Cloudflare Tunnel and listens on 127.0.0.1 only,
+  // so every request arrives through Cloudflare, which overwrites any
+  // client-supplied CF-Connecting-IP with the real address.
+  const cf = headers.get('cf-connecting-ip')?.trim();
+  if (cf) return cf;
+  // Fallback: the LAST X-Forwarded-For hop is the one our nearest proxy
+  // appended. The first entry is whatever the client chose to send, so
+  // trusting it would let anyone mint a fresh rate-limit bucket per request.
+  const hops = headers.get('x-forwarded-for')?.split(',').map((h) => h.trim()).filter(Boolean);
+  return hops?.at(-1) ?? 'unknown';
 }

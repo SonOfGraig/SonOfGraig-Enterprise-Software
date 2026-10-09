@@ -1,23 +1,25 @@
 import type {NextConfig} from 'next';
 
-// Content Security Policy. We allow 'unsafe-inline' and 'unsafe-eval' for now
-// because Next.js client bundles, motion/framer animations, and the Tailwind
-// runtime require them. A stricter nonce-based CSP is a Phase D follow-up.
+// Content Security Policy. 'unsafe-inline' stays for scripts because Next's
+// hydration payload, next-themes' no-flash script and gtag are inline; a
+// nonce-based CSP would force every page to render dynamically. 'unsafe-eval'
+// is only needed by the dev server (React Refresh), so production omits it.
 //
 // Cloudflare Turnstile (https://challenges.cloudflare.com) is required for the
 // /early-access and /contact forms. The widget loads a script and mounts an
 // iframe; both directives need to allow that origin.
+const isDev = process.env.NODE_ENV !== 'production';
 const csp = [
   "default-src 'self'",
   // Cloudflare Turnstile + Cloudflare Insights + Google Analytics (gtag).
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com https://static.cloudflareinsights.com https://*.googletagmanager.com https://www.google-analytics.com",
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://challenges.cloudflare.com https://static.cloudflareinsights.com https://*.googletagmanager.com https://www.google-analytics.com`,
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com data:",
   "img-src 'self' https: data: blob:",
-  // Marketing explainer videos are hosted on GCS (cheaper egress than Cloud Run).
-  // Without this directive Chrome blocks every <video> source with a CSP violation.
-  "media-src 'self' https://storage.googleapis.com blob:",
-  "connect-src 'self' https://challenges.cloudflare.com https://cloudflareinsights.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https:",
+  // Explainer videos are served from /public (same origin).
+  "media-src 'self' blob:",
+  // Only the services the site actually talks to — no blanket https:.
+  "connect-src 'self' https://challenges.cloudflare.com https://cloudflareinsights.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
   // Turnstile widget renders inside an iframe served from challenges.cloudflare.com.
   "frame-src https://challenges.cloudflare.com",
   "frame-ancestors 'none'",
@@ -54,15 +56,10 @@ const nextConfig: NextConfig = {
   experimental: {
     scrollRestoration: false,
   },
+  // No remote image hosts: the optimiser only ever processes our own /public
+  // files, so it cannot be pointed at attacker-supplied images.
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'picsum.photos',
-        port: '',
-        pathname: '/**',
-      },
-    ],
+    remotePatterns: [],
   },
   output: 'standalone',
   // A stray package-lock.json in the user's home folder makes Next infer the
