@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 
 type LinkItem = {
   href?: string;
@@ -74,6 +74,7 @@ const links: NavLink[] = [
       { href: '/platform/ai-dev-platform', label: 'AI Dev Platform' },
       { href: '/early-access', label: 'Early access' },
       { href: '/pricing', label: 'Pricing' },
+      { href: '/lab', label: 'Interface Lab' },
     ]
   },
   { 
@@ -91,9 +92,89 @@ const links: NavLink[] = [
   { href: '/blog', label: 'Insights' },
 ];
 
+// 2026-site nav hover: one liquid-glass pill (layoutId) slides to whichever
+// item is hovered — or rests on the current section — and the label leans
+// a little toward the cursor.
+function useMagnet() {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const sx = useSpring(x, { stiffness: 500, damping: 30 });
+  const sy = useSpring(y, { stiffness: 500, damping: 30 });
+  return {
+    style: { x: sx, y: sy },
+    onMouseMove: (e: React.MouseEvent<HTMLElement>) => {
+      const r = e.currentTarget.getBoundingClientRect();
+      x.set((e.clientX - r.left - r.width / 2) * 0.1);
+      y.set((e.clientY - r.top - r.height / 2) * 0.1);
+    },
+    onMouseLeave: () => {
+      x.set(0);
+      y.set(0);
+    },
+  };
+}
+
+function Pill({ active }: { active: boolean }) {
+  return <motion.span layoutId="nav-pill" data-active={active} className="nav-pill" transition={{ type: 'spring', bounce: 0.1, stiffness: 400, damping: 30 }} />;
+}
+
+function PillLabel({ children, magnet }: { children: React.ReactNode; magnet: ReturnType<typeof useMagnet> }) {
+  return (
+    <motion.span style={magnet.style} className="relative z-[1] flex items-center gap-1 pointer-events-none">
+      {children}
+    </motion.span>
+  );
+}
+
+function DesktopLink({ href, label, active, showPill, onHover }: { href: string; label: string; active: boolean; showPill: boolean; onHover: () => void }) {
+  const magnet = useMagnet();
+  return (
+    <Link
+      href={href}
+      onMouseEnter={onHover}
+      onMouseMove={magnet.onMouseMove}
+      onMouseLeave={magnet.onMouseLeave}
+      aria-current={active ? 'page' : undefined}
+      className={cn(
+        'relative isolate flex h-9 items-center rounded-full px-3.5 text-[13px] font-sans transition-colors duration-300',
+        active || showPill ? 'text-[var(--sg-text-1)] font-medium' : 'text-[var(--sg-text-3)]',
+      )}
+    >
+      {showPill && <Pill active={active} />}
+      <PillLabel magnet={magnet}>{label}</PillLabel>
+    </Link>
+  );
+}
+
+function DesktopTrigger({ label, active, open, showPill, onHover, onClick }: { label: string; active: boolean; open: boolean; showPill: boolean; onHover: () => void; onClick: () => void }) {
+  const magnet = useMagnet();
+  return (
+    <button
+      suppressHydrationWarning
+      type="button"
+      onClick={onClick}
+      onMouseEnter={onHover}
+      onMouseMove={magnet.onMouseMove}
+      onMouseLeave={magnet.onMouseLeave}
+      aria-expanded={open}
+      className={cn(
+        'relative isolate flex h-9 items-center rounded-full px-3.5 text-[13px] font-sans transition-colors duration-300',
+        active || open || showPill ? 'text-[var(--sg-text-1)] font-medium' : 'text-[var(--sg-text-3)]',
+      )}
+    >
+      {showPill && <Pill active={active} />}
+      <PillLabel magnet={magnet}>
+        {label}
+        <ChevronDown size={14} className={cn('transition-transform', open && 'rotate-180')} />
+      </PillLabel>
+    </button>
+  );
+}
+
 export function NavLinks({ mobile = false, onClose }: { mobile?: boolean, onClose?: () => void }) {
   const pathname = usePathname();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [hovered, setHovered] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -105,6 +186,11 @@ export function NavLinks({ mobile = false, onClose }: { mobile?: boolean, onClos
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const under = (href?: string) => !!href && (pathname === href.split('#')[0] || !!pathname?.startsWith(`${href.split('#')[0]}/`));
+  const activeLabel = links.find((l) =>
+    l.href ? under(l.href) : l.dropdown?.some((i) => under(i.href)) || l.megaMenu?.columns.some((col: any) => col.links.some((i: any) => under(i.href))),
+  )?.label;
 
   if (mobile) {
     return (
@@ -221,9 +307,11 @@ export function NavLinks({ mobile = false, onClose }: { mobile?: boolean, onClos
   }
 
   return (
-    <div className="hidden sm:flex items-center gap-6" ref={dropdownRef}>
-      <nav className="flex items-center gap-6">
+    <div className="hidden sm:flex items-center gap-4" ref={dropdownRef}>
+      <nav className="flex items-center gap-0.5" onMouseLeave={() => setHovered(null)}>
         {links.map((link) => {
+          // The pill rests on the open menu, else the hovered item, else the current section.
+          const pillOn = (openDropdown ?? hovered ?? activeLabel) === link.label;
           if (link.megaMenu || link.dropdown) {
             const isActive = link.dropdown?.some(item => pathname === item.href || pathname?.startsWith(`${item.href}/`)) || 
                              link.megaMenu?.columns.some((col: any) => col.links.some((item: any) => pathname === item.href));
@@ -231,16 +319,14 @@ export function NavLinks({ mobile = false, onClose }: { mobile?: boolean, onClos
             
             return (
               <div key={link.label} className="relative">
-                <button suppressHydrationWarning
+                <DesktopTrigger
+                  label={link.label}
+                  active={!!isActive}
+                  open={isOpen}
+                  showPill={pillOn}
+                  onHover={() => setHovered(link.label)}
                   onClick={() => setOpenDropdown(isOpen ? null : link.label)}
-                  className={cn(
-                    "flex items-center gap-1 text-[13px] font-sans transition-colors",
-                    isActive || isOpen ? 'text-[var(--sg-text-1)] font-medium' : 'text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)]'
-                  )}
-                >
-                  {link.label}
-                  <ChevronDown size={14} className={cn("transition-transform", isOpen && "rotate-180")} />
-                </button>
+                />
                 
                 <AnimatePresence>
                   {isOpen && link.dropdown && (
@@ -348,16 +434,14 @@ export function NavLinks({ mobile = false, onClose }: { mobile?: boolean, onClos
 
           const isActive = pathname === link.href || pathname?.startsWith(`${link.href}/`);
           return (
-            <Link
+            <DesktopLink
               key={link.href}
               href={link.href!}
-              className={cn(
-                "text-[13px] font-sans transition-colors",
-                isActive ? 'text-[var(--sg-text-1)] font-medium' : 'text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)]'
-              )}
-            >
-              {link.label}
-            </Link>
+              label={link.label}
+              active={!!isActive}
+              showPill={pillOn}
+              onHover={() => setHovered(link.label)}
+            />
           );
         })}
       </nav>
