@@ -6,6 +6,7 @@ npm-debug.log
 README.md
 .env*
 !.env.example
+!.env.production
 .DS_Store
 .vscode
 .idea
@@ -15,3 +16,11 @@ coverage
 systemdesign
 script.mjs
 metadata.json
+# Dev-only Remotion workspace. The rendered videos/posters live in public/;
+# the source compositions and Remotion CLI are not needed in the Next runtime image.
+remotion
+# Heavy marketing assets are served from GCS in prod, not from the container.
+# Keeping them on disk locally so dev still works against the same paths if
+# NEXT_PUBLIC_ASSET_BASE_URL is unset.
+public/video
+public/poster

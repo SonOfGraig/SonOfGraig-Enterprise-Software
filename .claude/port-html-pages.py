@@ -76,16 +76,37 @@ def extract_main(html: str) -> str:
 
 
 def scope_css(css: str, scope: str) -> str:
-    """Scope :root and theme rules to .scope; strip global resets and link styles."""
-    # Strip only the global resets that would clobber PublicShell's base styles.
-    # We deliberately keep `a {}` / `a:hover {}` rules — once the CSS is scoped
-    # to the page wrapper they only style links *inside* the page, which is
-    # what the source design intended. Earlier versions of this script removed
-    # those rules with an over-eager regex that ate trailing combined selectors
-    # (e.g. `.f-bot-r a:hover{...}` → leaves `.f-bot-r` dangling).
+    """Scope :root and theme rules to .scope; strip/scope global resets."""
+    # Strip the global resets that would clobber PublicShell's base styles.
     css = re.sub(r"\*\s*,\s*\*::before\s*,\s*\*::after\s*\{[^}]*\}\s*", "", css)
     css = re.sub(r"(?ms)^html\s*\{[^}]*\}\s*", "", css)
     css = re.sub(r"(?ms)^body\s*\{[^}]*\}\s*", "", css)
+
+    # Scope bare element + pseudo resets to the page wrapper. These are NOT
+    # auto-scoped by the :root rewrite below — left global, they leak into the
+    # app shell. Crucially, Tailwind v4 emits utilities inside `@layer`, and an
+    # *unlayered* bare rule like `a{color:inherit}` beats a layered utility like
+    # `.text-white` regardless of specificity — which silently hid the navbar's
+    # primary-button label (an <a> rendered via asChild/Slot) app-wide.
+    # Scoping to `.{scope}-root` keeps the reset working inside the ported page
+    # while leaving PublicShell untouched.
+    css = re.sub(r"(?m)^a\s*\{", f".{scope}-root a{{", css)
+    css = re.sub(r"(?m)^button\s*\{", f".{scope}-root button{{", css)
+    css = re.sub(
+        r"(?m)^img\s*,\s*svg\s*\{",
+        f".{scope}-root img,.{scope}-root svg{{",
+        css,
+    )
+
+    # Scope top-level pseudo-element rules (::selection, ::-webkit-scrollbar*).
+    # Left global, they restyle the whole app's selection highlight and
+    # scrollbars with the legacy page's theme colours instead of the design
+    # system's. Scoping confines them to the ported page wrapper.
+    css = re.sub(
+        r"(?m)^(::[-a-z]+(?::[-a-z]+)?)\s*\{",
+        rf".{scope}-root \1{{",
+        css,
+    )
 
     # Scope token roots so they apply to the page wrapper but stay theme-reactive.
     css = re.sub(

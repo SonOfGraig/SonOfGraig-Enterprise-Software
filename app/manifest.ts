@@ -1,11 +1,13 @@
-import type { MetadataRoute } from 'next';
+﻿import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'SonOfGraig — Enterprise AI Platform',
-    short_name: 'SonOfGraig',
+    name: 'sonofgraig — Enterprise Software Company',
+    short_name: 'sonofgraig',
+    // Aligned with SITE_DESCRIPTION in app/layout.tsx so manifest + Metadata API
+    // present one entity story to crawlers and PWA installers.
     description:
-      "Africa's first enterprise AI platform. Build agents, ground AI in your data, fine-tune models, and prove compliance from one platform.",
+      'sonofgraig is an enterprise software company headquartered in South Africa, building AI-native SaaS platforms — agents, RAG, fine-tuning, governance — for enterprise operations. POPIA-native, ZAR-priced.',
     start_url: '/',
     display: 'standalone',
     background_color: '#0A0C10',

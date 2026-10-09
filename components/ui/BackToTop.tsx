@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { smoothScrollTo } from '@/lib/scroll';
 import { ChevronUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -23,7 +24,7 @@ export function BackToTop() {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    smoothScrollTo(0);
   };
 
   return (

@@ -1,0 +1,40 @@
+{
+  "name": "sog-remotion",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Brand-aligned explainer videos for the SonOfGraig marketing site. Token-driven; outputs render into ../public/video and ../public/poster.",
+  "scripts": {
+    "studio": "remotion studio",
+    "render:light": "remotion render src/index.ts AgentBuilderLight ../public/video/agent-builder.mp4 --codec=h264 --crf=22",
+    "render:light-webm": "remotion render src/index.ts AgentBuilderLight ../public/video/agent-builder.webm --codec=vp8 --crf=30",
+    "render:light-poster": "remotion still src/index.ts AgentBuilderLight ../public/poster/agent-builder.jpg --frame=160",
+    "render:dark": "remotion render src/index.ts AgentBuilderDark ../public/video/agent-builder-dark.mp4 --codec=h264 --crf=22",
+    "render:dark-webm": "remotion render src/index.ts AgentBuilderDark ../public/video/agent-builder-dark.webm --codec=vp8 --crf=30",
+    "render:dark-poster": "remotion still src/index.ts AgentBuilderDark ../public/poster/agent-builder-dark.jpg --frame=160",
+    "render:all": "npm run render:light && npm run render:light-webm && npm run render:light-poster && npm run render:dark && npm run render:dark-webm && npm run render:dark-poster",
+    "render:blog-pillar-og": "remotion still src/index.ts BlogHeroPillarLight ../public/blog/og/why-africa-needs-its-own-enterprise-ai-platform.png --image-format=png",
+    "render:blog-pillar-og-dark": "remotion still src/index.ts BlogHeroPillarDark ../public/blog/og/why-africa-needs-its-own-enterprise-ai-platform-dark.png --image-format=png",
+    "render:blog-compliance-og": "remotion still src/index.ts BlogHeroComplianceLight ../public/blog/og/popia-sections-11-19-72-and-ai-architecture.png --image-format=png",
+    "render:blog-compliance-og-dark": "remotion still src/index.ts BlogHeroComplianceDark ../public/blog/og/popia-sections-11-19-72-and-ai-architecture-dark.png --image-format=png",
+    "render:blog-platform-og": "remotion still src/index.ts BlogHeroPlatformLight ../public/blog/og/four-pillar-ai-dev-platform.png --image-format=png",
+    "render:blog-platform-og-dark": "remotion still src/index.ts BlogHeroPlatformDark ../public/blog/og/four-pillar-ai-dev-platform-dark.png --image-format=png",
+    "render:blog-all": "npm run render:blog-pillar-og && npm run render:blog-pillar-og-dark && npm run render:blog-compliance-og && npm run render:blog-compliance-og-dark && npm run render:blog-platform-og && npm run render:blog-platform-og-dark",
+    "render:blog-pillar-motion": "remotion render src/index.ts ServicesToSaaSDark ../public/blog/motion/why-africa-needs-its-own-enterprise-ai-platform.mp4 --codec=h264 --crf=22",
+    "render:blog-compliance-motion": "remotion render src/index.ts SecurityPostureLight ../public/blog/motion/popia-sections-11-19-72-and-ai-architecture.mp4 --codec=h264 --crf=22",
+    "render:blog-platform-motion": "remotion render src/index.ts PlatformCompoundingLight ../public/blog/motion/four-pillar-ai-dev-platform.mp4 --codec=h264 --crf=22",
+    "render:blog-motion-all": "npm run render:blog-pillar-motion && npm run render:blog-compliance-motion && npm run render:blog-platform-motion"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.405",
+    "@remotion/cli": "4.0.405",
+    "@remotion/renderer": "4.0.405",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "remotion": "4.0.405"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "5.9.3"
+  }
+}

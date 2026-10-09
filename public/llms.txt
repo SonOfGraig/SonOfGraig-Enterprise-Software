@@ -1,0 +1,42 @@
+# SonOfGraig
+
+> Africa's first enterprise AI platform. SonOfGraig Digital Solutions converts 18 enterprise service capabilities into 5 SaaS product clusters — POPIA-native, ZAR-priced, hosted entirely in AWS af-south-1, founded and led by Tumiso Graig Ramaboya from Pretoria, South Africa.
+
+SonOfGraig is the first enterprise AI platform built from inside South Africa for South African regulatory conditions. The platform is structured as five SaaS clusters sharing one identity layer, one observability stack, and one POPIA-aligned audit trail. The intelligence cluster (AI Dev Platform) is the strategic beachhead — RAG Studio ships Q4 2026 and Agent Builder ships Q1 2027.
+
+The founder, Tumiso Graig Ramaboya, is the named POPIA Information Officer registered with the Information Regulator of South Africa. Every architectural decision is owned by a human; every email is traceable to a person.
+
+## Platform
+
+- [Platform overview](https://sonofgraig.com/platform): All 5 SaaS clusters in one unified subscription. POPIA-native, ZAR-priced, AWS af-south-1 hosted. From R4,999/month.
+- [AI Dev Platform](https://sonofgraig.com/platform/ai-dev-platform): The intelligence layer — RAG Studio, Agent Builder, Fine-Tuning Ops, Governance Hub. Strategic beachhead cluster.
+- [Cloud & DevOps Suite](https://sonofgraig.com/platform/cloud-devops): Multi-cloud control, CI/CD pipelines, zero-trust security, FinOps cost management. POPIA Section 72 enforced at provisioning.
+- [Data & Analytics OS](https://sonofgraig.com/platform/data-analytics): Visual ETL, embedded BI dashboards, 500+ workflow integrations with POPIA column lineage from the first pipeline stage.
+- [Creative & XR Studio](https://sonofgraig.com/platform/creative-xr): Auto-generated design systems, AI-powered brand asset creation, no-code AR/VR experiences.
+- [Pricing](https://sonofgraig.com/pricing): ZAR-priced subscriptions from R4,999/month. No FX exposure. Founding customer programme — 5 slots, 70% off first year.
+
+## Services
+
+- [AI Agent Implementation](https://sonofgraig.com/services/ai-agent-implementation): Production-ready autonomous agents on your data. LangGraph + Composio, 6–10 weeks, fixed scope, from R95,000 ZAR.
+- [RAG Knowledge Base Setup](https://sonofgraig.com/services/rag-knowledge-base-setup): Document search grounded in your enterprise documents. LlamaIndex + self-hosted Qdrant, 4–6 weeks, from R65,000 ZAR.
+- [AI Governance & Ethics Audit](https://sonofgraig.com/services/ai-governance-audit): POPIA Sections 11, 19, 72 gap analysis with bias detection (Fairlearn), SHAP explainability, board-ready PDF. 3–4 weeks, from R45,000 ZAR.
+- [Cloud Architecture & DevOps](https://sonofgraig.com/services/cloud-architecture): Zero-trust AWS landing zone in af-south-1, Terraform IaC, GitHub Actions CI/CD, FinOps. 6–10 weeks, from R120,000 ZAR.
+
+## Company
+
+- [About SonOfGraig](https://sonofgraig.com/about): The thesis — service agency converting to enterprise software company. Founder bio, operating principles, strategic frame.
+- [Security & POPIA](https://sonofgraig.com/security): Security architecture, POPIA compliance posture, residency policy.
+- [POPIA compliance](https://sonofgraig.com/popia): How SonOfGraig satisfies POPIA Sections 11, 19, and 72 by architecture.
+- [Contact](https://sonofgraig.com/contact): Three public mailboxes — sales@sonofgraig.com (sales, partnerships), info@sonofgraig.com (general, support, careers), tumiso@sonofgraig.com (POPIA Information Officer, security disclosure, legal, press). Phone: +27 69 686 6024.
+- [Roadmap](https://sonofgraig.com/roadmap): Public build timeline for all 5 clusters through 2027.
+- [Early access](https://sonofgraig.com/early-access): Apply to the founding customer programme.
+
+## Optional
+
+- [Privacy policy](https://sonofgraig.com/privacy-policy)
+- [Terms of service](https://sonofgraig.com/terms)
+- [Data Processing Agreement](https://sonofgraig.com/dpa)
+- [Changelog](https://sonofgraig.com/changelog)
+- [Press](https://sonofgraig.com/press)
+- [Partners](https://sonofgraig.com/partners)
+- [Sitemap](https://sonofgraig.com/sitemap.xml)

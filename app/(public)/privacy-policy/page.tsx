@@ -1,4 +1,4 @@
-// Implements SonOfGraig Design System v3.0 — see /systemdesign/README.md
+// Implements sonofgraig Design System v3.0 — see /systemdesign/README.md
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -15,14 +15,14 @@ import { Callout } from '@/components/ui/Callout';
 import { BackToTop } from '@/components/ui/BackToTop';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — SonOfGraig',
+  title: 'Privacy Policy — sonofgraig',
   description:
-    'How SonOfGraig Digital Solutions collects, uses, shares, and protects your personal information under POPIA — including your data subject rights and how to exercise them.',
+    'How sonofgraig collects, uses, shares, and protects your personal information under POPIA — including your data subject rights and how to exercise them.',
   alternates: { canonical: '/privacy-policy' },
   openGraph: {
-    title: 'Privacy Policy — SonOfGraig',
+    title: 'Privacy Policy — sonofgraig',
     description:
-      'POPIA-aligned privacy notice for SonOfGraig Digital Solutions: lawful basis, retention, sub-processors, cross-border transfers, and your data subject rights.',
+      'POPIA-aligned privacy notice for sonofgraig: lawful basis, retention, sub-processors, cross-border transfers, and your data subject rights.',
     type: 'article',
     url: '/privacy-policy',
   },
@@ -67,7 +67,7 @@ export default function PrivacyPolicyPage() {
           </h1>
 
           <p className="text-body-lg text-[var(--sg-text-2)] max-w-[680px] mb-[var(--sp-8)]">
-            This notice explains what personal information SonOfGraig Digital Solutions collects,
+            This notice explains what personal information sonofgraig collects,
             why we collect it, how long we keep it, who we share it with, and the rights you hold
             under the Protection of Personal Information Act, 2013 (POPIA).
           </p>
@@ -83,7 +83,7 @@ export default function PrivacyPolicyPage() {
               Last updated {LAST_UPDATED}
             </span>
             <span className="px-[var(--sp-3)] py-[var(--sp-1)] rounded-[var(--r-full)] bg-[var(--sg-surface-2)] text-[var(--sg-text-3)] border border-[var(--sg-border)] text-code">
-              POPIA · af-south-1
+              POPIA
             </span>
           </div>
         </div>
@@ -127,7 +127,7 @@ export default function PrivacyPolicyPage() {
             <section id="about">
               <h2>01 · About this notice</h2>
               <p>
-                SonOfGraig Digital Solutions (&ldquo;<strong>SonOfGraig</strong>&rdquo;,
+                sonofgraig (&ldquo;<strong>sonofgraig</strong>&rdquo;,
                 &ldquo;<strong>we</strong>&rdquo;, &ldquo;<strong>us</strong>&rdquo;,
                 &ldquo;<strong>our</strong>&rdquo;) is the responsible party for the personal
                 information processed through this website, our enterprise platform, and any
@@ -147,14 +147,15 @@ export default function PrivacyPolicyPage() {
             <section id="who-we-are">
               <h2>02 · Who we are</h2>
               <p>
-                SonOfGraig Digital Solutions is a South African enterprise software company
-                operating from Cape Town. We process and store South African customer data in
-                the AWS Africa (Cape Town) region (<code>af-south-1</code>) by default, in line
-                with POPIA data residency expectations.
+                sonofgraig (SonOfGraig Digital Solutions (Pty) Ltd) is a South African
+                enterprise software company, registered in KwaMhlanga, Mpumalanga, and operating
+                from Pretoria. For customers of our platform and services, data residency is
+                agreed in the Data Processing Agreement, with a South African region as the
+                default.
               </p>
               <p>
                 Our Information Officer is{' '}
-                <strong>Graig Son, CEO &amp; Information Officer</strong>. They are responsible
+                <strong>Tumiso Graig Ramaboya, Founder, CEO &amp; Information Officer</strong>. He is responsible
                 for ensuring our compliance with POPIA, dealing with requests from data
                 subjects, and working with the Information Regulator of South Africa where
                 required. Contact details are in section 14.
@@ -254,7 +255,7 @@ export default function PrivacyPolicyPage() {
             <section id="how-we-use">
               <h2>05 · How we use your information</h2>
               <ul>
-                <li>To deliver, secure, and improve the SonOfGraig platform and website.</li>
+                <li>To deliver, secure, and improve the sonofgraig platform and website.</li>
                 <li>To respond to enquiries, demos, sales conversations, and support tickets.</li>
                 <li>
                   To send service notifications (billing alerts, security advisories,
@@ -290,37 +291,26 @@ export default function PrivacyPolicyPage() {
               </p>
               <ul>
                 <li>
-                  <strong>Cloud infrastructure</strong> — Amazon Web Services (Africa, Cape
-                  Town region <code>af-south-1</code> by default).
+                  <strong>Website delivery and protection</strong> — Cloudflare (global edge
+                  network): DNS, content delivery, firewall and DDoS protection.
                 </li>
                 <li>
-                  <strong>Payments</strong> — Stripe Payments Europe Limited. Card data is
-                  tokenised by Stripe and never touches our servers.
+                  <strong>Email delivery</strong> — Resend (United States), used to send form
+                  submissions to our team, confirmation emails and consented newsletters.
                 </li>
                 <li>
-                  <strong>Email delivery</strong> — Resend, used for transactional and
-                  consented marketing email.
+                  <strong>Analytics</strong> — Google Analytics (United States), loaded only
+                  after you accept analytics cookies, with IP anonymisation.
                 </li>
                 <li>
-                  <strong>Analytics</strong> — first-party Vercel Analytics and self-hosted
-                  PostHog with IP anonymisation.
-                </li>
-                <li>
-                  <strong>Customer support</strong> — Plain.com for in-app support
-                  conversations.
-                </li>
-                <li>
-                  <strong>Observability &amp; error reporting</strong> — Sentry and self-hosted
-                  Langfuse, configured to scrub personally identifying fields.
-                </li>
-                <li>
-                  <strong>Compliance automation</strong> — Vanta for SOC 2 / ISO 27001 control
-                  monitoring.
+                  <strong>Platform customers</strong> — the infrastructure and model providers
+                  used to deliver the AI Dev Platform are listed in each customer&apos;s Data
+                  Processing Agreement.
                 </li>
               </ul>
               <p>
                 A current, named list of sub-processors and their location is available on
-                request from <a href="mailto:privacy@sonofgraig.com">privacy@sonofgraig.com</a>.
+                request from <a href="mailto:tumiso@sonofgraig.com">tumiso@sonofgraig.com</a>.
               </p>
               <p>
                 We may also disclose information if required by a valid court order, subpoena,
@@ -427,7 +417,7 @@ export default function PrivacyPolicyPage() {
                 We respond to all data subject requests within{' '}
                 <strong>10 business days</strong>. Submit yours through the form on{' '}
                 <Link href="/popia#information-officer">our POPIA page</Link> or by emailing{' '}
-                <a href="mailto:privacy@sonofgraig.com">privacy@sonofgraig.com</a>. We may ask
+                <a href="mailto:tumiso@sonofgraig.com">tumiso@sonofgraig.com</a>. We may ask
                 for proof of identity to make sure we send your data to the right person.
               </p>
             </section>
@@ -451,9 +441,8 @@ export default function PrivacyPolicyPage() {
                   <em>Off by default.</em>
                 </li>
                 <li>
-                  <strong>Marketing</strong> — measure ad performance via LinkedIn Insight Tag
-                  and Google Ads.
-                  <em> Off by default.</em>
+                  <strong>Marketing</strong> — not used on this website today. If we introduce
+                  advertising measurement, it will be listed here and stay off by default.
                 </li>
                 <li>
                   <strong>Personalisation</strong> — content tailored to your role or industry.
@@ -473,9 +462,10 @@ export default function PrivacyPolicyPage() {
                 We use industry-standard administrative, physical, and technical safeguards
                 including encryption in transit (TLS 1.2+), encryption at rest (AES-256),
                 role-based access control, multi-factor authentication for staff,
-                organisation-scoped row-level security in our primary database, audit logging,
-                and quarterly third-party penetration testing. Our SOC 2 Type II programme is
-                automated through Vanta with continuous control monitoring.
+                and spam and rate-limit protection on our forms. The AI Dev Platform is being
+                built with organisation-scoped row-level security and audit logging. We do not
+                currently hold SOC 2 or ISO 27001 certification; the current status of each
+                control is published on our security page.
               </p>
               <p>
                 If we ever experience a security breach involving your personal information, we
@@ -487,7 +477,7 @@ export default function PrivacyPolicyPage() {
             <section id="children">
               <h2>12 · Children&rsquo;s data</h2>
               <p>
-                The SonOfGraig platform is sold to enterprises and is not directed at children
+                The sonofgraig platform is sold to enterprises and is not directed at children
                 under the age of 18. We do not knowingly collect personal information from
                 children. If you believe a child has provided us with personal information,
                 please contact our Information Officer and we will delete it.
@@ -505,7 +495,7 @@ export default function PrivacyPolicyPage() {
               </p>
               <p>
                 Previous versions are available on request from{' '}
-                <a href="mailto:privacy@sonofgraig.com">privacy@sonofgraig.com</a>.
+                <a href="mailto:tumiso@sonofgraig.com">tumiso@sonofgraig.com</a>.
               </p>
             </section>
 
@@ -520,17 +510,17 @@ export default function PrivacyPolicyPage() {
                 <ContactItem
                   icon={<UserCheck size={16} strokeWidth={1.5} />}
                   label="Information Officer"
-                  value="Graig Son, CEO"
+                  value="Tumiso Graig Ramaboya, Founder & CEO"
                 />
                 <ContactItem
                   icon={<Mail size={16} strokeWidth={1.5} />}
                   label="Email"
                   value={
                     <a
-                      href="mailto:privacy@sonofgraig.com"
+                      href="mailto:tumiso@sonofgraig.com"
                       className="text-[var(--sg-blue)] hover:text-[var(--sg-blue-dim)] transition-colors"
                     >
-                      privacy@sonofgraig.com
+                      tumiso@sonofgraig.com
                     </a>
                   }
                 />
@@ -542,7 +532,7 @@ export default function PrivacyPolicyPage() {
                 <ContactItem
                   icon={<MapPin size={16} strokeWidth={1.5} />}
                   label="Postal address"
-                  value="SonOfGraig Digital Solutions, Cape Town, South Africa"
+                  value="9810 Moloto South Drive, Extension 8, KwaMhlanga, 1022, Mpumalanga, South Africa"
                 />
               </div>
 

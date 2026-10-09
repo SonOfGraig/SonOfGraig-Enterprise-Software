@@ -1,27 +1,48 @@
-import fs from 'node:fs/promises';
-import path from 'node:path';
 import type { Metadata } from 'next';
-import { Body } from './Body';
+import { PageHero } from '@/components/marketing/_shared/PageHero';
+import { CTABand } from '@/components/marketing/_shared/CTABand';
+import { Section, SectionHeader } from '@/components/ui/Section';
+import { Reveal } from '@/components/fx/Reveal';
+import { AIDevHeroCard } from '@/components/marketing/home/AIDevHeroCard';
+import { PlatformInMotion } from '@/components/marketing/home/PlatformInMotion';
+import { PlannedClustersGrid } from '@/components/marketing/platform/PlatformSections';
+import { ExplainerVideo } from '@/components/marketing/_shared/ExplainerVideo';
+import { explainerSources } from '@/lib/assets';
 
 export const metadata: Metadata = {
-  title: 'Platform — SonOfGraig | 5 Enterprise AI Clusters, One Unified Subscription',
+  title: 'Platform — sonofgraig | The AI Dev Platform and what comes next',
   description:
-    "SonOfGraig's enterprise AI platform: 5 SaaS clusters — AI Dev Platform, Cloud & DevOps, Data & Analytics, Creative & XR, and Dev Platform. POPIA-native, ZAR-priced, hosted in AWS af-south-1. RAG Studio shipping Q4 2026 and Agent Builder Q1 2027.",
+    'The sonofgraig platform starts with the AI Dev Platform — RAG Studio, Agent Builder, Governance Hub and ML Ops on one audit trail. Four more clusters are planned.',
   alternates: { canonical: '/platform' },
-  openGraph: {
-    title: 'SonOfGraig Platform — 5 Enterprise AI Clusters',
-    description:
-      "Africa's first enterprise AI platform. 5 SaaS clusters. POPIA-native. ZAR-priced. AWS af-south-1.",
-    type: 'website',
-    url: '/platform',
-  },
+  openGraph: { title: 'The sonofgraig platform', description: 'The AI Dev Platform first; four more clusters planned.', type: 'website', url: '/platform', locale: 'en_ZA' },
   robots: { index: true, follow: true },
 };
 
-export default async function PlatformPage() {
-  const html = await fs.readFile(
-    path.join(process.cwd(), 'app', '(public)', 'platform', '_legacy.html'),
-    'utf8',
+export default function PlatformPage() {
+  return (
+    <>
+      <PageHero
+        scene="perspectiveFloor"
+        eyebrow="The platform"
+        title="One platform,"
+        accent="built one cluster at a time."
+        lead="We start with the AI Dev Platform: cited answers, traceable agents and governance on one foundation. Every services project we deliver makes it better."
+        primary={{ label: 'Explore the AI Dev Platform', href: '/platform/ai-dev-platform' }}
+        secondary={{ label: 'Join early access', href: '/early-access' }}
+      />
+      <Section tone="base" spacing="lg" background="artifactsLattice">
+        <SectionHeader eyebrow="Our first product" title="The AI Dev Platform." description="Four modules on one data layer, one audit trail and one set of access controls." />
+        <AIDevHeroCard />
+      </Section>
+      <PlatformInMotion />
+      <PlannedClustersGrid />
+      <Section tone="base" spacing="lg" divider width="narrow" background="acousticWaves">
+        <SectionHeader eyebrow="How it is funded" title="Services build the platform." description="Every fixed-scope engagement leaves behind a pattern the platform can reuse — and the revenue that pays for the build." align="center" />
+        <Reveal blur>
+          <ExplainerVideo light={explainerSources('services-to-saas')} dark={explainerSources('services-to-saas-dark')} caption="Services billed by the hour turn into recurring platform access." />
+        </Reveal>
+      </Section>
+      <CTABand scene="starfield" title="Be one of the first teams on the AI Dev Platform." body="Early-access teams shape the roadmap and work directly with the people building it." />
+    </>
   );
-  return <Body html={html} />;
 }

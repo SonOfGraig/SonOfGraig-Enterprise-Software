@@ -1,149 +1,246 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { Callout } from '@/components/ui/Callout';
-import { Field } from '@/components/ui/Field';
+import { SceneBackground } from '@/components/fx/SceneBackground';
+import { FAQ } from '@/components/ui/FAQ';
+import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
+import { SubscribeForm } from '@/components/marketing/blog/SubscribeForm';
+import { getAllSlugs, getPost, getRelatedPosts } from '@/lib/blog';
+import { articleJsonLd, breadcrumbJsonLd, faqJsonLd, videoJsonLd } from '@/lib/blog/schema';
 
-// Mock data fetcher
-async function getArticle(slug: string) {
-  return {
-    slug,
-    title: 'Why we are building an enterprise AI platform in Africa',
-    excerpt: 'After delivering 18 enterprise AI projects, we noticed the same architectural patterns repeating. Here is why we decided to productise them.',
-    category: 'Strategy',
-    date: 'Oct 12, 2025',
-    readTime: 6,
-    content: `
-      <p>For the past three years, SonOfGraig has operated as a specialized services firm, delivering complex AI, cloud, and data solutions for large South African enterprises. We've built everything from autonomous customer support agents to secure, on-premises RAG systems.</p>
-      
-      <h2>The repeating pattern</h2>
-      <p>Across these 18 major projects, we noticed something: 80% of the underlying architecture was identical. Every enterprise needed:</p>
-      <ul>
-        <li>Secure document ingestion pipelines</li>
-        <li>Hybrid semantic and keyword retrieval</li>
-        <li>Strict access controls and audit logging</li>
-        <li>POPIA compliance guarantees</li>
-      </ul>
-      
-      <blockquote>
-        "We realized we weren't just building custom solutions; we were repeatedly building the same foundational AI infrastructure."
-      </blockquote>
-      
-      <h3>The decision to productise</h3>
-      <p>Instead of continuing to charge for custom builds of the same infrastructure, we decided to extract these patterns into a unified platform. This allows us to offer the same enterprise-grade capabilities at a fraction of the cost and deployment time.</p>
-      
-      <p>Our transition from a services agency to a software company isn't an overnight pivot. It's a deliberate evolution funded by our ongoing project work. We are building the platform we wished we had when we started.</p>
-      
-      <pre><code>// Example of our unified ingestion API
-const pipeline = new IngestionPipeline({
-  source: 'sharepoint',
-  chunking: 'semantic',
-  embeddingModel: 'text-embedding-3-large'
-});
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  process.env.APP_URL ??
+  'https://sonofgraig.com';
 
-await pipeline.run();</code></pre>
-    `
-  };
+function formatDisplayDate(iso: string): string {
+  const d = new Date(`${iso}T00:00:00Z`);
+  return d.toLocaleDateString('en-ZA', {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit',
+    timeZone: 'UTC',
+  });
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const resolvedParams = await params;
-  const article = await getArticle(resolvedParams.slug);
+export async function generateStaticParams() {
+  return getAllSlugs().map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const article = getPost(slug);
+  if (!article) return {};
+  const canonical = `/blog/${article.slug}`;
   return {
-    title: `${article.title} | SonOfGraig Insights`,
+    title: article.seoTitle ?? `${article.title} | sonofgraig Insights`,
     description: article.excerpt,
+    alternates: { canonical },
+    keywords: [article.primaryKeyword, ...article.keywords],
+    openGraph: {
+      type: 'article',
+      title: article.title,
+      description: article.excerpt,
+      url: canonical,
+      publishedTime: article.datePublished,
+      modifiedTime: article.dateModified,
+      authors: [article.author.url],
+      tags: [article.primaryKeyword, ...article.keywords],
+      images: [
+        {
+          url: `/blog/og/${article.slug}.png`,
+          width: 1200,
+          height: 630,
+          alt: article.heroAlt,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.excerpt,
+      images: [`/blog/og/${article.slug}.png`],
+    },
   };
 }
 
-export default async function BlogArticlePage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = await params;
-  const article = await getArticle(resolvedParams.slug);
+export default async function BlogArticlePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const article = getPost(slug);
+  if (!article) notFound();
 
-  const siteUrl =
-    process.env.APP_URL ??
-    'https://sonofgraig-enterprise-179668402458.africa-south1.run.app';
-  const articleUrl = `${siteUrl}/blog/${article.slug}`;
+  const articleUrl = `${SITE_URL}/blog/${article.slug}`;
   const twitterShare = `https://twitter.com/intent/tweet?url=${encodeURIComponent(articleUrl)}&text=${encodeURIComponent(article.title)}`;
   const linkedInShare = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`;
 
+  const related = getRelatedPosts(article.slug, 2);
+
+  const jsonLd = [
+    articleJsonLd(article),
+    breadcrumbJsonLd(article),
+    faqJsonLd(article),
+    // Only posts with a rendered motion graphic get VideoObject schema.
+    article.motionComposition
+      ? videoJsonLd({
+          name: article.title,
+          description: article.excerpt,
+          slug: article.slug,
+          // Motion compositions run 360 frames at 30fps (see remotion/src/Root.tsx).
+          durationSeconds: 12,
+        })
+      : null,
+  ].filter(Boolean);
+
   return (
-    <article className="w-full py-[var(--sp-16)]">
-      <div className="max-w-[720px] mx-auto px-8">
-        
-        {/* HEADER */}
-        <header className="mb-[var(--sp-10)]">
-          <div className="font-sans text-[12px] text-[var(--sg-text-4)] mb-6">
-            <Link href="/blog" className="hover:text-[var(--sg-text-2)] transition-colors">Insights</Link> / {article.category} / {article.title}
-          </div>
-          
-          <div className="flex items-center gap-4 mb-4">
-            <span className="inline-block px-2 py-1 rounded bg-[var(--sg-surface-2)] text-[var(--sg-text-2)] font-sans text-[11px] font-semibold uppercase tracking-wider">
-              {article.category}
-            </span>
-            <span className="font-sans text-[12px] text-[var(--sg-text-4)]">
-              {article.date} · {article.readTime} min read
-            </span>
-          </div>
-
-          <h1 className="text-h1 text-[var(--sg-text-1)] mb-6">{article.title}</h1>
-          <p className="text-body-lg text-[var(--sg-text-3)] leading-relaxed">
-            {article.excerpt}
-          </p>
-        </header>
-
-        {/* ARTICLE BODY */}
-        <div 
-          className="sg-prose"
-          dangerouslySetInnerHTML={{ __html: article.content }}
+    <>
+      {jsonLd.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
+      ))}
 
-        {/* FOOTER */}
-        <footer className="mt-[var(--sp-16)] pt-[var(--sp-8)] border-t border-[var(--sg-border)]">
-          <div className="flex items-center justify-between mb-[var(--sp-12)]">
-            <div className="font-sans text-[14px] font-semibold text-[var(--sg-text-1)]">Share this article</div>
-            <div className="flex items-center gap-4">
-              <a href={twitterShare} target="_blank" rel="noopener noreferrer" className="font-sans text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-blue)] transition-colors">Twitter/X</a>
-              <a href={linkedInShare} target="_blank" rel="noopener noreferrer" className="font-sans text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-blue)] transition-colors">LinkedIn</a>
+      <article className="w-full pb-[var(--sp-16)]">
+        {/* HEADER — over a quiet dot-matrix scene (design system v3.1). */}
+        <div className="relative overflow-hidden pt-[var(--sp-16)] pb-[var(--sp-4)]">
+          <SceneBackground scene="nebula" />
+          <div className="relative z-10 max-w-[720px] mx-auto px-6 sm:px-8">
+          <header className="mb-[var(--sp-10)] reveal-up">
+            <div className="font-sans text-[12px] text-[var(--sg-text-4)] mb-6">
+              <Link href="/blog" className="hover:text-[var(--sg-text-2)] transition-colors">Insights</Link> / {article.category} / {article.title}
             </div>
-          </div>
 
-          <Callout 
-            variant="info" 
-            label="Subscribe to our build updates" 
-            body="Get notified when we publish new insights about our transition to a platform company."
-            className="mb-[var(--sp-12)]"
-          >
-            <form className="flex gap-2 mt-4" onSubmit={(e) => e.preventDefault()}>
-              <div className="flex-1">
-                <Field type="email" placeholder="Email address" aria-label="Email address" />
+            <div className="flex items-center gap-4 mb-4">
+              <span className="inline-block px-2 py-1 rounded bg-[var(--sg-surface-2)] text-[var(--sg-text-2)] font-sans text-[11px] font-semibold uppercase tracking-wider">
+                {article.category}
+              </span>
+              <span className="font-sans text-[12px] text-[var(--sg-text-4)]">
+                {formatDisplayDate(article.datePublished)} · {article.readingTime} min read
+              </span>
+            </div>
+
+            <h1 className="text-h1 text-[var(--sg-text-1)] mb-6">{article.title}</h1>
+            <p className="text-body-lg text-[var(--sg-text-3)] leading-relaxed">
+              {article.excerpt}
+            </p>
+
+            <div className="mt-6 flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-[var(--sg-surface-2)] flex items-center justify-center font-sans text-[12px] font-semibold text-[var(--sg-text-2)]">
+                TR
               </div>
-              <Button variant="primary">Subscribe</Button>
-            </form>
-          </Callout>
-
-          <div>
-            <h3 className="text-h3 text-[var(--sg-text-1)] mb-6">Related insights</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-[var(--sp-4)]">
-              {/* Mock related articles */}
-              <Link href="/blog/rag-studio-architecture" className="block group">
-                <div className="bg-[var(--sg-bg)] border border-[var(--sg-border)] rounded-[var(--r-lg)] p-[var(--sp-5)] transition-all duration-200 ease-out group-hover:-translate-y-[1px] group-hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)]">
-                  <div className="font-sans text-[11px] font-semibold text-[var(--sg-text-4)] uppercase tracking-wider mb-2">Engineering</div>
-                  <h4 className="font-sans text-[14px] font-semibold text-[var(--sg-text-1)] mb-2 group-hover:text-[var(--sg-blue)] transition-colors">The architecture behind RAG Studio</h4>
-                  <div className="font-sans text-[12px] text-[var(--sg-text-4)]">Nov 04, 2025</div>
-                </div>
-              </Link>
-              <Link href="/blog/transitioning-from-services" className="block group">
-                <div className="bg-[var(--sg-bg)] border border-[var(--sg-border)] rounded-[var(--r-lg)] p-[var(--sp-5)] transition-all duration-200 ease-out group-hover:-translate-y-[1px] group-hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)]">
-                  <div className="font-sans text-[11px] font-semibold text-[var(--sg-text-4)] uppercase tracking-wider mb-2">Transition</div>
-                  <h4 className="font-sans text-[14px] font-semibold text-[var(--sg-text-1)] mb-2 group-hover:text-[var(--sg-blue)] transition-colors">The services-to-software transition playbook</h4>
-                  <div className="font-sans text-[12px] text-[var(--sg-text-4)]">Jan 15, 2026</div>
-                </div>
-              </Link>
+              <div>
+                <div className="font-sans text-[13px] font-semibold text-[var(--sg-text-1)]">{article.author.name}</div>
+                <div className="font-sans text-[11px] text-[var(--sg-text-4)]">{article.author.jobTitle}</div>
+              </div>
             </div>
+          </header>
           </div>
-        </footer>
+        </div>
+        <div className="max-w-[720px] mx-auto px-6 sm:px-8">
 
-      </div>
-    </article>
+          {/* HERO IMAGE — rendered from the post's Remotion composition
+              (remotion/src/compositions/BlogHero*.tsx) to /blog/og/{slug}.png. */}
+          <figure className="mb-[var(--sp-10)]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`/blog/og/${article.slug}.png`}
+              alt={article.heroAlt}
+              width={1280}
+              height={720}
+              loading="eager"
+              className="w-full h-auto rounded-[var(--r-lg)] border border-[var(--sg-border)]"
+            />
+          </figure>
+
+          {/* ARTICLE BODY */}
+          <div
+            className="sg-prose"
+            dangerouslySetInnerHTML={{ __html: article.bodyHtml }}
+          />
+
+          {/* MOTION GRAPHIC — branded explainer rendered from the post's Remotion
+              motionComposition to /blog/motion/{slug}.mp4. Only rendered for posts
+              that ship a motion asset; emitted as VideoObject JSON-LD above too. */}
+          {article.motionComposition ? (
+            <figure className="mt-[var(--sp-12)]">
+              <video
+                className="w-full h-auto rounded-[var(--r-lg)] border border-[var(--sg-border)]"
+                poster={`/blog/og/${article.slug}.png`}
+                controls
+                muted
+                loop
+                playsInline
+                preload="none"
+              >
+                <source src={`/blog/motion/${article.slug}.mp4`} type="video/mp4" />
+              </video>
+              <figcaption className="mt-3 font-sans text-[12px] text-[var(--sg-text-4)]">
+                {article.heroAlt}
+              </figcaption>
+            </figure>
+          ) : null}
+
+          {/* FAQ */}
+          {article.faq && article.faq.length > 0 ? (
+            <section className="mt-[var(--sp-12)]">
+              <h2 className="text-h2 text-[var(--sg-text-1)] mb-6">Frequently asked</h2>
+              <FAQ items={article.faq.map(({ question, answer }) => ({ q: question, a: answer }))} />
+            </section>
+          ) : null}
+
+          {/* FOOTER */}
+          <footer className="mt-[var(--sp-16)] pt-[var(--sp-8)] border-t border-[var(--sg-border)]">
+            <div className="flex items-center justify-between mb-[var(--sp-12)]">
+              <div className="font-sans text-[14px] font-semibold text-[var(--sg-text-1)]">Share this article</div>
+              <div className="flex items-center gap-4">
+                <Button variant="secondary" size="sm" className="rounded-full px-4" asChild>
+                  <a href={twitterShare} target="_blank" rel="noopener noreferrer">X</a>
+                </Button>
+                <Button variant="secondary" size="sm" className="rounded-full px-4" asChild>
+                  <a href={linkedInShare} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </Button>
+              </div>
+            </div>
+
+            <Callout
+              variant="info"
+              label="Subscribe to our build updates"
+              body="Get notified when we publish new insights about our transition to a platform company."
+              className="mb-[var(--sp-12)]"
+            >
+              <SubscribeForm />
+            </Callout>
+
+            {related.length > 0 ? (
+              <div>
+                <h3 className="text-h3 text-[var(--sg-text-1)] mb-6">Related insights</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-[var(--sp-4)]">
+                  {related.map((r) => (
+                    <Card key={r.slug} padding="md" interactive asChild className="group block">
+                      <Link href={`/blog/${r.slug}`}>
+                        <div className="text-label text-[var(--sg-text-4)] mb-2">{r.category}</div>
+                        <h4 className="font-sans text-[15px] font-semibold text-[var(--sg-text-1)] mb-2 group-hover:text-[var(--sg-blue)] transition-colors">{r.title}</h4>
+                        <div className="font-mono text-[11px] text-[var(--sg-text-4)]">{formatDisplayDate(r.datePublished)}</div>
+                      </Link>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </footer>
+        </div>
+      </article>
+    </>
   );
 }

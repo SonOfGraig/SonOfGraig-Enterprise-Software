@@ -1,7 +1,7 @@
-import * as React from 'react';
+﻿import * as React from 'react';
 
 /**
- * Platform cluster icons — the 5 isometric brand marks for the SonOfGraig platform.
+ * Platform cluster icons — the 5 isometric brand marks for the sonofgraig platform.
  * Use these wherever a cluster is referenced (cards, mega-menu, hero sections, etc.).
  *
  * Each icon is a flat-colour isometric prism in its cluster accent colour.

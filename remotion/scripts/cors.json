@@ -1,0 +1,14 @@
+[
+  {
+    "origin": [
+      "https://sonofgraig-enterprise-179668402458.africa-south1.run.app",
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "http://localhost:3002",
+      "http://localhost:3003"
+    ],
+    "method": ["GET", "HEAD"],
+    "responseHeader": ["Content-Type", "Range"],
+    "maxAgeSeconds": 3600
+  }
+]

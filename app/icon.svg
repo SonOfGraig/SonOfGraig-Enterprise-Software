@@ -1,11 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 180">
-  <polygon points="100,20 148,48 100,76 52,48" fill="#0B9EDE"/>
-  <polygon points="52,48 100,76 100,148 52,120" fill="#044E73"/>
-  <polygon points="100,76 148,48 148,120 100,148" fill="#0773A8"/>
-  <polygon points="100,20 148,48 100,76 52,48" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
-  <line x1="52" y1="48" x2="52" y2="120" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
-  <line x1="148" y1="48" x2="148" y2="120" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
-  <line x1="52" y1="120" x2="100" y2="148" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
-  <line x1="148" y1="120" x2="100" y2="148" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
-  <line x1="100" y1="76" x2="100" y2="148" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <!-- White rounded background. Google clips favicons to a circle in search
+       results, so a full-bleed white square reads as a clean white circle
+       (matching the Telkom-style light favicon the brief asked for). -->
+  <rect x="0" y="0" width="240" height="240" rx="52" fill="#FFFFFF"/>
+  <rect x="0.5" y="0.5" width="239" height="239" rx="51.5" fill="none" stroke="rgba(13,17,23,0.06)" stroke-width="1"/>
+
+  <!-- Brand cube, scaled up ~1.3x and centred in the 240x240 square.
+       Original geometry from the 200x180 mark; transform recenters it.
+       Inner edge strokes are darkened so they read on the lighter faces
+       (white-on-blue strokes would partly vanish against a white panel). -->
+  <g transform="translate(-10 10.8) scale(1.3)">
+    <polygon points="100,20 148,48 100,76 52,48" fill="#0B9EDE"/>
+    <polygon points="52,48 100,76 100,148 52,120" fill="#044E73"/>
+    <polygon points="100,76 148,48 148,120 100,148" fill="#0773A8"/>
+    <polygon points="100,20 148,48 100,76 52,48" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.2"/>
+    <line x1="52" y1="48" x2="52" y2="120" stroke="rgba(255,255,255,0.30)" stroke-width="1.2"/>
+    <line x1="148" y1="48" x2="148" y2="120" stroke="rgba(255,255,255,0.30)" stroke-width="1.2"/>
+    <line x1="52" y1="120" x2="100" y2="148" stroke="rgba(255,255,255,0.30)" stroke-width="1.2"/>
+    <line x1="148" y1="120" x2="100" y2="148" stroke="rgba(255,255,255,0.30)" stroke-width="1.2"/>
+    <line x1="100" y1="76" x2="100" y2="148" stroke="rgba(255,255,255,0.25)" stroke-width="1.2"/>
+  </g>
 </svg>

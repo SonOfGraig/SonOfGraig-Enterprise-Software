@@ -5,9 +5,7 @@ import { usePathname } from 'next/navigation';
 import { 
   ChevronDown, Search, ArrowRight,
   Blocks, Database, Cpu, ShieldCheck,
-  Cloud, GitMerge, LineChart, ShieldAlert,
-  PieChart, GitPullRequest, Share2,
-  Palette, Glasses, Sparkles, Circle,
+  Cloud, PieChart, Share2, Palette, Circle,
   Grid, FileText, MessageSquare
 } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
@@ -37,44 +35,29 @@ const links: NavLink[] = [
         {
           title: 'AI Dev Platform',
           links: [
-            { href: '/platform/ai-dev-platform', label: 'Agent Builder', icon: <Blocks size={16} strokeWidth={1.5} /> },
-            { href: '/platform/ai-dev-platform', label: 'RAG Studio', icon: <Database size={16} strokeWidth={1.5} /> },
-            { href: '/platform/ai-dev-platform', label: 'ML Ops', icon: <Cpu size={16} strokeWidth={1.5} /> },
-            { href: '/platform/ai-dev-platform', label: 'Governance Hub', icon: <ShieldCheck size={16} strokeWidth={1.5} /> },
+            { href: '/platform/ai-dev-platform#rag-studio', label: 'RAG Studio', icon: <Database size={16} strokeWidth={1.5} /> },
+            { href: '/platform/ai-dev-platform#agent-builder', label: 'Agent Builder', icon: <Blocks size={16} strokeWidth={1.5} /> },
+            { href: '/platform/ai-dev-platform#governance-hub', label: 'Governance Hub', icon: <ShieldCheck size={16} strokeWidth={1.5} /> },
+            { href: '/platform/ai-dev-platform#ml-ops', label: 'ML Ops', icon: <Cpu size={16} strokeWidth={1.5} /> },
           ]
         },
         {
-          title: 'Cloud & DevOps',
+          // One product first (founder, 2026-10-09). Planned clusters, no dates.
+          title: 'Planned',
           links: [
-            { href: '/platform/cloud-devops', label: 'Cloud Console', icon: <Cloud size={16} strokeWidth={1.5} /> },
-            { href: '/platform/cloud-devops', label: 'Pipeline Builder', icon: <GitMerge size={16} strokeWidth={1.5} /> },
-            { href: '/platform/cloud-devops', label: 'FinOps Dashboard', icon: <LineChart size={16} strokeWidth={1.5} /> },
-            { href: '/platform/cloud-devops', label: 'Security Posture', icon: <ShieldAlert size={16} strokeWidth={1.5} /> },
+            { href: '/platform/cloud-devops', label: 'Cloud & DevOps', icon: <Cloud size={16} strokeWidth={1.5} /> },
+            { href: '/platform/data-analytics', label: 'Data & Analytics', icon: <PieChart size={16} strokeWidth={1.5} /> },
+            { href: '/platform/creative-xr', label: 'Creative & XR', icon: <Palette size={16} strokeWidth={1.5} /> },
+            { href: '/platform/dev-platform', label: 'Dev Platform', icon: <Share2 size={16} strokeWidth={1.5} /> },
           ]
         },
-        {
-          title: 'Data & Analytics',
-          links: [
-            { href: '/platform/data-analytics', label: 'Analytics Studio', icon: <PieChart size={16} strokeWidth={1.5} /> },
-            { href: '/platform/data-analytics', label: 'Workflow Engine', icon: <GitPullRequest size={16} strokeWidth={1.5} /> },
-            { href: '/platform/data-analytics', label: 'Data Pipelines', icon: <Share2 size={16} strokeWidth={1.5} /> },
-          ]
-        },
-        {
-          title: 'Creative & XR',
-          links: [
-            { href: '/platform/creative-xr', label: 'Design System Gen', icon: <Palette size={16} strokeWidth={1.5} /> },
-            { href: '/platform/creative-xr', label: 'XR Builder', icon: <Glasses size={16} strokeWidth={1.5} /> },
-            { href: '/platform/creative-xr', label: 'Brand Studio', icon: <Sparkles size={16} strokeWidth={1.5} /> },
-          ]
-        }
       ],
       featured: {
-        title: 'New in v3.0',
-        badge: 'Phase 1 Live',
+        title: 'AI Dev Platform',
+        badge: 'Early access',
         cards: [
-          { title: 'RAG Studio', sub: 'Connect your company documents to AI. Hybrid retrieval, source citation, enterprise-grade.', cta: 'Join early access', href: '/platform/ai-dev-platform' },
-          { title: 'Agent Builder', sub: 'Visual canvas for autonomous AI agents. Beta Q1 2027.', cta: 'Learn more', href: '/platform/ai-dev-platform' }
+          { title: 'RAG Studio', sub: 'Connect company documents to AI. Every answer cites its source.', cta: 'Join early access', href: '/early-access' },
+          { title: 'Agent Builder', sub: 'Multi-agent workflows with a full execution trace. In development.', cta: 'Learn more', href: '/platform/ai-dev-platform#agent-builder' }
         ]
       },
       footer: [
@@ -88,7 +71,7 @@ const links: NavLink[] = [
     label: 'Platform',
     dropdown: [
       { href: '/platform', label: 'Platform overview' },
-      { href: '/platform/timeline', label: 'Build timeline' },
+      { href: '/platform/ai-dev-platform', label: 'AI Dev Platform' },
       { href: '/early-access', label: 'Early access' },
       { href: '/pricing', label: 'Pricing' },
     ]

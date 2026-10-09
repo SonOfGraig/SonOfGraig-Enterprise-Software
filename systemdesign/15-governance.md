@@ -38,6 +38,7 @@ This is the same rule humans follow. The system breaks the moment exceptions get
 
 | Version | Date | Summary |
 |---|---|---|
+| v3.1 | 2026-10-09 | Founder-approved: Manrope display face + `.text-hero`; `.liquid-glass` glass material; `Card` / `FeatureCard` / `Section` / `SectionHeader` React components; motion primitives (`VolumetricRays`, `WordReveal`, `Reveal`, `Magnetic`, Lenis); "no faked glass backdrops" rule; tailwind-merge registration of type tokens; raised primary/secondary buttons; `ServiceCard`; canvas scene engine + 4 scenes ported from the 2026 agency site (17-motion-library.md); `Section background`; `smoothScrollTo()` (Lenis-safe) |
 | v3.0 | April 2026 | Full enterprise rebuild — light + dark, single primary, SVG sprite, data table, sidebar, skeleton + empty states, dropdown, Sora + Inter + JetBrains Mono |
 | v2.0 | 2025 Q4 | Refined palette, glass system, button + input components, sidebar + cluster cards |
 | v1.0 | 2024 Q3 | Original — service agency branding, dual primaries, DM Sans, dark-only, no component library |

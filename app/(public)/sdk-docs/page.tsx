@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import { UnderConstruction } from '@/components/marketing/UnderConstruction';
 
 export const metadata: Metadata = {
-  title: 'SDK Docs — SonOfGraig',
+  title: 'SDK Docs — sonofgraig',
   description:
-    'TypeScript and Python SDK documentation for the SonOfGraig platform — coming soon.',
+    'TypeScript and Python SDK documentation for the sonofgraig platform — coming soon.',
   alternates: { canonical: '/sdk-docs' },
   robots: { index: false, follow: true },
 };
@@ -14,7 +14,6 @@ export default function SdkDocsPage() {
     <UnderConstruction
       title="SDK Documentation"
       description="TypeScript and Python SDK documentation will ship with the first product release. Comprehensive examples, type definitions, and authentication patterns included."
-      eta="Q4 2026"
       relatedLinks={[
         { href: '/platform', label: 'Platform overview' },
         { href: '/api-reference', label: 'API reference' },

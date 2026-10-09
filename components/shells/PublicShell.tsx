@@ -16,13 +16,13 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen flex flex-col" style={{ background: 'var(--sg-bg)' }}>
       <AnnouncementBar />
       <CookieBanner />
-      <header className="sticky top-0 h-[64px] bg-[var(--glass-bg)] backdrop-blur-md border-b border-[var(--sg-border)] z-[var(--z-sticky)] flex items-center justify-between px-4 sm:px-8">
+      <header className="sticky top-0 h-[64px] bg-[var(--lg-fill-strong)] backdrop-blur-xl backdrop-saturate-150 border-b border-[var(--lg-rim)] shadow-[inset_0_-1px_0_var(--lg-edge)] z-[var(--z-sticky)] flex items-center justify-between px-4 sm:px-8">
         <div className="flex items-center gap-8">
           <Link href="/" className="flex gap-2 items-start shrink-0">
             <Logo className="w-8 h-8" />
             <div className="flex flex-col pt-1">
               <span className="font-display font-bold text-[18px] text-[var(--sg-text-1)] tracking-tight leading-none">
-                SonOfGraig
+                sonofgraig
               </span>
               <span className="hidden sm:block font-sans text-[10px] text-[var(--sg-blue)] uppercase tracking-wider mt-1">
                 Enterprise Software Platform
@@ -65,14 +65,12 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
                 </div>
               </div>
               <p className="text-[13px] text-[var(--sg-text-3)] mb-6 leading-relaxed">
-                Africa&apos;s first enterprise AI platform. Converting 18 service capabilities into 5 SaaS clusters.
+                Enterprise AI software, built in South Africa. Starting with the AI Dev Platform.
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="px-2 py-1 rounded bg-[var(--sg-blue-glow)] text-[var(--sg-blue)] font-mono text-[10px] border border-[var(--sg-blue-border)]">SOC 2</span>
+                {/* Only claims that are true today — no SOC 2 / ISO 27001 / EU AI Act badges until we hold them. */}
                 <span className="px-2 py-1 rounded bg-[var(--sg-blue-glow)] text-[var(--sg-blue)] font-mono text-[10px] border border-[var(--sg-blue-border)]">POPIA</span>
-                <span className="px-2 py-1 rounded bg-[var(--sg-surface-2)] text-[var(--sg-text-3)] font-mono text-[10px] border border-[var(--sg-border)]">ISO 27001</span>
-                <span className="px-2 py-1 rounded bg-[var(--sg-surface-2)] text-[var(--sg-text-3)] font-mono text-[10px] border border-[var(--sg-border)]">EU AI Act</span>
-                <span className="px-2 py-1 rounded bg-[var(--sg-surface-2)] text-[var(--sg-text-3)] font-mono text-[10px] border border-[var(--sg-border)]">af-south-1</span>
+                <span className="px-2 py-1 rounded bg-[var(--sg-surface-2)] text-[var(--sg-text-3)] font-mono text-[10px] border border-[var(--sg-border)]">South African</span>
                 <span className="px-2 py-1 rounded bg-[var(--sg-surface-2)] text-[var(--sg-text-3)] font-mono text-[10px] border border-[var(--sg-border)]">ZAR</span>
               </div>
             </div>
@@ -81,12 +79,11 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
             <div>
               <h5 className="text-[13px] font-semibold text-[var(--sg-text-1)] mb-4">Products</h5>
               <ul className="space-y-3">
-                <li><Link href="/platform/ai-dev-platform" className={linkClass}>Agent Builder</Link></li>
-                <li><Link href="/platform/ai-dev-platform" className={linkClass}>RAG Studio</Link></li>
-                <li><Link href="/platform/ai-dev-platform" className={linkClass}>ML Ops</Link></li>
-                <li><Link href="/platform/ai-dev-platform" className={linkClass}>Governance Hub</Link></li>
-                <li><Link href="/platform/cloud-devops" className={linkClass}>Cloud Console</Link></li>
-                <li><Link href="/platform/cloud-devops" className={linkClass}>Pipeline Builder</Link></li>
+                <li><Link href="/platform/ai-dev-platform" className={linkClass}>AI Dev Platform</Link></li>
+                <li><Link href="/platform/ai-dev-platform#rag-studio" className={linkClass}>RAG Studio</Link></li>
+                <li><Link href="/platform/ai-dev-platform#agent-builder" className={linkClass}>Agent Builder</Link></li>
+                <li><Link href="/platform/ai-dev-platform#governance-hub" className={linkClass}>Governance Hub</Link></li>
+                <li><Link href="/platform/ai-dev-platform#ml-ops" className={linkClass}>ML Ops</Link></li>
               </ul>
             </div>
 
@@ -95,11 +92,10 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
               <h5 className="text-[13px] font-semibold text-[var(--sg-text-1)] mb-4">Platform</h5>
               <ul className="space-y-3">
                 <li><Link href="/platform" className={linkClass}>Overview</Link></li>
-                <li><Link href="/platform/timeline" className={linkClass}>Build timeline</Link></li>
                 <li><Link href="/early-access" className={linkClass}>Early access</Link></li>
                 <li><Link href="/pricing" className={linkClass}>Pricing</Link></li>
                 <li><Link href="/changelog" className={linkClass}>Changelog</Link></li>
-                <li><Link href="/roadmap" className={linkClass}>Roadmap</Link></li>
+                <li><Link href="/security" className={linkClass}>Security &amp; trust</Link></li>
               </ul>
             </div>
 
@@ -111,7 +107,7 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
                 <li><Link href="/services/rag-knowledge-base-setup" className={linkClass}>RAG Knowledge Base</Link></li>
                 <li><Link href="/services/cloud-architecture" className={linkClass}>Cloud Architecture</Link></li>
                 <li><Link href="/services/ai-governance-audit" className={linkClass}>AI Governance Audit</Link></li>
-                <li><Link href="/platform/data-analytics" className={linkClass}>Data Analytics</Link></li>
+                <li><Link href="/services" className={linkClass}>All services</Link></li>
               </ul>
             </div>
 
@@ -154,11 +150,11 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
           {/* Bottom legal bar */}
           <div className="border-t border-[var(--sg-border)] py-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2 text-[13px] text-[var(--sg-text-2)] hover:text-[var(--sg-text-1)] cursor-pointer transition-colors">
+              <div className="flex items-center gap-2 text-[13px] text-[var(--sg-text-3)]">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M8 12a9 9 0 0 0 8 0"/></svg>
                 English (South Africa)
               </div>
-              <span className="text-[13px] text-[var(--sg-text-4)]">© SonOfGraig {new Date().getFullYear()}</span>
+              <span className="text-[13px] text-[var(--sg-text-4)]">© sonofgraig {new Date().getFullYear()}</span>
             </div>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
               <Link href="/sitemap" className={linkClass}>Sitemap</Link>

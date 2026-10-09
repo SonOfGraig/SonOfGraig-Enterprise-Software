@@ -1,39 +1,53 @@
 import type { Metadata } from 'next';
-import { LegacyShell } from '../../_shared/LegacyShell';
-import { loadLegacyHtml } from '../../_shared/loadLegacy';
-import './_legacy.css';
+import { PageHero } from '@/components/marketing/_shared/PageHero';
+import { CTABand } from '@/components/marketing/_shared/CTABand';
+import { Section } from '@/components/ui/Section';
+import { Reveal } from '@/components/fx/Reveal';
+import { RagStudioDemo } from '@/components/marketing/home/RagStudioDemo';
+import { ModuleRows, ArchitectureSection, StackSection } from '@/components/marketing/platform/PlatformSections';
+import { SITE_URL, ORG_ID, breadcrumbJsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title:
-    'AI Dev Platform — SonOfGraig | Agent Builder, RAG Studio, Fine-Tuning Ops, Governance Hub',
+  title: 'AI Dev Platform — sonofgraig | RAG Studio, Agent Builder, Governance Hub, ML Ops',
   description:
-    'The intelligence layer of the SonOfGraig platform. Build, deploy, fine-tune, and govern enterprise AI from one POPIA-native environment hosted in AWS af-south-1. RAG Studio Q4 2026, Agent Builder Q1 2027, ML Ops & Governance Hub Q1 2027.',
-  keywords: [
-    'AI Dev Platform',
-    'Agent Builder',
-    'RAG Studio',
-    'Fine-Tuning Ops',
-    'Governance Hub',
-    'enterprise AI South Africa',
-    'POPIA AI',
-    'autonomous agents',
-    'retrieval augmented generation',
-    'LLM platform',
-    'ML Ops',
-  ],
+    'The AI Dev Platform: cited answers with RAG Studio, traceable agents with Agent Builder, POPIA reporting with Governance Hub and reproducible models with ML Ops — on one audit trail.',
   alternates: { canonical: '/platform/ai-dev-platform' },
-  openGraph: {
-    title: 'AI Dev Platform — Cluster 01 — SonOfGraig',
-    description:
-      'One platform for autonomous agents, RAG, fine-tuning, and governance. POPIA-native. Hosted in af-south-1. ZAR-priced.',
-    type: 'website',
-    url: '/platform/ai-dev-platform',
-    locale: 'en_ZA',
-  },
+  openGraph: { title: 'The AI Dev Platform', description: 'Four modules, one audit trail.', type: 'website', url: '/platform/ai-dev-platform', locale: 'en_ZA' },
   robots: { index: true, follow: true },
 };
 
-export default async function AiDevPlatformPage() {
-  const html = await loadLegacyHtml('platform', 'ai-dev-platform');
-  return <LegacyShell html={html} scope="lp-cluster-ai-dev" />;
+const productJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  '@id': `${SITE_URL}/platform/ai-dev-platform#software`,
+  name: 'AI Dev Platform',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  publisher: { '@id': ORG_ID },
+  description: 'Enterprise AI platform with RAG Studio, Agent Builder, Governance Hub and ML Ops on one data layer and audit trail. In early access.',
+  url: `${SITE_URL}/platform/ai-dev-platform`,
+};
+
+export default function AIDevPlatformPage() {
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Platform', path: '/platform' }, { name: 'AI Dev Platform', path: '/platform/ai-dev-platform' }])) }} />
+      <PageHero
+        scene="knowledgeGraph"
+        eyebrow="AI Dev Platform · Early access"
+        title="Four modules."
+        accent="One audit trail."
+        lead="RAG Studio for cited answers, Agent Builder for traceable workflows, Governance Hub for POPIA reporting and ML Ops for reproducible models — sharing one data layer and one set of access controls."
+        primary={{ label: 'Join early access', href: '/early-access' }}
+        secondary={{ label: 'See the modules', href: '#modules' }}
+      >
+        <RagStudioDemo />
+      </PageHero>
+      <ModuleRows />
+      <ArchitectureSection />
+      <StackSection />
+      <CTABand scene="globalSignals" title="Build on the AI Dev Platform from day one." body="Early-access teams get direct access to the people building it and a say in what ships next." />
+    </>
+  );
 }

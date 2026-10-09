@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<!--
+  SonOfGraig Enterprise Design System — v4 PROTOTYPE (home page)
+  ────────────────────────────────────────────────────────────────
+  Extends v3 (does not replace it). Tokens mirror app/globals.css v3.
+  NEW in v4:
+    • Elevation scale (--elev-1..5) — layered, multi-shadow depth, light + dark
+    • Hairline depth cues (--hairline) — "lit from above", no glass
+    • Formal motion/reveal system — IntersectionObserver, staggered, reduced-motion safe
+    • Custom enterprise components — app-window preview, cluster cards, data table, metric tiles
+  Direction: "Custom UI depth" — retains Anthropic-grade restraint. NO liquid glass.
+  Reference bar: Linear / Stripe / Vercel / Anthropic.
+-->
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>sonofgraig — Enterprise AI Platform · Design v4 Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* ════════════════════════════════════════════════════════════════
+   1. TOKENS — v3 source of truth (app/globals.css) + v4 additions
+   ════════════════════════════════════════════════════════════════ */
+:root {
+  --font-display: 'Sora', system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* primary & accent */
+  --sg-blue:#0B9EDE; --sg-blue-dim:#0882B8; --sg-blue-deep:#065A82;
+  --sg-blue-glow:#0B9EDE1F; --sg-blue-border:#0B9EDE40;
+  --sg-amber:#F97316; --sg-amber-dim:#EA580C;
+
+  /* surfaces (light) */
+  --sg-bg:#FFFFFF; --sg-surface:#F8F9FB; --sg-surface-2:#F1F3F7;
+  --sg-surface-3:#E8ECF2; --sg-ink:#F1F3F7;
+
+  /* text (light) */
+  --sg-text-1:#0D1117; --sg-text-2:#374151; --sg-text-3:#6B7280;
+  --sg-text-4:#9CA3AF; --sg-text-inv:#FFFFFF;
+
+  /* borders */
+  --sg-border:rgba(0,0,0,.07); --sg-border-md:rgba(0,0,0,.12); --sg-border-str:rgba(0,0,0,.18);
+
+  /* semantics */
+  --sg-success:#16A34A; --sg-success-bg:rgba(22,163,74,.1); --sg-success-bd:rgba(22,163,74,.2);
+  --sg-warn:#B45309; --sg-warn-bg:rgba(180,83,9,.1); --sg-warn-bd:rgba(180,83,9,.2);
+  --sg-danger:#DC2626; --sg-danger-bg:rgba(220,38,38,.1); --sg-danger-bd:rgba(220,38,38,.2);
+
+  /* cluster accents */
+  --c-ai:#0B9EDE; --c-cloud:#F97316; --c-data:#16A34A; --c-creative:#7C3AED; --c-dev:#6B7280;
+
+  /* spacing (4px / 8pt grid) */
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px; --sp-6:24px;
+  --sp-8:32px; --sp-10:40px; --sp-12:48px; --sp-16:64px; --sp-20:80px;
+
+  /* radius */
+  --r-xs:4px; --r-sm:6px; --r-md:8px; --r-lg:12px; --r-xl:16px; --r-2xl:24px; --r-full:9999px;
+
+  /* motion */
+  --duration-fast:100ms; --duration-default:200ms; --duration-slow:400ms; --duration-xslow:700ms;
+  --ease-out:cubic-bezier(.16,1,.3,1); --ease-spring:cubic-bezier(.34,1.56,.64,1);
+  --ease-in:cubic-bezier(.4,0,1,1); --ease-back:cubic-bezier(.36,0,.66,-.56);
+
+  /* ── v4: ELEVATION SCALE (layered ambient + key shadow) ── */
+  --elev-1:0 1px 2px rgba(13,17,23,.05);
+  --elev-2:0 2px 4px rgba(13,17,23,.05), 0 1px 2px rgba(13,17,23,.04);
+  --elev-3:0 4px 10px rgba(13,17,23,.06), 0 2px 4px rgba(13,17,23,.04);
+  --elev-4:0 12px 24px rgba(13,17,23,.08), 0 4px 8px rgba(13,17,23,.05);
+  --elev-5:0 24px 48px rgba(13,17,23,.11), 0 8px 16px rgba(13,17,23,.06);
+  /* v4: hairline highlight — subtle "lit from above" depth cue, not glass */
+  --hairline:inset 0 1px 0 rgba(255,255,255,.7);
+  --brand-lift:0 24px 50px rgba(11,158,222,.18), 0 10px 20px rgba(13,17,23,.10);
+}
+
+[data-theme='dark'] {
+  --sg-blue:#0EA5E9; --sg-blue-dim:#38BDF8; --sg-blue-deep:#0C4A6E;
+  --sg-blue-glow:#0EA5E926; --sg-blue-border:#0EA5E933;
+  --sg-amber:#F97316; --sg-amber-dim:#FB923C;
+
+  --sg-bg:#0A0C10; --sg-surface:#0E1117; --sg-surface-2:#161B25;
+  --sg-surface-3:#1E2535; --sg-ink:#070810;
+
+  --sg-text-1:#F0F4F8; --sg-text-2:rgba(255,255,255,.75); --sg-text-3:rgba(255,255,255,.45);
+  --sg-text-4:rgba(255,255,255,.25); --sg-text-inv:#0D1117;
+
+  --sg-border:rgba(255,255,255,.07); --sg-border-md:rgba(255,255,255,.12); --sg-border-str:rgba(255,255,255,.18);
+
+  --sg-success:#22C55E; --sg-success-bg:rgba(34,197,94,.1); --sg-success-bd:rgba(34,197,94,.2);
+  --sg-warn:#EAB308; --sg-warn-bg:rgba(234,179,8,.1); --sg-warn-bd:rgba(234,179,8,.2);
+  --sg-danger:#EF4444; --sg-danger-bg:rgba(239,68,68,.1); --sg-danger-bd:rgba(239,68,68,.2);
+
+  --c-ai:#0EA5E9; --c-cloud:#FB923C; --c-data:#22C55E; --c-creative:#A78BFA; --c-dev:#94A3B8;
+
+  --elev-1:0 1px 2px rgba(0,0,0,.5);
+  --elev-2:0 2px 6px rgba(0,0,0,.5);
+  --elev-3:0 4px 12px rgba(0,0,0,.5);
+  --elev-4:0 12px 28px rgba(0,0,0,.55);
+  --elev-5:0 24px 56px rgba(0,0,0,.65);
+  --hairline:inset 0 1px 0 rgba(255,255,255,.05);
+  --brand-lift:0 24px 60px rgba(14,165,233,.22), 0 10px 24px rgba(0,0,0,.5);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   2. BASE + TYPE SCALE
+   ════════════════════════════════════════════════════════════════ */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+body {
+  background:var(--sg-bg); color:var(--sg-text-1); font-family:var(--font-sans);
+  line-height:1.6; transition:background .4s var(--ease-out), color .4s var(--ease-out);
+  overflow-x:hidden;
+}
+a { color:inherit; text-decoration:none; }
+.wrap { max-width:1200px; margin:0 auto; padding:0 var(--sp-6); }
+.wrap-wide { max-width:1320px; margin:0 auto; padding:0 var(--sp-6); }
+
+.text-display { font-family:var(--font-display); font-size:clamp(40px,6vw,64px); line-height:1.05; letter-spacing:-.04em; font-weight:700; }
+.text-h1 { font-family:var(--font-display); font-size:clamp(32px,4.5vw,52px); line-height:1.08; letter-spacing:-.035em; font-weight:700; }
+.text-h2 { font-family:var(--font-display); font-size:clamp(28px,3.5vw,40px); line-height:1.1; letter-spacing:-.03em; font-weight:700; }
+.text-h3 { font-family:var(--font-display); font-size:22px; line-height:1.2; letter-spacing:-.02em; font-weight:600; }
+.text-body-lg { font-size:17px; line-height:1.7; color:var(--sg-text-2); }
+.text-body { font-size:14px; line-height:1.65; }
+.text-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.1em; }
+.mono { font-family:var(--font-mono); }
+.grad-text { background:linear-gradient(120deg,var(--sg-blue),var(--sg-blue-dim) 45%,#38BDF8); -webkit-background-clip:text; background-clip:text; color:transparent; }
+
+.eyebrow { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.12em; color:var(--sg-blue); display:inline-flex; align-items:center; gap:var(--sp-2); }
+.eyebrow.muted { color:var(--sg-text-4); }
+.muted { color:var(--sg-text-3); }
+
+/* ════════════════════════════════════════════════════════════════
+   3. NAV — solid surface, elevation-on-scroll (no glass)
+   ════════════════════════════════════════════════════════════════ */
+.nav {
+  position:sticky; top:0; z-index:200; background:var(--sg-bg);
+  border-bottom:1px solid transparent; transition:border-color .3s var(--ease-out), box-shadow .3s var(--ease-out);
+}
+.nav.scrolled { border-bottom-color:var(--sg-border); box-shadow:var(--elev-2); }
+.nav-inner { display:flex; align-items:center; gap:var(--sp-8); height:64px; }
+.brand { display:flex; align-items:center; gap:var(--sp-3); font-family:var(--font-display); font-weight:700; font-size:18px; letter-spacing:-.02em; }
+.brand-mark {
+  width:30px; height:30px; border-radius:var(--r-md); display:grid; place-items:center;
+  background:linear-gradient(135deg,var(--sg-blue),var(--sg-blue-deep)); color:#fff;
+  box-shadow:var(--elev-2), var(--hairline);
+}
+.brand-mark svg { width:18px; height:18px; }
+.v4-pill {
+  font-family:var(--font-mono); font-size:10px; font-weight:500; padding:2px 7px; border-radius:var(--r-full);
+  background:var(--sg-blue-glow); color:var(--sg-blue); border:1px solid var(--sg-blue-border); letter-spacing:.02em;
+}
+.nav-links { display:flex; gap:var(--sp-6); margin-left:var(--sp-4); }
+.nav-links a { font-size:14px; font-weight:500; color:var(--sg-text-2); transition:color .15s; }
+.nav-links a:hover { color:var(--sg-text-1); }
+.nav-right { margin-left:auto; display:flex; align-items:center; gap:var(--sp-3); }
+.icon-btn {
+  width:36px; height:36px; border-radius:var(--r-md); display:grid; place-items:center; cursor:pointer;
+  background:var(--sg-surface); border:1px solid var(--sg-border); color:var(--sg-text-2);
+  transition:transform var(--duration-fast) var(--ease-spring), border-color .15s, color .15s, box-shadow .15s;
+}
+.icon-btn:hover { color:var(--sg-text-1); border-color:var(--sg-border-str); box-shadow:var(--elev-1); transform:translateY(-1px); }
+.icon-btn svg { width:18px; height:18px; }
+@media(max-width:880px){ .nav-links{ display:none; } }
+
+/* ════════════════════════════════════════════════════════════════
+   4. BUTTONS — v3 state machine (lift / press / spring)
+   ════════════════════════════════════════════════════════════════ */
+.btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:var(--sp-2);
+  font-family:var(--font-sans); font-weight:600; font-size:14px; cursor:pointer; white-space:nowrap;
+  border-radius:var(--r-md); padding:0 var(--sp-5); height:42px; border:1px solid transparent;
+  transition:background var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-spring),
+             box-shadow var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
+}
+.btn svg { width:16px; height:16px; }
+.btn:hover { transform:translateY(-1px); }
+.btn:active { transform:translateY(0) scale(.98); transition-duration:80ms; transition-timing-function:var(--ease-in); }
+.btn-lg { height:48px; padding:0 var(--sp-6); font-size:15px; }
+.btn-primary { background:var(--sg-blue); color:#fff; box-shadow:var(--elev-1); }
+.btn-primary:hover { background:var(--sg-blue-dim); box-shadow:var(--elev-3); }
+.btn-outline { background:var(--sg-bg); color:var(--sg-text-1); border-color:var(--sg-border-md); box-shadow:var(--hairline); }
+.btn-outline:hover { border-color:var(--sg-border-str); box-shadow:var(--elev-2); }
+.btn-ghost { background:transparent; color:var(--sg-text-2); }
+.btn-ghost:hover { color:var(--sg-text-1); background:var(--sg-surface-2); }
+.btn-cta { background:var(--sg-amber); color:#fff; box-shadow:var(--elev-1); } /* amber = premium/upgrade only */
+.btn-cta:hover { background:var(--sg-amber-dim); box-shadow:0 8px 20px rgba(249,115,22,.3); }
+
+/* ════════════════════════════════════════════════════════════════
+   5. HERO + AURORA MESH (custom animated background, subtle)
+   ════════════════════════════════════════════════════════════════ */
+.hero { position:relative; background:var(--sg-surface); padding:var(--sp-20) 0 var(--sp-16); overflow:hidden; }
+.aurora { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+.aurora span {
+  position:absolute; border-radius:50%; filter:blur(70px); opacity:.5; mix-blend-mode:normal;
+  will-change:transform;
+}
+.aurora .a1 { width:520px; height:520px; top:-160px; left:-80px; background:radial-gradient(circle,var(--sg-blue) 0%,transparent 70%); opacity:.20; animation:drift1 22s var(--ease-out) infinite alternate; }
+.aurora .a2 { width:460px; height:460px; top:-60px; right:-60px; background:radial-gradient(circle,#38BDF8 0%,transparent 70%); opacity:.16; animation:drift2 26s var(--ease-out) infinite alternate; }
+.aurora .a3 { width:380px; height:380px; bottom:-160px; left:35%; background:radial-gradient(circle,var(--sg-blue-deep) 0%,transparent 70%); opacity:.12; animation:drift3 30s var(--ease-out) infinite alternate; }
+@keyframes drift1 { to { transform:translate(60px,40px) scale(1.1); } }
+@keyframes drift2 { to { transform:translate(-50px,30px) scale(1.05); } }
+@keyframes drift3 { to { transform:translate(40px,-30px) scale(1.12); } }
+
+.hero-grid { position:relative; z-index:2; display:grid; grid-template-columns:5fr 7fr; gap:var(--sp-12); align-items:center; }
+@media(max-width:960px){ .hero-grid{ grid-template-columns:1fr; gap:var(--sp-10); } }
+.hero h1 { margin-bottom:var(--sp-5); }
+.hero-sub { max-width:520px; margin-bottom:var(--sp-8); }
+.hero-ctas { display:flex; gap:var(--sp-3); flex-wrap:wrap; margin-bottom:var(--sp-8); }
+.pills { display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-3) var(--sp-6); max-width:480px; }
+@media(max-width:520px){ .pills{ grid-template-columns:1fr; } }
+.pill { display:flex; align-items:center; gap:var(--sp-2); font-size:12px; font-weight:500; color:var(--sg-text-3); }
+.pill .dot { width:16px; height:16px; border-radius:var(--r-full); background:var(--sg-success-bg); display:grid; place-items:center; flex-shrink:0; }
+.pill .dot svg { width:9px; height:9px; color:var(--sg-success); }
+
+/* ── Custom app-window preview (the showpiece) ── */
+.appwin {
+  border-radius:var(--r-xl); background:var(--sg-bg); border:1px solid var(--sg-border);
+  box-shadow:var(--brand-lift), var(--hairline); overflow:hidden;
+}
+.appwin-bar { display:flex; align-items:center; gap:var(--sp-2); padding:var(--sp-3) var(--sp-4); border-bottom:1px solid var(--sg-border); background:var(--sg-surface); }
+.appwin-bar .tdot { width:10px; height:10px; border-radius:var(--r-full); background:var(--sg-surface-3); }
+.appwin-bar .addr { margin-left:var(--sp-3); font-family:var(--font-mono); font-size:11px; color:var(--sg-text-4); display:flex; align-items:center; gap:6px; }
+.appwin-bar .addr svg { width:12px; height:12px; }
+.appwin-body { display:grid; grid-template-columns:56px 1fr; min-height:340px; }
+.appwin-rail { border-right:1px solid var(--sg-border); padding:var(--sp-4) 0; display:flex; flex-direction:column; align-items:center; gap:var(--sp-3); background:var(--sg-surface); }
+.rail-ico { width:34px; height:34px; border-radius:var(--r-md); display:grid; place-items:center; color:var(--sg-text-4); }
+.rail-ico svg { width:18px; height:18px; }
+.rail-ico.active { background:var(--sg-blue-glow); color:var(--sg-blue); box-shadow:var(--hairline); }
+.appwin-main { padding:var(--sp-5); }
+.appwin-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--sp-4); }
+.appwin-head h4 { font-family:var(--font-display); font-size:15px; font-weight:600; }
+.live { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; color:var(--sg-success); padding:3px 9px; border-radius:var(--r-full); background:var(--sg-success-bg); }
+.live .lp { width:7px; height:7px; border-radius:var(--r-full); background:var(--sg-success); animation:pulseDot 2s var(--ease-out) infinite; }
+@keyframes pulseDot { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.4;transform:scale(.7);} }
+.metric-row { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-3); margin-bottom:var(--sp-4); }
+.metric { padding:var(--sp-3); border-radius:var(--r-lg); background:var(--sg-surface); border:1px solid var(--sg-border); }
+.metric .k { font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:var(--sg-text-4); margin-bottom:4px; }
+.metric .v { font-family:var(--font-display); font-size:22px; font-weight:700; letter-spacing:-.02em; }
+.metric .v small { font-size:13px; color:var(--sg-text-3); font-weight:600; }
+.chart-card { border-radius:var(--r-lg); border:1px solid var(--sg-border); background:var(--sg-surface); padding:var(--sp-4); }
+.chart-card .ct { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:var(--sp-2); }
+.chart-card .ct span:first-child { font-size:12px; font-weight:600; color:var(--sg-text-2); }
+.chart-card .ct span:last-child { font-family:var(--font-mono); font-size:11px; color:var(--sg-text-4); }
+.spark { width:100%; height:84px; display:block; }
+
+/* ════════════════════════════════════════════════════════════════
+   6. LOGOS / STATS STRIP
+   ════════════════════════════════════════════════════════════════ */
+.strip { border-top:1px solid var(--sg-border); border-bottom:1px solid var(--sg-border); background:var(--sg-bg); padding:var(--sp-8) 0; }
+.strip-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--sp-6); text-align:center; }
+@media(max-width:720px){ .strip-grid{ grid-template-columns:repeat(2,1fr); gap:var(--sp-8); } }
+.stat .n { font-family:var(--font-display); font-size:34px; font-weight:700; letter-spacing:-.03em; }
+.stat .n small { color:var(--sg-text-3); }
+.stat .l { font-size:12px; color:var(--sg-text-3); margin-top:4px; }
+.strip-sep { width:1px; background:var(--sg-border); }
+
+/* ════════════════════════════════════════════════════════════════
+   7. SECTIONS / HEADERS
+   ════════════════════════════════════════════════════════════════ */
+.section { padding:var(--sp-20) 0; }
+.section.alt { background:var(--sg-surface); }
+.section-head { max-width:680px; margin-bottom:var(--sp-12); }
+.section-head h2 { margin:var(--sp-3) 0 var(--sp-4); }
+.section-head.center { margin-left:auto; margin-right:auto; text-align:center; }
+
+/* callout */
+.callout {
+  display:flex; align-items:center; justify-content:space-between; gap:var(--sp-4); flex-wrap:wrap;
+  background:var(--sg-warn-bg); border:1px solid var(--sg-warn-bd); border-radius:var(--r-lg);
+  padding:var(--sp-5); margin-bottom:var(--sp-8);
+}
+.callout-l { display:flex; gap:var(--sp-3); }
+.callout svg.ic { width:20px; height:20px; color:var(--sg-amber); flex-shrink:0; margin-top:2px; }
+.callout .t { font-size:14px; font-weight:600; margin-bottom:2px; }
+.callout p { font-size:13px; color:var(--sg-text-2); max-width:620px; }
+
+/* phase cards */
+.phase-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-4); }
+@media(max-width:820px){ .phase-grid{ grid-template-columns:1fr; } }
+.phase {
+  background:var(--sg-bg); border:1px solid var(--sg-border); border-radius:var(--r-xl); padding:var(--sp-6);
+  box-shadow:var(--hairline); transition:transform var(--duration-default) var(--ease-out), box-shadow var(--duration-default) var(--ease-out), border-color var(--duration-default) var(--ease-out);
+}
+.phase:hover { transform:translateY(-3px); box-shadow:var(--elev-4); border-color:var(--sg-border-md); }
+.phase.now { background:linear-gradient(180deg,var(--sg-blue-glow),transparent 60%); border-color:var(--sg-blue-border); }
+.phase .ph { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.1em; margin-bottom:var(--sp-3); color:var(--sg-text-4); }
+.phase.now .ph { color:var(--sg-blue); }
+.phase h3 { margin-bottom:var(--sp-3); }
+.phase p { font-size:14px; color:var(--sg-text-3); line-height:1.65; }
+
+/* ════════════════════════════════════════════════════════════════
+   8. CLUSTER CARDS — custom, accent identity, depth on hover
+   ════════════════════════════════════════════════════════════════ */
+.cluster-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:var(--sp-4); }
+@media(max-width:1100px){ .cluster-grid{ grid-template-columns:repeat(2,1fr); } }
+@media(max-width:560px){ .cluster-grid{ grid-template-columns:1fr; } }
+.cluster {
+  position:relative; background:var(--sg-bg); border:1px solid var(--sg-border); border-radius:var(--r-xl);
+  padding:var(--sp-5); overflow:hidden; box-shadow:var(--hairline);
+  transition:transform var(--duration-default) var(--ease-out), box-shadow var(--duration-default) var(--ease-out), border-color var(--duration-default) var(--ease-out);
+}
+.cluster::before { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--cc); opacity:.75; transition:width var(--duration-default) var(--ease-out); }
+.cluster:hover { transform:translateY(-4px); box-shadow:var(--elev-4); border-color:var(--sg-border-md); }
+.cluster:hover::before { width:5px; }
+.cluster .cnum { position:absolute; top:var(--sp-4); right:var(--sp-5); font-family:var(--font-mono); font-size:12px; color:var(--sg-text-4); }
+.cluster .cico { width:40px; height:40px; border-radius:var(--r-md); display:grid; place-items:center; margin-bottom:var(--sp-4); color:var(--cc); background:color-mix(in srgb, var(--cc) 10%, transparent); box-shadow:var(--hairline); }
+.cluster .cico svg { width:21px; height:21px; }
+.cluster .cname { font-family:var(--font-display); font-size:16px; font-weight:600; letter-spacing:-.01em; margin-bottom:6px; }
+.cluster .ctags { font-size:11.5px; color:var(--sg-text-3); line-height:1.5; margin-bottom:var(--sp-4); min-height:34px; }
+.cluster .cmeta { display:flex; align-items:center; justify-content:space-between; padding-top:var(--sp-3); border-top:1px solid var(--sg-border); }
+.phase-badge { display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; color:var(--sg-text-3); }
+.phase-badge .pd { width:6px; height:6px; border-radius:var(--r-full); background:var(--cc); }
+.pips { display:inline-flex; gap:3px; align-items:center; }
+.pips i { width:5px; height:5px; border-radius:var(--r-full); background:var(--sg-surface-3); display:inline-block; }
+.pips i.on { background:var(--cc); }
+.cluster .cbar { position:absolute; left:0; right:0; bottom:0; height:3px; background:var(--sg-surface-2); }
+.cluster .cbar i { display:block; height:100%; width:0; background:var(--cc); transition:width 1s var(--ease-out); }
+
+.summary-row { display:flex; align-items:center; justify-content:center; gap:var(--sp-5); flex-wrap:wrap; margin-top:var(--sp-10); font-size:12px; color:var(--sg-text-3); }
+.summary-row .si { display:flex; align-items:center; gap:7px; }
+.summary-row .sd { width:7px; height:7px; border-radius:var(--r-full); }
+.summary-row .vsep { width:1px; height:14px; background:var(--sg-border-md); }
+
+/* ════════════════════════════════════════════════════════════════
+   9. ENTERPRISE DATA TABLE — "the core component", custom v4
+   ════════════════════════════════════════════════════════════════ */
+.showcase-grid { display:grid; grid-template-columns:5fr 7fr; gap:var(--sp-12); align-items:center; }
+@media(max-width:960px){ .showcase-grid{ grid-template-columns:1fr; } }
+.feature-list { list-style:none; margin-top:var(--sp-6); display:flex; flex-direction:column; gap:var(--sp-4); }
+.feature-list li { display:flex; gap:var(--sp-3); }
+.feature-list .fi { width:30px; height:30px; border-radius:var(--r-md); flex-shrink:0; display:grid; place-items:center; background:var(--sg-blue-glow); color:var(--sg-blue); box-shadow:var(--hairline); }
+.feature-list .fi svg { width:16px; height:16px; }
+.feature-list h4 { font-size:14px; font-weight:600; margin-bottom:2px; }
+.feature-list p { font-size:13px; color:var(--sg-text-3); }
+
+.table-card { border-radius:var(--r-xl); border:1px solid var(--sg-border); background:var(--sg-bg); box-shadow:var(--elev-3), var(--hairline); overflow:hidden; }
+.table-top { display:flex; align-items:center; justify-content:space-between; padding:var(--sp-4) var(--sp-5); border-bottom:1px solid var(--sg-border); }
+.table-top .tt { font-family:var(--font-display); font-size:14px; font-weight:600; }
+.table-search { display:flex; align-items:center; gap:7px; font-size:12px; color:var(--sg-text-4); background:var(--sg-surface); border:1px solid var(--sg-border); border-radius:var(--r-md); padding:6px 10px; }
+.table-search svg { width:13px; height:13px; }
+table { width:100%; border-collapse:collapse; }
+thead th { text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.07em; color:var(--sg-text-4); font-weight:600; padding:var(--sp-3) var(--sp-5); border-bottom:1px solid var(--sg-border); background:var(--sg-surface); }
+tbody td { padding:var(--sp-3) var(--sp-5); font-size:13px; border-bottom:1px solid var(--sg-border); color:var(--sg-text-2); }
+tbody tr { transition:background var(--duration-fast) var(--ease-out); }
+tbody tr:hover { background:var(--sg-surface); }
+tbody tr:last-child td { border-bottom:none; }
+td.num { font-family:var(--font-mono); font-size:12px; color:var(--sg-text-1); }
+.run-name { display:flex; align-items:center; gap:var(--sp-2); font-weight:500; color:var(--sg-text-1); }
+.run-name .ri { width:24px; height:24px; border-radius:var(--r-sm); display:grid; place-items:center; background:var(--sg-blue-glow); color:var(--sg-blue); }
+.run-name .ri svg { width:13px; height:13px; }
+.badge { display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:3px 9px; border-radius:var(--r-full); }
+.badge .bd { width:6px; height:6px; border-radius:var(--r-full); }
+.badge.ok { background:var(--sg-success-bg); color:var(--sg-success); } .badge.ok .bd{ background:var(--sg-success); }
+.badge.run { background:var(--sg-blue-glow); color:var(--sg-blue); } .badge.run .bd{ background:var(--sg-blue); animation:pulseDot 1.4s infinite; }
+.badge.warn { background:var(--sg-warn-bg); color:var(--sg-warn); } .badge.warn .bd{ background:var(--sg-warn); }
+
+/* ════════════════════════════════════════════════════════════════
+   10. METRIC BARS (animated on reveal) + PRICING + COMPLIANCE + CTA
+   ════════════════════════════════════════════════════════════════ */
+.bars { display:flex; align-items:flex-end; gap:10px; height:120px; padding:var(--sp-4) 0; }
+.bars .bar { flex:1; background:var(--sg-blue); border-radius:var(--r-xs) var(--r-xs) 0 0; height:0; transition:height .9s var(--ease-out); opacity:.85; }
+.bars .bar.amber { background:var(--sg-amber); } /* premium tier highlight */
+
+.price-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-5); }
+@media(max-width:880px){ .price-grid{ grid-template-columns:1fr; max-width:420px; margin:0 auto; } }
+.price {
+  background:var(--sg-bg); border:1px solid var(--sg-border); border-radius:var(--r-xl); padding:var(--sp-6);
+  box-shadow:var(--hairline); transition:transform var(--duration-default) var(--ease-out), box-shadow var(--duration-default) var(--ease-out);
+}
+.price:hover { transform:translateY(-3px); box-shadow:var(--elev-4); }
+.price.featured { border-color:var(--sg-blue-border); box-shadow:var(--elev-3); position:relative; }
+.price.featured::after { content:"Most popular"; position:absolute; top:-11px; left:50%; transform:translateX(-50%); font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#fff; background:var(--sg-blue); padding:3px 12px; border-radius:var(--r-full); box-shadow:var(--elev-2); }
+.price .pn { font-family:var(--font-display); font-size:16px; font-weight:600; margin-bottom:var(--sp-2); }
+.price .pp { font-family:var(--font-display); font-size:34px; font-weight:700; letter-spacing:-.03em; }
+.price .pp small { font-size:13px; color:var(--sg-text-3); font-weight:500; font-family:var(--font-sans); }
+.price .pl { font-size:13px; color:var(--sg-text-3); margin:var(--sp-3) 0 var(--sp-5); }
+.price ul { list-style:none; display:flex; flex-direction:column; gap:var(--sp-2); margin-bottom:var(--sp-5); }
+.price li { display:flex; gap:var(--sp-2); font-size:13px; color:var(--sg-text-2); }
+.price li svg { width:15px; height:15px; color:var(--sg-success); flex-shrink:0; margin-top:2px; }
+.price.featured .pp { color:var(--sg-blue); }
+
+.compliance { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--sp-4); }
+@media(max-width:820px){ .compliance{ grid-template-columns:repeat(2,1fr); } }
+.comp {
+  background:var(--sg-bg); border:1px solid var(--sg-border); border-radius:var(--r-lg); padding:var(--sp-5);
+  box-shadow:var(--hairline); transition:transform var(--duration-default) var(--ease-out), box-shadow var(--duration-default) var(--ease-out);
+}
+.comp:hover { transform:translateY(-2px); box-shadow:var(--elev-3); }
+.comp .ci { width:34px; height:34px; border-radius:var(--r-md); display:grid; place-items:center; margin-bottom:var(--sp-3); background:var(--sg-blue-glow); color:var(--sg-blue); box-shadow:var(--hairline); }
+.comp .ci svg { width:18px; height:18px; }
+.comp h4 { font-size:13px; font-weight:600; margin-bottom:4px; }
+.comp p { font-size:12px; color:var(--sg-text-3); line-height:1.5; }
+
+.cta-band {
+  position:relative; overflow:hidden; border-radius:var(--r-2xl);
+  background:linear-gradient(135deg,var(--sg-blue-deep),var(--sg-blue) 55%,var(--sg-blue-dim));
+  padding:var(--sp-16) var(--sp-12); text-align:center; box-shadow:var(--elev-5);
+}
+.cta-band::before { content:""; position:absolute; inset:0; background:radial-gradient(circle at 70% 20%,rgba(255,255,255,.18),transparent 50%); pointer-events:none; }
+.cta-band h2 { color:#fff; position:relative; }
+.cta-band p { color:rgba(255,255,255,.82); max-width:540px; margin:var(--sp-4) auto var(--sp-8); position:relative; font-size:16px; }
+.cta-band .btn-outline { background:rgba(255,255,255,.08); color:#fff; border-color:rgba(255,255,255,.3); }
+.cta-band .btn-outline:hover { background:rgba(255,255,255,.16); }
+.cta-actions { display:flex; gap:var(--sp-3); justify-content:center; flex-wrap:wrap; position:relative; }
+
+/* footer */
+.footer { border-top:1px solid var(--sg-border); padding:var(--sp-12) 0 var(--sp-8); background:var(--sg-bg); }
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:var(--sp-8); margin-bottom:var(--sp-10); }
+@media(max-width:720px){ .footer-grid{ grid-template-columns:1fr 1fr; gap:var(--sp-6); } }
+.footer h5 { font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--sg-text-4); margin-bottom:var(--sp-4); }
+.footer ul { list-style:none; display:flex; flex-direction:column; gap:var(--sp-2); }
+.footer ul a { font-size:13px; color:var(--sg-text-3); transition:color .15s; }
+.footer ul a:hover { color:var(--sg-text-1); }
+.footer-note { max-width:280px; font-size:13px; color:var(--sg-text-3); line-height:1.6; margin-top:var(--sp-3); }
+.footer-bottom { display:flex; align-items:center; justify-content:space-between; padding-top:var(--sp-6); border-top:1px solid var(--sg-border); font-size:12px; color:var(--sg-text-4); flex-wrap:wrap; gap:var(--sp-3); }
+
+/* ════════════════════════════════════════════════════════════════
+   11. MOTION — reveal system (reduced-motion safe)
+   ════════════════════════════════════════════════════════════════ */
+.reveal { opacity:0; transform:translateY(20px); transition:opacity .6s var(--ease-out), transform .6s var(--ease-out); }
+.reveal.in { opacity:1; transform:none; }
+@media (prefers-reduced-motion:reduce){
+  .reveal { opacity:1 !important; transform:none !important; transition:none; }
+  .aurora span { animation:none !important; }
+  *,*::before,*::after { animation-duration:.001ms !important; transition-duration:.001ms !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ───────────────────────── NAV ───────────────────────── -->
+<header class="nav" id="nav">
+  <div class="wrap-wide nav-inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
+      </span>
+      sonofgraig
+      <span class="v4-pill">design v4 · prototype</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#platform">Platform</a>
+      <a href="#showcase">Product</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#compliance">Compliance</a>
+    </nav>
+    <div class="nav-right">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      <a class="btn btn-ghost" href="#" style="height:36px;">Sign in</a>
+      <a class="btn btn-primary" href="#" style="height:36px;">Work with us</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ───────────────────────── HERO ───────────────────────── -->
+<section class="hero">
+  <div class="aurora" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
+  <div class="wrap-wide">
+    <div class="hero-grid">
+      <!-- copy -->
+      <div>
+        <div class="reveal" style="margin-bottom:var(--sp-5)">
+          <span class="eyebrow"><span style="width:6px;height:6px;border-radius:9999px;background:var(--sg-blue);display:inline-block"></span> South Africa's enterprise AI platform</span>
+        </div>
+        <h1 class="text-h1 reveal" data-delay="60">We built the expertise.<br>Now we are building the <span class="grad-text">platform.</span></h1>
+        <p class="text-body-lg hero-sub reveal" data-delay="140">sonofgraig has delivered enterprise AI, cloud, and data solutions for years. We are now converting that expertise into Africa's first enterprise AI platform — services today, software tomorrow.</p>
+        <div class="hero-ctas reveal" data-delay="220">
+          <a class="btn btn-primary btn-lg" href="#">Work with us now
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-outline btn-lg" href="#platform">See what we are building</a>
+        </div>
+        <div class="pills reveal" data-delay="300">
+          <div class="pill"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> South African company</div>
+          <div class="pill"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> POPIA-native by design</div>
+          <div class="pill"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> ZAR pricing, no FX risk</div>
+          <div class="pill"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> Enterprise delivery track record</div>
+        </div>
+      </div>
+      <!-- custom app-window preview -->
+      <div class="reveal" data-delay="180">
+        <div class="appwin">
+          <div class="appwin-bar">
+            <span class="tdot"></span><span class="tdot"></span><span class="tdot"></span>
+            <span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>app.sonofgraig.co.za/agent-builder</span>
+          </div>
+          <div class="appwin-body">
+            <div class="appwin-rail">
+              <div class="rail-ico active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 3h4v4H5zM15 3h4v4h-4zM5 17h4v4H5zM15 17h4v4h-4zM9 5h6M5 7v10M19 7v10M9 19h6"/></svg></div>
+              <div class="rail-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0018 0V5"/></svg></div>
+              <div class="rail-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18M7 14l4-4 3 3 5-6"/></svg></div>
+              <div class="rail-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            </div>
+            <div class="appwin-main">
+              <div class="appwin-head">
+                <h4>Agent Builder</h4>
+                <span class="live"><span class="lp"></span> Live · af-south-1</span>
+              </div>
+              <div class="metric-row">
+                <div class="metric"><div class="k">Runs today</div><div class="v"><span class="count" data-to="1284">0</span></div></div>
+                <div class="metric"><div class="k">Avg latency</div><div class="v"><span class="count" data-to="312">0</span><small>ms</small></div></div>
+                <div class="metric"><div class="k">Success</div><div class="v"><span class="count" data-to="99.4" data-dec="1">0</span><small>%</small></div></div>
+              </div>
+              <div class="chart-card">
+                <div class="ct"><span>Token throughput</span><span>last 24h</span></div>
+                <svg class="spark" viewBox="0 0 320 84" preserveAspectRatio="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="sg-area" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="var(--sg-blue)" stop-opacity="0.28"/>
+                      <stop offset="100%" stop-color="var(--sg-blue)" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,64 L36,58 L72,62 L108,44 L144,50 L180,30 L216,38 L252,20 L288,26 L320,16 L320,84 L0,84 Z" fill="url(#sg-area)"/>
+                  <path d="M0,64 L36,58 L72,62 L108,44 L144,50 L180,30 L216,38 L252,20 L288,26 L320,16" fill="none" stroke="var(--sg-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="320" cy="16" r="3.5" fill="var(--sg-blue)"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────── STATS STRIP ───────────────────── -->
+<section class="strip">
+  <div class="wrap-wide strip-grid">
+    <div class="stat reveal"><div class="n"><span class="count" data-to="18">0</span></div><div class="l">Service lines, proven</div></div>
+    <div class="stat reveal" data-delay="80"><div class="n"><span class="count" data-to="5">0</span></div><div class="l">SaaS product clusters</div></div>
+    <div class="stat reveal" data-delay="160"><div class="n"><span class="count" data-to="99.9" data-dec="1">0</span><small>%</small></div><div class="l">Platform uptime target</div></div>
+    <div class="stat reveal" data-delay="240"><div class="n mono" style="font-size:22px">af-south-1</div><div class="l">Data residency · Cape Town</div></div>
+  </div>
+</section>
+
+<!-- ──────────────── TRANSITION EXPLAINER ──────────────── -->
+<section class="section alt" id="transition">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Where we are now</span>
+      <h2 class="text-h2">The transition, explained honestly</h2>
+    </div>
+    <div class="callout reveal">
+      <div class="callout-l">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <div>
+          <div class="t">Building in public</div>
+          <p>Our first product, RAG Studio, is in active development. We are not a SaaS company yet — we are a services firm with a clear software roadmap. Every project we deliver today adds IP to the platform we are building. Services fund the build.</p>
+        </div>
+      </div>
+      <a class="btn btn-cta" href="#">Join early access</a>
+    </div>
+    <div class="phase-grid">
+      <div class="phase now reveal"><div class="ph">Phase 1 — Now</div><h3 class="text-h3">Services + platform vision</h3><p>We deliver expert AI, cloud, and data implementation projects. Every engagement adds domain expertise and architectural patterns to our future platform. Revenue funds the product build.</p></div>
+      <div class="phase reveal" data-delay="90"><div class="ph">Phase 2 — Q4 2026</div><h3 class="text-h3">Early access software</h3><p>RAG Studio ships to early access customers. Agent Builder enters beta. Services and software revenue run in parallel.</p></div>
+      <div class="phase reveal" data-delay="180"><div class="ph">Phase 3 — 2027</div><h3 class="text-h3">Platform company</h3><p>Recurring software revenue exceeds services. sonofgraig operates as a full SaaS platform with professional services as an enterprise add-on.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────── CLUSTER STRIP ──────────────────── -->
+<section class="section" id="platform">
+  <div class="wrap-wide">
+    <div class="section-head center reveal">
+      <span class="eyebrow muted">5 platform clusters — one unified subscription</span>
+      <h2 class="text-h2">The sonofgraig Platform</h2>
+      <p class="muted" style="font-size:15px">18 service capabilities converted into 5 focused SaaS product clusters.</p>
+    </div>
+    <div class="cluster-grid">
+      <!-- AI Dev Platform -->
+      <div class="cluster reveal" style="--cc:var(--c-ai)">
+        <span class="cnum">01</span>
+        <div class="cico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg></div>
+        <div class="cname">AI Dev Platform</div>
+        <div class="ctags">Agents · RAG · Fine-Tuning · Governance</div>
+        <div class="cmeta"><span class="phase-badge"><span class="pd"></span> Phase 1</span><span class="pips"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i> <span style="font-size:11px;color:var(--sg-text-3);margin-left:3px">5/5</span></span></div>
+        <div class="cbar"><i data-w="35%"></i></div>
+      </div>
+      <!-- Cloud & DevOps -->
+      <div class="cluster reveal" data-delay="60" style="--cc:var(--c-cloud)">
+        <span class="cnum">02</span>
+        <div class="cico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 100-9h-1.3A6 6 0 104 14.5"/></svg></div>
+        <div class="cname">Cloud &amp; DevOps</div>
+        <div class="ctags">IaC · CI/CD · Security · FinOps</div>
+        <div class="cmeta"><span class="phase-badge">Phase 2</span><span class="pips"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i> <span style="font-size:11px;color:var(--sg-text-3);margin-left:3px">4/5</span></span></div>
+        <div class="cbar"><i data-w="0%"></i></div>
+      </div>
+      <!-- Data & Analytics -->
+      <div class="cluster reveal" data-delay="120" style="--cc:var(--c-data)">
+        <span class="cnum">03</span>
+        <div class="cico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 14l4-4 3 3 5-6"/></svg></div>
+        <div class="cname">Data &amp; Analytics</div>
+        <div class="ctags">Pipelines · BI · Automation</div>
+        <div class="cmeta"><span class="phase-badge">Phase 2</span><span class="pips"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i> <span style="font-size:11px;color:var(--sg-text-3);margin-left:3px">4/5</span></span></div>
+        <div class="cbar"><i data-w="0%"></i></div>
+      </div>
+      <!-- Creative & XR -->
+      <div class="cluster reveal" data-delay="180" style="--cc:var(--c-creative)">
+        <span class="cnum">04</span>
+        <div class="cico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <div class="cname">Creative &amp; XR</div>
+        <div class="ctags">Design · AR/VR · Brand AI</div>
+        <div class="cmeta"><span class="phase-badge">Phase 3</span><span class="pips"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i> <span style="font-size:11px;color:var(--sg-text-3);margin-left:3px">3/5</span></span></div>
+        <div class="cbar"><i data-w="0%"></i></div>
+      </div>
+      <!-- Dev Platform -->
+      <div class="cluster reveal" data-delay="240" style="--cc:var(--c-dev)">
+        <span class="cnum">05</span>
+        <div class="cico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 6l-2 12"/></svg></div>
+        <div class="cname">Dev Platform</div>
+        <div class="ctags">Low-code · IoT · Web3 · Mobile</div>
+        <div class="cmeta"><span class="phase-badge">Phase 3</span><span class="pips"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i> <span style="font-size:11px;color:var(--sg-text-3);margin-left:3px">3/5</span></span></div>
+        <div class="cbar"><i data-w="0%"></i></div>
+      </div>
+    </div>
+    <div class="summary-row reveal">
+      <span class="si"><span class="sd" style="background:var(--sg-success)"></span> 1 cluster shipping Q4 2026</span>
+      <span class="vsep"></span>
+      <span class="si"><span class="sd" style="background:var(--sg-warn)"></span> 2 clusters on 2027 roadmap</span>
+      <span class="vsep"></span>
+      <span class="si"><span class="sd" style="background:var(--sg-text-4)"></span> 2 clusters in planning</span>
+      <span class="vsep"></span>
+      <span class="si mono" style="color:var(--sg-text-4)">from R4,999 / month ZAR</span>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── SHOWCASE: enterprise data table ───────────── -->
+<section class="section alt" id="showcase">
+  <div class="wrap-wide">
+    <div class="showcase-grid">
+      <div class="reveal">
+        <span class="eyebrow">Built like the product</span>
+        <h2 class="text-h2" style="margin:var(--sp-3) 0 var(--sp-4)">The same components that ship inside the platform</h2>
+        <p class="muted" style="font-size:15px">Every cluster renders on one canonical component library — data tables, traces, and dashboards engineered to enterprise standard. This is a live v4 component, not a screenshot.</p>
+        <ul class="feature-list">
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><h4>One table component, every cluster</h4><p>No fragmentation — user management, billing, audit logs, and agent runs share one spec.</p></div></li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg></span><div><h4>Search, sort, paginate</h4><p>Client-side filtering with 300ms debounce. Never a page reload.</p></div></li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><div><h4>POPIA-native by default</h4><p>Row-level access, audit trails, and af-south-1 residency built into the data layer.</p></div></li>
+        </ul>
+      </div>
+      <div class="reveal" data-delay="120">
+        <div class="table-card">
+          <div class="table-top">
+            <span class="tt">Recent agent runs</span>
+            <span class="table-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg> Search runs…</span>
+          </div>
+          <table>
+            <thead><tr><th>Run</th><th>Status</th><th>Tokens</th><th>Latency</th></tr></thead>
+            <tbody>
+              <tr><td><span class="run-name"><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 4l-8 8 8 8M6 12h14"/></svg></span> rag-studio-ingest</span></td><td><span class="badge ok"><span class="bd"></span>Success</span></td><td class="num">42,118</td><td class="num">288ms</td></tr>
+              <tr><td><span class="run-name"><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4M12 18v4M4 12H2M22 12h-2"/><circle cx="12" cy="12" r="4"/></svg></span> agent-orchestrate</span></td><td><span class="badge run"><span class="bd"></span>Running</span></td><td class="num">18,902</td><td class="num">—</td></tr>
+              <tr><td><span class="run-name"><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></span> governance-report</span></td><td><span class="badge ok"><span class="bd"></span>Success</span></td><td class="num">7,540</td><td class="num">412ms</td></tr>
+              <tr><td><span class="run-name"><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span> finetune-batch-07</span></td><td><span class="badge warn"><span class="bd"></span>Throttled</span></td><td class="num">96,310</td><td class="num">1,204ms</td></tr>
+              <tr><td><span class="run-name"><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 4l-8 8 8 8M6 12h14"/></svg></span> rag-studio-query</span></td><td><span class="badge ok"><span class="bd"></span>Success</span></td><td class="num">3,277</td><td class="num">196ms</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- animated bars -->
+        <div class="table-card" style="margin-top:var(--sp-4); padding:var(--sp-4) var(--sp-5)">
+          <div class="table-top" style="padding:0 0 var(--sp-2); border:none"><span class="tt">Weekly platform usage</span><span class="mono" style="font-size:11px;color:var(--sg-text-4)">tokens / day</span></div>
+          <div class="bars" id="bars">
+            <span class="bar" data-h="40%"></span><span class="bar" data-h="55%"></span><span class="bar" data-h="48%"></span>
+            <span class="bar" data-h="70%"></span><span class="bar" data-h="62%"></span><span class="bar amber" data-h="92%"></span>
+            <span class="bar" data-h="78%"></span><span class="bar" data-h="85%"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── PRICING ───────────────────────── -->
+<section class="section" id="pricing">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Pricing</span>
+      <h2 class="text-h2">ZAR pricing. No FX risk.</h2>
+      <p class="muted" style="font-size:15px">One subscription across all clusters as they ship. Services available at every tier.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price reveal">
+        <div class="pn">Starter</div>
+        <div class="pp">R4,999<small>/mo</small></div>
+        <div class="pl">For teams piloting AI on real data.</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> RAG Studio early access</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> af-south-1 residency</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Email support</li>
+        </ul>
+        <a class="btn btn-outline" href="#" style="width:100%">Start with Starter</a>
+      </div>
+      <div class="price featured reveal" data-delay="90">
+        <div class="pn">Growth</div>
+        <div class="pp">R12,999<small>/mo</small></div>
+        <div class="pl">For scaling teams across multiple clusters.</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Everything in Starter</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Agent Builder beta</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Governance Hub + audit exports</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Priority support</li>
+        </ul>
+        <a class="btn btn-primary" href="#" style="width:100%">Choose Growth</a>
+      </div>
+      <div class="price reveal" data-delay="180">
+        <div class="pn">Enterprise <span style="font-size:10px;font-weight:700;color:var(--sg-amber);text-transform:uppercase;letter-spacing:.06em;margin-left:6px">Premium</span></div>
+        <div class="pp">Custom</div>
+        <div class="pl">Dedicated delivery + bespoke SLAs.</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> All clusters + roadmap access</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Professional services hours</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Dedicated POPIA officer liaison</li>
+        </ul>
+        <a class="btn btn-cta" href="#" style="width:100%">Talk to sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── COMPLIANCE STRIP ─────────────────── -->
+<section class="section alt" id="compliance">
+  <div class="wrap-wide">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Compliance &amp; trust</span>
+      <h2 class="text-h2">Enterprise-grade by default</h2>
+    </div>
+    <div class="compliance">
+      <div class="comp reveal"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div><h4>POPIA-native</h4><p>Section 11, 19 &amp; 26 compliant. Built into the data layer, not bolted on.</p></div>
+      <div class="comp reveal" data-delay="70"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0018 0V5"/></svg></div><h4>af-south-1 residency</h4><p>Data stays in Cape Town. Full regional sovereignty for SA enterprise.</p></div>
+      <div class="comp reveal" data-delay="140"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><h4>ZAR billing</h4><p>Priced and billed in Rand. No foreign exchange exposure, ever.</p></div>
+      <div class="comp reveal" data-delay="210"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><h4>Audit-ready</h4><p>Full execution traces and exportable audit logs across every cluster.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── CTA ───────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <h2 class="text-h2">Services today. Software tomorrow.</h2>
+      <p>Work with the team building Africa's first enterprise AI platform — or get in line for early access to the products as they ship.</p>
+      <div class="cta-actions">
+        <a class="btn btn-lg" href="#" style="background:#fff;color:var(--sg-blue-deep)">Work with us now
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-outline btn-lg" href="#">Join early access</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ───────────────────────── FOOTER ───────────────────────── -->
+<footer class="footer">
+  <div class="wrap-wide">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></span> sonofgraig</a>
+        <p class="footer-note">Africa's first enterprise AI platform. Built in South Africa, POPIA-native, billed in Rand.</p>
+      </div>
+      <div><h5>Platform</h5><ul><li><a href="#">AI Dev Platform</a></li><li><a href="#">Cloud &amp; DevOps</a></li><li><a href="#">Data &amp; Analytics</a></li><li><a href="#">Roadmap</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div><h5>Trust</h5><ul><li><a href="#">POPIA</a></li><li><a href="#">Security</a></li><li><a href="#">Privacy</a></li><li><a href="#">Status</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SonOfGraig Digital Solutions. All rights reserved.</span>
+      <span class="mono">Design System v4 · prototype · no liquid glass</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ════════════ THEME TOGGLE (localStorage 'sg-theme') ════════════ */
+(function(){
+  var root = document.documentElement;
+  var saved = localStorage.getItem('sg-theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  document.getElementById('themeToggle').addEventListener('click', function(){
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('sg-theme', next);
+  });
+})();
+
+/* ════════════ NAV elevation on scroll ════════════ */
+(function(){
+  var nav = document.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 8); };
+  window.addEventListener('scroll', onScroll, { passive:true }); onScroll();
+})();
+
+/* ════════════ REVEAL system + triggers (counters / bars / progress) ════════════ */
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function animateCount(el){
+    var to = parseFloat(el.dataset.to), dec = parseInt(el.dataset.dec || '0', 10);
+    if (reduce){ el.textContent = to.toFixed(dec); return; }
+    var start = performance.now(), dur = 1100;
+    function tick(now){
+      var p = Math.min((now - start)/dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);           // easeOutCubic
+      el.textContent = (to * eased).toFixed(dec);
+      if (p < 1) requestAnimationFrame(tick); else el.textContent = to.toFixed(dec);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function trigger(el){
+    el.querySelectorAll('.count').forEach(animateCount);
+    el.querySelectorAll('.cbar i').forEach(function(b){ b.style.width = b.dataset.w || '0%'; });
+    if (el.id === 'showcase' || el.querySelector('#bars')){
+      el.querySelectorAll('.bars .bar').forEach(function(b,i){
+        setTimeout(function(){ b.style.height = b.dataset.h; }, reduce ? 0 : i*60);
+      });
+    }
+  }
+
+  // stagger delay
+  document.querySelectorAll('.reveal[data-delay]').forEach(function(el){
+    el.style.transitionDelay = (parseInt(el.dataset.delay,10)/1000) + 's';
+  });
+
+  if (reduce){
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); trigger(el); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('in'); trigger(e.target); io.unobserve(e.target); }
+    });
+  }, { threshold:0.15, rootMargin:'0px 0px -8% 0px' });
+
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  // bars + counts inside non-reveal containers — observe the showcase section directly
+  var showcase = document.getElementById('showcase');
+  if (showcase){ io.observe(showcase); }
+})();
+</script>
+</body>
+</html>

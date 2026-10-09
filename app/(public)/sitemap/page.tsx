@@ -1,10 +1,10 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import { UnderConstruction } from '@/components/marketing/UnderConstruction';
 
 export const metadata: Metadata = {
-  title: 'Sitemap — SonOfGraig',
+  title: 'Sitemap — sonofgraig',
   description:
-    'A complete index of all pages on the SonOfGraig enterprise AI platform — coming soon.',
+    'A complete index of all pages on the sonofgraig enterprise AI platform — coming soon.',
   alternates: { canonical: '/sitemap' },
   robots: { index: false, follow: true },
 };

@@ -1,5 +1,14 @@
+'use client';
+
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+// Design system v3.1 — Insights grid. Category filter (raised segmented
+// control), a featured first article, and cards that resolve in from a blur
+// (2026-site entrance). The old non-functional pagination bar is gone.
 
 export interface Article {
   slug: string;
@@ -8,90 +17,106 @@ export interface Article {
   category: string;
   date: string;
   readTime: number;
+  /** Per-post hero still, rendered to /blog/og/{slug}.png. */
+  heroImage: string;
+  heroAlt: string;
 }
 
-export function ArticleGrid({ articles }: { articles: Article[] }) {
-  if (!articles || articles.length === 0) return null;
-
-  const featured = articles[0];
-  const standard = articles.slice(1);
-
+function ArticleCard({ a, featured = false }: { a: Article; featured?: boolean }) {
   return (
-    <section className="w-full pb-[var(--sp-16)]">
-      <div className="max-w-[1080px] mx-auto px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-[var(--sp-4)]">
-          
-          {/* FEATURED ARTICLE */}
-          <Link href={`/blog/${featured.slug}`} className="md:col-span-2 block group">
-            <div className="h-full bg-[var(--sg-bg)] border border-[var(--sg-border)] rounded-[var(--r-xl)] transition-all duration-200 ease-out group-hover:-translate-y-[1px] group-hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] flex flex-col overflow-hidden">
-              <div className="h-[160px] bg-[var(--sg-surface-2)] w-full" />
-              <div className="p-[var(--sp-6)] flex flex-col flex-1">
-                <div className="mb-4">
-                  <span className="inline-block px-2 py-1 rounded bg-[var(--sg-surface-2)] text-[var(--sg-text-2)] font-sans text-[11px] font-semibold uppercase tracking-wider">
-                    {featured.category}
-                  </span>
-                </div>
-                <h2 className="text-h2 text-[var(--sg-text-1)] mb-3 group-hover:text-[var(--sg-blue)] transition-colors">{featured.title}</h2>
-                <p className="text-body text-[var(--sg-text-3)] mb-6 flex-1">
-                  {featured.excerpt}
-                </p>
-                <div className="flex items-center justify-between mt-auto pt-4 border-t border-[var(--sg-border)]">
-                  <div className="font-sans text-[12px] text-[var(--sg-text-4)]">
-                    {featured.date} · {featured.readTime} min read
-                  </div>
-                  <div className="flex items-center gap-2 font-sans text-[13px] font-medium text-[var(--sg-text-2)] group-hover:text-[var(--sg-blue)] transition-colors">
-                    Read article <ArrowRight size={14} strokeWidth={1.5} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Link>
-
-          {/* STANDARD ARTICLES */}
-          {standard.map((article) => (
-            <Link key={article.slug} href={`/blog/${article.slug}`} className="block group">
-              <div className="h-full bg-[var(--sg-bg)] border border-[var(--sg-border)] rounded-[var(--r-xl)] transition-all duration-200 ease-out group-hover:-translate-y-[1px] group-hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] flex flex-col overflow-hidden">
-                <div className="h-[120px] bg-[var(--sg-surface-2)] w-full" />
-                <div className="p-[var(--sp-5)] flex flex-col flex-1">
-                  <div className="mb-3">
-                    <span className="inline-block px-2 py-1 rounded bg-[var(--sg-surface-2)] text-[var(--sg-text-2)] font-sans text-[11px] font-semibold uppercase tracking-wider">
-                      {article.category}
-                    </span>
-                  </div>
-                  <h3 className="text-h3 text-[var(--sg-text-1)] mb-2 group-hover:text-[var(--sg-blue)] transition-colors">{article.title}</h3>
-                  <p className="text-caption text-[var(--sg-text-3)] mb-4 flex-1">
-                    {article.excerpt}
-                  </p>
-                  <div className="font-sans text-[12px] text-[var(--sg-text-4)] mt-auto pt-4 border-t border-[var(--sg-border)]">
-                    {article.date} · {article.readTime} min read
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-
-        </div>
-
-        {/* Pagination Placeholder */}
-        <div className="flex justify-center items-center gap-2 mt-[var(--sp-12)]">
-          <button className="w-8 h-8 rounded-[var(--r-md)] border border-[var(--sg-border)] flex items-center justify-center text-[var(--sg-text-4)] disabled:opacity-50" disabled>
-            &lt;
-          </button>
-          <button className="w-8 h-8 rounded-[var(--r-md)] bg-[var(--sg-text-1)] text-[var(--sg-bg)] font-sans text-[13px] font-medium flex items-center justify-center">
-            1
-          </button>
-          <button className="w-8 h-8 rounded-[var(--r-md)] border border-[var(--sg-border)] text-[var(--sg-text-2)] hover:bg-[var(--sg-surface-2)] font-sans text-[13px] font-medium flex items-center justify-center transition-colors">
-            2
-          </button>
-          <button className="w-8 h-8 rounded-[var(--r-md)] border border-[var(--sg-border)] text-[var(--sg-text-2)] hover:bg-[var(--sg-surface-2)] font-sans text-[13px] font-medium flex items-center justify-center transition-colors">
-            3
-          </button>
-          <span className="text-[var(--sg-text-4)] px-1">...</span>
-          <button className="w-8 h-8 rounded-[var(--r-md)] border border-[var(--sg-border)] flex items-center justify-center text-[var(--sg-text-2)] hover:bg-[var(--sg-surface-2)] transition-colors">
-            &gt;
-          </button>
+    <Link
+      href={`/blog/${a.slug}`}
+      className={cn(
+        'group flex h-full flex-col overflow-hidden rounded-[var(--r-2xl)] border border-[var(--sg-border)] bg-[var(--sg-surface)] transition-[border-color,box-shadow,transform] duration-500 ease-[var(--ease-out)] hover:-translate-y-1 hover:border-[var(--sg-blue-border)] hover:shadow-[var(--shadow-lift-md)]',
+        featured && 'lg:flex-row',
+      )}
+    >
+      <div className={cn('relative overflow-hidden bg-[var(--sg-surface-2)]', featured ? 'aspect-video lg:aspect-auto lg:w-3/5' : 'aspect-video')}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={a.heroImage} alt={a.heroAlt} loading="lazy" className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-[1.04]" />
+      </div>
+      <div className={cn('flex flex-1 flex-col p-[var(--sp-6)]', featured && 'lg:p-[var(--sp-10)]')}>
+        <span className="w-fit rounded-full border border-[var(--sg-border)] bg-[var(--sg-surface-2)] px-2.5 py-0.5 text-label text-[var(--sg-text-3)]">{a.category}</span>
+        {featured ? (
+          <h2 className="text-h2 text-[var(--sg-text-1)] mt-[var(--sp-4)] transition-colors group-hover:text-[var(--sg-blue)]">{a.title}</h2>
+        ) : (
+          <h3 className="text-h3 text-[var(--sg-text-1)] mt-[var(--sp-4)] transition-colors group-hover:text-[var(--sg-blue)]">{a.title}</h3>
+        )}
+        <p className={cn('text-[var(--sg-text-3)] mt-[var(--sp-3)] flex-1', featured ? 'text-body-lg' : 'text-body line-clamp-3')}>{a.excerpt}</p>
+        <div className="mt-[var(--sp-6)] flex items-center justify-between border-t border-[var(--sg-border)] pt-[var(--sp-4)]">
+          <span className="font-mono text-[11px] text-[var(--sg-text-4)]">
+            {a.date} · {a.readTime} min
+          </span>
+          <span className="inline-flex items-center gap-1.5 font-sans text-[13px] font-medium text-[var(--sg-blue)]">
+            Read <ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-1" />
+          </span>
         </div>
       </div>
-    </section>
+    </Link>
+  );
+}
+
+export function ArticleGrid({ articles, query = '' }: { articles: Article[]; /** Free-text search from the Insights hero. */ query?: string }) {
+  const reduced = useReducedMotion();
+  const categories = useMemo(() => ['All', ...Array.from(new Set(articles.map((a) => a.category)))], [articles]);
+  const [cat, setCat] = useState('All');
+  const q = query.trim().toLowerCase();
+  const shown = articles.filter(
+    (a) => (cat === 'All' || a.category === cat) && (!q || `${a.title} ${a.excerpt} ${a.category}`.toLowerCase().includes(q)),
+  );
+  if (articles.length === 0) return null;
+  const [featured, ...rest] = shown;
+
+  return (
+    <div>
+      <div role="tablist" aria-label="Filter by category" className="mx-auto mb-[var(--sp-10)] flex w-fit max-w-full flex-wrap justify-center gap-1 rounded-[var(--r-2xl)] border border-[var(--sg-border)] bg-[var(--sg-surface-2)] p-1 shadow-[inset_0_1px_2px_rgba(13,17,23,.06)] sm:rounded-full">
+        {categories.map((c) => (
+          <button
+            key={c}
+            role="tab"
+            type="button"
+            aria-selected={cat === c}
+            onClick={() => setCat(c)}
+            className={cn('rounded-full px-4 py-2 font-sans text-[13px] font-medium transition-colors', cat === c ? 'btn-raised-primary' : 'text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)]')}
+          >
+            {c}
+          </button>
+        ))}
+      </div>
+
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.div key={`${cat}|${q}`} initial={reduced ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}>
+          {!featured && (
+            <p className="py-[var(--sp-16)] text-center text-body text-[var(--sg-text-3)]">
+              No articles match &ldquo;{query.trim()}&rdquo;. Try a broader word, or pick another category.
+            </p>
+          )}
+          {featured && (
+            <motion.div
+              initial={reduced ? false : { opacity: 0, y: 40, filter: 'blur(12px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <ArticleCard a={featured} featured />
+            </motion.div>
+          )}
+          <div className="mt-[var(--sp-4)] grid gap-[var(--sp-4)] sm:grid-cols-2 lg:grid-cols-3">
+            {rest.map((a, i) => (
+              <motion.div
+                key={a.slug}
+                initial={reduced ? false : { opacity: 0, y: 40, filter: 'blur(12px)' }}
+                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.9, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="h-full"
+              >
+                <ArticleCard a={a} />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </AnimatePresence>
+    </div>
   );
 }

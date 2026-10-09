@@ -9,8 +9,9 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-[var(--sg-blue)] text-white hover:bg-[var(--sg-blue-dim)]',
-        secondary: 'bg-[var(--sg-surface-2)] text-[var(--sg-text-2)] hover:bg-[var(--sg-surface-3)] hover:text-[var(--sg-text-1)]',
+        // v3.1: raised (tactile) treatment — see .btn-raised-* in globals.css
+        primary: 'btn-raised-primary',
+        secondary: 'btn-raised-neutral',
         ghost: 'hover:bg-[var(--sg-surface-2)] text-[var(--sg-blue)] hover:text-[var(--sg-blue-dim)]',
         outline: 'border border-[var(--sg-blue)] text-[var(--sg-blue)] hover:bg-[var(--sg-blue-glow)]',
         cta: 'bg-gradient-to-r from-[#F97316] to-[#FBBF24] text-white hover:opacity-90 shadow-sm',

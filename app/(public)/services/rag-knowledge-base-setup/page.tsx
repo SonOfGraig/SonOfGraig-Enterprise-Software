@@ -1,25 +1,17 @@
-import type { Metadata } from 'next';
-import { LegacyShell } from '../../_shared/LegacyShell';
-import { loadLegacyHtml } from '../../_shared/loadLegacy';
-import './_legacy.css';
+import { getService } from '@/lib/services';
+import { ServiceDetail } from '@/components/marketing/services/ServiceDetail';
+import { serviceMetadata, ServiceJsonLd } from '@/components/marketing/services/serviceSeo';
 
-export const metadata: Metadata = {
-  title: 'RAG Knowledge Base Setup — SonOfGraig | Document Search Grounded in Your Data',
-  description:
-    'Stand up a production RAG knowledge base on your enterprise documents. SonOfGraig Services delivers ingestion pipelines, embeddings, retrieval, citations, evaluation, and POPIA-compliant audit logging — fixed scope, ZAR pricing.',
-  alternates: { canonical: '/services/rag-knowledge-base-setup' },
-  openGraph: {
-    title: 'RAG Knowledge Base Setup — SonOfGraig Services',
-    description:
-      'Production RAG pipeline on your enterprise documents — ingestion, retrieval, citations, eval, POPIA-aligned audit logging.',
-    type: 'website',
-    url: '/services/rag-knowledge-base-setup',
-    locale: 'en_ZA',
-  },
-  robots: { index: true, follow: true },
-};
+// Content lives in lib/services.ts; layout in ServiceDetail (design system v3.1).
+const service = getService('rag-knowledge-base-setup');
 
-export default async function RagKnowledgeBaseSetupPage() {
-  const html = await loadLegacyHtml('services', 'rag-knowledge-base-setup');
-  return <LegacyShell html={html} scope="lp-svc-rag" />;
+export const metadata = serviceMetadata(service);
+
+export default function RagKnowledgeBasePage() {
+  return (
+    <>
+      <ServiceJsonLd service={service} />
+      <ServiceDetail service={service} />
+    </>
+  );
 }

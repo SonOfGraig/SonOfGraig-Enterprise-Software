@@ -27,6 +27,8 @@ This folder is the **canonical written specification** for every visual decision
 | Platform architecture (5 clusters) | [`13-clusters.md`](13-clusters.md) |
 | CSS token reference | [`14-tokens.md`](14-tokens.md) |
 | Governance & extension process | [`15-governance.md`](15-governance.md) |
+| Sections & motion (v3.1) | [`16-sections.md`](16-sections.md) |
+| Motion library — porting the 2026 site (v3.1) | [`17-motion-library.md`](17-motion-library.md) |
 | Source-of-truth strategy & engineering docs | [`source-docs/`](source-docs/) |
 
 ## How this folder relates to the running code

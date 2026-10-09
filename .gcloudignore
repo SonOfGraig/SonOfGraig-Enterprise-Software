@@ -1,0 +1,27 @@
+# Mirror .dockerignore — gcloud uses this for source uploads when present,
+# otherwise falls back to .gitignore. We need .env.production included for
+# `next build` to bake NEXT_PUBLIC_ASSET_BASE_URL into the client bundle.
+.git
+.github
+.gitignore
+node_modules
+.next
+.DS_Store
+.vscode
+.idea
+.claude
+coverage
+*.log
+
+# Dev-only Remotion workspace (CLI + Chromium not needed in the runtime image).
+remotion
+
+# Heavy marketing assets are served from GCS; do not ship them in the image.
+public/video
+public/poster
+
+# Other env files (local-only).
+.env
+.env.local
+.env.development*
+.env.test*

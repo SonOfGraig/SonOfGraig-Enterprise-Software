@@ -47,7 +47,10 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AnimatePresence mode="wait">
+    // initial={false}: the first page load renders fully visible from the
+    // server HTML (no opacity:0 waiting on hydration); transitions still run
+    // on client-side navigation.
+    <AnimatePresence mode="wait" initial={false}>
       <motion.main
         key={pathname}
         className="flex-1"

@@ -27,6 +27,8 @@ export function CookieBanner() {
 
   const saveConsent = (newPrefs: typeof prefs) => {
     localStorage.setItem('popia_consent_v3', JSON.stringify({ ...newPrefs, timestamp: new Date().toISOString() }));
+    // GoogleAnalytics listens for this and only loads once analytics is accepted.
+    window.dispatchEvent(new Event('sg-consent'));
     setIsVisible(false);
   };
 
@@ -60,7 +62,7 @@ export function CookieBanner() {
               </div>
               <div className="flex-1 pr-8">
                 <div id="b2ttl" className="text-xl sm:text-xl font-display font-bold text-[var(--sg-text-1)] leading-tight">Privacy &amp; Cookie Preferences</div>
-                <div className="text-xs text-[var(--sg-text-3)] font-mono mt-1.5 leading-relaxed">SonOfGraig Enterprise Platform · POPIA Section 11 compliant · af-south-1 data residency</div>
+                <div className="text-xs text-[var(--sg-text-3)] font-mono mt-1.5 leading-relaxed">sonofgraig · POPIA consent · your choice is stored on this device</div>
               </div>
               <button 
                 onClick={() => setIsVisible(false)}
@@ -142,7 +144,7 @@ export function CookieBanner() {
                         <ShieldCheck size={16} color="var(--sg-success)" /> Where it is stored
                       </div>
                       <div className="text-sm text-[var(--sg-text-3)] leading-relaxed">
-                        All data processed in South Africa via AWS af-south-1 (Cape Town). AI personalisation data never transferred outside South Africa without separate consent.
+                        We do not use personalisation cookies on this website today. If that changes, we will ask for separate consent first.
                       </div>
                     </div>
                     <div className="bg-[var(--sg-surface-2)] border border-[var(--sg-border)] rounded-xl p-4">
@@ -164,7 +166,7 @@ export function CookieBanner() {
                   </div>
                   <div className="flex items-start sm:items-center gap-3 p-4 bg-[var(--sg-surface-2)] border border-[var(--sg-border-md)] rounded-xl text-xs sm:text-sm text-[var(--sg-text-3)]">
                     <ShieldCheck size={20} className="shrink-0" />
-                    <span>Under <strong className="text-[var(--sg-text-1)] font-medium">POPIA Section 11</strong>, consent must be specific, informed, and voluntary. Withdraw anytime by visiting Privacy Settings or emailing <a href="mailto:popia@sonofgraig.com" className="text-[var(--sg-blue)] hover:underline">popia@sonofgraig.com</a>.</span>
+                    <span>Under <strong className="text-[var(--sg-text-1)] font-medium">POPIA Section 11</strong>, consent must be specific, informed, and voluntary. Withdraw anytime by visiting Privacy Settings or emailing <a href="mailto:tumiso@sonofgraig.com" className="text-[var(--sg-blue)] hover:underline">tumiso@sonofgraig.com</a>.</span>
                   </div>
                 </motion.div>
               )}
@@ -241,7 +243,7 @@ export function CookieBanner() {
                     </div>
                     <div className="flex-1">
                       <div className="text-[15px] font-semibold text-[var(--sg-text-1)] mb-1">AI Personalisation</div>
-                      <div className="text-sm text-[var(--sg-text-3)] leading-relaxed mb-2">RAG Studio query context, Agent Builder preferences, Governance Hub audit references, and cluster usage history. Stored exclusively in af-south-1. Never used to train shared models.</div>
+                      <div className="text-sm text-[var(--sg-text-3)] leading-relaxed mb-2">Remembers preferences such as recently viewed pages. Not used on this website today; never used to train models.</div>
                       <div className="text-[10px] sm:text-xs font-mono text-[var(--sg-text-4)] bg-[var(--sg-surface-2)] px-2 py-1 rounded inline-block whitespace-normal break-all">sg_ai_ctx · sg_rag_session · sg_agent_prefs · sg_cluster_hist · sg_gov_audit_ref</div>
                     </div>
                     <div className="flex items-center sm:flex-col sm:items-end justify-between sm:justify-start gap-2 mt-2 sm:mt-0 shrink-0">
@@ -258,7 +260,7 @@ export function CookieBanner() {
                   <div>
                     <h3 className="text-base sm:text-[15px] font-semibold text-[var(--sg-text-1)] font-display mb-2">POPIA Section 11 — Consent basis</h3>
                     <p className="text-xs sm:text-sm text-[var(--sg-text-3)] leading-relaxed">
-                      The Protection of Personal Information Act 4 of 2013 requires SonOfGraig to obtain specific, informed, and voluntary consent before processing non-essential personal information. This banner fulfils that obligation. A timestamped consent record is maintained per POPIA Section 11(3).
+                      The Protection of Personal Information Act 4 of 2013 requires sonofgraig to obtain specific, informed, and voluntary consent before processing non-essential personal information. This banner fulfils that obligation. A timestamped consent record is maintained per POPIA Section 11(3).
                     </p>
                   </div>
                   <div>
@@ -269,7 +271,7 @@ export function CookieBanner() {
                         ['Right to correction', 'request correction of inaccurate personal information'],
                         ['Right to deletion', 'request deletion subject to legal retention obligations'],
                         ['Right to withdraw', 'withdraw consent at any time without consequence to services'],
-                        ['Right to breach notification', 'within 72 hours per POPIA Section 26'],
+                        ['Right to breach notification', 'as soon as reasonably possible, per POPIA Section 22'],
                       ].map(([title, desc], i) => (
                         <div key={i} className="flex items-start gap-3">
                           <Check size={16} className="mt-[2px] shrink-0 text-[var(--sg-text-4)]" />
@@ -281,10 +283,10 @@ export function CookieBanner() {
                   <div>
                     <h3 className="text-base sm:text-[15px] font-semibold text-[var(--sg-text-1)] font-display mb-2">Contact our Information Officer</h3>
                     <div className="text-xs sm:text-sm text-[var(--sg-text-3)] leading-relaxed bg-[var(--sg-surface-2)] p-4 rounded-xl border border-[var(--sg-border)]">
-                      <strong className="text-[var(--sg-text-1)] font-medium">Organisation:</strong> SonOfGraig Digital Solutions<br />
-                      <strong className="text-[var(--sg-text-1)] font-medium">Email:</strong> <a href="mailto:popia@sonofgraig.com" className="text-[var(--sg-blue)] hover:underline">popia@sonofgraig.com</a><br />
+                      <strong className="text-[var(--sg-text-1)] font-medium">Organisation:</strong> sonofgraig<br />
+                      <strong className="text-[var(--sg-text-1)] font-medium">Email:</strong> <a href="mailto:tumiso@sonofgraig.com" className="text-[var(--sg-blue)] hover:underline">tumiso@sonofgraig.com</a><br />
                       <strong className="text-[var(--sg-text-1)] font-medium">Response time:</strong> 10 business days<br />
-                      <strong className="text-[var(--sg-text-1)] font-medium">Data residency:</strong> AWS af-south-1 (Cape Town, South Africa)
+                      <strong className="text-[var(--sg-text-1)] font-medium">Data residency:</strong> agreed per customer in the Data Processing Agreement
                     </div>
                   </div>
                   <div className="flex items-start sm:items-center gap-3 p-4 bg-[var(--sg-surface-2)] border border-[var(--sg-border-md)] rounded-xl text-xs sm:text-sm text-[var(--sg-text-3)]">

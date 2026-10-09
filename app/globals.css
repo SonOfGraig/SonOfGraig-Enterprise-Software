@@ -107,9 +107,26 @@
     --shadow-lift-lg: 0 16px 40px rgba(0,0,0,0.16);
 
     --glass-bg: rgba(255, 255, 255, 0.8);
+
+    /* LIQUID GLASS (v4) — one material, used only over visible content */
+    --lg-fill: rgba(255, 255, 255, 0.55);
+    --lg-fill-strong: rgba(255, 255, 255, 0.78);
+    --lg-edge: rgba(255, 255, 255, 0.9);
+    --lg-rim: rgba(13, 17, 23, 0.08);
+    --lg-shadow: 0 1px 1px rgba(13, 17, 23, 0.04), 0 12px 32px -8px rgba(6, 90, 130, 0.18), 0 32px 64px -24px rgba(13, 17, 23, 0.16);
+    --lg-blur: 24px;
+    --rays-rgb: 11, 120, 222;
+    --rays-blend: multiply;
   }
 
   [data-theme='dark'] {
+    --lg-fill: rgba(22, 27, 37, 0.5);
+    --lg-fill-strong: rgba(22, 27, 37, 0.78);
+    --lg-edge: rgba(255, 255, 255, 0.14);
+    --lg-rim: rgba(255, 255, 255, 0.08);
+    --lg-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 16px 40px -8px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(14, 165, 233, 0.05);
+    --rays-rgb: 0, 163, 255;
+    --rays-blend: screen;
     /* PRIMARY & ACCENT */
     --sg-blue: #0EA5E9;
     --sg-blue-dim: #38BDF8;
@@ -154,6 +171,95 @@
 }
 
 @layer utilities {
+  /* Liquid glass: translucent fill + backdrop blur + a bright top edge
+     (specular) + a hairline rim. The ::before carries the edge light so the
+     element's own border stays free for state (hover / focus). */
+  /* :where() = zero specificity, so `absolute`/`fixed` utilities win. */
+  :where(.liquid-glass) {
+    position: relative;
+  }
+  .liquid-glass {
+    background: var(--lg-fill);
+    -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(170%);
+    backdrop-filter: blur(var(--lg-blur)) saturate(170%);
+    border: 1px solid var(--lg-rim);
+    box-shadow: var(--lg-shadow);
+    isolation: isolate;
+  }
+  .liquid-glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(180deg, var(--lg-edge), transparent 38%, transparent 70%, var(--lg-rim));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .liquid-glass-strong { background: var(--lg-fill-strong); }
+
+  /* Fine film grain so large glass and gradient areas don't band. */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .text-hero {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 6.2vw, 5.4rem);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    font-weight: 800;
+  }
+
+  .shimmer-text {
+    background-image: linear-gradient(110deg, var(--sg-blue-deep) 0%, var(--sg-blue) 30%, #38BDF8 50%, var(--sg-blue) 70%, var(--sg-blue-deep) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Entrance animations in CSS, not JS: they start when the stylesheet lands,
+     so above-the-fold copy is never stuck invisible waiting for hydration on a
+     slow connection (and crawlers see the final text). */
+  .reveal-word {
+    display: inline-block;
+    animation: sg-word-in 0.9s var(--ease-out) both;
+  }
+  .reveal-up {
+    animation: sg-up 0.8s var(--ease-out) both;
+  }
+  @keyframes sg-word-in {
+    from { opacity: 0; filter: blur(14px); transform: translateY(12px); }
+    to { opacity: 1; filter: blur(0); transform: none; }
+  }
+  @keyframes sg-up {
+    from { opacity: 0; transform: translateY(var(--reveal-distance, 14px)); }
+    to { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-word, .reveal-up { animation: none; }
+  }
+
+  [data-theme='dark'] .shimmer-text {
+    background-image: linear-gradient(110deg, #0EA5E9 0%, #38BDF8 30%, #BAE6FD 50%, #38BDF8 70%, #0EA5E9 100%);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .shimmer-text { animation: sg-shimmer 6s linear infinite; }
+    .reveal-word.shimmer-text {
+      animation: sg-word-in 0.9s var(--ease-out) both, sg-shimmer 6s linear infinite;
+    }
+  }
+  @keyframes sg-shimmer { to { background-position: -200% center; } }
+
   .text-display {
     font-family: var(--font-display);
     font-size: 48px;
@@ -479,4 +585,60 @@ body {
   background-color: var(--sg-bg);
   color: var(--sg-text-1);
   font-family: var(--font-sans);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   RAISED BUTTONS (v3.1) — tactile depth, matching the theme toggle: a lit top
+   edge, a shaded bottom edge, a soft drop, and a pressed (inset) active state.
+   Unlayered and last in the file so it composes with the .sg-btn machine.
+   ────────────────────────────────────────────────────────────────────────── */
+:root {
+  --btn-primary-bg: linear-gradient(180deg, #2CB2EC 0%, var(--sg-blue) 55%, #0A92D0 100%);
+  --btn-primary-shadow: inset 0 1px 0 rgba(255,255,255,.32), inset 0 -1px 0 rgba(6,58,90,.28), 0 1px 1px rgba(6,58,90,.22), 0 2px 6px -1px rgba(6,90,130,.32);
+  --btn-primary-shadow-hover: inset 0 1px 0 rgba(255,255,255,.36), inset 0 -1px 0 rgba(6,58,90,.28), 0 1px 1px rgba(6,58,90,.22), 0 6px 14px -4px rgba(6,90,130,.42);
+  --btn-primary-shadow-active: inset 0 2px 4px rgba(6,58,90,.38), inset 0 -1px 0 rgba(255,255,255,.12);
+
+  --btn-neutral-bg: linear-gradient(180deg, #FFFFFF 0%, var(--sg-surface-2) 100%);
+  --btn-neutral-border: var(--sg-border-md);
+  --btn-neutral-shadow: inset 0 1px 0 rgba(255,255,255,.95), 0 1px 1px rgba(13,17,23,.06), 0 2px 5px -1px rgba(13,17,23,.10);
+  --btn-neutral-shadow-hover: inset 0 1px 0 rgba(255,255,255,.95), 0 1px 1px rgba(13,17,23,.06), 0 6px 14px -4px rgba(13,17,23,.16);
+  --btn-neutral-shadow-active: inset 0 2px 4px rgba(13,17,23,.12);
+}
+[data-theme='dark'] {
+  --btn-primary-bg: linear-gradient(180deg, #38BDF8 0%, var(--sg-blue) 55%, #0284C7 100%);
+  --btn-primary-shadow: inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(0,0,0,.30), 0 1px 1px rgba(0,0,0,.45), 0 2px 8px -1px rgba(0,0,0,.55);
+  --btn-primary-shadow-hover: inset 0 1px 0 rgba(255,255,255,.32), inset 0 -1px 0 rgba(0,0,0,.30), 0 1px 1px rgba(0,0,0,.45), 0 8px 18px -4px rgba(0,0,0,.65);
+  --btn-primary-shadow-active: inset 0 2px 5px rgba(0,0,0,.45);
+
+  --btn-neutral-bg: linear-gradient(180deg, var(--sg-surface-3) 0%, var(--sg-surface-2) 100%);
+  --btn-neutral-border: var(--sg-border-md);
+  --btn-neutral-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 1px 1px rgba(0,0,0,.4), 0 2px 6px -1px rgba(0,0,0,.5);
+  --btn-neutral-shadow-hover: inset 0 1px 0 rgba(255,255,255,.09), 0 1px 1px rgba(0,0,0,.4), 0 8px 18px -4px rgba(0,0,0,.6);
+  --btn-neutral-shadow-active: inset 0 2px 5px rgba(0,0,0,.5);
+}
+
+.btn-raised-primary {
+  background: var(--btn-primary-bg);
+  color: #fff;
+  box-shadow: var(--btn-primary-shadow);
+  border: 1px solid rgba(6, 58, 90, .18);
+  text-shadow: 0 1px 0 rgba(6, 58, 90, .25);
+}
+.btn-raised-neutral {
+  background: var(--btn-neutral-bg);
+  color: var(--sg-text-1);
+  box-shadow: var(--btn-neutral-shadow);
+  border: 1px solid var(--btn-neutral-border);
+}
+.btn-raised-primary:hover:not(:disabled) { box-shadow: var(--btn-primary-shadow-hover); filter: brightness(1.04); }
+.btn-raised-neutral:hover:not(:disabled) { box-shadow: var(--btn-neutral-shadow-hover); }
+.btn-raised-primary:active:not(:disabled) { box-shadow: var(--btn-primary-shadow-active); filter: none; }
+.btn-raised-neutral:active:not(:disabled) { box-shadow: var(--btn-neutral-shadow-active); }
+
+/* ── Desktop density (Tumiso, 2026-10-09) ──────────────
+   At full desktop width the site reads best at 90% browser zoom, so
+   desktop renders at that density by default. Mobile and tablet are
+   untouched. Pointer maths in fx/ uses ratios, so it is zoom-safe. */
+@media (min-width: 1024px) {
+  html { zoom: 0.9; }
 }

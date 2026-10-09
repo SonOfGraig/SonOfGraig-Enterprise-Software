@@ -1,10 +1,10 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import { UnderConstruction } from '@/components/marketing/UnderConstruction';
 
 export const metadata: Metadata = {
-  title: 'Data Processing Agreement — SonOfGraig',
+  title: 'Data Processing Agreement — sonofgraig',
   description:
-    'Standard Data Processing Agreement (DPA) for SonOfGraig enterprise customers — coming soon.',
+    'Standard Data Processing Agreement (DPA) for sonofgraig enterprise customers — coming soon.',
   alternates: { canonical: '/dpa' },
   robots: { index: false, follow: true },
 };

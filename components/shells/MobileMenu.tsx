@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -47,7 +47,7 @@ export function MobileMenu() {
               <Link href="/" className="flex gap-2 items-center" onClick={() => setIsOpen(false)}>
                 <Logo className="w-8 h-8" />
                 <span className="font-display font-bold text-[18px] text-[var(--sg-text-1)] tracking-tight leading-none">
-                  SonOfGraig
+                  sonofgraig
                 </span>
               </Link>
               <button suppressHydrationWarning 

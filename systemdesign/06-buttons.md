@@ -8,8 +8,12 @@ Use the existing `Button` primitive at [`../components/ui/Button.tsx`](../compon
 
 | Variant | Background | Text | Border | Use |
 |---|---|---|---|---|
-| `primary` | `--sg-blue` | `#FFFFFF` | none | The most important action on a view. **One per page section.** |
-| `secondary` | `--sg-surface-2` | `--sg-text-2` (hover `--sg-text-1`) | `--sg-border-md` | Supporting actions: Export, Duplicate, View Details |
+| `primary` | `--btn-primary-bg` (raised, v3.1) | `#FFFFFF` | hairline dark rim | The most important action on a view. **One per page section.** |
+| `secondary` | `--btn-neutral-bg` (raised, v3.1) | `--sg-text-1` | `--sg-border-md` | Supporting actions: Export, Duplicate, View Details |
+
+### Raised treatment (v3.1)
+
+`primary` and `secondary` are **raised**, matching the theme toggle's tactile pill: a top-lit gradient, an inset highlight on the top edge, an inset shade on the bottom edge and a soft drop shadow. Hover deepens the drop; active presses in (inset shadow). Tokens: `--btn-primary-*`, `--btn-neutral-*` in `globals.css` (light + dark); classes `.btn-raised-primary` / `.btn-raised-neutral`. **No glow halos and no pulsing on buttons** — depth comes from light and shadow, not colour bleed.
 | `ghost` | transparent (hover `--sg-surface-2`) | `--sg-blue` | `--sg-blue-border` | Tertiary, contextual, inline-link-as-button |
 | `cta` (amber) | amber gradient | `#FFFFFF` | none | Pricing conversions, upgrades, plan changes only |
 | `danger` | `--sg-danger-bg` | `--sg-danger` | `--sg-danger-bd` | Delete, revoke, reset — always behind a confirm dialog |

@@ -1,28 +1,213 @@
-import fs from 'node:fs/promises';
-import path from 'node:path';
 import type { Metadata } from 'next';
-import { Body } from './Body';
+import Link from 'next/link';
+import { ArrowRight, Check, FileSignature, Minus, PhoneCall, Rocket, Send } from 'lucide-react';
+import { PageHero } from '@/components/marketing/_shared/PageHero';
+import { CTABand } from '@/components/marketing/_shared/CTABand';
+import { ExplainerVideo } from '@/components/marketing/_shared/ExplainerVideo';
+import { Section, SectionHeader } from '@/components/ui/Section';
+import { Card } from '@/components/ui/Card';
+import { ServiceCard } from '@/components/ui/ServiceCard';
+import { Timeline } from '@/components/ui/Timeline';
+import { FAQ, type FAQItem } from '@/components/ui/FAQ';
+import { Reveal } from '@/components/fx/Reveal';
+import { PricingTiers } from '@/components/marketing/pricing/PricingTiers';
+import { SERVICE_ICONS } from '@/components/marketing/services/serviceIcons';
+import { SERVICES } from '@/lib/services';
+import { explainerSources } from '@/lib/assets';
+import { SITE_URL, faqPageJsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Pricing — SonOfGraig Enterprise AI Platform | ZAR Pricing, No FX Risk',
+  title: 'Pricing — sonofgraig | Enterprise AI priced in rand',
   description:
-    'SonOfGraig pricing in ZAR. Enterprise AI platform subscriptions from R4,999/month — no FX exposure. RAG Studio, Agent Builder, Governance Hub. POPIA-native. Hosted in South Africa. Founding customer programme: 5 slots, 70% off first year.',
+    'AI Dev Platform pricing in ZAR: Starter from R4,999/month, Growth R19,999/month, Enterprise custom. Founding customers get 70% off year one. Fixed-scope services from R45,000.',
   alternates: { canonical: '/pricing' },
-  openGraph: {
-    title: 'Pricing — SonOfGraig Enterprise AI Platform',
-    description:
-      'Enterprise AI platform pricing in ZAR. From R4,999/month. No FX risk. POPIA-native. Hosted in South Africa.',
-    type: 'website',
-    url: '/pricing',
-    locale: 'en_ZA',
-  },
+  openGraph: { title: 'Pricing — sonofgraig', description: 'Enterprise AI priced in rand. No FX risk.', type: 'website', url: '/pricing', locale: 'en_ZA' },
   robots: { index: true, follow: true },
 };
 
-export default async function PricingPage() {
-  const html = await fs.readFile(
-    path.join(process.cwd(), 'app', '(public)', 'pricing', '_legacy.html'),
-    'utf8',
+const pricingJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  '@id': `${SITE_URL}/pricing#product`,
+  name: 'AI Dev Platform — subscription',
+  description: 'Enterprise AI platform subscription priced in ZAR. In early access.',
+  brand: { '@id': `${SITE_URL}#organization` },
+  category: 'Enterprise AI Platform Subscription',
+  offers: { '@type': 'AggregateOffer', priceCurrency: 'ZAR', lowPrice: '4999', highPrice: '19999', offerCount: 3, availability: 'https://schema.org/PreOrder', url: `${SITE_URL}/pricing` },
+};
+
+const MATRIX: { group: string; rows: [string, string, string, string][] }[] = [
+  {
+    group: 'Platform and access',
+    rows: [
+      ['AI Dev Platform modules', 'RAG Studio', 'All, as they ship', 'All + further clusters'],
+      ['Seats included', '5', '25', 'Unlimited'],
+      ['Additional seats', 'R400 / month', 'R300 / month', 'Negotiated'],
+      ['API access and webhooks', '—', '✓', '✓'],
+    ],
+  },
+  {
+    group: 'Usage and storage',
+    rows: [
+      ['LLM tokens per month', '500K', '5M', 'Custom'],
+      ['Document storage', '50 GB', '500 GB', 'Unlimited'],
+      ['Agent executions per month', '1,000', '50,000', 'Unlimited'],
+      ['Model choice', 'Standard model', 'Standard + advanced', 'Any, incl. fine-tuned'],
+    ],
+  },
+  {
+    group: 'POPIA and governance',
+    rows: [
+      ['PII scrubbing before embedding', '✓', '✓', '✓'],
+      ['Query audit logs', '✓', '✓', '✓'],
+      ['Exportable POPIA reports', '—', '✓', '✓'],
+      ['Custom retention policies', '—', '✓', '✓'],
+      ['Bespoke DPA', '—', '—', '✓'],
+    ],
+  },
+  {
+    group: 'Security and support',
+    rows: [
+      ['SSO / SAML 2.0', '—', '✓', '✓'],
+      ['Dedicated infrastructure', '—', '—', '✓'],
+      ['On-premises option', '—', '—', '✓'],
+      ['Response time', '2 business days', '4 hours', '1 hour'],
+      ['Onboarding', 'Self-serve', 'Guided', 'White-glove'],
+    ],
+  },
+];
+
+const STEPS = [
+  { when: 'Step 1', title: 'Apply or contact us', body: 'Send an early-access application or an enquiry describing your use case.', icon: <Send /> },
+  { when: 'Step 2', title: 'Discovery call', body: '30 minutes on requirements, data environment and compliance. We confirm the right tier.', icon: <PhoneCall /> },
+  { when: 'Step 3', title: 'Agreement and DPA', body: 'Subscription agreement and Data Processing Agreement signed. Your legal team reviews our terms.', icon: <FileSignature /> },
+  { when: 'Step 4', title: 'Onboarded and live', body: 'Your environment is provisioned and a guided onboarding session completes the setup.', icon: <Rocket /> },
+];
+
+const FAQS: FAQItem[] = [
+  { q: 'Why rand and not dollars?', a: 'Our costs — people, infrastructure, operations — are in rand. Pricing in USD would create FX risk we would have to hedge and pass on to you. In rand, your software budget does not move when the currency does.' },
+  { q: 'The platform is in early access — why commit now?', a: 'You are committing to a founding relationship: 70% off year one on Growth, direct access to the team building it, and a say in what ships next. Year one is month-to-month, so the risk is time, not money.' },
+  { q: 'Is our data sent to model providers?', a: 'Answers are generated by a large language model, so the retrieved passages and your question are sent to the model provider you approve. The platform is designed to scrub personal information before that call, and we only use providers whose enterprise terms prohibit training on your data. The flow is documented in your DPA.' },
+  { q: 'What are the contract terms?', a: 'Monthly plans are month-to-month with 30 days’ notice. Annual plans are billed upfront at 20% off and locked for the term. Enterprise terms are negotiated. On cancellation your data is exported to you and then deleted within 30 days.' },
+  { q: 'Is there a free trial?', a: 'No self-serve trial. Instead we run a scoped proof of concept as a services engagement, so the first thing you see is the product working on your own data.' },
+  { q: 'Do you support Entra ID single sign-on?', a: 'Yes, on Growth and Enterprise: Microsoft Entra ID, Okta, Google Workspace and any SAML 2.0 provider. OIDC is on the roadmap.' },
+  { q: 'Is sonofgraig B-BBEE certified?', a: 'Yes. Ask for a copy of the current certificate for your supplier database; a spend certificate accompanies invoices.' },
+];
+
+function cell(v: string) {
+  if (v === '✓') return <Check size={16} aria-label="Included" className="text-[var(--sg-blue)]" />;
+  if (v === '—') return <Minus size={16} aria-label="Not included" className="text-[var(--sg-text-4)]" />;
+  return v;
+}
+
+export default function PricingPage() {
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageJsonLd('/pricing', FAQS)) }} />
+      <PageHero
+        scene="artifactsLattice"
+        eyebrow="Pricing · All prices in ZAR"
+        title="Priced for South African enterprise."
+        accent="In rand."
+        lead="No USD pricing and no currency risk. Our costs are in rand, so your software budget should not move when the exchange rate does."
+        primary={{ label: 'See the plans', href: '#plans' }}
+        secondary={{ label: 'Founding customer offer', href: '/early-access' }}
+      />
+
+      <Section id="plans" tone="base" spacing="lg" background="nebula">
+        <SectionHeader eyebrow="AI Dev Platform subscriptions" title="Three plans. No compliance add-on." description="POPIA controls are part of every plan, not an upsell." align="center" />
+        <PricingTiers />
+        <Reveal delay={0.1} className="mt-[var(--sp-10)]">
+          <Card padding="lg" className="flex flex-col items-start justify-between gap-[var(--sp-6)] border-[var(--sg-amber)] sm:flex-row sm:items-center">
+            <div>
+              <p className="text-label text-[var(--sg-amber)]">Founding customer programme · 5 slots</p>
+              <h3 className="text-h3 text-[var(--sg-text-1)] mt-[var(--sp-2)]">70% off Growth in year one — R5,999/month.</h3>
+              <p className="text-body text-[var(--sg-text-3)] mt-[var(--sp-2)]">Plus a direct line to the founder and a quarterly say in the roadmap. Awarded by fit.</p>
+            </div>
+            <Link href="/early-access" className="btn-raised-primary inline-flex shrink-0 items-center gap-2 rounded-full px-6 py-3 font-sans text-[14px] font-medium">
+              Apply <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </Card>
+        </Reveal>
+      </Section>
+
+      <Section tone="base" spacing="lg" divider background="dotMatrix">
+        <SectionHeader eyebrow="Compare" title="Every feature, every plan." />
+        <Reveal blur>
+          <div className="mb-[var(--sp-8)]">
+            <ExplainerVideo light={explainerSources('pricing-tier')} dark={explainerSources('pricing-tier-dark')} caption="An animated comparison of the subscription tiers, priced in rand." />
+          </div>
+        </Reveal>
+        <Reveal>
+          <Card padding="none" className="overflow-x-auto">
+            <table className="w-full min-w-[640px] text-left">
+              <thead>
+                <tr className="border-b border-[var(--sg-border)]">
+                  {['Feature', 'Starter', 'Growth', 'Enterprise'].map((h, i) => (
+                    <th key={h} className={`px-[var(--sp-6)] py-[var(--sp-4)] text-label ${i === 2 ? 'text-[var(--sg-amber)]' : 'text-[var(--sg-text-4)]'}`}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              {MATRIX.map((g) => (
+                <tbody key={g.group}>
+                  <tr className="bg-[var(--sg-surface-2)]">
+                    <td colSpan={4} className="px-[var(--sp-6)] py-[var(--sp-2)] text-label text-[var(--sg-blue)]">{g.group}</td>
+                  </tr>
+                  {g.rows.map(([f, a, b, c]) => (
+                    <tr key={f} className="border-b border-[var(--sg-border)] transition-colors hover:bg-[var(--sg-surface-2)]">
+                      <td className="px-[var(--sp-6)] py-[var(--sp-3)] text-body font-medium text-[var(--sg-text-1)]">{f}</td>
+                      {[a, b, c].map((v, i) => (
+                        <td key={i} className="px-[var(--sp-6)] py-[var(--sp-3)] text-body text-[var(--sg-text-2)]">{cell(v)}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              ))}
+            </table>
+          </Card>
+        </Reveal>
+      </Section>
+
+      <Section tone="base" spacing="lg" divider background="dataShards">
+        <SectionHeader eyebrow="Not ready for a subscription?" title="Start with a fixed-scope project." description="Each one solves a specific problem, and can convert into a platform subscription with the fee credited." />
+        <div className="grid gap-[var(--sp-4)] md:grid-cols-2">
+          {SERVICES.map((s, i) => (
+            <Reveal key={s.slug} delay={(i % 2) * 0.1} blur className="h-full">
+              <ServiceCard
+                icon={SERVICE_ICONS[s.slug]}
+                category={s.category}
+                title={s.title}
+                description={s.summary}
+                features={s.deliverables.slice(0, 3)}
+                price={s.price}
+                meta={s.meta}
+                href={`/services/${s.slug}`}
+              />
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      <Section tone="base" spacing="lg" divider background="temporalFlux">
+        <SectionHeader eyebrow="Getting started" title="From first conversation to live." align="center" />
+        <Timeline items={STEPS} />
+      </Section>
+
+      <Section tone="base" spacing="lg" divider width="narrow" background="acousticWaves">
+        <SectionHeader eyebrow="Questions" title="What procurement, your CISO and your CFO will ask." align="center" />
+        <Reveal>
+          <FAQ items={FAQS} />
+        </Reveal>
+      </Section>
+
+      <CTABand scene="globalSignals"
+        eyebrow="Three ways to start"
+        title="Apply for early access, start a project, or just talk to us."
+        body="All conversations happen in South African business hours, with a person who can answer."
+        primary={{ label: 'Apply for early access', href: '/early-access' }}
+        secondary={{ label: 'Start a service project', href: '/services' }}
+      />
+    </>
   );
-  return <Body html={html} />;
 }
