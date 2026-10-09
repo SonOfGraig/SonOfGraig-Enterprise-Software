@@ -74,7 +74,6 @@ const links: NavLink[] = [
       { href: '/platform/ai-dev-platform', label: 'AI Dev Platform' },
       { href: '/early-access', label: 'Early access' },
       { href: '/pricing', label: 'Pricing' },
-      { href: '/lab', label: 'Interface Lab' },
     ]
   },
   { 
