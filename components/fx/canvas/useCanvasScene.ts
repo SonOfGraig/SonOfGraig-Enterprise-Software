@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { whenPageIdle } from '@/lib/idle';
 
 // One engine for every canvas background ported from the 2026 agency site.
 // The originals each re-implemented sizing and the RAF loop, sized to the
@@ -53,7 +54,16 @@ export function useCanvasScene<S>(scene: Scene<S>, { maxDpr = 1.5 }: { maxDpr?: 
     let lastScroll = window.scrollY;
     let frame = 0;
     let visible = false;
+    let ready = false; // loops wait for page idle; still frames don't
     let state: S;
+    // Theme colours are read on mount and on theme change — never per frame
+    // (getComputedStyle every frame forced a style recalc in every scene).
+    let rgb = '11, 120, 222';
+    let dark = false;
+    const readTheme = () => {
+      rgb = getComputedStyle(canvas).getPropertyValue('--rays-rgb').trim() || '11, 120, 222';
+      dark = (canvas.closest('[data-theme]') as HTMLElement | null)?.dataset.theme === 'dark';
+    };
 
     // Theme comes from the nearest [data-theme] ancestor, so a section can
     // force a theme locally (e.g. an always-dark CTA band).
@@ -61,8 +71,8 @@ export function useCanvasScene<S>(scene: Scene<S>, { maxDpr = 1.5 }: { maxDpr?: 
       ctx,
       width: canvas.width / dpr,
       height: canvas.height / dpr,
-      rgb: getComputedStyle(canvas).getPropertyValue('--rays-rgb').trim() || '11, 120, 222',
-      dark: (canvas.closest('[data-theme]') as HTMLElement | null)?.dataset.theme === 'dark',
+      rgb,
+      dark,
       pointer,
       scrollVelocity: velocity,
     });
@@ -89,7 +99,7 @@ export function useCanvasScene<S>(scene: Scene<S>, { maxDpr = 1.5 }: { maxDpr?: 
       frame = visible && !document.hidden ? requestAnimationFrame(loop) : 0;
     };
     const start = () => {
-      if (!reduced && !frame && visible && !document.hidden) frame = requestAnimationFrame(loop);
+      if (ready && !reduced && !frame && visible && !document.hidden) frame = requestAnimationFrame(loop);
     };
 
     const onPointer = (e: PointerEvent) => {
@@ -107,17 +117,26 @@ export function useCanvasScene<S>(scene: Scene<S>, { maxDpr = 1.5 }: { maxDpr?: 
     const ro = new ResizeObserver(resize);
     // Theme switches repaint a still frame even when paused.
     const mo = new MutationObserver(() => {
+      readTheme();
       if (reduced || !frame) scene.frame(context(), state, performance.now());
     });
 
+    readTheme();
     resize();
     io.observe(parent);
     ro.observe(parent);
     mo.observe(root, { attributes: true, attributeFilter: ['data-theme'] });
     document.addEventListener('visibilitychange', start);
     if (!reduced) window.addEventListener('pointermove', onPointer, { passive: true });
+    let cancelled = false;
+    whenPageIdle().then(() => {
+      if (cancelled) return;
+      ready = true;
+      start();
+    });
 
     return () => {
+      cancelled = true;
       cancelAnimationFrame(frame);
       io.disconnect();
       ro.disconnect();

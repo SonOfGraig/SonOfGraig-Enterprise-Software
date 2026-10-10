@@ -2,6 +2,7 @@
 
 import { useMemo, useRef, useState } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
 import { Search } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
 import { WordReveal } from '@/components/fx/WordReveal';
@@ -26,8 +27,8 @@ function Column({ tiles, duration, down }: { tiles: Tile[]; duration: number; do
       <div className={s.track} style={{ animationDuration: `${duration}s`, animationDirection: down ? 'reverse' : 'normal' }}>
         {[...tiles, ...tiles].map((t, i) => (
           <div key={`${t.src}-${i}`} className={s.tile}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={t.src} alt="" loading={i < 3 ? 'eager' : 'lazy'} decoding="async" />
+            {/* Decorative wall: small resized images, never the LCP element. */}
+            <Image src={t.src} alt="" fill sizes="(min-width: 1100px) 220px, (min-width: 768px) 33vw, 50vw" quality={60} />
             <span className={s.tileLabel}>{t.label}</span>
           </div>
         ))}

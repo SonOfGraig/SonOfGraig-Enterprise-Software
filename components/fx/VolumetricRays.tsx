@@ -1,12 +1,15 @@
 'use client';
 
 import { useEffect, useRef, type CSSProperties } from 'react';
+import { whenPageIdle } from '@/lib/idle';
 
 // Ported from the 2026 agency site (VolumetricRays.tsx). Differences:
 // - sized to its parent section, not the window
 // - colour comes from the --rays-rgb token, so it follows data-theme
 // - pauses when off-screen or the tab is hidden; DPR capped for old laptops
 // - prefers-reduced-motion draws one still frame and stops
+// - the loop starts only once the page is idle (first frame paints at once);
+//   soft rays draw at 1x density and read theme colours on theme change only
 
 type Ray = { angle: number; width: number; speed: number; opacity: number; pulse: number; offset: number };
 
@@ -20,11 +23,19 @@ export function VolumetricRays({ count = 28, className = '' }: { count?: number;
     if (!canvas || !parent || !ctx) return;
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const dpr = 1; // soft gradients: extra pixel density adds cost, not detail
     let width = 0;
     let height = 0;
     let frame = 0;
     let visible = true;
+    let ready = false;
+    let rgb = '11, 120, 222';
+    let dark = false;
+    const readTheme = () => {
+      rgb = getComputedStyle(document.documentElement).getPropertyValue('--rays-rgb').trim() || '11, 120, 222';
+      dark = document.documentElement.dataset.theme === 'dark';
+    };
+    readTheme();
     const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
 
     const rays: Ray[] = Array.from({ length: count }, (_, i) => ({
@@ -48,8 +59,6 @@ export function VolumetricRays({ count = 28, className = '' }: { count?: number;
 
     const draw = (time: number) => {
       if (!width || !height) return; // zero-size during layout → NaN gradients
-      const rgb = getComputedStyle(document.documentElement).getPropertyValue('--rays-rgb').trim() || '11, 120, 222';
-      const dark = document.documentElement.dataset.theme === 'dark';
       mouse.x += (mouse.tx - mouse.x) * 0.05;
       mouse.y += (mouse.ty - mouse.y) * 0.05;
 
@@ -81,7 +90,7 @@ export function VolumetricRays({ count = 28, className = '' }: { count?: number;
       frame = visible && !document.hidden ? requestAnimationFrame(loop) : 0;
     };
     const start = () => {
-      if (!reduced && !frame && visible && !document.hidden) frame = requestAnimationFrame(loop);
+      if (ready && !reduced && !frame && visible && !document.hidden) frame = requestAnimationFrame(loop);
     };
 
     const onMove = (e: PointerEvent) => {
@@ -97,8 +106,13 @@ export function VolumetricRays({ count = 28, className = '' }: { count?: number;
     });
     const ro = new ResizeObserver(() => {
       resize();
-      if (reduced) draw(0);
+      if (reduced || !frame) draw(performance.now());
     });
+    const mo = new MutationObserver(() => {
+      readTheme();
+      if (!frame) draw(performance.now());
+    });
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
     resize();
     draw(0);
@@ -106,12 +120,19 @@ export function VolumetricRays({ count = 28, className = '' }: { count?: number;
     ro.observe(parent);
     document.addEventListener('visibilitychange', start);
     if (!reduced) window.addEventListener('pointermove', onMove, { passive: true });
-    start();
+    let cancelled = false;
+    whenPageIdle().then(() => {
+      if (cancelled) return;
+      ready = true;
+      start();
+    });
 
     return () => {
+      cancelled = true;
       cancelAnimationFrame(frame);
       io.disconnect();
       ro.disconnect();
+      mo.disconnect();
       document.removeEventListener('visibilitychange', start);
       window.removeEventListener('pointermove', onMove);
     };

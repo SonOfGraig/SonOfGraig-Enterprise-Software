@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Callout } from '@/components/ui/Callout';
 import { SceneBackground } from '@/components/fx/SceneBackground';
@@ -152,13 +153,13 @@ export default async function BlogArticlePage({
           {/* HERO IMAGE — rendered from the post's Remotion composition
               (remotion/src/compositions/BlogHero*.tsx) to /blog/og/{slug}.png. */}
           <figure className="mb-[var(--sp-10)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={`/blog/og/${article.slug}.png`}
               alt={article.heroAlt}
               width={1280}
               height={720}
-              loading="eager"
+              priority
+              sizes="(min-width: 768px) 720px, 100vw"
               className="w-full h-auto rounded-[var(--r-lg)] border border-[var(--sg-border)]"
             />
           </figure>

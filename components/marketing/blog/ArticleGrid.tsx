@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -32,8 +33,14 @@ function ArticleCard({ a, featured = false }: { a: Article; featured?: boolean }
       )}
     >
       <div className={cn('relative overflow-hidden bg-[var(--sg-surface-2)]', featured ? 'aspect-video lg:aspect-auto lg:w-3/5' : 'aspect-video')}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={a.heroImage} alt={a.heroAlt} loading="lazy" className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-[1.04]" />
+        {/* next/image serves resized AVIF/WebP instead of the 1200×630 PNG (~216 KB each). */}
+        <Image
+          src={a.heroImage}
+          alt={a.heroAlt}
+          fill
+          sizes={featured ? '(min-width: 1024px) 640px, 100vw' : '(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw'}
+          className="object-cover transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-[1.04]"
+        />
       </div>
       <div className={cn('flex flex-1 flex-col p-[var(--sp-6)]', featured && 'lg:p-[var(--sp-10)]')}>
         <span className="w-fit rounded-full border border-[var(--sg-border)] bg-[var(--sg-surface-2)] px-2.5 py-0.5 text-label text-[var(--sg-text-3)]">{a.category}</span>

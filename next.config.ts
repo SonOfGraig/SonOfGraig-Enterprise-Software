@@ -55,6 +55,10 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     scrollRestoration: false,
+    // Inline the (small, ~30 KB) stylesheet into the HTML so first paint
+    // doesn't wait on three render-blocking CSS requests (flagged by SEO
+    // audit 2026-10-10, est. 0.5 s).
+    inlineCss: true,
   },
   // No remote image hosts: the optimiser only ever processes our own /public
   // files, so it cannot be pointed at attacker-supplied images.
