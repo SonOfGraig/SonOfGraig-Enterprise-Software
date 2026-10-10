@@ -8,6 +8,7 @@ import { PageTransition } from './PageTransition';
 import { MobileMenu } from './MobileMenu';
 import { CookieBanner } from '@/components/marketing/CookieBanner';
 import { SOCIAL_PROFILES } from '@/lib/social';
+import { NewsletterSignup } from '@/components/marketing/newsletter/NewsletterSignup';
 
 const linkClass =
   'text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors';
@@ -142,6 +143,17 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
               </ul>
             </div>
 
+          </div>
+
+          {/* Newsletter */}
+          <div className="border-t border-[var(--sg-border)] py-8 grid gap-[var(--sp-6)] md:grid-cols-[1fr_1.2fr] md:items-start">
+            <div>
+              <h5 className="text-[13px] font-semibold text-[var(--sg-text-1)]">sonofgraig Insights</h5>
+              <p className="text-[13px] text-[var(--sg-text-3)] mt-2 leading-relaxed max-w-[360px]">
+                Enterprise AI and POPIA, in your inbox every two weeks. Confirm by email; unsubscribe in one click.
+              </p>
+            </div>
+            <NewsletterSignup variant="inline" source="footer" />
           </div>
 
           {/* Sitemap strip */}

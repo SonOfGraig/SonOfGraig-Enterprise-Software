@@ -97,7 +97,7 @@ export const metadata: Metadata = {
       'max-video-preview': -1,
     },
   },
-  alternates: { canonical: '/' },
+  alternates: { canonical: '/', types: { 'application/rss+xml': [{ url: '/feed.xml', title: 'sonofgraig Insights' }] } },
   openGraph: { images: OG_IMAGES,
     type: 'website',
     siteName: 'sonofgraig',

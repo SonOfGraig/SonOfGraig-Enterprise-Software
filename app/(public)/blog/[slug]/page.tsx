@@ -2,12 +2,11 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { Callout } from '@/components/ui/Callout';
 import { SceneBackground } from '@/components/fx/SceneBackground';
 import { FAQ } from '@/components/ui/FAQ';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
-import { SubscribeForm } from '@/components/marketing/blog/SubscribeForm';
+import { NewsletterSignup } from '@/components/marketing/newsletter/NewsletterSignup';
 import { getAllSlugs, getPost, getRelatedPosts } from '@/lib/blog';
 import { articleJsonLd, breadcrumbJsonLd, faqJsonLd, videoJsonLd } from '@/lib/blog/schema';
 
@@ -214,14 +213,14 @@ export default async function BlogArticlePage({
               </div>
             </div>
 
-            <Callout
-              variant="info"
-              label="Subscribe to our build updates"
-              body="Get notified when we publish new insights about our transition to a platform company."
-              className="mb-[var(--sp-12)]"
-            >
-              <SubscribeForm />
-            </Callout>
+            <Card padding="lg" className="mb-[var(--sp-12)]">
+              <p className="text-label text-[var(--sg-blue)]">sonofgraig Insights · fortnightly</p>
+              <h3 className="text-h3 text-[var(--sg-text-1)] mt-[var(--sp-2)]">Get the next article by email.</h3>
+              <p className="text-body text-[var(--sg-text-3)] mt-[var(--sp-2)] mb-[var(--sp-6)]">
+                Practical writing on enterprise AI and POPIA, every two weeks. Pick what you want; unsubscribe in one click.
+              </p>
+              <NewsletterSignup source="article" />
+            </Card>
 
             {related.length > 0 ? (
               <div>

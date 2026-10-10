@@ -116,6 +116,23 @@ export const waitlistSchema = z.object({
   turnstileToken: turnstileField,
 });
 
+// ───────────────────────────────────────────────────────────────────────
+// Newsletter — sonofgraig Insights (listmonk, double opt-in)
+// ───────────────────────────────────────────────────────────────────────
+export const NEWSLETTER_TOPIC_VALUES = ['insights', 'platform', 'governance'] as const;
+export const NEWSLETTER_SOURCES = ['article', 'insights', 'footer'] as const;
+
+export const newsletterSchema = z.object({
+  email: emailField,
+  name: z.preprocess(safeText, z.string()).pipe(z.string().max(120)).optional().default(''),
+  topics: z.array(z.enum(NEWSLETTER_TOPIC_VALUES)).min(1, 'Pick at least one topic').max(3),
+  consent: z.literal(true, { message: 'Please confirm you want to receive the newsletter' }),
+  source: z.enum(NEWSLETTER_SOURCES).optional().default('footer'),
+  hp: honeypotField,
+  turnstileToken: turnstileField,
+});
+
+export type NewsletterSubmission = z.infer<typeof newsletterSchema>;
 export type EarlyAccessSubmission = z.infer<typeof earlyAccessSchema>;
 export type ContactSubmission = z.infer<typeof contactSchema>;
 export type WaitlistSubmission = z.infer<typeof waitlistSchema>;

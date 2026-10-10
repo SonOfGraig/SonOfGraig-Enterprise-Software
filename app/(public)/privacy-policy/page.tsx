@@ -268,6 +268,15 @@ export default function PrivacyPolicyPage() {
                   for that channel.
                 </li>
                 <li>
+                  To send the <strong>sonofgraig Insights</strong> newsletter if you subscribe. We
+                  keep your email address, optional name, the topics you chose, where and when you
+                  asked to subscribe, and when you confirmed by email (double opt-in). These are
+                  stored on our own server in South Africa; issues are delivered through Resend. We
+                  count opens and link clicks only in aggregate, not per person. You can change
+                  topics, unsubscribe, or ask us to delete your details from the link in every
+                  issue.
+                </li>
+                <li>
                   To produce aggregated analytics about how the website and platform are used.
                   Aggregated and anonymised data is not personal information.
                 </li>
