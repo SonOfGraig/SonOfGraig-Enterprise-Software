@@ -126,6 +126,7 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
               <ul className="space-y-3">
                 <li><Link href="/security" className={linkClass}>Security overview</Link></li>
                 <li><Link href="/popia" className={linkClass}>POPIA compliance</Link></li>
+                <li><Link href="/data-protection-africa" className={linkClass}>Africa data laws</Link></li>
                 <li><Link href="/paia" className={linkClass}>PAIA manual</Link></li>
                 <li><Link href="/dpa" className={linkClass}>DPA</Link></li>
                 <li><Link href="/terms" className={linkClass}>Terms of use</Link></li>

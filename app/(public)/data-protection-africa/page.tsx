@@ -6,7 +6,7 @@ import { CTABand } from '@/components/marketing/_shared/CTABand';
 import { Section, SectionHeader } from '@/components/ui/Section';
 import { Card } from '@/components/ui/Card';
 import { Reveal } from '@/components/fx/Reveal';
-import { OG_IMAGES } from '@/lib/seo';
+import { OG_IMAGES, ROBOTS_INDEX } from '@/lib/seo';
 import { LAST_CHECKED, LAWS, OTHER_LAWS, REVIEWED } from '@/lib/data-protection/laws';
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     type: 'website',
     url: '/data-protection-africa',
   },
-  robots: { index: REVIEWED, follow: true },
+  robots: REVIEWED ? ROBOTS_INDEX : { index: false, follow: true },
 };
 
 const COLUMNS = ['Registration', 'Breach notification', 'Cross-border transfers'] as const;

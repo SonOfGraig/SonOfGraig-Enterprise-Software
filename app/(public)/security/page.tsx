@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { SECURITY_HTML } from '@/components/marketing/security/securityHtml';
 import { SecurityEnhancer } from '@/components/marketing/security/SecurityEnhancer';
-import { faqPageJsonLd, OG_IMAGES } from '@/lib/seo';
+import { faqPageJsonLd, OG_IMAGES, ROBOTS_INDEX } from '@/lib/seo';
 import '@/components/marketing/security/security.css';
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     'How sonofgraig protects data: residency, encryption, tenant isolation, PII scrubbing and audit logs, with the real status of every control.',
   alternates: { canonical: '/security' },
   openGraph: { images: OG_IMAGES, title: 'Security & trust — sonofgraig', description: 'Every control with its real status.', type: 'website', url: '/security', locale: 'en_ZA' },
-  robots: { index: true, follow: true },
+  robots: ROBOTS_INDEX,
 };
 
 // The founder's preferred layout: the original trust-centre page (sticky

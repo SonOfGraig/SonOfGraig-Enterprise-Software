@@ -12,7 +12,7 @@ import { Reveal } from '@/components/fx/Reveal';
 import { PricingTiers } from '@/components/marketing/pricing/PricingTiers';
 import { SERVICE_ICONS } from '@/components/marketing/services/serviceIcons';
 import { SERVICES } from '@/lib/services';
-import { SITE_URL, faqPageJsonLd, OG_IMAGES } from '@/lib/seo';
+import { SITE_URL, faqPageJsonLd, OG_IMAGES, ROBOTS_INDEX } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Pricing — sonofgraig | Enterprise AI priced in rand',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     'AI Dev Platform plans quoted in rand during early access — Starter, Growth and Enterprise, POPIA controls in every plan. Fixed-scope services from R45,000.',
   alternates: { canonical: '/pricing' },
   openGraph: { images: OG_IMAGES, title: 'Pricing — sonofgraig', description: 'Enterprise AI priced in rand. No FX risk.', type: 'website', url: '/pricing', locale: 'en_ZA' },
-  robots: { index: true, follow: true },
+  robots: ROBOTS_INDEX,
 };
 
 const pricingJsonLd = {

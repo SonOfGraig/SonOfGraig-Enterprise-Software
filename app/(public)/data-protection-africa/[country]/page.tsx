@@ -8,7 +8,7 @@ import { Section, SectionHeader } from '@/components/ui/Section';
 import { Card } from '@/components/ui/Card';
 import { FAQ } from '@/components/ui/FAQ';
 import { Reveal } from '@/components/fx/Reveal';
-import { faqPageJsonLd, OG_IMAGES } from '@/lib/seo';
+import { faqPageJsonLd, OG_IMAGES, ROBOTS_INDEX } from '@/lib/seo';
 import { getLaw, LAST_CHECKED, LAWS, REVIEWED } from '@/lib/data-protection/laws';
 
 type Props = { params: Promise<{ country: string }> };
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description,
     alternates: { canonical: path },
     openGraph: { images: OG_IMAGES, title: `${l.shortName} for AI projects — ${l.country}`, description, type: 'article', url: path },
-    robots: { index: REVIEWED, follow: true },
+    robots: REVIEWED ? ROBOTS_INDEX : { index: false, follow: true },
   };
 }
 

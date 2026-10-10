@@ -93,3 +93,11 @@ export function speakableJsonLd(pageUrlPath: string, cssSelectors: string[]) {
     },
   };
 }
+
+// Indexable page robots: Google may show large image previews (Discover, News
+// cards) and full snippets. Use on every page that should rank.
+export const ROBOTS_INDEX = {
+  index: true,
+  follow: true,
+  googleBot: { index: true, follow: true, 'max-image-preview': 'large' as const, 'max-snippet': -1, 'max-video-preview': -1 },
+};

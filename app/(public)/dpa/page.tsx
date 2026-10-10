@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { ROBOTS_INDEX } from '@/lib/seo';
 import Link from 'next/link';
 import { Callout } from '@/components/ui/Callout';
 import { LegalDoc } from '@/components/marketing/legal/LegalDoc';
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
   title: 'Data Processing Agreement (DPA) — sonofgraig',
   description: 'How sonofgraig processes personal information on your behalf under POPIA: roles, security, sub-processors, cross-border transfers, breaches and deletion.',
   alternates: { canonical: '/dpa' },
-  robots: { index: true, follow: true },
+  robots: ROBOTS_INDEX,
 };
 
 const sections = [

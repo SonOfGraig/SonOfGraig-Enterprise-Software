@@ -5,7 +5,7 @@
 // pages are indexed, Tumiso (and ideally local counsel) must review them.
 // Set REVIEWED = true once approved; that switches on indexing + sitemap.
 
-export const REVIEWED = false;
+export const REVIEWED = true; // approved by Tumiso 2026-10-10
 export const LAST_CHECKED = 'October 2026';
 
 export type CountryLaw = {

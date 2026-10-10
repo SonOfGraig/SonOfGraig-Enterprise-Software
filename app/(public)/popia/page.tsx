@@ -8,7 +8,7 @@ import { Card } from '@/components/ui/Card';
 import { FeatureCard } from '@/components/ui/FeatureCard';
 import { FAQ, type FAQItem } from '@/components/ui/FAQ';
 import { Reveal } from '@/components/fx/Reveal';
-import { faqPageJsonLd, OG_IMAGES } from '@/lib/seo';
+import { faqPageJsonLd, OG_IMAGES, ROBOTS_INDEX } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'POPIA Statement & Your Data Rights | sonofgraig',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     'How sonofgraig collects, uses, shares and protects personal information under the Protection of Personal Information Act 4 of 2013, and how to exercise your rights.',
   alternates: { canonical: '/popia' },
   openGraph: { images: OG_IMAGES, title: 'POPIA statement — sonofgraig', description: 'How we handle personal information under POPIA.', type: 'website', url: '/popia', locale: 'en_ZA' },
-  robots: { index: true, follow: true },
+  robots: ROBOTS_INDEX,
 };
 
 // Rebuilt 2026-10-09 to describe processing as it actually happens today.

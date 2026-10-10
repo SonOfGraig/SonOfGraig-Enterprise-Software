@@ -11,7 +11,7 @@ import {
   CompanyFactsSection,
   AboutFAQSection,
 } from '@/components/marketing/about/AboutSections';
-import { faqPageJsonLd, OG_IMAGES } from '@/lib/seo';
+import { faqPageJsonLd, OG_IMAGES, ROBOTS_INDEX } from '@/lib/seo';
 import { aboutFaqs } from '@/lib/seo/faqs';
 
 const SITE_URL =
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     url: '/about',
     locale: 'en_ZA',
   },
-  robots: { index: true, follow: true },
+  robots: ROBOTS_INDEX,
 };
 
 const aboutJsonLd = {

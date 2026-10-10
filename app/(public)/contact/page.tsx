@@ -12,7 +12,7 @@ import { Timeline } from '@/components/ui/Timeline';
 import { FAQ, type FAQItem } from '@/components/ui/FAQ';
 import { Reveal } from '@/components/fx/Reveal';
 import { ContactForm } from '@/components/marketing/contact/ContactForm';
-import { faqPageJsonLd, OG_IMAGES } from '@/lib/seo';
+import { faqPageJsonLd, OG_IMAGES, ROBOTS_INDEX } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Contact — sonofgraig | Talk to a person, not a pipeline',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     'Five routes to a named person at sonofgraig: sales, support, security disclosure, POPIA and partnerships. Pretoria-based team, published response times.',
   alternates: { canonical: '/contact' },
   openGraph: { images: OG_IMAGES, title: 'Contact sonofgraig', description: 'Talk to a person, not a sales pipeline.', type: 'website', url: '/contact', locale: 'en_ZA' },
-  robots: { index: true, follow: true },
+  robots: ROBOTS_INDEX,
 };
 
 const ROUTES = [

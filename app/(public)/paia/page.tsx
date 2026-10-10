@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { ROBOTS_INDEX } from '@/lib/seo';
 import Link from 'next/link';
 import { Callout } from '@/components/ui/Callout';
 
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   description:
     'The sonofgraig PAIA manual: the records we hold, how to request access to them under the Promotion of Access to Information Act, and how we process personal information under POPIA.',
   alternates: { canonical: '/paia' },
-  robots: { index: true, follow: true },
+  robots: ROBOTS_INDEX,
 };
 
 const VERSION = '1.0';

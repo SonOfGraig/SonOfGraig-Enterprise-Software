@@ -6,7 +6,7 @@ import { CTABand } from '@/components/marketing/_shared/CTABand';
 import { Section, SectionHeader } from '@/components/ui/Section';
 import { Card } from '@/components/ui/Card';
 import { Reveal } from '@/components/fx/Reveal';
-import { OG_IMAGES } from '@/lib/seo';
+import { OG_IMAGES, ROBOTS_INDEX } from '@/lib/seo';
 import { SOCIAL_PROFILES, CIPC_REG_NO } from '@/lib/social';
 
 // Press kit (founder decision 2026-10-10: keep Press). Only verifiable facts:
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description: 'Press resources for sonofgraig: company boilerplate, fact sheet, founder bio and photo, logo, and the media contact for interviews and enquiries.',
   alternates: { canonical: '/press' },
   openGraph: { images: OG_IMAGES, title: 'Press — sonofgraig', description: 'Boilerplate, fact sheet, founder bio and brand assets.', type: 'website', url: '/press', locale: 'en_ZA' },
-  robots: { index: true, follow: true },
+  robots: ROBOTS_INDEX,
 };
 
 const BOILERPLATE_SHORT =

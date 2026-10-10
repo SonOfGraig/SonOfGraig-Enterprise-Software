@@ -4,7 +4,7 @@ import { CTABand } from '@/components/marketing/_shared/CTABand';
 import { Section } from '@/components/ui/Section';
 import { RagStudioDemo } from '@/components/marketing/home/RagStudioDemo';
 import { ModuleRows, ArchitectureSection, StackSection } from '@/components/marketing/platform/PlatformSections';
-import { SITE_URL, ORG_ID, breadcrumbJsonLd, OG_IMAGES } from '@/lib/seo';
+import { SITE_URL, ORG_ID, breadcrumbJsonLd, OG_IMAGES, ROBOTS_INDEX } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'AI Dev Platform: RAG Studio & Agent Builder | sonofgraig',
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     'Enterprise AI built in South Africa: cited answers with RAG Studio, traceable agents with Agent Builder, and POPIA governance, on one audit trail.',
   alternates: { canonical: '/platform/ai-dev-platform' },
   openGraph: { images: OG_IMAGES, title: 'The AI Dev Platform', description: 'Four modules, one audit trail.', type: 'website', url: '/platform/ai-dev-platform', locale: 'en_ZA' },
-  robots: { index: true, follow: true },
+  robots: ROBOTS_INDEX,
 };
 
 const productJsonLd = {

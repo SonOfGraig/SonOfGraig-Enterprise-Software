@@ -9,7 +9,7 @@ import { Timeline } from '@/components/ui/Timeline';
 import { FAQ } from '@/components/ui/FAQ';
 import { Reveal } from '@/components/fx/Reveal';
 import { SERVICES } from '@/lib/services';
-import { faqPageJsonLd, OG_IMAGES } from '@/lib/seo';
+import { faqPageJsonLd, OG_IMAGES, ROBOTS_INDEX } from '@/lib/seo';
 import { servicesFaqs } from '@/lib/seo/faqs';
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     url: '/services',
     locale: 'en_ZA',
   },
-  robots: { index: true, follow: true },
+  robots: ROBOTS_INDEX,
 };
 
 const STEPS = [

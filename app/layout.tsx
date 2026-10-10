@@ -6,7 +6,7 @@ import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity';
 import { SmoothScroll } from '@/components/fx/SmoothScroll';
 import './globals.css'; // Global styles
-import { OG_IMAGES } from '@/lib/seo';
+import { OG_IMAGES, ROBOTS_INDEX } from '@/lib/seo';
 import { SOCIAL_PROFILES, GOOGLE_BUSINESS_KG, CIPC_REG_NO } from '@/lib/social';
 
 // v4: Manrope returns as the display face — it carried the brand on the
@@ -48,6 +48,7 @@ const SITE_DESCRIPTION =
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  robots: ROBOTS_INDEX,
   // Child pages already include the brand in their titles, so no template here.
   // Title repositions to "Enterprise Software Company" per entity-system doc
   // so we have a chance of ranking on non-brand queries like
@@ -87,17 +88,6 @@ export const metadata: Metadata = {
     'KwaMhlanga',
     'Pretoria',
   ],
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-      'max-video-preview': -1,
-    },
-  },
   alternates: { canonical: '/', types: { 'application/rss+xml': [{ url: '/feed.xml', title: 'sonofgraig Insights' }] } },
   openGraph: { images: OG_IMAGES,
     type: 'website',

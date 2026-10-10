@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { Callout } from '@/components/ui/Callout';
 import { BackToTop } from '@/components/ui/BackToTop';
-import { OG_IMAGES } from '@/lib/seo';
+import { OG_IMAGES, ROBOTS_INDEX } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy — How sonofgraig Handles Your Data',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     type: 'article',
     url: '/privacy-policy',
   },
-  robots: { index: true, follow: true },
+  robots: ROBOTS_INDEX,
 };
 
 const LAST_UPDATED = '1 May 2026';

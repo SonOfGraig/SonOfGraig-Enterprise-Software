@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { ROBOTS_INDEX } from '@/lib/seo';
 import Link from 'next/link';
 import { LegalDoc } from '@/components/marketing/legal/LegalDoc';
 import { CIPC_REG_NO } from '@/lib/social';
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
   title: 'Terms of Use — sonofgraig',
   description: 'The terms that apply when you use the sonofgraig website: who we are, acceptable use, intellectual property, liability and South African law.',
   alternates: { canonical: '/terms' },
-  robots: { index: true, follow: true },
+  robots: ROBOTS_INDEX,
 };
 
 const sections = [

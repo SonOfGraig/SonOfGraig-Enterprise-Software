@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/Card';
 import { Reveal } from '@/components/fx/Reveal';
 import { ROUTES, type SiteRoute } from '@/lib/routes';
 import { getAllPosts } from '@/lib/blog';
-import { OG_IMAGES } from '@/lib/seo';
+import { OG_IMAGES, ROBOTS_INDEX } from '@/lib/seo';
 
 // Human-readable sitemap, generated from the same list as /sitemap.xml.
 
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: 'Every page on sonofgraig.com in one place: the AI Dev Platform, services, pricing, Insights articles, company and trust pages.',
   alternates: { canonical: '/sitemap' },
   openGraph: { images: OG_IMAGES, title: 'Sitemap — sonofgraig', description: 'Every page on sonofgraig.com.', type: 'website', url: '/sitemap', locale: 'en_ZA' },
-  robots: { index: true, follow: true },
+  robots: ROBOTS_INDEX,
 };
 
 const GROUPS: SiteRoute['group'][] = ['Product', 'Services', 'Company', 'Trust & legal'];
