@@ -1,0 +1,34 @@
+{{ define "header" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>{{ .Data.Title }} - {{ .SiteName }}</title>
+  <meta name="description" content="{{ .Data.Description }}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <link href="/public/static/style.css?v={{ .AssetVersion }}" rel="stylesheet" type="text/css" />
+  <link href="/public/custom.css?v={{ .AssetVersion }}" rel="stylesheet" type="text/css">
+  <link rel="icon" href="https://sonofgraig.com/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header class="sg-bar">
+    <a class="sg-brand" href="https://sonofgraig.com">
+      <img src="https://sonofgraig.com/email-logo" alt="" width="30" height="27" />
+      <span>sonofgraig <em>Insights</em></span>
+    </a>
+  </header>
+  <div class="container wrap">
+{{ end }}
+
+{{ define "footer" }}
+  </div>
+  <footer class="container sg-foot">
+    sonofgraig Digital Solutions (Pty) Ltd &middot;
+    <a href="https://sonofgraig.com">sonofgraig.com</a> &middot;
+    <a href="https://sonofgraig.com/privacy-policy">Privacy</a> &middot;
+    <a href="mailto:tumiso@sonofgraig.com">tumiso@sonofgraig.com</a>
+  </footer>
+</body>
+</html>
+{{ end }}

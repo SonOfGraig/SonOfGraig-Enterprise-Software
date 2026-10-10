@@ -43,14 +43,16 @@ def main():
     for p in posts:
         url = f"{p['link']}?utm_source=newsletter&utm_medium=email&utm_campaign={tag}"
         cards.append(
-            f'<div style="padding:16px 0;border-bottom:1px solid #eef2f7;">'
-            f'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#2563eb;">{html.escape(p["cat"])}</div>'
-            f'<a href="{{{{ TrackLink "{html.escape(url)}" }}}}" style="display:block;margin-top:4px;font-size:17px;font-weight:600;color:#0f172a;text-decoration:none;">{html.escape(p["title"])}</a>'
-            f'<p style="margin:6px 0 0;color:#475569;font-size:14px;">{html.escape(p["desc"])}</p></div>')
+            f'<div style="padding:16px 0;border-bottom:1px solid #E5E7EB;">'
+            f'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#0B9EDE;">{html.escape(p["cat"])}</div>'
+            f'<a href="{html.escape(url)}" style="display:block;margin-top:4px;font-size:17px;font-weight:600;color:#0D1117;text-decoration:none;">{html.escape(p["title"])}</a>'
+            f'<p style="margin:6px 0 0;color:#4B5563;font-size:14px;">{html.escape(p["desc"])}</p></div>')
     body = ('<p>Hello,</p>'
             '<p>[Write a short personal intro here - what you are working on, one line on why these matter.]</p>'
             + ''.join(cards) +
-            '<p style="margin-top:20px;">Reply to this email any time - it comes straight to me.</p><p>Tumiso</p>')
+            '<p style="margin-top:22px;">Reply to this email any time - it comes straight to me.</p>'
+            '<p style="margin:0;font-weight:700;color:#0D1117;">Tumiso Graig Ramaboya</p>'
+            '<p style="margin:0;font-size:13px;color:#6B7280;">Founder, sonofgraig</p>')
     n = len(posts)
     subject = posts[0]['title'] if n == 1 else f"{posts[0]['title']} (+{n-1} more)"
     camp = {'name': f"sonofgraig Insights - {today:%d %b %Y}", 'subject': subject, 'lists': insights,

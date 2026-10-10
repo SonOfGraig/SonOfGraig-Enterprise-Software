@@ -8,8 +8,7 @@ import { Section } from '@/components/ui/Section';
 import { WordReveal } from '@/components/fx/WordReveal';
 import { smoothScrollTo } from '@/lib/scroll';
 import { ArticleGrid, type Article } from './ArticleGrid';
-import { NewsletterSignup } from '@/components/marketing/newsletter/NewsletterSignup';
-import { Card } from '@/components/ui/Card';
+import { NewsletterCard } from '@/components/marketing/newsletter/NewsletterCard';
 import s from './InsightsExplorer.module.css';
 
 // Insights page = the 2026 site's Marketplace hero (MarketplacePage.tsx):
@@ -107,14 +106,7 @@ export function InsightsExplorer({ articles }: { articles: Article[] }) {
         <div ref={gridRef}>
           <ArticleGrid articles={articles} query={query} />
         </div>
-        <Card padding="lg" className="mx-auto mt-[var(--sp-16)] max-w-[880px]">
-          <p className="text-label text-[var(--sg-blue)]">sonofgraig Insights · fortnightly</p>
-          <h2 className="text-h2 text-[var(--sg-text-1)] mt-[var(--sp-2)]">Get new articles by email.</h2>
-          <p className="text-body text-[var(--sg-text-3)] mt-[var(--sp-2)] mb-[var(--sp-6)]">
-            Every two weeks: new Insights articles, and — if you want them — platform updates and POPIA briefings.
-          </p>
-          <NewsletterSignup source="insights" />
-        </Card>
+        <NewsletterCard source="insights" className="mx-auto mt-[var(--sp-16)] max-w-[960px]" />
       </Section>
     </>
   );

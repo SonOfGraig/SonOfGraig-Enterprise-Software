@@ -110,7 +110,7 @@ export function NewsletterSignup({ variant = 'card', source }: { variant?: 'card
           </div>
           <fieldset>
             <legend className="text-label text-[var(--sg-text-3)] mb-[var(--sp-3)]">What would you like?</legend>
-            <div className="grid gap-[var(--sp-2)] sm:grid-cols-3">
+            <div className="grid gap-[var(--sp-2)]">
               {TOPICS.map((t) => {
                 const on = topics.includes(t.value);
                 return (

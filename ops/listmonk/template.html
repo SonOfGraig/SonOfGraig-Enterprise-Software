@@ -1,24 +1,27 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="light"><title>{{ .Campaign.Subject }}</title></head>
-<body style="margin:0;padding:0;background:#f4f6fa;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#0f172a;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f6fa;"><tr><td align="center" style="padding:32px 12px;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border:1px solid #e2e8f0;border-radius:14px;">
-<tr><td style="padding:28px 32px 8px;">
-  <a href="https://sonofgraig.com" style="text-decoration:none;color:#0f172a;font-weight:700;font-size:18px;letter-spacing:-0.01em;">sonofgraig <span style="color:#2563eb;font-weight:600;">Insights</span></a>
-  <div style="font-size:12px;color:#64748b;margin-top:4px;">Enterprise AI and POPIA, every two weeks</div>
+<meta name="color-scheme" content="light only"><title>{{ .Campaign.Subject }}</title></head>
+<body style="margin:0;padding:0;background:#F4F4F7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1F2937;-webkit-font-smoothing:antialiased;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F4F4F7;"><tr><td align="center" style="padding:32px 12px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:#FFFFFF;border:1px solid #E5E7EB;border-radius:14px;overflow:hidden;">
+<tr><td style="background:#0D1117;padding:16px 28px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+    <td style="width:46px;vertical-align:middle;"><a href="https://sonofgraig.com"><img src="https://sonofgraig.com/email-logo" alt="sonofgraig" width="36" height="32" style="display:block;border:0;"></a></td>
+    <td style="vertical-align:middle;font-size:17px;font-weight:700;letter-spacing:-0.015em;color:#FFFFFF;">sonofgraig <span style="color:#38BDF8;font-weight:600;">Insights</span></td>
+    <td style="vertical-align:middle;text-align:right;font-size:11px;color:#9CA3AF;letter-spacing:0.04em;text-transform:uppercase;font-weight:600;">Enterprise AI &middot; ZA</td>
+  </tr></table>
 </td></tr>
-<tr><td style="padding:16px 32px 28px;font-size:15px;line-height:1.6;">
+<tr><td style="padding:30px 28px 26px;font-size:15px;line-height:1.65;">
 {{ template "content" . }}
 </td></tr>
-<tr><td style="padding:20px 32px;border-top:1px solid #e2e8f0;font-size:12px;line-height:1.6;color:#64748b;">
+<tr><td style="background:#FAFBFC;border-top:1px solid #E5E7EB;padding:20px 28px;font-size:12px;line-height:1.6;color:#6B7280;">
   You are receiving this because you subscribed at sonofgraig.com and confirmed by email.<br>
-  <a href="{{ ManageURL }}" style="color:#2563eb;">Choose topics</a> &middot;
-  <a href="{{ UnsubscribeURL }}" style="color:#2563eb;">Unsubscribe</a> &middot;
-  <a href="https://sonofgraig.com/privacy-policy" style="color:#2563eb;">Privacy</a><br>
-  sonofgraig &middot; CIPC K2025188095 &middot; South Africa &middot; <a href="mailto:tumiso@sonofgraig.com" style="color:#64748b;">tumiso@sonofgraig.com</a>
+  <a href="{{ ManageURL }}" style="color:#0B9EDE;text-decoration:none;">Choose topics</a> &middot;
+  <a href="{{ UnsubscribeURL }}" style="color:#0B9EDE;text-decoration:none;">Unsubscribe</a> &middot;
+  <a href="https://sonofgraig.com/privacy-policy" style="color:#0B9EDE;text-decoration:none;">Privacy</a><br>
+  sonofgraig Digital Solutions (Pty) Ltd &middot; CIPC K2025188095 &middot; KwaMhlanga, Mpumalanga, South Africa &middot;
+  <a href="mailto:tumiso@sonofgraig.com" style="color:#6B7280;">tumiso@sonofgraig.com</a>
 </td></tr>
 </table>
 </td></tr></table>
-{{ TrackView }}
 </body></html>
