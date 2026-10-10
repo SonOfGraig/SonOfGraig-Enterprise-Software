@@ -36,10 +36,10 @@ const post: Post = {
     <p>It is worth being precise: pricing in rand does not necessarily make software cheaper in absolute terms. What it does is remove variance. The customer trades the possibility of a favourable currency swing for the certainty of a fixed cost. For enterprise procurement, certainty is worth more than the lottery ticket — budgets are annual, and a predictable cost is one you can actually approve.</p>
 
     <h2 id="local-everything">Why this fits the rest of our architecture</h2>
-    <p>Rand pricing is one expression of a broader thesis: software built for South African conditions should remove South African frictions rather than import foreign ones. The same logic drives in-region hosting in AWS af-south-1 (covered in <a href="/blog/aws-af-south-1-data-residency">the residency explainer</a>) and POPIA-native compliance (in <a href="/blog/popia-sections-11-19-72-and-ai-architecture">the POPIA deep-dive</a>). Currency, residency, and compliance are the three frictions foreign SaaS imposes by default; addressing all three is the point of building locally.</p>
+    <p>Rand pricing is one expression of a broader thesis: software built for South African conditions should remove South African frictions rather than import foreign ones. The same logic drives designing for in-region hosting, such as AWS af-south-1 (covered in <a href="/blog/aws-af-south-1-data-residency">the residency explainer</a>) and POPIA-native compliance (in <a href="/blog/popia-sections-11-19-72-and-ai-architecture">the POPIA deep-dive</a>). Currency, residency, and compliance are the three frictions foreign SaaS imposes by default; addressing all three is the point of building locally.</p>
 
     <h2 id="how-we-price">How our pricing works</h2>
-    <p>Our subscriptions are quoted and billed in rand, from a fixed monthly figure, with no dollar peg and no FX surcharge. The full tier breakdown — and the founding-customer programme — is on <a href="/pricing">the pricing page</a>. The strategic frame behind the whole platform is in <a href="/blog/why-africa-needs-its-own-enterprise-ai-platform">the pillar essay</a>.</p>
+    <p>Our subscriptions are quoted and billed in rand, with no dollar peg and no FX surcharge. During early access each plan is quoted on a call; what each tier includes, and our published fixed-scope service prices, are on <a href="/pricing">the pricing page</a>. The strategic frame behind the whole platform is in <a href="/blog/why-africa-needs-its-own-enterprise-ai-platform">the pillar essay</a>.</p>
   `,
 };
 

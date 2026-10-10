@@ -88,13 +88,18 @@ export function createFormHandler<T extends z.ZodTypeAny>(
       turnstileToken?: string;
     } & Record<string, unknown>;
 
-    // Honeypot — silently accept so bots don't learn we filter.
+    const tv = await verifyTurnstile(data.turnstileToken, ip);
+
+    // Honeypot: only a signal when Turnstile also failed. Autofill can fill
+    // the hidden field for real people, and a verified human must get through.
     if (data.hp && data.hp.length > 0) {
-      console.warn('[forms] honeypot triggered', { ip });
-      return NextResponse.json({ ok: true });
+      if (!tv.ok) {
+        console.warn(`[forms ${requestId}] honeypot + failed turnstile — dropped`, { ip });
+        return NextResponse.json({ ok: true }); // silent, so bots learn nothing
+      }
+      console.log(`[forms ${requestId}] honeypot filled but turnstile passed — accepting (likely autofill)`);
     }
 
-    const tv = await verifyTurnstile(data.turnstileToken, ip);
     if (!tv.ok) {
       // The reason (missing secret, network error, Cloudflare error codes)
       // stays in the server log; the client only learns that the check failed.

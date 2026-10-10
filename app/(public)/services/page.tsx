@@ -31,7 +31,7 @@ const STEPS = [
   { when: 'Step 1', title: 'Discovery call', body: 'A 30-minute scoping session. We diagnose the problem and recommend the right approach — including “you don’t need us”.', icon: <PhoneCall /> },
   { when: 'Step 2', title: 'Proposal and scope', body: 'A fixed-scope proposal with defined deliverables, timeline and price in rand. No surprises.', icon: <FileSignature /> },
   { when: 'Step 3', title: 'Build and deliver', body: 'Weekly updates while we build. Delivery includes full hand-over documentation, and the code lives in your repositories.', icon: <Hammer /> },
-  { when: 'Step 4', title: 'Platform credit', body: 'Your project becomes a template for the AI Dev Platform, and you get free early access.', icon: <Gift /> },
+  { when: 'Step 4', title: 'Into the platform', body: 'Your project becomes a template for the AI Dev Platform, and you get a fast track into early access.', icon: <Gift /> },
 ];
 
 export default function ServicesPage() {
@@ -83,7 +83,7 @@ export default function ServicesPage() {
       <CTABand scene="dataShards"
         eyebrow="Fixed scope · ZAR pricing"
         title="Tell us what you are trying to do."
-        body="You will hear back from a person within one business day — with a recommendation, not a sales sequence."
+        body="You will hear back from a person within two business days — with a recommendation, not a sales sequence."
         primary={{ label: 'Start a project', href: '/contact' }}
         secondary={{ label: 'See the platform', href: '/#platform' }}
       />

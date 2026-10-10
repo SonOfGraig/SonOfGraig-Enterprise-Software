@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import {
   ArrowUpRight, Briefcase, Clock, FileCheck2, Handshake, LifeBuoy, Mail, MailCheck, MapPin, MessagesSquare, PhoneCall,
-  Route, ShieldAlert, ShieldCheck, UserCheck,
+  Route, ShieldAlert, ShieldCheck,
 } from 'lucide-react';
 import { PageHero } from '@/components/marketing/_shared/PageHero';
 import { CTABand } from '@/components/marketing/_shared/CTABand';
@@ -17,7 +17,7 @@ import { faqPageJsonLd } from '@/lib/seo';
 export const metadata: Metadata = {
   title: 'Contact — sonofgraig | Talk to a person, not a pipeline',
   description:
-    'Six routes to a named person at sonofgraig: sales, support, security disclosure, POPIA, partnerships and careers. Pretoria-based team, published response times.',
+    'Five routes to a named person at sonofgraig: sales, support, security disclosure, POPIA and partnerships. Pretoria-based team, published response times.',
   alternates: { canonical: '/contact' },
   openGraph: { title: 'Contact sonofgraig', description: 'Talk to a person, not a sales pipeline.', type: 'website', url: '/contact', locale: 'en_ZA' },
   robots: { index: true, follow: true },
@@ -25,11 +25,10 @@ export const metadata: Metadata = {
 
 const ROUTES = [
   { icon: Briefcase, path: '01 · Procurement', title: 'Sales & subscriptions', sla: '2 business days', email: 'sales@sonofgraig.com', body: 'Early access, service engagements, fixed-scope quotes, B-BBEE and supplier on-boarding documents, ZAR invoicing.' },
-  { icon: LifeBuoy, path: '02 · Customer success', title: 'Technical support', sla: '8 business hours', email: 'info@sonofgraig.com', body: 'For active customers and engagements: bugs, retrieval issues, ingestion errors, billing and account changes.' },
-  { icon: ShieldAlert, path: '03 · Critical', title: 'Security disclosure', sla: '1 hour, 24/7', email: 'tumiso@sonofgraig.com', body: 'Vulnerability reports, suspected breaches and abuse. We credit good-faith research and do not retaliate against it.' },
+  { icon: LifeBuoy, path: '02 · Customer success', title: 'Technical support', sla: '2 business days', email: 'info@sonofgraig.com', body: 'For active customers and engagements: bugs, retrieval issues, ingestion errors, billing and account changes.' },
+  { icon: ShieldAlert, path: '03 · Critical', title: 'Security disclosure', sla: '1 business day', email: 'tumiso@sonofgraig.com', body: 'Vulnerability reports, suspected breaches and abuse. We credit good-faith research and do not retaliate against it.' },
   { icon: ShieldCheck, path: '04 · POPIA & legal', title: 'Information Officer', sla: '10 business days', email: 'tumiso@sonofgraig.com', body: 'Data subject access requests, complaints, consent withdrawal, PAIA requests and DPA queries.' },
-  { icon: Handshake, path: '05 · Channel', title: 'Partnerships & press', sla: '5 business days', email: 'sales@sonofgraig.com', body: 'Implementation partners, integrations, resellers, and analyst or press enquiries.' },
-  { icon: UserCheck, path: '06 · Build with us', title: 'Careers', sla: '5 business days', email: 'info@sonofgraig.com', body: 'Senior engineers and AI specialists. Pretoria-based with hybrid options, paid competitively in rand.' },
+  { icon: Handshake, path: '05 · Channel', title: 'Partnerships & press', sla: '2 business days', email: 'sales@sonofgraig.com', body: 'Implementation partners, integrations, resellers, and analyst or press enquiries.' },
 ];
 
 const INBOXES = [
@@ -64,7 +63,7 @@ const FAQS: FAQItem[] = [
   { q: 'Can we sign an NDA first?', a: 'Yes. We can send our standard mutual NDA, or sign yours. Most enterprise processes need one before the discovery call, and we treat that as normal.' },
   { q: 'Where does the contact form send my data?', a: 'The form sends your message over TLS to our team inbox using Resend, our transactional email provider (a US-based sub-processor), and sends you a confirmation. We keep enquiries for follow-up and delete them on request. We do not share them for marketing.' },
   { q: 'Which meeting tools do you use?', a: 'Google Meet by default, and Teams or Zoom if your security team prefers. We never record without consent. In-person meetings in Pretoria, Johannesburg and Cape Town are possible with a week’s notice.' },
-  { q: 'What if it is urgent and after hours?', a: 'Security disclosures to tumiso@sonofgraig.com are answered around the clock. Everything else is answered on the next business day in Pretoria.' },
+  { q: 'What if it is urgent and after hours?', a: 'Security disclosures to tumiso@sonofgraig.com are answered within one business day. Everything else is answered within two business days, from Pretoria.' },
   { q: 'Do you run a bug bounty?', a: 'We accept coordinated disclosure rather than a public bounty for now. Send reproducible steps and impact to tumiso@sonofgraig.com. Good-faith researchers are credited where appropriate.' },
 ];
 
@@ -84,7 +83,7 @@ export default function ContactPage() {
       >
         <div className="flex flex-wrap justify-center gap-3">
           {[
-            ['Security', '1 hour, 24/7'],
+            ['Security', '1 business day'],
             ['Sales', '2 business days'],
             ['POPIA requests', '10 business days'],
           ].map(([k, v]) => (

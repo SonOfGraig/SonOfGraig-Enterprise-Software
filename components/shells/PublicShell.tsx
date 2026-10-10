@@ -120,6 +120,7 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
                 <li><Link href="/security" className={linkClass}>Security overview</Link></li>
                 <li><Link href="/popia" className={linkClass}>POPIA compliance</Link></li>
                 <li><Link href="/dpa" className={linkClass}>DPA</Link></li>
+                <li><Link href="/paia" className={linkClass}>PAIA manual</Link></li>
                 <li><Link href="/status" className={linkClass}>Status page</Link></li>
               </ul>
             </div>
@@ -130,7 +131,6 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
               <ul className="space-y-3">
                 <li><Link href="/about" className={linkClass}>About</Link></li>
                 <li><Link href="/blog" className={linkClass}>Insights</Link></li>
-                <li><Link href="/careers" className={linkClass}>Careers</Link></li>
                 <li><Link href="/contact" className={linkClass}>Contact</Link></li>
                 <li><Link href="/press" className={linkClass}>Press</Link></li>
                 <li><Link href="/partners" className={linkClass}>Partners</Link></li>

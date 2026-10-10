@@ -140,7 +140,7 @@ export function AIDevHeroCard() {
               <div className={styles.expandMetaRow}><Map strokeWidth={1.5} /><span>Status: <strong>RAG Studio first, early access open</strong></span></div>
               <div className={styles.expandMetaRow}><ShieldCheck strokeWidth={1.5} /><span>POPIA: <strong>designed around s11 &amp; s19</strong></span></div>
               <div className={styles.expandMetaRow}><MapPin strokeWidth={1.5} /><span>Built in: <strong>South Africa</strong></span></div>
-              <div className={styles.expandMetaRow}><Activity strokeWidth={1.5} /><span>Pricing: <strong>from R4,999/month ZAR</strong></span></div>
+              <div className={styles.expandMetaRow}><Activity strokeWidth={1.5} /><span>Pricing: <strong>quoted in rand, no FX</strong></span></div>
             </div>
             <Link
               href="/early-access"

@@ -65,9 +65,9 @@ export function ServicesGrid() {
               <Sparkles size={18} aria-hidden="true" />
             </span>
             <div>
-              <p className="font-sans text-[15px] font-semibold text-[var(--sg-text-1)]">Platform founding credit</p>
+              <p className="font-sans text-[15px] font-semibold text-[var(--sg-text-1)]">A fast track into the platform</p>
               <p className="text-body text-[var(--sg-text-3)] mt-1 max-w-[560px]">
-                Every project client gets free early access to the AI Dev Platform, and your implementation becomes a platform template.
+                Every project client gets a fast track into AI Dev Platform early access, and your implementation becomes a platform template.
               </p>
             </div>
           </div>

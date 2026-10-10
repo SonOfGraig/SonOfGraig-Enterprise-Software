@@ -36,7 +36,7 @@ const post: Post = {
     {
       question: 'Does hosting the model in af-south-1 remove the Section 72 question entirely?',
       answer:
-        'For the inference step, yes — if the model runs in AWS af-south-1 and the data never leaves South Africa, there is no cross-border transfer to justify. That is the core reason our architecture defaults to in-region hosting. See our data residency explainer for what "hosted in South Africa" actually means.',
+        'For the inference step, yes — if the model runs in AWS af-south-1 and the data never leaves South Africa, there is no cross-border transfer to justify. That is why we design for in-region hosting wherever a suitable model exists. See our data residency explainer for what "hosted in South Africa" actually means.',
     },
   ],
   bodyHtml: `
@@ -48,7 +48,7 @@ const post: Post = {
 
     <h2 id="three-patterns">Three architectural patterns, three risk profiles</h2>
     <p>There are essentially three ways to design around Section 72, in descending order of cleanliness.</p>
-    <p><strong>Pattern A — keep inference in-region.</strong> Run the model in AWS af-south-1 (or another South African facility) so the prompt never crosses a border. There is no cross-border transfer to justify, so Section 72 simply does not engage for the inference step. This is the pattern we default to; the reasoning is in <a href="/blog/aws-af-south-1-data-residency">the data residency explainer</a>.</p>
+    <p><strong>Pattern A — keep inference in-region.</strong> Run the model in AWS af-south-1 (or another South African facility) so the prompt never crosses a border. There is no cross-border transfer to justify, so Section 72 simply does not engage for the inference step. This is the pattern we design for; the reasoning is in <a href="/blog/aws-af-south-1-data-residency">the data residency explainer</a>.</p>
     <p><strong>Pattern B — transfer under an adequate-protection agreement.</strong> If a workload genuinely needs a model only available abroad, the transfer can be made lawful with a data processing agreement that binds the recipient to adequate protection, combined with strict data minimisation so only the fields the task requires ever leave. This is viable but adds contractual and audit overhead.</p>
     <p><strong>Pattern C — de-identify before transfer.</strong> If the data sent abroad is genuinely anonymised so re-identification is not reasonably possible, it is no longer personal information and Section 72 does not apply. The bar is high and easy to get wrong — tokenising names is not anonymisation.</p>
 
@@ -59,7 +59,7 @@ const post: Post = {
     <p class="answer-block">Whatever you decide, you must be able to prove it after the fact. A defensible AI system logs, per inference: who initiated it, what data was included, which model and region served it, and the lawful basis for any cross-border element. If you cannot answer those four in one query, you have a logging system, not a compliance posture. This is exactly what a Governance Hub is for, as we argue in <a href="/blog/ai-governance-is-a-product-feature">the governance piece</a>.</p>
 
     <h2 id="how-we-help">How we help</h2>
-    <p>Our default architecture keeps inference in af-south-1, so Section 72 does not engage for the model call at all. Where a workload needs more, our <a href="/services/ai-governance-audit">AI Governance &amp; Ethics Audit</a> maps every transfer against Sections 11, 19, and 72 and produces a board-ready remediation roadmap signed by a registered Information Officer. The full statutory walkthrough is in <a href="/blog/popia-sections-11-19-72-and-ai-architecture">the POPIA sections deep-dive</a>, and our standing compliance posture is on <a href="/popia">the POPIA page</a>.</p>
+    <p>Where a suitable in-region model exists, keeping inference in South Africa means Section 72 does not engage for the model call at all. Where a workload needs more, our <a href="/services/ai-governance-audit">AI Governance &amp; Ethics Audit</a> maps every transfer against Sections 11, 19, and 72 and produces a board-ready remediation roadmap signed by a registered Information Officer. The full statutory walkthrough is in <a href="/blog/popia-sections-11-19-72-and-ai-architecture">the POPIA sections deep-dive</a>, and how we handle personal information ourselves is on <a href="/popia">the POPIA page</a>.</p>
   `,
 };
 

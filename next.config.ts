@@ -74,6 +74,8 @@ const nextConfig: NextConfig = {
     return [
       { source: '/platform/timeline', destination: '/platform', permanent: true },
       { source: '/roadmap', destination: '/platform', permanent: true },
+      // Not hiring yet (founder, 2026-10-10): old careers links land on About.
+      { source: '/careers', destination: '/about', permanent: false },
     ];
   },
   async headers() {

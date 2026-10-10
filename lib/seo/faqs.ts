@@ -13,27 +13,29 @@ import type { Faq } from '../seo';
 //   3. Keep each answer 40–80 words. Short enough for voice; long enough
 //      to be useful as a snippet.
 //   4. No marketing fluff. Facts only. Answer engines penalise hype.
+//   5. Only what is true today (founder, 2026-10-10): no ship dates, no
+//      published platform prices, no hosting or certification claims.
 
 export const homeFaqs: Faq[] = [
   {
     q: 'What is sonofgraig?',
-    a: 'sonofgraig is an enterprise software company headquartered in KwaMhlanga, South Africa, building AI-native SaaS platforms for enterprise operations. Founded by Tumiso Graig Ramaboya in March 2025, sonofgraig operates five product clusters — AI Dev Platform, Cloud & DevOps, Data & Analytics, Creative & XR, and Dev Platform — sharing one POPIA-aligned audit trail.',
+    a: 'sonofgraig is an enterprise software company in South Africa building AI-native software for enterprise operations. Founded by Tumiso Graig Ramaboya in March 2025, its first product is the AI Dev Platform — RAG Studio, Agent Builder, Governance Hub and ML Ops on one data layer and one audit trail — now in early access.',
   },
   {
     q: 'Where is sonofgraig based?',
-    a: 'sonofgraig is registered at 9810 Moloto South Drive, Extension 8, KwaMhlanga, Mpumalanga 1022, South Africa. Day-to-day operations run from Pretoria. Production infrastructure runs in AWS af-south-1 (Cape Town) so all customer data is processed and stored inside South Africa for POPIA Section 72 compliance.',
+    a: 'sonofgraig is registered at 9810 Moloto South Drive, Extension 8, KwaMhlanga, Mpumalanga 1022, South Africa, and day-to-day operations run from Pretoria. Platform customer data is designed to be stored in a South African cloud region by default, with any model-provider call documented in the customer’s Data Processing Agreement.',
   },
   {
     q: 'When does the sonofgraig platform launch?',
-    a: 'RAG Studio is the first sonofgraig product, shipping in Q4 2026 as the beachhead for the AI Dev Platform cluster. Agent Builder follows in Q1 2027. Fine-Tuning Ops and Governance Hub also ship Q1 2027. Cloud & DevOps and Data & Analytics clusters land in Phase 2 (Q2–Q3 2027), Creative & XR and Dev Platform in Phase 3.',
+    a: 'The sonofgraig AI Dev Platform is in early access now. RAG Studio is the first module available to early-access customers; Agent Builder is in development, and Governance Hub and ML Ops are planned. sonofgraig does not publish ship dates — each module is announced on the changelog when it is actually released.',
   },
   {
     q: 'How much does sonofgraig cost?',
-    a: 'sonofgraig platform subscriptions start at R4,999 per month for the Starter tier, priced in ZAR with no FX exposure. The Founding Customer Programme offers 70% off the first year for the first five companies — R5,999/month instead of R19,999/month on the Growth tier. Fixed-scope services start at R45,000 for a POPIA audit.',
+    a: 'sonofgraig quotes AI Dev Platform plans in rand during early access, agreed with each customer on a call — no FX exposure. Fixed-scope services have published prices: AI Governance & Ethics Audit from R45,000, RAG Knowledge Base Setup from R65,000, AI Agent Implementation from R95,000 and Cloud Architecture & DevOps from R120,000.',
   },
   {
     q: 'Is sonofgraig POPIA compliant?',
-    a: 'Yes. sonofgraig is built POPIA-native — data residency in AWS af-south-1 is enforced at the VPC level (Section 72), and every product cluster ships with audit logs aligned to POPIA Sections 11 and 19. The founder, Tumiso Graig Ramaboya, is the named Information Officer registered with the Information Regulator of South Africa.',
+    a: 'sonofgraig designs its platform around POPIA: personal information is scrubbed before it reaches a model, queries and agent steps are written to an append-only audit log, and data residency is set per customer. The founder, Tumiso Graig Ramaboya, is the Information Officer registered with the Information Regulator of South Africa.',
   },
   {
     q: 'Who founded sonofgraig?',
@@ -44,38 +46,38 @@ export const homeFaqs: Faq[] = [
 export const platformFaqs: Faq[] = [
   {
     q: 'What is the sonofgraig platform?',
-    a: 'The sonofgraig platform is a unified subscription that bundles five enterprise SaaS clusters — AI Dev Platform, Cloud & DevOps Suite, Data & Analytics OS, Creative & XR Studio, and Dev Platform — sharing one identity layer, one observability stack, and one POPIA-aligned audit trail. Pricing starts at R4,999 per month.',
+    a: 'The sonofgraig platform starts with one product, the AI Dev Platform: RAG Studio, Agent Builder, Governance Hub and ML Ops sharing one data layer, one set of access controls and one audit trail. Four further clusters — Cloud & DevOps, Data & Analytics, Creative & XR and Dev Platform — are planned.',
   },
   {
-    q: 'What products are inside the AI Dev Platform cluster?',
-    a: 'The AI Dev Platform contains four products: RAG Studio (document-grounded answers, ships Q4 2026), Agent Builder (visual autonomous-agent canvas, ships Q1 2027), Fine-Tuning Ops (model customisation pipeline, Q1 2027), and Governance Hub (bias, explainability, and POPIA compliance dashboards, Q1 2027).',
+    q: 'What modules are inside the AI Dev Platform?',
+    a: 'The sonofgraig AI Dev Platform has four modules: RAG Studio (document-grounded answers with citations, in early access), Agent Builder (multi-agent workflows with a full execution trace, in development), Governance Hub (POPIA reporting, bias checks and explainability, planned) and ML Ops (evaluation, fine-tuning and model versioning, planned).',
   },
   {
     q: 'What is Agent Builder?',
-    a: 'Agent Builder is sonofgraig\'s visual canvas for designing, deploying, and monitoring autonomous AI agents. Built on LangGraph and Composio, it gives every agent a full execution trace, human-in-the-loop gates on regulated actions, and 200+ tool integrations. Ships Q1 2027 as part of the AI Dev Platform cluster.',
+    a: 'Agent Builder is the sonofgraig AI Dev Platform module for designing, deploying and monitoring AI agents. Built on LangGraph and Composio, it gives every agent a full execution trace and human-in-the-loop approval gates on regulated actions. It is in development; early-access customers help decide what it supports first.',
   },
   {
     q: 'What is RAG Studio?',
-    a: 'RAG Studio is sonofgraig\'s document-grounded answering surface, shipping Q4 2026. It ingests enterprise documents into a self-hosted Qdrant vector store in AWS af-south-1, runs hybrid retrieval (BM25 + dense embeddings), and returns answers with source citations and a full lineage trail for POPIA defensibility.',
+    a: 'RAG Studio is the sonofgraig AI Dev Platform module for document-grounded answers. It ingests enterprise documents, runs hybrid retrieval (keyword plus dense embeddings) and returns answers that cite their sources, with a lineage trail for POPIA defensibility. It is the first module available to early-access customers.',
   },
   {
-    q: 'Is the sonofgraig platform hosted in South Africa?',
-    a: 'Yes. All sonofgraig platform infrastructure runs in AWS Africa (Cape Town) region — af-south-1. Customer data is processed and stored inside South Africa, satisfying POPIA Section 72 transborder-flow restrictions without requiring a Section 72 derogation. Residency is enforced at the VPC and IAM policy level.',
+    q: 'Where is the sonofgraig platform hosted?',
+    a: 'The sonofgraig platform is designed to run in a South African cloud region by default, with residency enforced in infrastructure policy. The one flow that can leave is the call to a language model, which goes to the provider the customer approves, after PII scrubbing, and is documented in the Data Processing Agreement.',
   },
 ];
 
 export const pricingFaqs: Faq[] = [
   {
     q: 'How much does the sonofgraig enterprise platform cost?',
-    a: 'sonofgraig platform pricing starts at R4,999 per month for the Starter tier, R19,999 per month for the Growth tier, and custom pricing for Enterprise. All tiers are priced in ZAR with no FX exposure. The first five founding customers get the Growth tier at 70% off (R5,999/month) for year one.',
+    a: 'sonofgraig quotes the AI Dev Platform in rand during early access. Starter, Growth and Enterprise plans differ by modules, seats, storage, usage and support, and each is priced on a call for your use case. Every plan includes POPIA controls — there is no compliance add-on.',
   },
   {
     q: 'Why is sonofgraig priced in ZAR?',
     a: 'sonofgraig\'s cost structure is denominated in ZAR — staff, infrastructure, and operations all run in rand. Pricing in USD would create FX risk that would have to be hedged and passed to customers. By pricing in ZAR, customer software budgets do not move when the rand moves. This is a principle, not a marketing tactic.',
   },
   {
-    q: 'What is the sonofgraig founding customer programme?',
-    a: 'The founding customer programme is reserved for the first five companies that commit to the sonofgraig platform. Each receives the Growth tier at 70% off for year one (R5,999/month instead of R19,999), direct access to the founding team, design input on the product roadmap, and a dedicated Slack channel for support.',
+    q: 'What does sonofgraig early access include?',
+    a: 'sonofgraig early access includes a direct line to the founder, a real say in the AI Dev Platform roadmap, and a guided onboarding session on your own documents. Pricing is agreed with each customer in rand. There is no fixed number of places; organisations are chosen by fit.',
   },
   {
     q: 'How much does an AI agent implementation cost from sonofgraig?',
@@ -94,7 +96,7 @@ export const aboutFaqs: Faq[] = [
   },
   {
     q: 'Is sonofgraig a services company or a software company?',
-    a: 'sonofgraig is an enterprise software company. It emerged from the structured transformation of SonOfGraig Digital Solutions, a professional services agency that ran 18 service lines. Those service lines are being consolidated into five enterprise SaaS clusters, starting with the AI Dev Platform. Services continue as a parallel revenue stream and a product-development feedback loop.',
+    a: 'sonofgraig is an enterprise software company. It grew out of SonOfGraig Digital Solutions, a professional services agency, and is turning that delivery experience into software, starting with the AI Dev Platform. Fixed-scope services continue alongside the platform, funding the build and feeding real requirements into it.',
   },
   {
     q: 'When was sonofgraig founded?',
@@ -109,7 +111,7 @@ export const contactFaqs: Faq[] = [
   },
   {
     q: 'How quickly does sonofgraig respond to enquiries?',
-    a: 'sonofgraig responds to enquiries within 1 business day from Pretoria. Founding-customer applications receive a response within 2 business days. Security disclosures sent to tumiso@sonofgraig.com are read 24/7 — the founder is on-call for those.',
+    a: 'sonofgraig answers sales, support and partnership enquiries within two business days, from Pretoria. Security disclosures sent to tumiso@sonofgraig.com are answered within one business day, and POPIA data-subject requests within 10 business days — well inside the 30 days the Act allows.',
   },
   {
     q: 'Who do I contact for POPIA queries at sonofgraig?',
@@ -117,33 +119,33 @@ export const contactFaqs: Faq[] = [
   },
   {
     q: 'Where is the sonofgraig registered office?',
-    a: 'sonofgraig\'s registered office is at 9810 Moloto South Drive, Extension 8, KwaMhlanga, Mpumalanga 1022, South Africa. Operations run from Pretoria on Africa/Johannesburg time (UTC+02:00). Production infrastructure runs in AWS af-south-1 (Cape Town).',
+    a: 'sonofgraig\'s registered office is at 9810 Moloto South Drive, Extension 8, KwaMhlanga, Mpumalanga 1022, South Africa. Operations run from Pretoria on Africa/Johannesburg time (UTC+02:00).',
   },
 ];
 
 export const earlyAccessFaqs: Faq[] = [
   {
-    q: 'What is the sonofgraig founding customer programme?',
-    a: 'The sonofgraig founding customer programme reserves five spots for enterprises that commit to the platform before RAG Studio launches. Founding customers get the Growth tier at 70% off year one (R5,999/month instead of R19,999), direct founding-team access, a Slack channel, and design input on the product roadmap.',
+    q: 'What is sonofgraig early access?',
+    a: 'sonofgraig early access lets South African organisations use the AI Dev Platform while it is being built, with a direct line to the founder, a real say in the roadmap and guided onboarding on their own documents. Pricing is agreed with each customer in rand.',
   },
   {
     q: 'How do I apply for sonofgraig early access?',
-    a: 'Apply for sonofgraig early access at sonofgraig.com/early-access. Complete the application form (organisation, sector, cluster of interest, use case). Tumiso Graig Ramaboya reviews every application personally and responds within 2 business days from Pretoria — with either a discovery-call invitation or honest feedback if the programme is not the right fit.',
+    a: 'Apply for sonofgraig early access at sonofgraig.com/early-access. Complete the application form (organisation, sector, cluster of interest, use case). Tumiso Graig Ramaboya reviews every application personally and responds within 2 business days from Pretoria — with either a discovery-call invitation or honest feedback if it is not the right fit.',
   },
   {
-    q: 'How many founding customer slots are still available?',
-    a: 'sonofgraig has five founding-customer slots in total. The exact number remaining changes as applications are accepted — the current count is shown live on the early-access page. Applications close once all five are filled, or when RAG Studio reaches general availability in Q4 2026.',
+    q: 'Is there a limit on sonofgraig early-access places?',
+    a: 'No. sonofgraig has no fixed number of early-access places. Organisations are chosen by fit — a real production use case, POPIA as a board-level concern and time for roadmap conversations — so each one gets proper attention from the team building the platform.',
   },
 ];
 
 export const popiaFaqs: Faq[] = [
   {
-    q: 'How is sonofgraig POPIA compliant?',
-    a: 'sonofgraig is POPIA-compliant by architecture, not by checkbox. Customer data is processed and stored entirely in AWS af-south-1 (Section 72), every product cluster emits structured audit logs aligned to Sections 11 and 19, and Tumiso Graig Ramaboya is the named Information Officer registered with the Information Regulator of South Africa.',
+    q: 'How does sonofgraig approach POPIA?',
+    a: 'sonofgraig designs for POPIA in the architecture: personal information is scrubbed before it reaches a model, queries and agent steps are written to an append-only audit log aligned to Sections 11 and 19, and data residency is set per customer. Tumiso Graig Ramaboya is the Information Officer registered with the Information Regulator.',
   },
   {
-    q: 'What POPIA section does data residency satisfy?',
-    a: 'sonofgraig satisfies POPIA Section 72 (transborder information flows) by processing and storing all customer data inside South Africa, in AWS af-south-1. Section 72 prohibits transfer of personal information to a third party in another country unless adequate protection exists. By keeping data in-country, the section is satisfied directly.',
+    q: 'How does sonofgraig handle POPIA Section 72 cross-border transfers?',
+    a: 'sonofgraig stores platform customer data in a South African cloud region by default. Where a transfer does happen — usually the call to a language model provider the customer approves — it is made after PII scrubbing, on a lawful basis under Section 72, and documented in the customer’s Data Processing Agreement.',
   },
   {
     q: 'Who is the POPIA Information Officer at sonofgraig?',
@@ -154,15 +156,15 @@ export const popiaFaqs: Faq[] = [
 export const securityFaqs: Faq[] = [
   {
     q: 'How does sonofgraig handle security disclosures?',
-    a: 'Send security disclosures to tumiso@sonofgraig.com. The founder reads them 24/7 with a 1-hour response target during business hours and best-effort response out of hours. Coordinated disclosure is the preferred process; sonofgraig does not have a public bug-bounty programme yet but rewards responsible disclosure on a case-by-case basis.',
+    a: 'Send security disclosures to tumiso@sonofgraig.com with reproducible steps and impact. sonofgraig responds within one business day, prefers coordinated disclosure, credits good-faith researchers where appropriate and does not pursue legal action against good-faith research. There is no public bug-bounty programme.',
   },
   {
     q: 'Where does sonofgraig store customer data?',
-    a: 'sonofgraig stores all customer data in AWS af-south-1 (Cape Town, South Africa). Residency is enforced at the VPC and IAM policy level. No customer data flows to another region without an explicit, contracted Section 72 derogation. This is the POPIA-native architecture default.',
+    a: 'sonofgraig designs the AI Dev Platform to store customer data in a South African cloud region by default, with residency enforced in infrastructure policy rather than only in a contract. The approved model-provider call is the one documented exception, made after PII scrubbing and listed in the Data Processing Agreement.',
   },
   {
-    q: 'Is sonofgraig ISO 27001 certified?',
-    a: 'sonofgraig is built against ISO 27001 controls but is not yet certified — certification is planned for 2027 once the platform is in production with founding customers. AWS af-south-1 carries ISO 27001, ISO 27017, ISO 27018, and SOC 2 Type II certifications, providing inherited infrastructure controls today.',
+    q: 'Is sonofgraig ISO 27001 or SOC 2 certified?',
+    a: 'No. sonofgraig does not hold ISO 27001 or SOC 2 certification today and does not claim to. ISO 27001 is planned once the platform is generally available. The security page lists every control with its real status — in place, in build, designed or planned.',
   },
 ];
 
@@ -173,7 +175,7 @@ export const servicesFaqs: Faq[] = [
   },
   {
     q: 'What is included in the sonofgraig AI Agent Implementation service?',
-    a: 'The sonofgraig AI Agent Implementation includes agent workflow design, the LangGraph + Composio stack deployed in your VPC, 200+ tool integrations wired to your systems, full execution trace plus audit log per run, human-in-the-loop gates on regulated actions, POPIA Section 11 + 19 compliance documentation, and on-call rotation training for your team.',
+    a: 'The sonofgraig AI Agent Implementation includes agent workflow design, the LangGraph + Composio stack deployed in your cloud account, integrations wired to your systems, full execution trace plus audit log per run, human-in-the-loop gates on regulated actions, POPIA Section 11 + 19 compliance documentation, and hand-over training for your team.',
   },
   {
     q: 'How long does a sonofgraig RAG implementation take?',

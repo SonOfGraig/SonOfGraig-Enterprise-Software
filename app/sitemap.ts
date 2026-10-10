@@ -24,7 +24,6 @@ const ROUTES: Array<{
   { path: '/pricing', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/about', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/contact', changeFrequency: 'monthly', priority: 0.8 },
-  { path: '/careers', changeFrequency: 'weekly', priority: 0.7 },
   { path: '/blog', changeFrequency: 'weekly', priority: 0.7 },
   { path: '/early-access', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/security', changeFrequency: 'monthly', priority: 0.7 },

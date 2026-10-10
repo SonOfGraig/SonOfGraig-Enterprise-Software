@@ -17,7 +17,7 @@ import s from './InsightsExplorer.module.css';
 
 type Tile = { src: string; label: string; href?: string };
 
-const POSTERS = ['rag-studio', 'agent-builder', 'governance-hub', 'security-posture', 'data-pipeline', 'analytics-studio', 'cloud-console', 'workflow-engine', 'platform-compounding', 'services-to-saas', 'pricing-tier', 'cluster-funnel'];
+const POSTERS = ['rag-studio', 'agent-builder', 'governance-hub', 'security-posture', 'data-pipeline', 'analytics-studio', 'cloud-console', 'workflow-engine', 'platform-compounding', 'services-to-saas', 'cluster-funnel'];
 
 function Column({ tiles, duration, down }: { tiles: Tile[]; duration: number; down: boolean }) {
   // Doubled list + translate -50% = a seamless loop (same as the original).

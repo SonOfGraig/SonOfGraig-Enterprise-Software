@@ -26,17 +26,17 @@ const NEXT_STEPS = [
   {
     label: 'Platform overview',
     href: '/platform',
-    desc: 'Five SaaS clusters · POPIA-native · ZAR-priced',
+    desc: 'The AI Dev Platform first · POPIA-native',
   },
   {
     label: 'Early Access',
     href: '/early-access',
-    desc: 'Five founding-customer slots · 70% off year one',
+    desc: 'Early access to the AI Dev Platform is open',
   },
   {
     label: 'Pricing',
     href: '/pricing',
-    desc: 'From R4,999/month · No FX exposure',
+    desc: 'Quoted in rand · No FX exposure',
   },
   {
     label: 'Contact',

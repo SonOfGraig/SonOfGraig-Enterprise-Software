@@ -92,7 +92,7 @@ const post: Post = {
 
     <h2 id="how-to-start">How to start</h2>
     <p>The fastest path into production is rarely the most fashionable one. Most enterprise AI projects we work on should start with RAG, instrument the Governance Hub against the very first retrieval, and only add agents when the workflow demands it. Fine-tuning comes last, if at all, because the cases that genuinely need it are narrower than the discourse suggests.</p>
-    <p>The cluster as a whole — RAG Studio in Q4 2026, Agent Builder in Q1 2027, Fine-Tuning Ops and Governance Hub through 2027 — is on the public <a href="/roadmap">roadmap</a>. The strategy context is in <a href="/blog/why-africa-needs-its-own-enterprise-ai-platform">the pillar piece</a>, and the compliance posture that the Governance Hub is built around is in <a href="/blog/popia-sections-11-19-72-and-ai-architecture">the POPIA deep-dive</a>.</p>
+    <p>RAG Studio is the first module available to early-access customers; Agent Builder is in development, and ML Ops and the Governance Hub are planned. We do not publish ship dates — each module is announced on the <a href="/changelog">changelog</a> when it is actually released, and the current status of every module is on the <a href="/platform/ai-dev-platform">AI Dev Platform page</a>. The strategy context is in <a href="/blog/why-africa-needs-its-own-enterprise-ai-platform">the pillar piece</a>, and the compliance posture that the Governance Hub is built around is in <a href="/blog/popia-sections-11-19-72-and-ai-architecture">the POPIA deep-dive</a>.</p>
   `,
 };
 

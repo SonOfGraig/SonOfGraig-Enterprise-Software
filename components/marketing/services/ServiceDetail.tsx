@@ -169,7 +169,7 @@ export function ServiceDetail({ service }: { service: Service }) {
       <CTABand
         eyebrow={`${s.price} · ${s.meta.split(' · ')[0]}`}
         title={`Ready to scope your ${s.title.toLowerCase()} project?`}
-        body="Tell us what you are trying to do. You will hear back from a person within one business day."
+        body="Tell us what you are trying to do. You will hear back from a person within two business days."
         primary={{ label: 'Start this project', href: `/contact?service=${s.slug}` }}
         secondary={{ label: 'All services', href: '/services' }}
         scene={s.backdrops.cta}

@@ -9,6 +9,7 @@ import { Turnstile } from '@/components/ui/Turnstile';
 // Type-only import: the schemas module pulls in zod, which must not ship to
 // the browser. The server re-validates every value anyway.
 import type { ContactTopic } from '@/lib/forms/schemas';
+import { issueMessage } from '@/lib/forms/issueMessage';
 
 // Posts to /api/forms/contact (lib/forms/schemas.ts → contactSchema). Field
 // names match the schema exactly; server validation is the authority and its
@@ -26,7 +27,6 @@ const TOPICS: { value: ContactTopic; label: string }[] = [
   { value: 'security', label: 'Security disclosure' },
   { value: 'partner', label: 'Partnership / reseller' },
   { value: 'press', label: 'Press / analyst enquiry' },
-  { value: 'careers', label: 'Careers' },
   { value: 'other', label: 'Something else' },
 ];
 
@@ -86,7 +86,7 @@ export function ContactForm() {
         const next: Errors = {};
         for (const [k, v] of Object.entries(data.issues as Record<string, string[]>)) next[k] = v?.[0];
         setErrors(next);
-        setMessage('Please check the highlighted fields.');
+        setMessage(issueMessage(data.issues, ['name', 'company', 'email', 'phone', 'topic', 'tier', 'message', 'consent', 'newsletter'], 'info@sonofgraig.com'));
       } else if (res.status === 429) {
         setMessage('Too many messages from this connection. Please wait a few minutes, or email info@sonofgraig.com.');
       } else if (String(data.error ?? '').startsWith('turnstile')) {

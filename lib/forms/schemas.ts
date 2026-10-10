@@ -39,7 +39,10 @@ const longText = (min: number, max: number, label: string) =>
     .preprocess(safeText, z.string())
     .pipe(z.string().min(min, `${label} must be at least ${min} characters`).max(max));
 
-const honeypotField = z.string().max(0, 'Honeypot triggered').optional().default('');
+// The honeypot never fails validation: browser autofill and extensions can
+// type into hidden inputs, and a real person must not be blocked by an error
+// on a field they cannot see. The handler weighs it against Turnstile instead.
+const honeypotField = z.string().max(500).optional().default('');
 const turnstileField = z.string().min(1).max(2048).optional();
 
 // ───────────────────────────────────────────────────────────────────────
@@ -83,7 +86,6 @@ export const TOPIC_VALUES = [
   'security',
   'partner',
   'press',
-  'careers',
   'other',
 ] as const;
 

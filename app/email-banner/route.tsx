@@ -27,8 +27,8 @@ const TOPIC_CONFIG: Record<
 > = {
   // Early-access programme
   'early-access': {
-    eyebrow: 'Founding customer programme',
-    headline: 'Five slots. 70% off year one.',
+    eyebrow: 'AI Dev Platform · Early access',
+    headline: 'Your application is in.',
     accent: '#F97316', // brand amber
   },
 
@@ -87,11 +87,6 @@ const TOPIC_CONFIG: Record<
     eyebrow: 'Press & analyst',
     headline: 'Editorial or research enquiry.',
     accent: '#F97316', // amber
-  },
-  'careers': {
-    eyebrow: 'Careers',
-    headline: 'Join the engineering team.',
-    accent: SG_BLUE,
   },
   'other': {
     eyebrow: 'General enquiry',

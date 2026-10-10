@@ -182,7 +182,7 @@ export default function PrivacyPolicyPage() {
                 </li>
                 <li>
                   <strong>Submissions</strong> — anything you choose to type into our contact,
-                  early-access, waitlist, careers, or data-subject-rights forms.
+                  early-access, waitlist, or data-subject-rights forms.
                 </li>
                 <li>
                   <strong>Content you upload</strong> — once you are a customer, the documents,
@@ -361,10 +361,6 @@ export default function PrivacyPolicyPage() {
                 <li>
                   <strong>Marketing contact data</strong> — until consent is withdrawn, then
                   immediately suppressed.
-                </li>
-                <li>
-                  <strong>Application / careers data</strong> — twelve months after the role
-                  closes, unless you ask us to delete it sooner.
                 </li>
                 <li>
                   <strong>Security logs</strong> — twelve months, then automatic rotation.

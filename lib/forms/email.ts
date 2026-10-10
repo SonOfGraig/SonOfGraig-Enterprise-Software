@@ -318,7 +318,7 @@ function buildAutoReply({
 // Topic value → (mailbox, human-readable label, autoreply tag)
 const CONTACT_ROUTING: Record<
   ContactTopic,
-  { to: string; cc?: string; label: string; tagline: string }
+  { to: string; cc?: string; label: string; tagline: string; replyWithin?: string }
 > = {
   sales: { to: 'sales@sonofgraig.com', label: 'Sales — platform subscription', tagline: 'a real person from sales' },
   'service-rag': { to: 'sales@sonofgraig.com', label: 'Service — RAG Knowledge Base Setup', tagline: 'our services team' },
@@ -327,11 +327,10 @@ const CONTACT_ROUTING: Record<
   'service-popia': { to: 'sales@sonofgraig.com', label: 'Service — POPIA Audit', tagline: 'our services team' },
   'service-data': { to: 'sales@sonofgraig.com', label: 'Service — Data Analytics', tagline: 'our services team' },
   support: { to: 'info@sonofgraig.com', label: 'Existing-customer support', tagline: 'a real person from support' },
-  popia: { to: 'tumiso@sonofgraig.com', label: 'POPIA / data subject request', tagline: 'the POPIA Information Officer (Tumiso)' },
-  security: { to: 'tumiso@sonofgraig.com', label: 'Security disclosure', tagline: 'the founder personally' },
+  popia: { to: 'tumiso@sonofgraig.com', label: 'POPIA / data subject request', tagline: 'the POPIA Information Officer (Tumiso)', replyWithin: '10 business days' },
+  security: { to: 'tumiso@sonofgraig.com', label: 'Security disclosure', tagline: 'the founder personally', replyWithin: '1 business day' },
   partner: { to: 'sales@sonofgraig.com', cc: 'tumiso@sonofgraig.com', label: 'Partnership / reseller enquiry', tagline: 'the partnerships team' },
   press: { to: 'tumiso@sonofgraig.com', label: 'Press / analyst enquiry', tagline: 'the founder personally' },
-  careers: { to: 'info@sonofgraig.com', label: 'Careers / recruiting', tagline: 'the team' },
   other: { to: 'info@sonofgraig.com', label: 'General enquiry', tagline: 'a real person' },
 };
 
@@ -362,7 +361,7 @@ export async function sendEarlyAccessEmails(s: EarlyAccessSubmission) {
     cc: 'tumiso@sonofgraig.com',
     replyTo: s.email,
     subject: `🚀 Early Access — ${s.name} (${s.company})`,
-    preheader: `${s.name} from ${s.company} just applied to the founding-customer programme.`,
+    preheader: `${s.name} from ${s.company} just applied for early access.`,
     heading: 'New early-access application',
     fields,
     multilineFields: [['Use case', s.usecase]],
@@ -375,18 +374,18 @@ export async function sendEarlyAccessEmails(s: EarlyAccessSubmission) {
 
   const autoReply = buildAutoReply({
     to: s.email,
-    subject: 'We received your sonofgraig founding-customer application',
+    subject: 'We received your sonofgraig early-access application',
     preheader:
       "Thanks — Tumiso will respond personally within 2 business days.",
     heading: `Thanks, ${s.name.split(' ')[0]}.`,
     topic: 'early-access',
-    body: `Your application to the sonofgraig founding-customer programme is in. Five slots, 70% off the first year on Growth, direct access to the build team.
+    body: `Your application for early access to the sonofgraig AI Dev Platform is in.
 
 Here's what happens next:
 
 • Tumiso (founder) reviews your application personally — not a queue, not a CRM bot.
 • You'll hear back within 2 business days from Pretoria with either a discovery-call slot or honest feedback if the programme isn't the right fit. We don't ghost applications.
-• If your cluster of interest is in Phase 2 or Phase 3, founding pricing still applies — we'll explain timing on the call.${ndaLine}
+• If your cluster of interest is still planned, we'll be straight about what exists today and what doesn't.${ndaLine}
 
 If anything is time-sensitive, reply directly to this email — it lands in front of a real person.`,
   });
@@ -426,10 +425,10 @@ export async function sendContactEmails(s: ContactSubmission) {
   const autoReply = buildAutoReply({
     to: s.email,
     subject: 'We received your sonofgraig enquiry',
-    preheader: `${route.tagline} will respond within 1 business day.`,
+    preheader: `${route.tagline} will respond within ${route.replyWithin ?? '2 business days'}.`,
     heading: `Thanks, ${s.name.split(' ')[0]}.`,
     topic: s.topic,
-    body: `Your enquiry — "${route.label}" — has been routed to ${route.tagline}. You'll hear back within 1 business day from Pretoria.
+    body: `Your enquiry — "${route.label}" — has been routed to ${route.tagline}. You'll hear back within ${route.replyWithin ?? '2 business days'} from Pretoria.
 
 If anything is urgent, reply directly to this email.`,
   });

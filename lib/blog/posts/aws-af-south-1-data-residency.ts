@@ -56,13 +56,13 @@ const post: Post = {
     <p>Genuine residency means auditing every one of these and confirming it stays in-region — or making the cross-border element lawful and documented under Section 72, as covered in <a href="/blog/popia-section-72-cross-border-ai">the Section 72 piece</a>.</p>
 
     <h2 id="inference-in-region">Keeping model inference in-region</h2>
-    <p>For AI systems, the inference step is the residency battleground. The clean pattern is to run the model in af-south-1 so prompts never leave the country. That is the core reason our architecture defaults to in-region inference — it removes the single largest cross-border surface an AI workload has. Where a workload genuinely needs a model only available offshore, the transfer is minimised and made lawful by agreement rather than left implicit.</p>
+    <p>For AI systems, the inference step is the residency battleground. The clean pattern is to run the model in af-south-1 so prompts never leave the country. That is why we design for in-region inference wherever a suitable model exists — it removes the single largest cross-border surface an AI workload has. Where a workload genuinely needs a model only available offshore, the transfer is minimised and made lawful by agreement rather than left implicit.</p>
 
     <h2 id="residency-not-compliance">Residency is necessary, not sufficient</h2>
     <p class="answer-block">Choosing af-south-1 removes the cross-border question, but it does not make a system POPIA-compliant on its own. POPIA still requires a lawful basis for processing (Section 11) and appropriate security safeguards (Section 19). Residency is one leg of a three-legged stool; the other two are covered in <a href="/blog/popia-sections-11-19-72-and-ai-architecture">the POPIA sections deep-dive</a>. Treating residency as the whole answer is a common and expensive mistake.</p>
 
     <h2 id="how-we-build">How we build for residency</h2>
-    <p>Our default landing zone is af-south-1 primary, with compute, storage, inference, logs, and backups verified in-region, and residency enforced at the IAM and VPC boundary rather than left to convention. The full build is in <a href="/services/cloud-architecture">Cloud Architecture &amp; DevOps</a>, and our standing security and residency posture is on <a href="/security">the security page</a>.</p>
+    <p>The landing zones we build for clients default to af-south-1 primary, with compute, storage, inference, logs, and backups verified in-region, and residency enforced at the IAM and VPC boundary rather than left to convention. The full build is in <a href="/services/cloud-architecture">Cloud Architecture &amp; DevOps</a>, and the real status of our own platform controls is on <a href="/security">the security page</a>.</p>
   `,
 };
 

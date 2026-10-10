@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Check, CircleCheck, CircleX, FileSignature, MessagesSquare, Rocket, Send, Slack, TrendingDown, Users } from 'lucide-react';
+import { Check, CircleCheck, CircleX, FileSignature, Handshake, MessagesSquare, Rocket, Send, Slack, Users } from 'lucide-react';
 import { PageHero } from '@/components/marketing/_shared/PageHero';
 import { CTABand } from '@/components/marketing/_shared/CTABand';
 import { Section, SectionHeader } from '@/components/ui/Section';
@@ -12,54 +12,50 @@ import { EarlyAccessForm } from '@/components/marketing/early-access/EarlyAccess
 import { faqPageJsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Early Access — sonofgraig | Founding Customer Programme',
+  title: 'Early Access — sonofgraig | AI Dev Platform',
   description:
-    'Five founding-customer slots for the AI Dev Platform: 70% off year one on Growth (R5,999/month instead of R19,999), direct access to the founder and a say in the roadmap.',
+    'Early access to the AI Dev Platform is open: a direct line to the founder, a real say in the roadmap and guided onboarding. Pricing agreed with you, in rand.',
   alternates: { canonical: '/early-access' },
-  openGraph: { title: 'Early access — sonofgraig', description: 'Five founding slots. One platform you shape.', type: 'website', url: '/early-access', locale: 'en_ZA' },
+  openGraph: { title: 'Early access — sonofgraig', description: 'Early access to the AI Dev Platform is open.', type: 'website', url: '/early-access', locale: 'en_ZA' },
   robots: { index: true, follow: true },
 };
 
-// Offer terms are the founder's. Removed from the legacy page (2026-10-09):
-// dated programme timeline, slot/waitlist counters, SOC 2 dates, af-south-1
-// residency claims, and the "two slots taken" FAQ that contradicted the hero.
+// Founder decision 2026-10-10: no slot limit and no published discount.
+// Early access is simply open; pricing is agreed per customer, in rand.
 
 const BENEFITS = [
-  { icon: Users, eyebrow: 'Influence', title: 'Your use case shapes the roadmap', body: 'A quarterly roadmap call with the founder. What ships first is what solves your problems first — we will say in writing what we will and will not build.' },
-  { icon: Slack, eyebrow: 'Access', title: 'A direct line to the founder', body: 'A shared Slack Connect channel with Tumiso, who built the first version of every module. Not a customer-success proxy.' },
-  { icon: TrendingDown, eyebrow: 'Economics', title: '70% off year one, locked after', body: 'R5,999/month on Growth instead of R19,999 in year one, then 50% off (R9,999/month) locked for years two and three.' },
+  { icon: Users, eyebrow: 'Influence', title: 'Your use case shapes the roadmap', body: 'A regular roadmap call with the founder. What ships first is what solves your problems first — we will say in writing what we will and will not build.' },
+  { icon: Slack, eyebrow: 'Access', title: 'A direct line to the founder', body: 'A shared channel with Tumiso, who built the first version of every module. Not a customer-success proxy.' },
+  { icon: Handshake, eyebrow: 'Onboarding', title: 'Set up with you, not for you', body: 'A guided onboarding session with an engineer, on your documents and your integrations — so the first answers you see are useful ones.' },
 ];
 
-const COMPARE: [string, string, string][] = [
-  ['Year-one Growth pricing', 'R19,999 / month', 'R5,999 / month · 70% off'],
-  ['Years two and three', 'Standard list', 'R9,999 / month · 50% off, locked'],
-  ['Account contact', 'Customer success team', 'The founder · Slack Connect'],
-  ['Roadmap input', 'Customer surveys', 'Quarterly call, direct say'],
-  ['Onboarding', 'Self-serve', 'Guided session with an engineer'],
-  ['Service-fee credit', 'Not available', 'First 3 months credited'],
-  ['Year-one commitment', '12 months', 'Month-to-month, no penalty'],
-  ['Security & POPIA controls', 'Full', 'Identical — no concessions'],
+const INCLUDES: [string, string][] = [
+  ['Account contact', 'The founder, directly'],
+  ['Roadmap input', 'Regular call, direct say in priorities'],
+  ['Onboarding', 'Guided session with an engineer'],
+  ['Pricing', 'Agreed with you, in rand — no FX exposure'],
+  ['Security & POPIA controls', 'The same as every customer — no concessions'],
+  ['Data Processing Agreement', 'Included; your legal team can mark it up'],
 ];
 
 const FIT = ['A South African mid-market or larger organisation', 'A real production use case, not a sandbox', 'POPIA is a board-level concern', 'A champion at director level or above', 'Teams that engage with software, not buzzwords'];
-const NOT_FIT = ['You need a finished, generally available product now', 'You need SOC 2 Type II certification today — we do not hold it', 'Price is the only criterion', 'You cannot commit to quarterly roadmap calls'];
+const NOT_FIT = ['You need a finished, generally available product now', 'You need SOC 2 Type II certification today — we do not hold it', 'Price is the only criterion', 'You cannot make time for roadmap calls'];
 
 const STEPS = [
   { when: 'Day 1', title: 'Submit the application', body: 'It goes straight to the founder, not an intake queue. A confirmation email arrives within minutes.', icon: <Send /> },
-  { when: 'Days 2–5', title: 'Discovery call', body: '45 minutes on fit, integrations, POPIA exposure and success criteria. NDA first if you want one. We will say so if it is not the right fit.', icon: <MessagesSquare /> },
-  { when: 'Days 5–9', title: 'Founding agreement', body: 'Rand pricing locked, year-one cancel-anytime, three-year price protection and an optional case-study clause. Your legal team marks it up.', icon: <FileSignature /> },
-  { when: 'Then', title: 'Onboarded and live', body: 'Your environment is provisioned, a guided onboarding session runs with the founder, and the Slack Connect channel opens.', icon: <Rocket /> },
+  { when: 'Within a week', title: 'Discovery call', body: '45 minutes on fit, integrations, POPIA exposure and success criteria. NDA first if you want one. We will say so if it is not the right fit.', icon: <MessagesSquare /> },
+  { when: 'Next', title: 'Agreement', body: 'Scope, rand pricing and the Data Processing Agreement, agreed together. Your legal team marks it up.', icon: <FileSignature /> },
+  { when: 'Then', title: 'Onboarded and live', body: 'Your environment is provisioned, a guided onboarding session runs with an engineer, and your direct channel with the founder opens.', icon: <Rocket /> },
 ];
 
 const FAQS: FAQItem[] = [
-  { q: 'The product is not generally available — why commit now?', a: 'You are committing to a founding relationship, not a finished product: 70% off year one, direct access to the people building it, and your requirements shaping the roadmap. Year one is month-to-month with no cancellation penalty, so the risk is time, not money.' },
-  { q: 'What if we want to cancel in year one?', a: 'Year one is month-to-month with no penalty. From year two the standard 12-month commitment applies, at the locked 50% discount through year three, with 60 days’ notice of any change after that.' },
-  { q: 'What is the actual saving?', a: 'Growth is R19,999/month. Founding customers pay R5,999/month in year one (R168,000 saved) and R9,999/month in years two and three (a further R240,000) — about R408,000 over three years, before any service-fee credit.' },
-  { q: 'Can a services engagement convert?', a: 'Yes. If you have an active or recent sonofgraig service engagement, its implementation fee credits against your first three months of subscription. Mention it in the use-case field.' },
-  { q: 'Who are the other founding customers?', a: 'We never disclose founding customers without their explicit consent — not even by sector. References can be arranged under NDA after a discovery call.' },
-  { q: 'Is there a DPA?', a: 'Yes. Every founding customer signs our standard Data Processing Agreement covering processing activities, lawful basis, security controls, sub-processors and transfer mechanisms. Your legal team can mark it up.' },
-  { q: 'What is the support commitment?', a: 'The founder, via Slack Connect, with critical issues typically answered within an hour in South African business hours and security incidents around the clock. It is written into your founding agreement.' },
-  { q: 'What if sonofgraig fails or is acquired?', a: 'The founding agreement includes a data-export and runtime-egress clause: a defined window to export all your data and self-host. The build is funded by services revenue, not venture capital.' },
+  { q: 'The product is not generally available — why start now?', a: 'You get the people building it, and your requirements shape what ships first. Early access is a working relationship, not a finished product — and we will be straight about what exists today.' },
+  { q: 'How much does it cost?', a: 'Pricing is agreed with each early-access customer, in rand, based on your use case and scale. We discuss it on the discovery call, before you commit to anything.' },
+  { q: 'Is there a limit on places?', a: 'No fixed number. We take on organisations where the fit is right and we can give each one proper attention.' },
+  { q: 'Who are the other early-access customers?', a: 'We never disclose customers without their explicit consent — not even by sector. References can be arranged under NDA after a discovery call.' },
+  { q: 'Is there a DPA?', a: 'Yes. Every customer signs our standard Data Processing Agreement covering processing activities, lawful basis, security controls, sub-processors and transfer mechanisms. Your legal team can mark it up.' },
+  { q: 'What is the support commitment?', a: 'A direct channel to the founder. Messages are answered within two business days, and security reports within one business day. Specifics go in your agreement.' },
+  { q: 'What if sonofgraig fails or is acquired?', a: 'Your agreement includes a data-export clause: a defined window to export all your data. The build is funded by services revenue, not venture capital.' },
 ];
 
 export default function EarlyAccessPage() {
@@ -68,24 +64,19 @@ export default function EarlyAccessPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageJsonLd('/early-access', FAQS)) }} />
       <PageHero
         scene="templatesLattice"
-        eyebrow="Founding customer programme"
-        title="Five founding slots."
-        accent="One platform you shape."
-        lead="Five South African organisations get to be the ones the AI Dev Platform is built around: steep founding pricing, a direct line to the founder and a real say in what ships next."
-        primary={{ label: 'Apply for a founding slot', href: '#apply' }}
+        eyebrow="AI Dev Platform · Early access"
+        title="Early access is open."
+        accent="Help shape the platform."
+        lead="Work with the people building the AI Dev Platform: a direct line to the founder, a real say in what ships next, and onboarding on your own data."
+        primary={{ label: 'Apply for early access', href: '#apply' }}
         secondary={{ label: 'Talk to a person first', href: '/contact?topic=sales' }}
       >
         <div className="mx-auto max-w-[460px]">
           <Card variant="glass" padding="lg" className="text-left">
             <div className="relative z-[2]">
-              <p className="text-label text-[var(--sg-blue)]">Founding pricing · Growth tier, year one</p>
-              <p className="mt-[var(--sp-3)] flex items-baseline gap-[var(--sp-3)]">
-                <span className="font-mono text-[15px] text-[var(--sg-text-4)] line-through">R19,999</span>
-                <span className="font-display text-[44px] font-extrabold leading-none tracking-[-0.04em] text-[var(--sg-text-1)]">R5,999</span>
-                <span className="text-body text-[var(--sg-text-3)]">/ month</span>
-              </p>
-              <ul className="mt-[var(--sp-5)] space-y-[var(--sp-2)]">
-                {['70% off year one, month-to-month', '50% off locked for years two and three', 'Direct Slack Connect with the founder'].map((x) => (
+              <p className="text-label text-[var(--sg-blue)]">What early access includes</p>
+              <ul className="mt-[var(--sp-4)] space-y-[var(--sp-2)]">
+                {['A direct line to the founder', 'A real say in the roadmap', 'Guided onboarding on your data', 'Pricing agreed with you, in rand'].map((x) => (
                   <li key={x} className="flex items-center gap-[var(--sp-2)] text-body text-[var(--sg-text-2)]">
                     <Check size={15} aria-hidden="true" className="text-[var(--sg-blue)]" /> {x}
                   </li>
@@ -97,7 +88,7 @@ export default function EarlyAccessPage() {
       </PageHero>
 
       <Section tone="base" spacing="lg" background="componentsLattice">
-        <SectionHeader eyebrow="What founding customers get" title="Three benefits worth more than the discount." />
+        <SectionHeader eyebrow="What you get" title="Built around how you work." />
         <div className="grid gap-[var(--sp-4)] md:grid-cols-3">
           {BENEFITS.map((b, i) => (
             <Reveal key={b.title} delay={i * 0.08} blur className="h-full">
@@ -108,23 +99,15 @@ export default function EarlyAccessPage() {
       </Section>
 
       <Section tone="base" spacing="lg" divider background="dotMatrix">
-        <SectionHeader eyebrow="Founding vs standard" title="Same platform. Different relationship." />
+        <SectionHeader eyebrow="The details" title="What early access includes." />
         <Reveal>
           <Card padding="none" className="overflow-x-auto">
-            <table className="w-full min-w-[560px] text-left">
-              <thead>
-                <tr className="border-b border-[var(--sg-border)]">
-                  <th className="px-[var(--sp-6)] py-[var(--sp-4)] text-label text-[var(--sg-text-4)]">Feature</th>
-                  <th className="px-[var(--sp-6)] py-[var(--sp-4)] text-label text-[var(--sg-text-4)]">Standard</th>
-                  <th className="px-[var(--sp-6)] py-[var(--sp-4)] text-label text-[var(--sg-blue)]">Founding</th>
-                </tr>
-              </thead>
+            <table className="w-full min-w-[480px] text-left">
               <tbody>
-                {COMPARE.map(([f, s, fd]) => (
+                {INCLUDES.map(([f, v]) => (
                   <tr key={f} className="border-b border-[var(--sg-border)] last:border-0 transition-colors hover:bg-[var(--sg-surface-2)]">
                     <td className="px-[var(--sp-6)] py-[var(--sp-4)] text-body font-medium text-[var(--sg-text-1)]">{f}</td>
-                    <td className="px-[var(--sp-6)] py-[var(--sp-4)] text-body text-[var(--sg-text-3)]">{s}</td>
-                    <td className="px-[var(--sp-6)] py-[var(--sp-4)] text-body font-medium text-[var(--sg-text-1)]">{fd}</td>
+                    <td className="px-[var(--sp-6)] py-[var(--sp-4)] text-body text-[var(--sg-text-2)]">{v}</td>
                   </tr>
                 ))}
               </tbody>
@@ -134,7 +117,7 @@ export default function EarlyAccessPage() {
       </Section>
 
       <Section tone="base" spacing="lg" divider background="artifactsLattice">
-        <SectionHeader eyebrow="Who qualifies" title="Five slots, awarded by fit." description="Not by application order. We look for use cases that will make the platform better for everyone after you." />
+        <SectionHeader eyebrow="Who it suits" title="Chosen by fit." description="We look for use cases that will make the platform better for everyone after you." />
         <div className="grid gap-[var(--sp-4)] md:grid-cols-2">
           {[
             { title: 'Strong fit', items: FIT, icon: CircleCheck, tone: 'text-[var(--sg-success)]' },
@@ -157,7 +140,7 @@ export default function EarlyAccessPage() {
       </Section>
 
       <Section tone="base" spacing="lg" divider background="temporalFlux">
-        <SectionHeader eyebrow="Application process" title="Four steps, about two weeks." align="center" />
+        <SectionHeader eyebrow="How it works" title="From application to onboarding." align="center" />
         <Timeline items={STEPS} />
       </Section>
 
@@ -166,7 +149,7 @@ export default function EarlyAccessPage() {
           <Reveal blur>
             <Card padding="lg">
               <p className="text-label text-[var(--sg-blue)]">Apply</p>
-              <h2 className="text-h2 text-[var(--sg-text-1)] mt-[var(--sp-3)]">Founding-customer application.</h2>
+              <h2 className="text-h2 text-[var(--sg-text-1)] mt-[var(--sp-3)]">Early-access application.</h2>
               <p className="text-body text-[var(--sg-text-3)] mt-[var(--sp-3)] mb-[var(--sp-8)]">It goes directly to the founder. You will hear back within two business days, whatever the outcome.</p>
               <EarlyAccessForm />
             </Card>
@@ -175,7 +158,7 @@ export default function EarlyAccessPage() {
             <Reveal delay={0.1} blur>
               <Card padding="lg" className="border-l-2 border-l-[var(--sg-blue)]">
                 <blockquote className="font-display text-[18px] leading-[1.5] tracking-[-0.01em] text-[var(--sg-text-1)]">
-                  “Five is enough to learn from. More would dilute the conversation.”
+                  “We would rather build with a few teams properly than with many badly.”
                 </blockquote>
                 <p className="font-mono text-[12px] text-[var(--sg-text-4)] mt-[var(--sp-4)]">— Tumiso Graig Ramaboya, founder</p>
               </Card>
@@ -184,7 +167,7 @@ export default function EarlyAccessPage() {
               <Card padding="lg">
                 <h3 className="text-h3 text-[var(--sg-text-1)]">Already working with us?</h3>
                 <p className="text-body text-[var(--sg-text-3)] mt-[var(--sp-3)]">
-                  An active or recent services engagement credits against your first three months. Mention it in the use-case field.
+                  Mention your services engagement in the use-case field — it helps us pick up where the project left off.
                 </p>
               </Card>
             </Reveal>
@@ -202,7 +185,7 @@ export default function EarlyAccessPage() {
       <CTABand
         eyebrow="Not sure it fits?"
         title="Talk to a person before you apply."
-        body="A 30-minute conversation will tell you honestly whether the founding programme, a services engagement or simply waiting is right for you."
+        body="A 30-minute conversation will tell you honestly whether early access, a services engagement or simply waiting is right for you."
         primary={{ label: 'Talk to us', href: '/contact?topic=sales' }}
         secondary={{ label: 'See the platform', href: '/platform/ai-dev-platform' }}
       />

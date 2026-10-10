@@ -7,6 +7,7 @@ import { Field } from '@/components/ui/Field';
 import { Button } from '@/components/ui/Button';
 import { Turnstile } from '@/components/ui/Turnstile';
 import { cn } from '@/lib/utils';
+import { issueMessage } from '@/lib/forms/issueMessage';
 
 // Posts to /api/forms/early-access (lib/forms/schemas.ts → earlyAccessSchema).
 // Field names match the schema; server validation is the authority.
@@ -63,7 +64,7 @@ export function EarlyAccessForm() {
         const next: Record<string, string> = {};
         for (const [k, v] of Object.entries(data.issues as Record<string, string[]>)) next[k] = v?.[0];
         setErrors(next);
-        setMessage('Please check the highlighted fields.');
+        setMessage(issueMessage(data.issues, ['name', 'role', 'email', 'phone', 'company', 'sector', 'size', 'idp', 'clusters', 'usecase', 'timeline', 'consent', 'nda'], 'sales@sonofgraig.com'));
       } else if (res.status === 429) {
         setMessage('Too many submissions from this connection. Please wait a few minutes, or email sales@sonofgraig.com.');
       } else if (String(data.error ?? '').startsWith('turnstile')) {
