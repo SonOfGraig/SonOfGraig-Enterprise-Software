@@ -3,8 +3,7 @@ import Link from 'next/link';
 import { Callout } from '@/components/ui/Callout';
 
 // PAIA manual (Promotion of Access to Information Act 2 of 2000, s51, as
-// amended by POPIA s110). DRAFT prepared 2026-10-10 for the founder's review:
-// noindex until he approves it and the CIPC registration number is filled in.
+// amended by POPIA s110). Approved and published by the founder 2026-10-10.
 // Fees and forms are referenced to the PAIA Regulations rather than quoted, so
 // the manual stays correct when the Regulator updates the fee schedule.
 
@@ -13,11 +12,11 @@ export const metadata: Metadata = {
   description:
     'The sonofgraig PAIA manual: the records we hold, how to request access to them under the Promotion of Access to Information Act, and how we process personal information under POPIA.',
   alternates: { canonical: '/paia' },
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
-const STATUS = 'Draft for review';
-const PREPARED = '10 October 2026';
+const VERSION = '1.0';
+const EFFECTIVE = '10 October 2026';
 
 const sections = [
   { id: 'introduction', label: '01 · Introduction' },
@@ -51,8 +50,8 @@ export default function PaiaPage() {
             Protection of Personal Information Act, 2013 (POPIA).
           </p>
           <div className="flex flex-wrap items-center gap-[var(--sp-3)]">
-            <span className="px-[var(--sp-3)] py-[var(--sp-1)] rounded-[var(--r-full)] bg-[var(--sg-warn-bg,var(--sg-surface-2))] text-[var(--sg-amber)] border border-[var(--sg-amber)] text-code">{STATUS}</span>
-            <span className="px-[var(--sp-3)] py-[var(--sp-1)] rounded-[var(--r-full)] bg-[var(--sg-surface-2)] text-[var(--sg-text-3)] border border-[var(--sg-border)] text-code">Prepared {PREPARED}</span>
+            <span className="px-[var(--sp-3)] py-[var(--sp-1)] rounded-[var(--r-full)] bg-[var(--sg-blue-glow)] text-[var(--sg-blue)] border border-[var(--sg-blue-border)] text-code">v{VERSION}</span>
+            <span className="px-[var(--sp-3)] py-[var(--sp-1)] rounded-[var(--r-full)] bg-[var(--sg-surface-2)] text-[var(--sg-text-3)] border border-[var(--sg-border)] text-code">Effective {EFFECTIVE}</span>
             <span className="px-[var(--sp-3)] py-[var(--sp-1)] rounded-[var(--r-full)] bg-[var(--sg-surface-2)] text-[var(--sg-text-3)] border border-[var(--sg-border)] text-code">PAIA s51 · POPIA</span>
           </div>
         </div>
@@ -78,8 +77,8 @@ export default function PaiaPage() {
           <article className="sg-prose max-w-[760px]">
             <Callout
               variant="info"
-              label="Draft"
-              body="This manual is a draft awaiting final review by our Information Officer. The contact route in section 03 already works — you can make a request today."
+              label="Making a request"
+              body="Send requests to our Information Officer (section 03). Section 09 explains the procedure, forms and fees."
             />
 
             <section id="introduction">

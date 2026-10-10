@@ -119,17 +119,15 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
               </ul>
             </div>
 
-            {/* Developer & IT */}
+            {/* Trust & legal */}
             <div>
-              <h5 className="text-[13px] font-semibold text-[var(--sg-text-1)] mb-4">Developer & IT</h5>
+              <h5 className="text-[13px] font-semibold text-[var(--sg-text-1)] mb-4">Trust &amp; legal</h5>
               <ul className="space-y-3">
-                <li><Link href="/api-reference" className={linkClass}>API reference</Link></li>
-                <li><Link href="/sdk-docs" className={linkClass}>SDK docs</Link></li>
                 <li><Link href="/security" className={linkClass}>Security overview</Link></li>
                 <li><Link href="/popia" className={linkClass}>POPIA compliance</Link></li>
-                <li><Link href="/dpa" className={linkClass}>DPA</Link></li>
                 <li><Link href="/paia" className={linkClass}>PAIA manual</Link></li>
-                <li><Link href="/status" className={linkClass}>Status page</Link></li>
+                <li><Link href="/dpa" className={linkClass}>DPA</Link></li>
+                <li><Link href="/terms" className={linkClass}>Terms of use</Link></li>
               </ul>
             </div>
 
@@ -141,7 +139,6 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
                 <li><Link href="/blog" className={linkClass}>Insights</Link></li>
                 <li><Link href="/contact" className={linkClass}>Contact</Link></li>
                 <li><Link href="/press" className={linkClass}>Press</Link></li>
-                <li><Link href="/partners" className={linkClass}>Partners</Link></li>
               </ul>
             </div>
 
@@ -169,9 +166,7 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
               <Link href="/contact" className={linkClass}>Contact</Link>
               <Link href="/privacy-policy" className={linkClass}>Privacy</Link>
               <Link href="/terms" className={linkClass}>Terms of use</Link>
-              <Link href="/trademarks" className={linkClass}>Trademarks</Link>
               <Link href="/popia" className={linkClass}>POPIA</Link>
-              <Link href="/about-ads" className={linkClass}>About our ads</Link>
             </div>
           </div>
 

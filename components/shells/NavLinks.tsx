@@ -62,7 +62,7 @@ const links: NavLink[] = [
       },
       footer: [
         { href: '/platform', label: 'View all products', icon: <Grid size={12} strokeWidth={1.5} /> },
-        { href: '/api-reference', label: 'Developer docs', icon: <FileText size={12} strokeWidth={1.5} /> },
+        { href: '/security', label: 'Security & trust', icon: <FileText size={12} strokeWidth={1.5} /> },
         { href: '/contact', label: 'Talk to sales', icon: <MessageSquare size={12} strokeWidth={1.5} /> },
       ]
     }

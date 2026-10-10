@@ -95,6 +95,14 @@ const nextConfig: NextConfig = {
       { source: '/roadmap', destination: '/platform', permanent: true },
       // Not hiring yet (founder, 2026-10-10): old careers links land on About.
       { source: '/careers', destination: '/about', permanent: false },
+      // Placeholder pages retired (founder, 2026-10-10): nothing real to show
+      // yet, so each lands on its closest live page.
+      { source: '/api-reference', destination: '/platform/ai-dev-platform', permanent: false },
+      { source: '/sdk-docs', destination: '/platform/ai-dev-platform', permanent: false },
+      { source: '/status', destination: '/changelog', permanent: false },
+      { source: '/partners', destination: '/contact?topic=partner', permanent: false },
+      { source: '/trademarks', destination: '/terms', permanent: false },
+      { source: '/about-ads', destination: '/privacy-policy#cookies', permanent: false },
     ];
   },
   async headers() {
