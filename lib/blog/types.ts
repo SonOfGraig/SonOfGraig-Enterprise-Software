@@ -46,8 +46,10 @@ export type Post = {
   heroAlt: string;
   /** HTML body, sanitised at author time. Rendered via dangerouslySetInnerHTML. */
   bodyHtml: string;
-  /** Optional override for <title>. Defaults to `${title} | sonofgraig Insights`. */
+  /** Optional override for <title>. Defaults to `${title} | sonofgraig`. Keep ≤60 chars. */
   seoTitle?: string;
+  /** Optional meta description when the excerpt runs past ~160 chars (Google truncates). */
+  seoDescription?: string;
   /** Optional FAQ pairs surfaced as both UI section and FAQPage JSON-LD. */
   faq?: Array<{ question: string; answer: string }>;
 };

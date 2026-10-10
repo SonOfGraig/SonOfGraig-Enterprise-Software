@@ -8,13 +8,14 @@ import { PlatformInMotion } from '@/components/marketing/home/PlatformInMotion';
 import { PlannedClustersGrid } from '@/components/marketing/platform/PlatformSections';
 import { ExplainerVideo } from '@/components/marketing/_shared/ExplainerVideo';
 import { explainerSources } from '@/lib/assets';
+import { OG_IMAGES } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Platform — sonofgraig | The AI Dev Platform and what comes next',
   description:
     'The sonofgraig platform starts with the AI Dev Platform — RAG Studio, Agent Builder, Governance Hub and ML Ops on one audit trail. Four more clusters are planned.',
   alternates: { canonical: '/platform' },
-  openGraph: { title: 'The sonofgraig platform', description: 'The AI Dev Platform first; four more clusters planned.', type: 'website', url: '/platform', locale: 'en_ZA' },
+  openGraph: { images: OG_IMAGES, title: 'The sonofgraig platform', description: 'The AI Dev Platform first; four more clusters planned.', type: 'website', url: '/platform', locale: 'en_ZA' },
   robots: { index: true, follow: true },
 };
 

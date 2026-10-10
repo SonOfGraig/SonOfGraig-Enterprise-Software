@@ -9,7 +9,7 @@ import { Timeline } from '@/components/ui/Timeline';
 import { FAQ } from '@/components/ui/FAQ';
 import { Reveal } from '@/components/fx/Reveal';
 import { SERVICES } from '@/lib/services';
-import { faqPageJsonLd } from '@/lib/seo';
+import { faqPageJsonLd, OG_IMAGES } from '@/lib/seo';
 import { servicesFaqs } from '@/lib/seo/faqs';
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description:
     'Four fixed-scope services for South African enterprises: AI agents, RAG knowledge bases, AI governance audits and cloud architecture. Priced in rand, POPIA-aligned.',
   alternates: { canonical: '/services' },
-  openGraph: {
+  openGraph: { images: OG_IMAGES,
     title: 'Services — sonofgraig',
     description: 'Four fixed-scope enterprise AI services for South African enterprises. Priced in rand, POPIA-aligned.',
     type: 'website',

@@ -4,12 +4,13 @@ import { PageHero } from '@/components/marketing/_shared/PageHero';
 import { CTABand } from '@/components/marketing/_shared/CTABand';
 import { Section, SectionHeader } from '@/components/ui/Section';
 import { Timeline, type TimelineItem } from '@/components/ui/Timeline';
+import { OG_IMAGES } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Changelog — sonofgraig | What we shipped',
-  description: 'What sonofgraig has shipped and changed, newest first. Only things that actually happened.',
+  description: 'The sonofgraig changelog: what we have shipped and changed on the AI Dev Platform and this site, newest first. Only releases that actually happened.',
   alternates: { canonical: '/changelog' },
-  openGraph: { title: 'Changelog — sonofgraig', description: 'What we shipped, as we shipped it.', type: 'website', url: '/changelog', locale: 'en_ZA' },
+  openGraph: { images: OG_IMAGES, title: 'Changelog — sonofgraig', description: 'What we shipped, as we shipped it.', type: 'website', url: '/changelog', locale: 'en_ZA' },
   robots: { index: true, follow: true },
 };
 

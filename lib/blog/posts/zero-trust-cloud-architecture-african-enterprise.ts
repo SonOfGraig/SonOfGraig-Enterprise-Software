@@ -4,6 +4,8 @@ import { TUMISO } from '../types';
 const post: Post = {
   slug: 'zero-trust-cloud-architecture-african-enterprise',
   title: 'Zero-Trust Cloud Architecture for Regulated African Enterprise',
+  seoTitle: 'Zero-Trust Cloud Architecture for African Enterprise',
+  seoDescription: 'Zero-trust cloud architecture for regulated African enterprises: identity, network design and continuous attestation, with POPIA residency built in.',
   excerpt:
     'Zero-trust is widely cited and rarely implemented well. Here is what it means concretely on AWS af-south-1 — identity, network, and continuous attestation — with POPIA residency enforced at the boundary.',
   category: 'Engineering',

@@ -4,6 +4,7 @@ import { TUMISO } from '../types';
 const post: Post = {
   slug: 'four-pillar-ai-dev-platform',
   title: 'RAG, Agents, Fine-Tuning, Governance: The Four Pillars of an Enterprise AI Dev Platform',
+  seoTitle: 'Four Pillars of an Enterprise AI Dev Platform | sonofgraig',
   excerpt:
     'When buyers ask "is your AI platform a RAG product or an agent product?" the answer is yes. Here is why all four pillars belong on one platform and how to choose between them per workload.',
   category: 'Product',

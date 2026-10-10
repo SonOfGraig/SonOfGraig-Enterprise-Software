@@ -4,6 +4,7 @@ import { TUMISO } from '../types';
 const post: Post = {
   slug: 'building-production-ai-agents-langgraph',
   title: 'Building Production AI Agents: Tools, Stop Conditions, and Human-in-the-Loop',
+  seoTitle: 'Building Production AI Agents: Stops & Human-in-the-Loop',
   excerpt:
     'A demo agent loops a model and a few tools. A production agent survives malformed arguments, runaway loops, and an audit. Here is what separates the two.',
   category: 'Engineering',

@@ -72,6 +72,21 @@ const nextConfig: NextConfig = {
   // landing somewhere useful.
   async redirects() {
     return [
+      // One canonical origin: https://sonofgraig.com. Behind the Cloudflare
+      // Tunnel the app sees the visitor's Host header and, in CF-Visitor, the
+      // scheme they used — so www and plain-http requests get a single 308.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.sonofgraig.com' }],
+        destination: 'https://sonofgraig.com/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [{ type: 'header', key: 'cf-visitor', value: '.*"scheme":"http".*' }],
+        destination: 'https://sonofgraig.com/:path*',
+        permanent: true,
+      },
       { source: '/platform/timeline', destination: '/platform', permanent: true },
       { source: '/roadmap', destination: '/platform', permanent: true },
       // Not hiring yet (founder, 2026-10-10): old careers links land on About.

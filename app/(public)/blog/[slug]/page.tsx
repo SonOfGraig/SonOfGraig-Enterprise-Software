@@ -39,14 +39,14 @@ export async function generateMetadata({
   if (!article) return {};
   const canonical = `/blog/${article.slug}`;
   return {
-    title: article.seoTitle ?? `${article.title} | sonofgraig Insights`,
-    description: article.excerpt,
+    title: article.seoTitle ?? `${article.title} | sonofgraig`,
+    description: article.seoDescription ?? article.excerpt,
     alternates: { canonical },
     keywords: [article.primaryKeyword, ...article.keywords],
     openGraph: {
       type: 'article',
       title: article.title,
-      description: article.excerpt,
+      description: article.seoDescription ?? article.excerpt,
       url: canonical,
       publishedTime: article.datePublished,
       modifiedTime: article.dateModified,

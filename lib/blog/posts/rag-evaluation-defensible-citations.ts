@@ -4,6 +4,8 @@ import { TUMISO } from '../types';
 const post: Post = {
   slug: 'rag-evaluation-defensible-citations',
   title: 'Retrieval Quality: Evaluating RAG with Citations You Can Defend',
+  seoTitle: 'Evaluating RAG with Citations You Can Defend | sonofgraig',
+  seoDescription: 'How to evaluate RAG retrieval quality so every answer cites a source you can defend: metrics, test sets and the failures that matter in enterprise use.',
   excerpt:
     'A RAG system that cites the wrong passage is worse than one that admits it does not know. Here is how to evaluate retrieval quality and build citations that survive scrutiny.',
   category: 'Engineering',

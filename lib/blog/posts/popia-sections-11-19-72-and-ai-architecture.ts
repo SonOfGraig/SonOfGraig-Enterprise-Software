@@ -4,6 +4,7 @@ import { TUMISO } from '../types';
 const post: Post = {
   slug: 'popia-sections-11-19-72-and-ai-architecture',
   title: 'POPIA Sections 11, 19 & 72: What They Mean for AI Architecture',
+  seoTitle: 'POPIA Sections 11, 19 & 72 for AI Architecture | sonofgraig',
   excerpt:
     'A technical reading of the three POPIA sections most likely to bite an enterprise AI project, and the architectural patterns that satisfy them without a CISO memo.',
   category: 'Compliance',

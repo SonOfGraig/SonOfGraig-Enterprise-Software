@@ -4,6 +4,7 @@ import { TUMISO } from '../types';
 const post: Post = {
   slug: 'why-africa-needs-its-own-enterprise-ai-platform',
   title: 'Why Africa Needs Its Own Enterprise AI Platform',
+  seoDescription: 'Why South African enterprises need an AI platform built for POPIA, rand pricing and local data residency, and what that platform has to get right.',
   excerpt:
     'POPIA, data residency, and currency risk are not edge cases — they are the architecture. Here is why we are building the enterprise AI platform that should already exist on this continent.',
   category: 'Strategy',

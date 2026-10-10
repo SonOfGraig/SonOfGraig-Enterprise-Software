@@ -9,14 +9,14 @@ import { Timeline } from '@/components/ui/Timeline';
 import { FAQ, type FAQItem } from '@/components/ui/FAQ';
 import { Reveal } from '@/components/fx/Reveal';
 import { EarlyAccessForm } from '@/components/marketing/early-access/EarlyAccessForm';
-import { faqPageJsonLd } from '@/lib/seo';
+import { faqPageJsonLd, OG_IMAGES } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Early Access — sonofgraig | AI Dev Platform',
   description:
     'Early access to the AI Dev Platform is open: a direct line to the founder, a real say in the roadmap and guided onboarding. Pricing agreed with you, in rand.',
   alternates: { canonical: '/early-access' },
-  openGraph: { title: 'Early access — sonofgraig', description: 'Early access to the AI Dev Platform is open.', type: 'website', url: '/early-access', locale: 'en_ZA' },
+  openGraph: { images: OG_IMAGES, title: 'Early access — sonofgraig', description: 'Early access to the AI Dev Platform is open.', type: 'website', url: '/early-access', locale: 'en_ZA' },
   robots: { index: true, follow: true },
 };
 

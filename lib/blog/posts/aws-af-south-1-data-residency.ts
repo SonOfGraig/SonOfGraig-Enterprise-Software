@@ -4,6 +4,8 @@ import { TUMISO } from '../types';
 const post: Post = {
   slug: 'aws-af-south-1-data-residency',
   title: 'Data Residency in AWS af-south-1: What "Hosted in South Africa" Actually Means',
+  seoTitle: 'AWS af-south-1 Data Residency Explained | sonofgraig',
+  seoDescription: 'What “hosted in South Africa” really means on AWS af-south-1: where AI workloads leak data across borders, and how to keep residency genuine.',
   excerpt:
     '"Hosted in South Africa" is a claim worth interrogating. Here is what genuine in-region residency requires across compute, storage, model inference, logs, and backups — and where it usually leaks.',
   category: 'Compliance',

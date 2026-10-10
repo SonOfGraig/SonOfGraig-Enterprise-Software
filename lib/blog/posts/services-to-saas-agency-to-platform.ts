@@ -4,6 +4,8 @@ import { TUMISO } from '../types';
 const post: Post = {
   slug: 'services-to-saas-agency-to-platform',
   title: 'From Services to SaaS: How an Agency Becomes a Platform Company',
+  seoTitle: 'From Services to SaaS: Agency to Platform | sonofgraig',
+  seoDescription: 'How a services agency becomes a software platform company: the phases, the trade-offs, and why delivery work makes a better product.',
   excerpt:
     'Productising a services business is the hardest transition in software. Here is the model we are executing — using client delivery as the R&D pipeline for the platform, not a distraction from it.',
   category: 'Transition',

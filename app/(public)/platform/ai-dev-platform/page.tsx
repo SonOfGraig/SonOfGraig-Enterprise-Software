@@ -4,14 +4,14 @@ import { CTABand } from '@/components/marketing/_shared/CTABand';
 import { Section } from '@/components/ui/Section';
 import { RagStudioDemo } from '@/components/marketing/home/RagStudioDemo';
 import { ModuleRows, ArchitectureSection, StackSection } from '@/components/marketing/platform/PlatformSections';
-import { SITE_URL, ORG_ID, breadcrumbJsonLd } from '@/lib/seo';
+import { SITE_URL, ORG_ID, breadcrumbJsonLd, OG_IMAGES } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'AI Dev Platform — sonofgraig | RAG Studio, Agent Builder, Governance Hub, ML Ops',
+  title: 'AI Dev Platform: RAG Studio & Agent Builder | sonofgraig',
   description:
-    'The AI Dev Platform: cited answers with RAG Studio, traceable agents with Agent Builder, POPIA reporting with Governance Hub and reproducible models with ML Ops — on one audit trail.',
+    'Enterprise AI built in South Africa: cited answers with RAG Studio, traceable agents with Agent Builder, and POPIA governance, on one audit trail.',
   alternates: { canonical: '/platform/ai-dev-platform' },
-  openGraph: { title: 'The AI Dev Platform', description: 'Four modules, one audit trail.', type: 'website', url: '/platform/ai-dev-platform', locale: 'en_ZA' },
+  openGraph: { images: OG_IMAGES, title: 'The AI Dev Platform', description: 'Four modules, one audit trail.', type: 'website', url: '/platform/ai-dev-platform', locale: 'en_ZA' },
   robots: { index: true, follow: true },
 };
 

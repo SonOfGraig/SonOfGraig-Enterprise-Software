@@ -7,6 +7,13 @@ export const SITE_URL =
   'https://sonofgraig.com';
 
 export const ORG_ID = `${SITE_URL}#organization`;
+
+/**
+ * Default share image (app/opengraph-image.tsx, 1200×630). A page that sets
+ * its own `openGraph` replaces the parent's object wholesale in Next.js, so it
+ * must list images again or social previews come out blank.
+ */
+export const OG_IMAGES = [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'sonofgraig — enterprise AI software, built in South Africa' }];
 export const WEBSITE_ID = `${SITE_URL}#website`;
 
 export type Crumb = { name: string; path: string };

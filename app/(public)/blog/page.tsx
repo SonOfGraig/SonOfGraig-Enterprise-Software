@@ -3,13 +3,14 @@ import { CTABand } from '@/components/marketing/_shared/CTABand';
 import type { Article } from '@/components/marketing/blog/ArticleGrid';
 import { InsightsExplorer } from '@/components/marketing/blog/InsightsExplorer';
 import { getAllPosts } from '@/lib/blog';
+import { OG_IMAGES } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Insights — sonofgraig | Enterprise AI, POPIA & RAG in South Africa',
+  title: 'Enterprise AI, POPIA & RAG Insights | sonofgraig',
   description:
     'Technical writing from sonofgraig on POPIA-compliant enterprise AI in South Africa — RAG architecture, AI agents, governance and data residency.',
   alternates: { canonical: '/blog' },
-  openGraph: { title: 'Insights — sonofgraig', description: 'Technical guides on POPIA-compliant AI and enterprise AI in South Africa.', type: 'website', url: '/blog', locale: 'en_ZA' },
+  openGraph: { images: OG_IMAGES, title: 'Insights — sonofgraig', description: 'Technical guides on POPIA-compliant AI and enterprise AI in South Africa.', type: 'website', url: '/blog', locale: 'en_ZA' },
   robots: { index: true, follow: true },
 };
 

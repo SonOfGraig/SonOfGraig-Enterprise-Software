@@ -6,7 +6,7 @@ const cluster = getCluster('creative-xr');
 
 export const metadata: Metadata = {
   title: `Creative & XR (planned) — sonofgraig`,
-  description: `{cluster.tagline} A planned sonofgraig product cluster.`,
+  description: `${cluster.tagline} A planned product cluster from sonofgraig, the South African enterprise AI company.`,
   alternates: { canonical: '/platform/creative-xr' },
   robots: { index: true, follow: true },
 };

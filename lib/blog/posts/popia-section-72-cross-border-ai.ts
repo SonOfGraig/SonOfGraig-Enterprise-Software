@@ -4,6 +4,8 @@ import { TUMISO } from '../types';
 const post: Post = {
   slug: 'popia-section-72-cross-border-ai',
   title: 'POPIA Section 72 and Cross-Border AI: Can You Legally Use OpenAI in South Africa?',
+  seoTitle: 'POPIA Section 72: Can You Use OpenAI in South Africa?',
+  seoDescription: 'Can you legally use OpenAI or other offshore AI under POPIA Section 72? The transfer rules explained, and the architecture patterns that keep you compliant.',
   excerpt:
     'Section 72 of POPIA governs sending personal information outside South Africa. Here is what it actually requires of an AI architecture that calls a US-hosted model — and the patterns that keep you compliant.',
   category: 'Compliance',

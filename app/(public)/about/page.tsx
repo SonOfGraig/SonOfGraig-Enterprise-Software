@@ -11,7 +11,7 @@ import {
   CompanyFactsSection,
   AboutFAQSection,
 } from '@/components/marketing/about/AboutSections';
-import { faqPageJsonLd } from '@/lib/seo';
+import { faqPageJsonLd, OG_IMAGES } from '@/lib/seo';
 import { aboutFaqs } from '@/lib/seo/faqs';
 
 const SITE_URL =
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   description:
     'sonofgraig is a South African company turning 18 service lines into enterprise software, starting with the AI Dev Platform. POPIA-aligned and priced in rand.',
   alternates: { canonical: '/about' },
-  openGraph: {
+  openGraph: { images: OG_IMAGES,
     title: 'About sonofgraig',
     description:
       'From services agency to enterprise software company — the sonofgraig story, founder and operating principles.',

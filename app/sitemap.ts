@@ -21,6 +21,7 @@ const ROUTES: Array<{
   { path: '/platform/cloud-devops', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/platform/data-analytics', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/platform/creative-xr', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/platform/dev-platform', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/pricing', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/about', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/contact', changeFrequency: 'monthly', priority: 0.8 },

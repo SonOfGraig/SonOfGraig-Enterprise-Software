@@ -6,7 +6,7 @@ const cluster = getCluster('data-analytics');
 
 export const metadata: Metadata = {
   title: `Data & Analytics (planned) — sonofgraig`,
-  description: `{cluster.tagline} A planned sonofgraig product cluster.`,
+  description: `${cluster.tagline} A planned product cluster from sonofgraig, the South African enterprise AI company.`,
   alternates: { canonical: '/platform/data-analytics' },
   robots: { index: true, follow: true },
 };

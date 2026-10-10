@@ -4,6 +4,8 @@ import { TUMISO } from '../types';
 const post: Post = {
   slug: 'popia-ai-compliance-checklist',
   title: "The Compliance Officer's Checklist for Deploying AI Under POPIA",
+  seoTitle: 'POPIA Compliance Checklist for Deploying AI | sonofgraig',
+  seoDescription: 'A practical POPIA checklist for compliance officers approving AI: lawful basis, security safeguards, cross-border transfers, audit logs and vendor terms.',
   excerpt:
     'A practical, section-by-section checklist for signing off an AI system under POPIA — lawful basis, security safeguards, cross-border transfers, and the audit evidence you will be asked to produce.',
   category: 'Compliance',

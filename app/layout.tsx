@@ -5,6 +5,7 @@ import { BackToTop } from '@/components/ui/BackToTop';
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import { SmoothScroll } from '@/components/fx/SmoothScroll';
 import './globals.css'; // Global styles
+import { OG_IMAGES } from '@/lib/seo';
 
 // v4: Manrope returns as the display face — it carried the brand on the
 // 2026 agency site. Exposed under the old --font-sora variable so every
@@ -96,7 +97,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: { canonical: '/' },
-  openGraph: {
+  openGraph: { images: OG_IMAGES,
     type: 'website',
     siteName: 'sonofgraig',
     title: 'sonofgraig — Enterprise Software Company | AI-Native SaaS',
@@ -104,10 +105,11 @@ export const metadata: Metadata = {
     locale: 'en_ZA',
     url: '/',
   },
+  // No title/description here: X falls back to each page's own og:title and
+  // og:description. Setting them site-wide made every share show the homepage.
   twitter: {
     card: 'summary_large_image',
-    title: 'sonofgraig — Enterprise Software Company | AI-Native SaaS',
-    description: SITE_DESCRIPTION,
+    images: ['/opengraph-image'],
     creator: '@sonofgraig',
     site: '@sonofgraig',
   },

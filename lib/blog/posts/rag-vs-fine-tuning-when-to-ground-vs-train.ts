@@ -4,6 +4,8 @@ import { TUMISO } from '../types';
 const post: Post = {
   slug: 'rag-vs-fine-tuning-when-to-ground-vs-train',
   title: 'RAG vs Fine-Tuning: When to Ground a Model and When to Train It',
+  seoTitle: 'RAG vs Fine-Tuning: When to Ground vs Train | sonofgraig',
+  seoDescription: 'RAG or fine-tuning? A practical guide to when you should ground a model in your documents and when it is worth training one, for enterprise teams.',
   excerpt:
     'The most expensive mistake in enterprise AI is fine-tuning a model to solve a retrieval problem. Here is a decision framework for choosing between grounding and training, workload by workload.',
   category: 'Engineering',

@@ -13,14 +13,15 @@ import {
 } from 'lucide-react';
 import { Callout } from '@/components/ui/Callout';
 import { BackToTop } from '@/components/ui/BackToTop';
+import { OG_IMAGES } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — sonofgraig',
+  title: 'Privacy Policy — How sonofgraig Handles Your Data',
   description:
     'How sonofgraig collects, uses, shares, and protects your personal information under POPIA — including your data subject rights and how to exercise them.',
   alternates: { canonical: '/privacy-policy' },
-  openGraph: {
-    title: 'Privacy Policy — sonofgraig',
+  openGraph: { images: OG_IMAGES,
+    title: 'Privacy Policy — How sonofgraig Handles Your Data',
     description:
       'POPIA-aligned privacy notice for sonofgraig: lawful basis, retention, sub-processors, cross-border transfers, and your data subject rights.',
     type: 'article',

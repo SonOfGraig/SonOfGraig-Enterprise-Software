@@ -4,6 +4,8 @@ import { TUMISO } from '../types';
 const post: Post = {
   slug: 'ai-governance-is-a-product-feature',
   title: 'AI Governance Is a Product Feature, Not a Checkbox',
+  seoTitle: 'AI Governance Is a Product Feature | sonofgraig',
+  seoDescription: 'Why AI governance belongs inside the product, not in a compliance checklist: audit trails, explainability and POPIA reporting as features users rely on.',
   excerpt:
     'Treating AI governance as a compliance afterthought is why so many enterprise AI projects stall before production. Built as a product feature, governance is what lets AI ship at all.',
   category: 'Strategy',

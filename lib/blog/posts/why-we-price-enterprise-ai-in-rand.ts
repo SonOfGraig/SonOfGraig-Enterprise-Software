@@ -4,6 +4,7 @@ import { TUMISO } from '../types';
 const post: Post = {
   slug: 'why-we-price-enterprise-ai-in-rand',
   title: 'Why We Price Enterprise AI in Rand, Not Dollars',
+  seoDescription: 'Why sonofgraig prices enterprise AI in rand instead of dollars: what FX risk does to software budgets, and why local pricing is a design decision.',
   excerpt:
     'USD-denominated SaaS quietly transfers currency risk onto South African buyers. Pricing in rand is not a marketing gimmick — it is a structural decision about who carries the FX exposure.',
   category: 'Strategy',

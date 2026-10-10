@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
-import { SITE_URL, ORG_ID, breadcrumbJsonLd, faqPageJsonLd } from '@/lib/seo';
+import { SITE_URL, ORG_ID, breadcrumbJsonLd, faqPageJsonLd, OG_IMAGES } from '@/lib/seo';
 import type { Service } from '@/lib/services';
 
 export function serviceMetadata(s: Service): Metadata {
   const path = `/services/${s.slug}`;
   return {
-    title: `${s.title} — sonofgraig | Fixed-scope, ZAR-priced`,
+    title: `${s.title} in South Africa | sonofgraig`,
     description: `${s.summary} ${s.price}, ${s.meta.split(' · ')[0]}. POPIA-aligned delivery from a South African team.`,
     alternates: { canonical: path },
-    openGraph: { title: `${s.title} — sonofgraig Services`, description: s.summary, type: 'website', url: path, locale: 'en_ZA' },
+    openGraph: { images: OG_IMAGES, title: `${s.title} — sonofgraig Services`, description: s.summary, type: 'website', url: path, locale: 'en_ZA' },
     robots: { index: true, follow: true },
   };
 }
