@@ -1,0 +1,18 @@
+[Unit]
+Description=sonofgraig Insights (listmonk) - start after Tailscale has its address
+Requires=docker.service
+After=docker.service tailscaled.service network-online.target
+Wants=network-online.target tailscaled.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+User=graig
+WorkingDirectory=/home/graig/listmonk
+# The admin port binds to the Tailscale IP; wait (up to 3 min) until it exists.
+ExecStartPre=/bin/sh -c 'for i in $(seq 1 90); do ip -4 addr | grep -q "100.87.178.52/" && exit 0; sleep 2; done; exit 1'
+ExecStart=/usr/bin/docker compose up -d
+TimeoutStartSec=300
+
+[Install]
+WantedBy=multi-user.target
