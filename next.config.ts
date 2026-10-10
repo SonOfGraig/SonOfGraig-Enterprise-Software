@@ -12,14 +12,14 @@ const isDev = process.env.NODE_ENV !== 'production';
 const csp = [
   "default-src 'self'",
   // Cloudflare Turnstile + Cloudflare Insights + Google Analytics (gtag).
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://challenges.cloudflare.com https://static.cloudflareinsights.com https://*.googletagmanager.com https://www.google-analytics.com`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://challenges.cloudflare.com https://static.cloudflareinsights.com https://*.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms`,
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com data:",
   "img-src 'self' https: data: blob:",
   // Explainer videos are served from /public (same origin).
   "media-src 'self' blob:",
   // Only the services the site actually talks to — no blanket https:.
-  "connect-src 'self' https://challenges.cloudflare.com https://cloudflareinsights.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
+  "connect-src 'self' https://challenges.cloudflare.com https://cloudflareinsights.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com",
   // Turnstile widget renders inside an iframe served from challenges.cloudflare.com.
   "frame-src https://challenges.cloudflare.com",
   "frame-ancestors 'none'",

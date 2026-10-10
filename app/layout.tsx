@@ -3,6 +3,7 @@ import { Inter, Manrope, JetBrains_Mono } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
 import { BackToTop } from '@/components/ui/BackToTop';
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
+import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity';
 import { SmoothScroll } from '@/components/fx/SmoothScroll';
 import './globals.css'; // Global styles
 import { OG_IMAGES } from '@/lib/seo';
@@ -275,6 +276,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <BackToTop />
         </ThemeProvider>
         <GoogleAnalytics />
+        <MicrosoftClarity />
       </body>
     </html>
   );

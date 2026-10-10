@@ -213,8 +213,8 @@ export function CookieBanner() {
                     </div>
                     <div className="flex-1">
                       <div className="text-[15px] font-semibold text-[var(--sg-text-1)] mb-1">Analytics</div>
-                      <div className="text-sm text-[var(--sg-text-3)] leading-relaxed mb-2">Vercel Analytics (anonymised, no personal data) and PostHog (IP anonymised). Measures feature adoption across 5 platform clusters. Data retained 90 days.</div>
-                      <div className="text-[10px] sm:text-xs font-mono text-[var(--sg-text-4)] bg-[var(--sg-surface-2)] px-2 py-1 rounded inline-block whitespace-normal break-all">va_session · ph_distinct_id · ph_feature_flag_evals · ph_session_recording</div>
+                      <div className="text-sm text-[var(--sg-text-3)] leading-relaxed mb-2">Google Analytics 4 (IP anonymised) and Microsoft Clarity (heatmaps and session replays, with typed text masked). Shows us which pages help visitors and where they get stuck. Loaded only if you switch this on.</div>
+                      <div className="text-[10px] sm:text-xs font-mono text-[var(--sg-text-4)] bg-[var(--sg-surface-2)] px-2 py-1 rounded inline-block whitespace-normal break-all">_ga · _ga_* · _clck · _clsk · CLID</div>
                     </div>
                     <div className="flex items-center sm:flex-col sm:items-end justify-between sm:justify-start gap-2 mt-2 sm:mt-0 shrink-0">
                       <ToggleSwitch checked={prefs.analytics} onChange={(v) => setPrefs(p => ({...p, analytics: v}))} />
@@ -228,8 +228,8 @@ export function CookieBanner() {
                     </div>
                     <div className="flex-1">
                       <div className="text-[15px] font-semibold text-[var(--sg-text-1)] mb-1">Marketing</div>
-                      <div className="text-sm text-[var(--sg-text-3)] leading-relaxed mb-2">LinkedIn Insight Tag for B2B enterprise retargeting and Google Ads conversion. Measures enterprise outreach effectiveness. LinkedIn DPA in place.</div>
-                      <div className="text-[10px] sm:text-xs font-mono text-[var(--sg-text-4)] bg-[var(--sg-surface-2)] px-2 py-1 rounded inline-block whitespace-normal break-all">li_sugr · lidc · bcookie · _gcl_au · _ga · _gid</div>
+                      <div className="text-sm text-[var(--sg-text-3)] leading-relaxed mb-2">We do not use advertising or retargeting cookies on this website today. If that changes, we will ask for this consent first.</div>
+                      <div className="text-[10px] sm:text-xs font-mono text-[var(--sg-text-4)] bg-[var(--sg-surface-2)] px-2 py-1 rounded inline-block whitespace-normal break-all">none in use</div>
                     </div>
                     <div className="flex items-center sm:flex-col sm:items-end justify-between sm:justify-start gap-2 mt-2 sm:mt-0 shrink-0">
                       <ToggleSwitch checked={prefs.marketing} onChange={(v) => setPrefs(p => ({...p, marketing: v}))} />

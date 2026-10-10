@@ -45,7 +45,9 @@ const COLLECTION: [string, string, string, string][] = [
 const TRANSFERS: [string, string, string][] = [
   ['Cloudflare', 'Global edge network', 'Delivers and protects this website. Sees request metadata.'],
   ['Resend', 'United States', 'Emails form submissions to our team and sends your confirmation.'],
+  ['Cloudflare Web Analytics', 'Global edge network', 'Counts page views without cookies or personal profiles.'],
   ['Google Analytics', 'United States', 'Website analytics — only after you accept analytics cookies.'],
+  ['Microsoft Clarity', 'United States', 'Heatmaps and session replays (typed text masked) — only after you accept analytics cookies.'],
 ];
 
 const RIGHTS = [
@@ -59,7 +61,7 @@ const RIGHTS = [
 
 const FAQS: FAQItem[] = [
   { q: 'Who is responsible for my information?', a: 'SonOfGraig Digital Solutions (Pty) Ltd is the responsible party. Our Information Officer is Tumiso Graig Ramaboya, registered with the Information Regulator, at tumiso@sonofgraig.com.' },
-  { q: 'Does my information leave South Africa?', a: 'Some of it can. When you submit a form, it is emailed to us through Resend (United States). If you accept analytics cookies, usage data goes to Google Analytics (United States). These transfers rely on the providers’ data protection terms and, for analytics, your consent, as POPIA section 72 allows.' },
+  { q: 'Does my information leave South Africa?', a: 'Some of it can. When you submit a form, it is emailed to us through Resend (United States). If you accept analytics cookies, usage data goes to Google Analytics and Microsoft Clarity (United States). These transfers rely on the providers’ data protection terms and, for analytics, your consent, as POPIA section 72 allows.' },
   { q: 'How quickly do you respond to requests?', a: 'Within 10 business days for most requests. If a request is complex we will tell you, with reasons, within that time.' },
   { q: 'Do you sell personal information?', a: 'No. We do not sell or rent personal information, and we do not share it with third parties for their own marketing.' },
 ];

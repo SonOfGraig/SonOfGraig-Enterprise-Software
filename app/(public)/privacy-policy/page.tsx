@@ -309,8 +309,11 @@ export default function PrivacyPolicyPage() {
                   submissions to our team, confirmation emails and consented newsletters.
                 </li>
                 <li>
-                  <strong>Analytics</strong> — Google Analytics (United States), loaded only
-                  after you accept analytics cookies, with IP anonymisation.
+                  <strong>Analytics</strong> — Cloudflare Web Analytics (global), which counts
+                  page views without cookies or personal profiles; and, only after you accept
+                  analytics cookies, Google Analytics (United States, IP anonymised) and
+                  Microsoft Clarity (United States; heatmaps and session replays with typed text
+                  masked).
                 </li>
                 <li>
                   <strong>Platform customers</strong> — the infrastructure and model providers
