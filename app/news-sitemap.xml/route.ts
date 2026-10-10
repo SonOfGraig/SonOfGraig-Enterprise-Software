@@ -1,4 +1,5 @@
 import { getAllPosts } from '@/lib/blog';
+import { publishedNews, releaseTime } from '@/lib/news';
 
 // Google News sitemap: only articles published in the last 2 days belong here
 // (Google's rule). Older posts stay in /sitemap.xml. Listed in robots.ts.
@@ -13,19 +14,23 @@ export const revalidate = 3600;
 
 export function GET() {
   const now = Date.now();
-  const recent = getAllPosts().filter((p) => {
-    const t = new Date(`${p.datePublished}T08:00:00+02:00`).getTime();
+  const entries = [
+    ...publishedNews().map((n) => ({ path: `/newsroom/${n.slug}`, when: releaseTime(n.date), title: n.title })),
+    ...getAllPosts().map((p) => ({ path: `/blog/${p.slug}`, when: `${p.datePublished}T08:00:00+02:00`, title: p.title })),
+  ];
+  const recent = entries.filter((e) => {
+    const t = new Date(e.when).getTime();
     return t <= now && now - t <= TWO_DAYS_MS;
   });
 
   const items = recent
     .map(
-      (p) => `  <url>
-    <loc>${SITE_URL}/blog/${p.slug}</loc>
+      (e) => `  <url>
+    <loc>${SITE_URL}${e.path}</loc>
     <news:news>
       <news:publication><news:name>sonofgraig Insights</news:name><news:language>en</news:language></news:publication>
-      <news:publication_date>${p.datePublished}T08:00:00+02:00</news:publication_date>
-      <news:title>${xml(p.title)}</news:title>
+      <news:publication_date>${e.when}</news:publication_date>
+      <news:title>${xml(e.title)}</news:title>
     </news:news>
   </url>`,
     )

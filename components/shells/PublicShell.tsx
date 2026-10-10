@@ -140,6 +140,7 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
                 <li><Link href="/about" className={linkClass}>About</Link></li>
                 <li><Link href="/blog" className={linkClass}>Insights</Link></li>
                 <li><Link href="/contact" className={linkClass}>Contact</Link></li>
+                <li><Link href="/newsroom" className={linkClass}>Newsroom</Link></li>
                 <li><Link href="/press" className={linkClass}>Press</Link></li>
               </ul>
             </div>

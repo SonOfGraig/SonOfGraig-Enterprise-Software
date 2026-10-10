@@ -8,6 +8,7 @@ import { Card } from '@/components/ui/Card';
 import { Reveal } from '@/components/fx/Reveal';
 import { OG_IMAGES, ROBOTS_INDEX } from '@/lib/seo';
 import { SOCIAL_PROFILES, CIPC_REG_NO } from '@/lib/social';
+import { BOILERPLATE_LONG, BOILERPLATE_SHORT } from '@/lib/press';
 
 // Press kit (founder decision 2026-10-10: keep Press). Only verifiable facts:
 // founding date, registration, location, founder and current product status.
@@ -20,11 +21,6 @@ export const metadata: Metadata = {
   robots: ROBOTS_INDEX,
 };
 
-const BOILERPLATE_SHORT =
-  'sonofgraig is a South African enterprise software company building AI-native software for regulated organisations. Its first product, the AI Dev Platform, gives teams cited answers, traceable agents and POPIA-aware governance on one audit trail.';
-
-const BOILERPLATE_LONG =
-  'sonofgraig (SonOfGraig Digital Solutions (Pty) Ltd) is a South African enterprise software company founded in 2025 by Tumiso Graig Ramaboya. It builds AI-native software for organisations that operate under POPIA, starting with the AI Dev Platform: RAG Studio for document-grounded answers with citations, Agent Builder for traceable multi-agent workflows, and governance and ML Ops modules on the same data layer and audit trail. The platform is in early access. sonofgraig also delivers fixed-scope AI, cloud and governance projects for South African enterprises, priced in rand. The company is registered in KwaMhlanga, Mpumalanga, and operates from Pretoria.';
 
 const FACTS: [string, string][] = [
   ['Legal name', 'SonOfGraig Digital Solutions (Pty) Ltd'],

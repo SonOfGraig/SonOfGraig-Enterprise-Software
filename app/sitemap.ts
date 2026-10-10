@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/blog';
 import { ROUTES } from '@/lib/routes';
+import { publishedNews } from '@/lib/news';
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ??
@@ -26,5 +27,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticEntries, ...blogEntries];
+  const news = publishedNews();
+  const newsEntries: MetadataRoute.Sitemap = news.length
+    ? [
+        { url: `${SITE_URL}/newsroom`, lastModified: new Date(`${news[0].date}T00:00:00Z`), changeFrequency: 'weekly', priority: 0.7 },
+        ...news.map((n) => ({
+          url: `${SITE_URL}/newsroom/${n.slug}`,
+          lastModified: new Date(`${n.date}T00:00:00Z`),
+          changeFrequency: 'yearly' as const,
+          priority: 0.6,
+        })),
+      ]
+    : [];
+
+  return [...staticEntries, ...blogEntries, ...newsEntries];
 }
