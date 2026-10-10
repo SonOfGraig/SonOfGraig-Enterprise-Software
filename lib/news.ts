@@ -45,7 +45,7 @@ export const NEWS: NewsRelease[] = [
       { label: 'Read the guide', href: '/data-protection-africa' },
       { label: 'AI governance audit', href: '/services/ai-governance-audit' },
     ],
-    published: false,
+    published: true, // approved by Tumiso 2026-10-10
   },
 ];
 
