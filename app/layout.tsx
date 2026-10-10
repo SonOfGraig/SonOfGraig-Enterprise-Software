@@ -111,8 +111,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     images: ['/opengraph-image'],
-    creator: '@sonofgraig',
-    site: '@sonofgraig',
+    // No X/Twitter account exists, so no @site/@creator handle is claimed.
   },
   // Full favicon registration — SVG primary (Google Search uses it),
   // apple-touch fallback PNG (iOS home screen + Google Search fallback),

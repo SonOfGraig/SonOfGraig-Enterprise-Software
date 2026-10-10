@@ -4,14 +4,14 @@ import { Callout } from '@/components/ui/Callout';
 import { LegalDoc } from '@/components/marketing/legal/LegalDoc';
 
 // Summary of the standard Data Processing Agreement offered to platform and
-// services customers. DRAFT prepared 2026-10-10 for the founder's review —
-// noindex until approved. The signed DPA is the binding document.
+// services customers. Approved by the founder 2026-10-10. The signed DPA is
+// the binding document.
 
 export const metadata: Metadata = {
   title: 'Data Processing Agreement (DPA) — sonofgraig',
   description: 'How sonofgraig processes personal information on your behalf under POPIA: roles, security, sub-processors, cross-border transfers, breaches and deletion.',
   alternates: { canonical: '/dpa' },
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 const sections = [
@@ -35,11 +35,10 @@ export default function DpaPage() {
       kind="Data Processing Agreement"
       title="Data Processing Agreement"
       intro={<p>A plain-language summary of the DPA every sonofgraig customer signs. The signed agreement is the binding document; your legal team can mark it up.</p>}
-      chips={['Prepared 10 October 2026', 'POPIA ss 19–22, 72', 'GDPR Art. 28 aligned']}
-      draft
+      chips={['v1.0', 'Effective 10 October 2026', 'POPIA ss 19–22, 72', 'GDPR Art. 28 aligned']}
       sections={sections}
     >
-      <Callout variant="info" label="Draft summary" body="This summary is awaiting final approval. To receive the full DPA for review, use the request route in section 12." />
+      <Callout variant="info" label="Summary" body="This page summarises the DPA. To receive the full agreement for your legal team, use the request route in section 12." />
 
       <section id="overview">
         <h2>01 · Overview</h2>

@@ -1,18 +1,17 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Callout } from '@/components/ui/Callout';
 import { LegalDoc } from '@/components/marketing/legal/LegalDoc';
 import { CIPC_REG_NO } from '@/lib/social';
 
-// Terms of use for the website. DRAFT prepared 2026-10-10 for the founder's
-// review — noindex until approved. Platform subscriptions and services are
-// governed by their own signed agreements, not by these terms.
+// Terms of use for the website. Approved by the founder 2026-10-10.
+// Platform subscriptions and services are governed by their own signed
+// agreements, not by these terms.
 
 export const metadata: Metadata = {
   title: 'Terms of Use — sonofgraig',
   description: 'The terms that apply when you use the sonofgraig website: who we are, acceptable use, intellectual property, liability and South African law.',
   alternates: { canonical: '/terms' },
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 const sections = [
@@ -36,12 +35,9 @@ export default function TermsPage() {
       kind="Terms of Use"
       title="Terms of Use"
       intro={<p>The terms that apply when you use sonofgraig.com. Our platform and services are covered by separate, signed agreements.</p>}
-      chips={['Prepared 10 October 2026', 'South African law']}
-      draft
+      chips={['v1.0', 'Effective 10 October 2026', 'South African law']}
       sections={sections}
     >
-      <Callout variant="info" label="Draft" body="These terms are awaiting final approval. Questions about them can go to tumiso@sonofgraig.com." />
-
       <section id="about">
         <h2>01 · About these terms</h2>
         <p>

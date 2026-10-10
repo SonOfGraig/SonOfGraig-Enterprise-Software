@@ -5,8 +5,7 @@ import type { MetadataRoute } from 'next';
 // they cannot drift apart. Blog posts are added from lib/blog by each.
 //
 // Only indexable pages belong here: a noindex page in the XML sitemap is a
-// contradictory signal. Drafts awaiting approval (/terms, /dpa) are added
-// when they are published.
+// contradictory signal.
 
 export type SiteRoute = {
   path: string;
@@ -41,4 +40,6 @@ export const ROUTES: SiteRoute[] = [
   { path: '/popia', label: 'POPIA statement', group: 'Trust & legal', changeFrequency: 'yearly', priority: 0.4 },
   { path: '/privacy-policy', label: 'Privacy policy', group: 'Trust & legal', changeFrequency: 'yearly', priority: 0.3 },
   { path: '/paia', label: 'PAIA manual', group: 'Trust & legal', changeFrequency: 'yearly', priority: 0.3 },
+  { path: '/terms', label: 'Terms of use', group: 'Trust & legal', changeFrequency: 'yearly', priority: 0.3 },
+  { path: '/dpa', label: 'Data Processing Agreement', group: 'Trust & legal', changeFrequency: 'yearly', priority: 0.4 },
 ];
