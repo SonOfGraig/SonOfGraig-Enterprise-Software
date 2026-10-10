@@ -2,6 +2,7 @@
 // Templates use inline styles — email clients strip <style> and external CSS.
 
 import { Resend } from 'resend';
+import { SOCIAL_PROFILES } from '../social';
 import type {
   EarlyAccessSubmission,
   ContactSubmission,
@@ -24,12 +25,7 @@ const ORG_LEGAL_NAME = 'sonofgraig Digital Solutions (Pty) Ltd';
 const ORG_ADDRESS = '9810 Moloto South Drive, Extension 8, KwaMhlanga, Mpumalanga 1022, South Africa';
 const ORG_PHONE_DISPLAY = '+27 69 686 6024';
 const ORG_PHONE_TEL = '+27696866024';
-const SOCIAL_LINKS = [
-  { label: 'LinkedIn', url: 'https://za.linkedin.com/company/sonofgraig' },
-  { label: 'GitHub', url: 'https://github.com/sonofgraig' },
-  { label: 'Instagram', url: 'https://www.instagram.com/sonofgraig/' },
-  { label: 'Crunchbase', url: 'https://www.crunchbase.com/organization/sonofgraig-digital-solutions' },
-];
+const SOCIAL_LINKS = SOCIAL_PROFILES.filter((p) => ['LinkedIn', 'Instagram', 'Facebook', 'GitHub'].includes(p.label));
 
 let _resend: Resend | null = null;
 function getResend(): Resend {

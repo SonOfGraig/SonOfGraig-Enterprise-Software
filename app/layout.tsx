@@ -6,6 +6,7 @@ import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import { SmoothScroll } from '@/components/fx/SmoothScroll';
 import './globals.css'; // Global styles
 import { OG_IMAGES } from '@/lib/seo';
+import { SOCIAL_PROFILES, GOOGLE_BUSINESS_KG, CIPC_REG_NO } from '@/lib/social';
 
 // v4: Manrope returns as the display face — it carried the brand on the
 // 2026 agency site. Exposed under the old --font-sora variable so every
@@ -239,12 +240,10 @@ const organizationJsonLd = {
     'Hyper-Automation',
     'Spatial Computing',
   ],
-  sameAs: [
-    'https://za.linkedin.com/company/sonofgraig',
-    'https://www.instagram.com/sonofgraig/',
-    'https://www.crunchbase.com/organization/sonofgraig-digital-solutions',
-    'https://github.com/sonofgraig',
-  ],
+  // Every official profile plus the Google Business Profile entity, so search
+  // engines merge them into one Knowledge Graph node (lib/social.ts).
+  sameAs: [...SOCIAL_PROFILES.map((p) => p.url), GOOGLE_BUSINESS_KG],
+  identifier: { '@type': 'PropertyValue', propertyID: 'CIPC enterprise number', value: CIPC_REG_NO },
 };
 
 const websiteJsonLd = {

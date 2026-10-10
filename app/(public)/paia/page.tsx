@@ -98,7 +98,7 @@ export default function PaiaPage() {
               <ul>
                 <li><strong>Registered name:</strong> SonOfGraig Digital Solutions (Pty) Ltd</li>
                 <li><strong>Trading as:</strong> sonofgraig</li>
-                <li><strong>Registration number:</strong> to be added on approval</li>
+                <li><strong>CIPC enterprise number:</strong> K2025188095</li>
                 <li><strong>Registered address:</strong> 9810 Moloto South Drive, Extension 8, KwaMhlanga, Mpumalanga, 1022</li>
                 <li><strong>Operations:</strong> Pretoria, Gauteng</li>
                 <li><strong>Telephone:</strong> <a href="tel:+27696866024">+27 69 686 6024</a></li>

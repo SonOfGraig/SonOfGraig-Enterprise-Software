@@ -7,6 +7,7 @@ import { AnnouncementBar } from '@/components/marketing/AnnouncementBar';
 import { PageTransition } from './PageTransition';
 import { MobileMenu } from './MobileMenu';
 import { CookieBanner } from '@/components/marketing/CookieBanner';
+import { SOCIAL_PROFILES } from '@/lib/social';
 
 const linkClass =
   'text-[13px] text-[var(--sg-text-3)] hover:text-[var(--sg-text-1)] transition-colors';
@@ -73,6 +74,13 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
                 <span className="px-2 py-1 rounded bg-[var(--sg-surface-2)] text-[var(--sg-text-3)] font-mono text-[10px] border border-[var(--sg-border)]">South African</span>
                 <span className="px-2 py-1 rounded bg-[var(--sg-surface-2)] text-[var(--sg-text-3)] font-mono text-[10px] border border-[var(--sg-border)]">ZAR</span>
               </div>
+              <ul aria-label="sonofgraig elsewhere" className="mt-6 flex flex-wrap gap-x-4 gap-y-2">
+                {SOCIAL_PROFILES.map((p) => (
+                  <li key={p.label}>
+                    <a href={p.url} target="_blank" rel="noopener me" className={linkClass}>{p.label}</a>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* Products */}
