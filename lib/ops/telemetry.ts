@@ -32,7 +32,27 @@ type Bucket = {
   forms: Record<string, Counter>; // form → outcome → count
   clientErrors: number;
   vitals: Record<string, number[]>; // LCP/CLS/INP samples (capped)
+  /** what people do on pages — see recordClick / recordPage / recordFormStep */
+  behaviour: Behaviour;
 };
+
+// Behaviour (Phase 2, 2026-10-11): all aggregate counters, no per-visitor rows.
+type Behaviour = {
+  clicks: Record<string, Counter>; // path → link/button label → clicks
+  scroll: Record<string, Counter>; // path → deepest quarter reached ("0".."100") → page views
+  engaged: Record<string, { ms: number; n: number }>; // path → engaged time, page views
+  transitions: Counter; // "/a → /b"
+  entries: Counter; // landing path
+  campaigns: Counter; // "source / medium / campaign" → page views in tagged sessions
+  formStarts: Counter; // form → visitors who started it
+  formAbandons: Counter; // "form · last field" → left without submitting
+  conversions: Record<string, Counter>; // campaign → form → successful submissions
+};
+
+const emptyBehaviour = (): Behaviour => ({
+  clicks: {}, scroll: {}, engaged: {}, transitions: {}, entries: {}, campaigns: {},
+  formStarts: {}, formAbandons: {}, conversions: {},
+});
 
 export type FormOutcome =
   | 'ok'
@@ -49,7 +69,8 @@ type Recent = { at: string; kind: string; [k: string]: unknown };
 // One store per server process, on globalThis: each route is its own bundle,
 // so plain module state would give /api/telemetry and /api/ops/summary
 // separate copies (seen in `next dev`; nothing guarantees sharing in prod).
-type Store = { startedAt: string; buckets: Map<string, Bucket>; failures: Recent[]; errors: Recent[]; stalls: Recent[] };
+type LiveView = { at: string; path: string; ref?: string; device: string; country?: string; campaign?: string };
+type Store = { startedAt: string; buckets: Map<string, Bucket>; failures: Recent[]; errors: Recent[]; stalls: Recent[]; live: LiveView[] };
 const g = globalThis as typeof globalThis & { __sgOpsTelemetry?: Store };
 const store: Store = (g.__sgOpsTelemetry ??= {
   startedAt: new Date().toISOString(),
@@ -57,7 +78,9 @@ const store: Store = (g.__sgOpsTelemetry ??= {
   failures: [],
   errors: [],
   stalls: [],
+  live: [],
 });
+store.live ??= []; // a store created by an older build in the same process
 const { startedAt, buckets } = store;
 const recentFailures = store.failures;
 const recentErrors = store.errors;
@@ -74,12 +97,13 @@ function bucket(): Bucket {
     b = {
       hour: key, views: 0, paths: {}, referrers: {}, countries: {}, devices: {}, reducedMotion: 0,
       scenes: { reports: 0, mounted: 0, reduced: 0, seen: 0, animating: 0, stalled: 0, stalledPages: 0 },
-      forms: {}, clientErrors: 0, vitals: {},
+      forms: {}, clientErrors: 0, vitals: {}, behaviour: emptyBehaviour(),
     };
     buckets.set(key, b);
     const cutoff = hourKey(new Date(Date.now() - HOURS_KEPT * 3600_000));
     for (const k of buckets.keys()) if (k < cutoff) buckets.delete(k);
   }
+  b.behaviour ??= emptyBehaviour(); // bucket made by an older build in this process
   return b;
 }
 
@@ -87,6 +111,12 @@ function inc(c: Counter, k: string, by = 1) {
   // Cap distinct keys per bucket so junk paths can't grow memory without bound.
   if (!(k in c) && Object.keys(c).length >= 200) k = '(other)';
   c[k] = (c[k] ?? 0) + by;
+}
+
+/** A nested counter, with the same key cap on the outer level. */
+function sub<T>(o: Record<string, T>, k: string, make: () => T): T {
+  if (!(k in o) && Object.keys(o).length >= 120) k = '(other)';
+  return (o[k] ??= make());
 }
 
 function push(list: Recent[], item: Recent) {
@@ -100,6 +130,12 @@ function log(event: Record<string, unknown>) {
 
 export function recordView(v: {
   path: string; referrer?: string; country?: string; device: string; reducedMotion: boolean;
+  /** previous path in this tab (client-side navigation), for journeys */
+  prev?: string;
+  /** first page of the visit */
+  landing?: boolean;
+  /** "source / medium / campaign" when the visit came from a tagged link */
+  campaign?: string;
 }) {
   const b = bucket();
   b.views++;
@@ -108,6 +144,30 @@ export function recordView(v: {
   inc(b.countries, v.country || '??');
   inc(b.devices, v.device);
   if (v.reducedMotion) b.reducedMotion++;
+  if (v.prev && v.prev !== v.path) inc(b.behaviour.transitions, `${v.prev} → ${v.path}`);
+  if (v.landing) inc(b.behaviour.entries, v.path);
+  if (v.campaign) inc(b.behaviour.campaigns, v.campaign);
+  store.live.unshift({ at: new Date().toISOString(), path: v.path, ref: v.referrer, device: v.device, country: v.country, campaign: v.campaign });
+  if (store.live.length > 100) store.live.length = 100;
+}
+
+export function recordClick(path: string, label: string) {
+  inc(sub(bucket().behaviour.clicks, path, () => ({})), label);
+}
+
+/** One page view's end: deepest quarter scrolled and engaged time. */
+export function recordPage(path: string, depth: number | undefined, engagedMs: number) {
+  const bh = bucket().behaviour;
+  if (depth !== undefined) inc(sub(bh.scroll, path, () => ({})), String(depth));
+  const e = sub(bh.engaged, path, () => ({ ms: 0, n: 0 }));
+  e.ms += Math.round(engagedMs);
+  if (depth !== undefined) e.n++;
+}
+
+export function recordFormStep(form: string, step: 'start' | 'abandon', field?: string) {
+  const bh = bucket().behaviour;
+  if (step === 'start') inc(bh.formStarts, form);
+  else inc(bh.formAbandons, `${form} · ${field || '(none)'}`);
 }
 
 export function recordScenes(path: string, s: {
@@ -141,9 +201,10 @@ export function recordVital(name: string, value: number) {
 }
 
 /** Server-side form outcome. `reason` is a short internal cause, never user input. */
-export function recordForm(form: string, outcome: FormOutcome, reason?: string) {
+export function recordForm(form: string, outcome: FormOutcome, reason?: string, campaign?: string) {
   const b = bucket();
   inc((b.forms[form] ??= {}), outcome);
+  if (outcome === 'ok' && campaign) inc(sub(b.behaviour.conversions, campaign, () => ({})), form);
   if (outcome === 'send_failed' || outcome === 'turnstile') {
     const item = { at: new Date().toISOString(), kind: 'form_failure', form, outcome, reason: reason?.slice(0, 200) };
     push(recentFailures, item);
@@ -182,5 +243,6 @@ export function summary() {
     buildId: currentBuild(),
     hours,
     recent: { formFailures: recentFailures, clientErrors: recentErrors, sceneStalls: recentStalls },
+    live: store.live,
   };
 }

@@ -134,7 +134,8 @@ export function createFormHandler<T extends z.ZodTypeAny>(
       return NextResponse.json({ ok: false, error: 'send_failed' }, { status: 500 });
     }
 
-    recordForm(form, 'ok');
+    const attr = (parsed.data as { attribution?: { tagged: boolean; source: string; medium: string; campaign?: string } }).attribution;
+    recordForm(form, 'ok', undefined, attr?.tagged ? `${attr.source} / ${attr.medium} / ${attr.campaign ?? '-'}` : undefined);
     return NextResponse.json({ ok: true });
   };
 }

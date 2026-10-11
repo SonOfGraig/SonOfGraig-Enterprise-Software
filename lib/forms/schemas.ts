@@ -44,6 +44,20 @@ const longText = (min: number, max: number, label: string) =>
 // on a field they cannot see. The handler weighs it against Turnstile instead.
 const honeypotField = z.string().max(500).optional().default('');
 const turnstileField = z.string().min(1).max(2048).optional();
+// Where the visit came from (lib/ops/attribution.ts): utm tags or referring
+// site, and the landing page. Optional; malformed values are dropped, never
+// a reason to reject a real enquiry.
+const attrText = (max: number) => z.string().max(max).regex(/^[\w .:/()-]*$/);
+const attributionField = z
+  .object({
+    source: attrText(60),
+    medium: attrText(60),
+    campaign: attrText(80).optional(),
+    landing: attrText(200),
+    tagged: z.boolean(),
+  })
+  .optional()
+  .catch(undefined);
 
 // ───────────────────────────────────────────────────────────────────────
 // Early-access form (legacy id="applyForm")
@@ -69,6 +83,7 @@ export const earlyAccessSchema = z.object({
   nda: z.boolean().optional().default(false),
   hp: honeypotField,
   turnstileToken: turnstileField,
+  attribution: attributionField,
 });
 
 // ───────────────────────────────────────────────────────────────────────
@@ -101,6 +116,7 @@ export const contactSchema = z.object({
   newsletter: z.boolean().optional().default(false),
   hp: honeypotField,
   turnstileToken: turnstileField,
+  attribution: attributionField,
 });
 
 // ───────────────────────────────────────────────────────────────────────
@@ -114,6 +130,7 @@ export const waitlistSchema = z.object({
   consent: z.literal(true, { message: 'POPIA consent is required' }),
   hp: honeypotField,
   turnstileToken: turnstileField,
+  attribution: attributionField,
 });
 
 // ───────────────────────────────────────────────────────────────────────
@@ -130,6 +147,7 @@ export const newsletterSchema = z.object({
   source: z.enum(NEWSLETTER_SOURCES).optional().default('footer'),
   hp: honeypotField,
   turnstileToken: turnstileField,
+  attribution: attributionField,
 });
 
 export type NewsletterSubmission = z.infer<typeof newsletterSchema>;

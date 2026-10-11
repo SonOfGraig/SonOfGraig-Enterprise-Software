@@ -310,12 +310,19 @@ export default function PrivacyPolicyPage() {
                 </li>
                 <li>
                   <strong>Analytics</strong> — Cloudflare Web Analytics (global), which counts
-                  page views without cookies or personal profiles; our own site-health
-                  measurement (in South Africa), which records the page path, the referring
-                  website, a country code, the device type, page-speed timings and whether
-                  the page&apos;s scripts and animations worked, with no cookies, IP address or
-                  identifier, and skips page views when your browser sends Do Not Track or
-                  Global Privacy Control; and, only after you accept
+                  page views without cookies or personal profiles; our own site measurement
+                  (in South Africa), which counts, in aggregate only, the pages viewed and the
+                  order they were viewed in, the referring website or campaign link, a country
+                  code, the device type, which links and buttons were clicked, how far down a
+                  page you scrolled and how long you were active on it, whether a form was
+                  started or left unfinished (the name of the last field, never what you
+                  typed), page-speed timings and whether the page&apos;s scripts and animations
+                  worked. It uses no cookies, IP address or identifier; your browser keeps the
+                  campaign you arrived from only until the tab closes. Behaviour and page views
+                  are not measured when your browser sends Do Not Track or Global Privacy
+                  Control. If you submit a form, how you found us (the campaign or referring
+                  website, and your first page) is attached to that submission; and, only after
+                  you accept
                   analytics cookies, Google Analytics (United States, IP anonymised) and
                   Microsoft Clarity (United States; heatmaps and session replays with typed text
                   masked).

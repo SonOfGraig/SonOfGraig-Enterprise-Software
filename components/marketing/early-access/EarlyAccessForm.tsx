@@ -6,6 +6,7 @@ import { Lock } from 'lucide-react';
 import { Field } from '@/components/ui/Field';
 import { Button } from '@/components/ui/Button';
 import { Turnstile } from '@/components/ui/Turnstile';
+import { getAttribution } from '@/lib/ops/attribution';
 import { FormSuccess } from '@/components/marketing/forms/FormSuccess';
 import { cn } from '@/lib/utils';
 import { issueMessage } from '@/lib/forms/issueMessage';
@@ -55,6 +56,7 @@ export function EarlyAccessForm() {
       nda: fd.get('nda') === 'on',
       hp: g('hp'),
       turnstileToken: token ?? undefined,
+      attribution: getAttribution() ?? undefined,
     };
     setStatus('sending');
     setErrors({});
@@ -106,7 +108,7 @@ export function EarlyAccessForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-[var(--sp-8)]">
+    <form onSubmit={onSubmit} noValidate data-form="early-access" className="space-y-[var(--sp-8)]">
       <input type="text" name="hp" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 opacity-0" />
 
       <fieldset className="space-y-[var(--sp-5)]">

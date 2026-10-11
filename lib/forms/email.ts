@@ -71,6 +71,14 @@ const CONTACT_ROUTING: Record<
 type Mail = Rendered & { to: string; cc?: string; replyTo?: string; subject: string };
 const firstName = (name: string) => name.trim().split(/\s+/)[0] || name;
 
+type Attr = { source: string; medium: string; campaign?: string; landing: string; tagged: boolean } | undefined;
+/** "Found us via" row for the team: campaign tag or referring site, and the landing page. */
+function foundVia(a: Attr): Array<[string, string]> {
+  if (!a) return [];
+  const how = a.tagged ? [a.source, a.medium, a.campaign].filter(Boolean).join(' · ') : a.source === '(direct)' ? 'Direct / typed the address' : a.source;
+  return [['Found us via', `${how} — landed on ${a.landing}`]];
+}
+
 export function buildEarlyAccess(s: EarlyAccessSubmission): { notification: Mail; autoReply: Mail } {
   const clusters = s.clusters.join(', ');
   const subject = `New early-access application — ${s.name} (${s.company})`;
@@ -100,6 +108,7 @@ export function buildEarlyAccess(s: EarlyAccessSubmission): { notification: Mail
         ['Organisation size', s.size],
         ['Identity provider', s.idp || 'Not specified'],
         ['NDA', s.nda ? 'Yes — send a mutual NDA before the call' : 'No'],
+        ...foundVia(s.attribution),
       ],
       message: { label: 'Use case', text: s.usecase },
     }),
@@ -176,6 +185,7 @@ export function buildContact(s: ContactSubmission): { notification: Mail; autoRe
         ['Company size', s.tier || 'Not specified'],
         ['Reply within', within],
         ['Newsletter', s.newsletter ? 'Yes (double opt-in sent)' : 'No'],
+        ...foundVia(s.attribution),
       ],
       message: { label: 'Message', text: s.message },
     }),
@@ -224,6 +234,7 @@ export function buildWaitlist(s: WaitlistSubmission): { notification: Mail; auto
       details: [
         ['Cluster', cluster],
         ['Company', s.company],
+        ...foundVia(s.attribution),
       ],
     }),
   };

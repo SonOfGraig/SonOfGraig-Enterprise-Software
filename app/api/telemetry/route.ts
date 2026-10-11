@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
 import { z } from 'zod';
-import { recordClientError, recordScenes, recordView, recordVital } from '@/lib/ops/telemetry';
+import { recordClick, recordClientError, recordFormStep, recordPage, recordScenes, recordView, recordVital } from '@/lib/ops/telemetry';
 import { getClientIp } from '@/lib/forms/rate-limit';
 
 // First-party, cookieless beacon (components/ops/SiteTelemetry.tsx). Feeds
@@ -11,7 +11,7 @@ import { getClientIp } from '@/lib/forms/rate-limit';
 
 const MAX_BODY = 4 * 1024;
 const WINDOW_MS = 60_000;
-const MAX_PER_WINDOW = 60;
+const MAX_PER_WINDOW = 120; // clicks and page-end events add up on a busy visit
 const hits = new Map<string, { n: number; reset: number }>();
 
 function allowed(ip: string) {
@@ -28,15 +28,31 @@ function allowed(ip: string) {
 const path = z.string().max(200).regex(/^\/[\w\-/.]*$/);
 const device = z.enum(['mobile', 'tablet', 'desktop']);
 const browser = z.string().max(20).regex(/^[\w-]*$/);
+// Short human labels (link text, button text, form/field names). No @ — an
+// email address in a label would be personal information; such events drop.
+const label = z.string().min(1).max(80).regex(/^[^@<>]*$/);
+const form = z.string().max(40).regex(/^[a-z0-9:-]+$/);
+const campaign = z.string().max(120).regex(/^[^@<>]*$/);
 
 const event = z.discriminatedUnion('t', [
   z.object({
     t: z.literal('view'),
     path,
-    ref: z.string().max(100).regex(/^[\w.-]*$/).optional(),
+    ref: z.string().max(100).regex(/^[\w.()-]*$/).optional(),
     device,
     rm: z.boolean(),
+    prev: path.optional(),
+    landing: z.boolean().optional(),
+    camp: campaign.optional(),
   }),
+  z.object({ t: z.literal('click'), path, label }),
+  z.object({
+    t: z.literal('page'),
+    path,
+    depth: z.union([z.literal(0), z.literal(25), z.literal(50), z.literal(75), z.literal(100)]).optional(),
+    ms: z.number().min(0).max(3_600_000),
+  }),
+  z.object({ t: z.literal('form'), form, step: z.enum(['start', 'abandon']), field: z.string().max(40).regex(/^[\w-]*$/).optional() }),
   z.object({
     t: z.literal('scenes'),
     path,
@@ -97,7 +113,19 @@ export async function POST(req: NextRequest) {
         country: (req.headers.get('cf-ipcountry') ?? '').slice(0, 2).toUpperCase() || undefined,
         device: e.device,
         reducedMotion: e.rm,
+        prev: e.prev,
+        landing: e.landing,
+        campaign: e.camp,
       });
+      break;
+    case 'click':
+      recordClick(e.path, e.label);
+      break;
+    case 'page':
+      recordPage(e.path, e.depth, e.ms);
+      break;
+    case 'form':
+      recordFormStep(e.form, e.step, e.field);
       break;
     case 'scenes':
       recordScenes(e.path, e, { device: e.device, browser: e.browser });

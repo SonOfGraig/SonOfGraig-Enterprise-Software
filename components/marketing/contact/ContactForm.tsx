@@ -6,6 +6,7 @@ import { Lock } from 'lucide-react';
 import { Field } from '@/components/ui/Field';
 import { Button } from '@/components/ui/Button';
 import { Turnstile } from '@/components/ui/Turnstile';
+import { getAttribution } from '@/lib/ops/attribution';
 import { FormSuccess } from '@/components/marketing/forms/FormSuccess';
 // Type-only import: the schemas module pulls in zod, which must not ship to
 // the browser. The server re-validates every value anyway.
@@ -74,6 +75,7 @@ export function ContactForm() {
       newsletter: fd.get('newsletter') === 'on',
       hp: String(fd.get('hp') ?? ''),
       turnstileToken: token ?? undefined,
+      attribution: getAttribution() ?? undefined,
     };
     setStatus('sending');
     setErrors({});
@@ -130,7 +132,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-[var(--sp-5)]">
+    <form onSubmit={onSubmit} noValidate data-form="contact" className="space-y-[var(--sp-5)]">
       {/* Honeypot: hidden from people, irresistible to bots. */}
       <input type="text" name="hp" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 opacity-0" />
       <div className="grid gap-[var(--sp-5)] sm:grid-cols-2">

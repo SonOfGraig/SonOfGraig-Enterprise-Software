@@ -6,6 +6,7 @@ import { Check, Mail } from 'lucide-react';
 import { Field } from '@/components/ui/Field';
 import { Button } from '@/components/ui/Button';
 import { Turnstile } from '@/components/ui/Turnstile';
+import { getAttribution } from '@/lib/ops/attribution';
 import { FormSuccess } from '@/components/marketing/forms/FormSuccess';
 import { issueMessage } from '@/lib/forms/issueMessage';
 import { cn } from '@/lib/utils';
@@ -51,6 +52,7 @@ export function NewsletterSignup({ variant = 'card', source }: { variant?: 'card
           source,
           hp: String(fd.get('hp') ?? ''),
           turnstileToken: token ?? undefined,
+          attribution: getAttribution() ?? undefined,
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -102,7 +104,7 @@ export function NewsletterSignup({ variant = 'card', source }: { variant?: 'card
   );
 
   return (
-    <form onSubmit={onSubmit} noValidate onFocusCapture={() => setArmed(true)} className={inline ? 'space-y-[var(--sp-3)]' : 'space-y-[var(--sp-5)]'}>
+    <form onSubmit={onSubmit} noValidate data-form={`newsletter:${source}`} onFocusCapture={() => setArmed(true)} className={inline ? 'space-y-[var(--sp-3)]' : 'space-y-[var(--sp-5)]'}>
       <input type="text" name="hp" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 opacity-0" />
 
       {inline ? (
