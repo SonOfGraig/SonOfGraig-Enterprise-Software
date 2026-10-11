@@ -13,6 +13,8 @@
 # Lesson: never PUT listmonk settings that came from a GET — passwords come
 # back masked. Change only the keys you mean to, or set SMTP last, by hand.
 set -euo pipefail
+# This script arrives on stdin (`bash -s`): any command that reads stdin would
+# swallow the rest of it. Every docker call below gets </dev/null or a heredoc.
 cd ~/listmonk
 
 KEY=$(grep '^RESEND_API_KEY=' ~/sog-website/.env.production.local | cut -d= -f2- | tr -d '"\r')
@@ -31,7 +33,7 @@ finally:
 PY
 
 echo "2/4 backing up listmonk settings"
-docker compose exec -T db pg_dump -U listmonk -d listmonk -t settings > settings-backup-$(date +%Y%m%d-%H%M%S).sql
+docker compose exec -T db pg_dump -U listmonk -d listmonk -t settings </dev/null > settings-backup-$(date +%Y%m%d-%H%M%S).sql
 chmod 600 settings-backup-*.sql
 
 echo "3/4 writing the key into the smtp.resend.com server entry"
@@ -47,12 +49,12 @@ WHERE key = 'smtp';
 SQL
 unset K
 STORED=$(docker compose exec -T db psql -U listmonk -d listmonk -tAc \
-  "select e->>'password' from settings, jsonb_array_elements(value) e where key='smtp' and e->>'host'='smtp.resend.com'" | tr -d '\r\n')
+  "select e->>'password' from settings, jsonb_array_elements(value) e where key='smtp' and e->>'host'='smtp.resend.com'" </dev/null | tr -d '\r\n')
 [ "$STORED" = "$KEY" ] || { echo "FAIL: stored password does not match after update"; exit 1; }
 echo "    stored key matches"
 
 echo "4/4 restarting listmonk"
-docker compose restart app >/dev/null
+docker compose restart app </dev/null >/dev/null
 sleep 8
-docker compose logs --since 20s app | grep -E "messenger|error" || true
+docker compose logs --since 20s app </dev/null | grep -E "messenger|error" || true
 echo "DONE — subscribe on https://sonofgraig.com (footer) to confirm the email arrives."
