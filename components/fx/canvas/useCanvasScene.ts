@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { whenPageIdle } from '@/lib/idle';
+import { registerScene, unregisterScene } from '@/lib/ops/scenes';
 
 // One engine for every canvas background ported from the 2026 agency site.
 // The originals each re-implemented sizing and the RAF loop, sized to the
@@ -35,7 +36,10 @@ export type Scene<S> = {
   frame: (c: SceneContext, state: S, time: number) => void;
 };
 
-export function useCanvasScene<S>(scene: Scene<S>, { maxDpr = 1.5 }: { maxDpr?: number } = {}) {
+export function useCanvasScene<S>(
+  scene: Scene<S>,
+  { maxDpr = 1.5, name = 'scene' }: { maxDpr?: number; name?: string } = {},
+) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -45,6 +49,7 @@ export function useCanvasScene<S>(scene: Scene<S>, { maxDpr = 1.5 }: { maxDpr?: 
     if (!canvas || !parent || !ctx) return;
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const health = registerScene(name, reduced); // read by the telemetry beacon
     const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
     const root = document.documentElement;
     // inside: the pointer is over this canvas (scenes that react only to a
@@ -96,6 +101,7 @@ export function useCanvasScene<S>(scene: Scene<S>, { maxDpr = 1.5 }: { maxDpr?: 
       velocity += (y - lastScroll - velocity) * 0.1;
       lastScroll = y;
       if (canvas.width > 1 && canvas.height > 1) scene.frame(context(), state, t);
+      health.frames++;
       frame = visible && !document.hidden ? requestAnimationFrame(loop) : 0;
     };
     const start = () => {
@@ -112,6 +118,7 @@ export function useCanvasScene<S>(scene: Scene<S>, { maxDpr = 1.5 }: { maxDpr?: 
 
     const io = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
+      if (visible) health.seen = true;
       start();
     });
     const ro = new ResizeObserver(resize);
@@ -132,11 +139,13 @@ export function useCanvasScene<S>(scene: Scene<S>, { maxDpr = 1.5 }: { maxDpr?: 
     whenPageIdle().then(() => {
       if (cancelled) return;
       ready = true;
+      health.ready = true;
       start();
     });
 
     return () => {
       cancelled = true;
+      unregisterScene(health);
       cancelAnimationFrame(frame);
       io.disconnect();
       ro.disconnect();
@@ -144,7 +153,7 @@ export function useCanvasScene<S>(scene: Scene<S>, { maxDpr = 1.5 }: { maxDpr?: 
       document.removeEventListener('visibilitychange', start);
       window.removeEventListener('pointermove', onPointer);
     };
-  }, [scene, maxDpr]);
+  }, [scene, maxDpr, name]);
 
   return ref;
 }

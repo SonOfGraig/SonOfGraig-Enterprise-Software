@@ -60,7 +60,7 @@ export type SceneName = keyof typeof SCENES;
 // Rule (16-sections.md): at most one scene per section; cards on top stay solid.
 export function SceneBackground({ scene, fade = true }: { scene: SceneName; fade?: boolean }) {
   const cfg: { scene: Scene<unknown>; maxDpr?: number; style?: CSSProperties } = SCENES[scene] as never;
-  const ref = useCanvasScene(cfg.scene, { maxDpr: cfg.maxDpr ?? 1.5 });
+  const ref = useCanvasScene(cfg.scene, { maxDpr: cfg.maxDpr ?? 1.5, name: scene });
   return (
     <div aria-hidden="true" className="absolute inset-0 overflow-hidden pointer-events-none">
       <div className="absolute inset-0" style={cfg.style}>

@@ -310,7 +310,12 @@ export default function PrivacyPolicyPage() {
                 </li>
                 <li>
                   <strong>Analytics</strong> — Cloudflare Web Analytics (global), which counts
-                  page views without cookies or personal profiles; and, only after you accept
+                  page views without cookies or personal profiles; our own site-health
+                  measurement (in South Africa), which records the page path, the referring
+                  website, a country code, the device type, page-speed timings and whether
+                  the page&apos;s scripts and animations worked, with no cookies, IP address or
+                  identifier, and skips page views when your browser sends Do Not Track or
+                  Global Privacy Control; and, only after you accept
                   analytics cookies, Google Analytics (United States, IP anonymised) and
                   Microsoft Clarity (United States; heatmaps and session replays with typed text
                   masked).

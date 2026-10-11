@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, type CSSProperties } from 'react';
 import { whenPageIdle } from '@/lib/idle';
+import { registerScene, unregisterScene } from '@/lib/ops/scenes';
 
 // Ported from the 2026 agency site (VolumetricRays.tsx). Differences:
 // - sized to its parent section, not the window
@@ -23,6 +24,7 @@ export function VolumetricRays({ count = 28, className = '' }: { count?: number;
     if (!canvas || !parent || !ctx) return;
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const health = registerScene('volumetricRays', reduced); // read by the telemetry beacon
     const dpr = 1; // soft gradients: extra pixel density adds cost, not detail
     let width = 0;
     let height = 0;
@@ -87,6 +89,7 @@ export function VolumetricRays({ count = 28, className = '' }: { count?: number;
 
     const loop = (t: number) => {
       draw(t);
+      health.frames++;
       frame = visible && !document.hidden ? requestAnimationFrame(loop) : 0;
     };
     const start = () => {
@@ -102,6 +105,7 @@ export function VolumetricRays({ count = 28, className = '' }: { count?: number;
 
     const io = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
+      if (visible) health.seen = true;
       start();
     });
     const ro = new ResizeObserver(() => {
@@ -124,11 +128,13 @@ export function VolumetricRays({ count = 28, className = '' }: { count?: number;
     whenPageIdle().then(() => {
       if (cancelled) return;
       ready = true;
+      health.ready = true;
       start();
     });
 
     return () => {
       cancelled = true;
+      unregisterScene(health);
       cancelAnimationFrame(frame);
       io.disconnect();
       ro.disconnect();

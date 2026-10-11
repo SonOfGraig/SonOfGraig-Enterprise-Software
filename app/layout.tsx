@@ -5,6 +5,7 @@ import { BackToTop } from '@/components/ui/BackToTop';
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity';
 import { SmoothScroll } from '@/components/fx/SmoothScroll';
+import { SiteTelemetry } from '@/components/ops/SiteTelemetry';
 import './globals.css'; // Global styles
 import { OG_IMAGES, ROBOTS_INDEX } from '@/lib/seo';
 import { SOCIAL_PROFILES, GOOGLE_BUSINESS_KG, CIPC_REG_NO } from '@/lib/social';
@@ -267,6 +268,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </ThemeProvider>
         <GoogleAnalytics />
         <MicrosoftClarity />
+        <SiteTelemetry />
       </body>
     </html>
   );

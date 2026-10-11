@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { verifyTurnstile } from './turnstile';
 import { rateLimit, getClientIp } from './rate-limit';
+import { recordForm } from '@/lib/ops/telemetry';
 
 const MAX_BODY_BYTES = 32 * 1024;
 
@@ -37,10 +38,13 @@ export function createFormHandler<T extends z.ZodTypeAny>(
     const ip = getClientIp(req.headers);
     const requestId = Math.random().toString(36).slice(2, 10);
     console.log(`[forms ${requestId}] POST ${req.nextUrl.pathname} from ip=${ip}`);
+    // Ops telemetry name: "contact", "early-access", "newsletter" (+ ":footer" etc. once parsed).
+    let form = req.nextUrl.pathname.split('/').filter(Boolean).at(-1) ?? 'unknown';
 
     const rl = rateLimit(ip);
     if (!rl.allowed) {
       console.log(`[forms ${requestId}] rate-limited (retry in ${rl.retryAfterSec}s)`);
+      recordForm(form, 'rate_limited');
       return NextResponse.json(
         { ok: false, error: 'rate_limited' },
         {
@@ -54,6 +58,7 @@ export function createFormHandler<T extends z.ZodTypeAny>(
     // 5,000-character use case plus fields) is well under 32 KB.
     const declared = Number(req.headers.get('content-length') ?? 0);
     if (declared > MAX_BODY_BYTES) {
+      recordForm(form, 'too_large');
       return NextResponse.json({ ok: false, error: 'too_large' }, { status: 413 });
     }
 
@@ -63,20 +68,26 @@ export function createFormHandler<T extends z.ZodTypeAny>(
       // is cut off at the limit rather than buffered whole.
       const raw = await readLimited(req, MAX_BODY_BYTES);
       if (raw === null) {
+        recordForm(form, 'too_large');
         return NextResponse.json({ ok: false, error: 'too_large' }, { status: 413 });
       }
       body = JSON.parse(raw);
     } catch {
+      recordForm(form, 'invalid_json');
       return NextResponse.json(
         { ok: false, error: 'invalid_json' },
         { status: 400 },
       );
     }
 
+    const source = (body as { source?: unknown } | null)?.source;
+    if (typeof source === 'string' && /^[a-z-]{1,20}$/.test(source)) form += `:${source}`;
+
     const parsed = schema.safeParse(body);
     if (!parsed.success) {
       const fieldErrors = parsed.error.flatten().fieldErrors;
       console.log(`[forms ${requestId}] validation failed`, fieldErrors);
+      recordForm(form, 'validation');
       return NextResponse.json(
         { ok: false, error: 'validation', issues: fieldErrors },
         { status: 400 },
@@ -95,6 +106,7 @@ export function createFormHandler<T extends z.ZodTypeAny>(
     if (data.hp && data.hp.length > 0) {
       if (!tv.ok) {
         console.warn(`[forms ${requestId}] honeypot + failed turnstile — dropped`, { ip });
+        recordForm(form, 'honeypot_dropped');
         return NextResponse.json({ ok: true }); // silent, so bots learn nothing
       }
       console.log(`[forms ${requestId}] honeypot filled but turnstile passed — accepting (likely autofill)`);
@@ -104,6 +116,7 @@ export function createFormHandler<T extends z.ZodTypeAny>(
       // The reason (missing secret, network error, Cloudflare error codes)
       // stays in the server log; the client only learns that the check failed.
       console.log(`[forms ${requestId}] turnstile failed: ${tv.reason}`);
+      recordForm(form, 'turnstile', tv.reason);
       return NextResponse.json({ ok: false, error: 'turnstile' }, { status: 403 });
     }
 
@@ -116,10 +129,12 @@ export function createFormHandler<T extends z.ZodTypeAny>(
     } catch (err) {
       const errMsg = err instanceof Error ? err.message : String(err);
       console.error(`[forms ${requestId}] send failed: ${errMsg}`, err);
+      recordForm(form, 'send_failed', errMsg);
       // No error detail to the client — provider messages can reveal config.
       return NextResponse.json({ ok: false, error: 'send_failed' }, { status: 500 });
     }
 
+    recordForm(form, 'ok');
     return NextResponse.json({ ok: true });
   };
 }
