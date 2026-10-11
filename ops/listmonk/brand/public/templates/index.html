@@ -7,6 +7,7 @@
   <meta name="description" content="{{ .Data.Description }}" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#EDF4FB" />
   <link href="/public/static/style.css?v={{ .AssetVersion }}" rel="stylesheet" type="text/css" />
   <link href="/public/custom.css?v={{ .AssetVersion }}" rel="stylesheet" type="text/css">
   <link rel="icon" href="https://sonofgraig.com/icon.svg" type="image/svg+xml" />
@@ -17,17 +18,18 @@
       <img src="https://sonofgraig.com/email-logo" alt="" width="30" height="27" />
       <span>sonofgraig <em>Insights</em></span>
     </a>
+    <a class="sg-back" href="https://sonofgraig.com/blog">Read Insights &rarr;</a>
   </header>
   <div class="container wrap">
 {{ end }}
 
 {{ define "footer" }}
   </div>
-  <footer class="container sg-foot">
-    sonofgraig Digital Solutions (Pty) Ltd &middot;
+  <footer class="sg-foot">
     <a href="https://sonofgraig.com">sonofgraig.com</a> &middot;
     <a href="https://sonofgraig.com/privacy-policy">Privacy</a> &middot;
-    <a href="mailto:tumiso@sonofgraig.com">tumiso@sonofgraig.com</a>
+    <a href="mailto:tumiso@sonofgraig.com">tumiso@sonofgraig.com</a><br>
+    sonofgraig Digital Solutions (Pty) Ltd &middot; No open or click tracking
   </footer>
 </body>
 </html>

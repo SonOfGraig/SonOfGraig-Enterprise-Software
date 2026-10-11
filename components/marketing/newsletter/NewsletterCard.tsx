@@ -1,5 +1,4 @@
 import { CalendarDays, MailCheck, ShieldCheck, Undo2 } from 'lucide-react';
-import { Card } from '@/components/ui/Card';
 import { Logo } from '@/components/ui/Logo';
 import { cn } from '@/lib/utils';
 import { NewsletterSignup } from './NewsletterSignup';
@@ -24,13 +23,21 @@ export function NewsletterCard({
   className?: string;
 }) {
   return (
-    <Card padding="none" className={cn('overflow-hidden', className)}>
+    // Liquid glass over a soft brand glow, so the frosting has something to
+    // frost: the panel on the left is tinted, the form side is clear glass.
+    <div className={cn('relative isolate', className)}>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-8 -z-10 opacity-80 blur-2xl"
+        style={{ background: 'radial-gradient(50% 60% at 20% 30%, rgba(14,165,233,0.22), transparent 70%), radial-gradient(45% 55% at 85% 70%, rgba(99,102,241,0.16), transparent 70%)' }}
+      />
+      <div className="liquid-glass overflow-hidden rounded-[32px]">
       <div className="grid md:grid-cols-[0.85fr_1.15fr]">
-        <div className="relative border-b border-[var(--sg-border)] bg-[var(--sg-surface-2)] p-[var(--sp-6)] md:border-b-0 md:border-r md:p-[var(--sp-8)]">
+        <div className="relative border-b border-[var(--lg-rim)] p-[var(--sp-6)] md:border-b-0 md:border-r md:p-[var(--sp-10)]">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 opacity-70"
-            style={{ background: 'radial-gradient(120% 80% at 0% 0%, var(--sg-blue-glow), transparent 60%)' }}
+            className="pointer-events-none absolute inset-0"
+            style={{ background: 'radial-gradient(120% 80% at 0% 0%, var(--sg-blue-glow), transparent 65%)' }}
           />
           <div className="relative">
             <div className="flex items-center gap-[var(--sp-3)]">
@@ -49,7 +56,7 @@ export function NewsletterCard({
             <ul className="mt-[var(--sp-6)] space-y-[var(--sp-3)]">
               {PROMISES.map(({ icon: Icon, text }) => (
                 <li key={text} className="flex items-start gap-[var(--sp-3)] text-[13px] leading-relaxed text-[var(--sg-text-2)]">
-                  <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border border-[var(--sg-blue-border)] bg-[var(--sg-blue-glow)] text-[var(--sg-blue)]">
+                  <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-full border border-[var(--lg-rim)] bg-[var(--lg-fill-strong)] text-[var(--sg-blue)] shadow-[inset_0_1px_0_var(--lg-edge)]">
                     <Icon size={13} aria-hidden="true" />
                   </span>
                   {text}
@@ -58,10 +65,11 @@ export function NewsletterCard({
             </ul>
           </div>
         </div>
-        <div className="p-[var(--sp-6)] md:p-[var(--sp-8)]">
+        <div className="p-[var(--sp-6)] md:p-[var(--sp-10)]">
           <NewsletterSignup source={source} />
         </div>
       </div>
-    </Card>
+      </div>
+    </div>
   );
 }

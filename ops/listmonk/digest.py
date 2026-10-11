@@ -42,15 +42,20 @@ def main():
     cards = []
     for p in posts:
         url = f"{p['link']}?utm_source=newsletter&utm_medium=email&utm_campaign={tag}"
+        # Glass post card, same look as lib/email/kit.ts panels.
         cards.append(
-            f'<div style="padding:16px 0;border-bottom:1px solid #E5E7EB;">'
-            f'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#0B9EDE;">{html.escape(p["cat"])}</div>'
-            f'<a href="{html.escape(url)}" style="display:block;margin-top:4px;font-size:17px;font-weight:600;color:#0D1117;text-decoration:none;">{html.escape(p["title"])}</a>'
-            f'<p style="margin:6px 0 0;color:#4B5563;font-size:14px;">{html.escape(p["desc"])}</p></div>')
+            f'<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:separate;margin:0 0 14px;"><tr>'
+            f'<td style="background-color:#F3F8FD;background-image:linear-gradient(180deg,#F7FBFE 0%,#EFF6FC 100%);border:1px solid #DCE7F2;border-radius:16px;padding:18px 20px;">'
+            f'<span style="display:inline-block;background-color:#E6F4FC;color:#065A82;border:1px solid rgba(11,158,222,0.28);font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;line-height:1;padding:5px 10px;border-radius:999px;">{html.escape(p["cat"])}</span>'
+            f'<a href="{html.escape(url)}" style="display:block;margin-top:10px;font-family:Manrope,Inter,-apple-system,sans-serif;font-size:18px;line-height:1.3;font-weight:800;letter-spacing:-0.02em;color:#0D1117;text-decoration:none;">{html.escape(p["title"])}</a>'
+            f'<p style="margin:6px 0 10px;color:#4B5563;font-size:14px;line-height:1.6;">{html.escape(p["desc"])}</p>'
+            f'<a href="{html.escape(url)}" style="font-size:14px;font-weight:600;color:#0B9EDE;text-decoration:none;">Read the article &rarr;</a>'
+            f'</td></tr></table>')
     body = ('<p>Hello,</p>'
             '<p>[Write a short personal intro here - what you are working on, one line on why these matter.]</p>'
+            '<h2>New on Insights</h2>'
             + ''.join(cards) +
-            '<p style="margin-top:22px;">Reply to this email any time - it comes straight to me.</p>'
+            '<p style="margin-top:24px;">Reply to this email any time - it comes straight to me.</p>'
             '<p style="margin:0;font-weight:700;color:#0D1117;">Tumiso Graig Ramaboya</p>'
             '<p style="margin:0;font-size:13px;color:#6B7280;">Founder, sonofgraig</p>')
     n = len(posts)

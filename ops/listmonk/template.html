@@ -1,27 +1,57 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="light only"><title>{{ .Campaign.Subject }}</title></head>
-<body style="margin:0;padding:0;background:#F4F4F7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1F2937;-webkit-font-smoothing:antialiased;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F4F4F7;"><tr><td align="center" style="padding:32px 12px;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:#FFFFFF;border:1px solid #E5E7EB;border-radius:14px;overflow:hidden;">
-<tr><td style="background:#0D1117;padding:16px 28px;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-    <td style="width:46px;vertical-align:middle;"><a href="https://sonofgraig.com"><img src="https://sonofgraig.com/email-logo" alt="sonofgraig" width="36" height="32" style="display:block;border:0;"></a></td>
-    <td style="vertical-align:middle;font-size:17px;font-weight:700;letter-spacing:-0.015em;color:#FFFFFF;">sonofgraig <span style="color:#38BDF8;font-weight:600;">Insights</span></td>
-    <td style="vertical-align:middle;text-align:right;font-size:11px;color:#9CA3AF;letter-spacing:0.04em;text-transform:uppercase;font-weight:600;">Enterprise AI &middot; ZA</td>
-  </tr></table>
-</td></tr>
-<tr><td style="padding:30px 28px 26px;font-size:15px;line-height:1.65;">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="x-apple-disable-message-reformatting"><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light">
+<title>{{ .Campaign.Subject }}</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+<!-- sonofgraig Insights — campaign template. Same frame as the site's form emails
+     (lib/email/kit.ts): brand gradient backdrop, frosted-white card, pill buttons.
+     Campaign bodies are free HTML from the editor or digest.py, so their
+     typography comes from this <style> block (Gmail and Apple Mail honour it;
+     Outlook falls back to its defaults, still readable). -->
+<style>
+  .sg-body { font-family: Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:16px; line-height:1.7; color:#1F2937; }
+  .sg-body h1 { font-family: Manrope,Inter,-apple-system,sans-serif; font-size:28px; line-height:1.18; font-weight:800; letter-spacing:-0.03em; color:#0D1117; margin:6px 0 14px; }
+  .sg-body h2 { font-family: Manrope,Inter,-apple-system,sans-serif; font-size:20px; line-height:1.3; font-weight:800; letter-spacing:-0.02em; color:#0D1117; margin:30px 0 10px; }
+  .sg-body h3 { font-size:16px; font-weight:700; color:#0D1117; margin:22px 0 6px; }
+  .sg-body p { margin:0 0 16px; }
+  .sg-body a { color:#0B9EDE; }
+  .sg-body ul, .sg-body ol { padding-left:22px; margin:0 0 16px; }
+  .sg-body li { margin:0 0 6px; }
+  .sg-body img { max-width:100%; height:auto; border-radius:14px; }
+  .sg-body blockquote { margin:20px 0; padding:2px 0 2px 16px; border-left:3px solid #0B9EDE; color:#374151; }
+  .sg-body hr { border:0; height:1px; background:#DCE7F2; margin:28px 0; }
+  .sg-body .button, .sg-body a.button { display:inline-block; background:#0B9EDE; background-image:linear-gradient(135deg,#0EA5E9,#0B78DE); color:#FFFFFF !important; text-decoration:none; font-weight:600; font-size:15px; padding:12px 24px; border-radius:999px; }
+  @media (max-width:620px){ .sg-pad{padding:28px 22px !important} .sg-outer{padding:20px 10px !important} }
+</style>
+</head>
+<body style="margin:0;padding:0;background-color:#EDF4FB;-webkit-font-smoothing:antialiased;">
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#EDF4FB" style="background-color:#EDF4FB;background-image:radial-gradient(120% 70% at 0% 0%,#D6ECFB 0%,rgba(214,236,251,0) 60%),radial-gradient(90% 60% at 100% 10%,#E4E6FF 0%,rgba(228,230,255,0) 55%),linear-gradient(180deg,#EEF5FC 0%,#F6F8FB 100%);">
+<tr><td align="center" class="sg-outer" style="padding:36px 16px 40px;">
+
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:600px;">
+    <tr><td style="padding:0 6px 18px;">
+      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"><tr>
+        <td style="vertical-align:middle;width:42px;"><a href="https://sonofgraig.com"><img src="https://sonofgraig.com/email-logo" alt="sonofgraig" width="32" height="29" style="display:block;border:0;"></a></td>
+        <td style="vertical-align:middle;font-family:Manrope,Inter,-apple-system,sans-serif;font-size:18px;font-weight:800;letter-spacing:-0.02em;color:#0D1117;">sonofgraig <span style="color:#0B9EDE;font-weight:700;">Insights</span></td>
+        <td style="vertical-align:middle;text-align:right;font-family:Inter,-apple-system,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6B7280;">Enterprise AI &middot; ZA</td>
+      </tr></table>
+    </td></tr>
+  </table>
+
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:600px;border-collapse:separate;">
+    <tr><td class="sg-pad sg-body" bgcolor="#FFFFFF" style="background-color:#FFFFFF;background-color:rgba(255,255,255,0.86);border:1px solid #FFFFFF;border-radius:24px;box-shadow:0 1px 2px rgba(13,17,23,0.04),0 18px 40px -16px rgba(6,90,130,0.22),0 40px 80px -40px rgba(13,17,23,0.18);padding:38px 40px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.7;color:#1F2937;">
 {{ template "content" . }}
-</td></tr>
-<tr><td style="background:#FAFBFC;border-top:1px solid #E5E7EB;padding:20px 28px;font-size:12px;line-height:1.6;color:#6B7280;">
-  You are receiving this because you subscribed at sonofgraig.com and confirmed by email.<br>
-  <a href="{{ ManageURL }}" style="color:#0B9EDE;text-decoration:none;">Choose topics</a> &middot;
-  <a href="{{ UnsubscribeURL }}" style="color:#0B9EDE;text-decoration:none;">Unsubscribe</a> &middot;
-  <a href="https://sonofgraig.com/privacy-policy" style="color:#0B9EDE;text-decoration:none;">Privacy</a><br>
-  sonofgraig Digital Solutions (Pty) Ltd &middot; CIPC K2025188095 &middot; KwaMhlanga, Mpumalanga, South Africa &middot;
-  <a href="mailto:tumiso@sonofgraig.com" style="color:#6B7280;">tumiso@sonofgraig.com</a>
-</td></tr>
-</table>
+    </td></tr>
+  </table>
+
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:600px;">
+    <tr><td style="padding:22px 12px 0;text-align:center;font-family:Inter,-apple-system,sans-serif;font-size:12px;line-height:1.7;color:#6B7280;">
+      <a href="{{ ManageURL }}" style="color:#065A82;text-decoration:none;font-weight:600;">Choose topics</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="{{ UnsubscribeURL }}" style="color:#065A82;text-decoration:none;font-weight:600;">Unsubscribe</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="https://sonofgraig.com/blog" style="color:#065A82;text-decoration:none;font-weight:600;">All articles</a><br><br>
+      You're getting this because you subscribed at sonofgraig.com and confirmed by email. No open or click tracking.<br>
+      sonofgraig Digital Solutions (Pty) Ltd &middot; CIPC K2025188095 &middot; KwaMhlanga, Mpumalanga, South Africa &middot; <a href="https://sonofgraig.com/privacy-policy" style="color:#6B7280;">Privacy</a>
+    </td></tr>
+  </table>
+
 </td></tr></table>
 </body></html>

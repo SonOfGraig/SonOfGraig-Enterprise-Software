@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { CircleCheck, Lock } from 'lucide-react';
+import { Lock } from 'lucide-react';
 import { Field } from '@/components/ui/Field';
 import { Button } from '@/components/ui/Button';
 import { Turnstile } from '@/components/ui/Turnstile';
+import { FormSuccess } from '@/components/marketing/forms/FormSuccess';
 import { cn } from '@/lib/utils';
 import { issueMessage } from '@/lib/forms/issueMessage';
 
@@ -29,6 +30,7 @@ export function EarlyAccessForm() {
   const [errors, setErrors] = useState<Record<string, string | undefined>>({});
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [message, setMessage] = useState('');
+  const [sent, setSent] = useState<{ email: string; name: string; nda: boolean } | null>(null);
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   const toggle = (v: string) => setClusters((c) => (c.includes(v) ? c.filter((x) => x !== v) : [...c, v]));
@@ -59,7 +61,10 @@ export function EarlyAccessForm() {
     try {
       const res = await fetch('/api/forms/early-access', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
       const data = await res.json().catch(() => ({}));
-      if (res.ok && data.ok) return setStatus('sent');
+      if (res.ok && data.ok) {
+        setSent({ email: body.email, name: body.name, nda: body.nda });
+        return setStatus('sent');
+      }
       if (data.error === 'validation' && data.issues) {
         const next: Record<string, string> = {};
         for (const [k, v] of Object.entries(data.issues as Record<string, string[]>)) next[k] = v?.[0];
@@ -81,18 +86,22 @@ export function EarlyAccessForm() {
 
   if (status === 'sent') {
     return (
-      <div role="status" className="flex flex-col items-center py-[var(--sp-12)] text-center">
-        <span className="grid size-14 place-items-center rounded-full bg-[var(--sg-success-bg)] text-[var(--sg-success)]">
-          <CircleCheck size={28} aria-hidden="true" />
-        </span>
-        <h3 className="text-h3 text-[var(--sg-text-1)] mt-[var(--sp-6)]">Application received.</h3>
-        <p className="text-body text-[var(--sg-text-3)] mt-[var(--sp-3)] max-w-[440px]">
-          Tumiso reviews every application personally and replies within two business days — with a discovery-call slot or honest feedback if it is not the right fit.
-        </p>
-        <Button variant="secondary" size="md" className="mt-[var(--sp-6)]" asChild>
-          <Link href="/">Back to home</Link>
-        </Button>
-      </div>
+      <FormSuccess
+        status="Application received"
+        title={`Thanks${sent?.name ? `, ${sent.name.trim().split(/\s+/)[0]}` : ''}. You're on Tumiso's desk.`}
+        body="Your early-access application goes to our founder personally — not a queue or a CRM bot."
+        steps={[
+          { title: 'Read personally', body: 'Tumiso reviews your use case and the clusters you picked.' },
+          { title: 'A reply within 2 business days', body: "A discovery-call slot, or honest feedback if it isn't the right fit." },
+          ...(sent?.nda ? [{ title: 'A mutual NDA first', body: 'You asked for one — it arrives before the discovery call.' }] : []),
+          { title: "Straight talk on what's live", body: "If a cluster you chose is still planned, we'll say exactly what exists today." },
+        ]}
+        email={sent?.email}
+        actions={[
+          { label: 'Read Insights while you wait', href: '/blog' },
+          { label: 'Explore the platform', href: '/platform' },
+        ]}
+      />
     );
   }
 

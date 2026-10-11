@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { CircleCheck, Lock } from 'lucide-react';
+import { Lock } from 'lucide-react';
 import { Field } from '@/components/ui/Field';
 import { Button } from '@/components/ui/Button';
 import { Turnstile } from '@/components/ui/Turnstile';
+import { FormSuccess } from '@/components/marketing/forms/FormSuccess';
 // Type-only import: the schemas module pulls in zod, which must not ship to
 // the browser. The server re-validates every value anyway.
 import type { ContactTopic } from '@/lib/forms/schemas';
@@ -46,6 +47,7 @@ export function ContactForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [message, setMessage] = useState('');
+  const [sent, setSent] = useState<{ email: string; topic: ContactTopic; newsletter: boolean } | null>(null);
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   useEffect(() => {
@@ -79,6 +81,7 @@ export function ContactForm() {
       const res = await fetch('/api/forms/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.ok) {
+        setSent({ email: body.email, topic: body.topic as ContactTopic, newsletter: body.newsletter });
         setStatus('sent');
         return;
       }
@@ -102,19 +105,27 @@ export function ContactForm() {
   }
 
   if (status === 'sent') {
+    // Same promises as the confirmation email (lib/forms/email.ts CONTACT_ROUTING).
+    const within = sent?.topic === 'popia' ? '10 business days' : sent?.topic === 'security' ? '1 business day' : '2 business days';
+    const label = TOPICS.find((t) => t.value === sent?.topic)?.label ?? 'your enquiry';
     return (
-      <div role="status" className="flex flex-col items-center py-[var(--sp-12)] text-center">
-        <span className="grid size-14 place-items-center rounded-full bg-[var(--sg-success-bg)] text-[var(--sg-success)]">
-          <CircleCheck size={28} aria-hidden="true" />
-        </span>
-        <h3 className="text-h3 text-[var(--sg-text-1)] mt-[var(--sp-6)]">Message received.</h3>
-        <p className="text-body text-[var(--sg-text-3)] mt-[var(--sp-3)] max-w-[420px]">
-          A person on the team will read it and reply within the response time for your topic. A confirmation email is on its way.
-        </p>
-        <Button variant="secondary" size="md" className="mt-[var(--sp-6)]" asChild>
-          <Link href="/">Back to home</Link>
-        </Button>
-      </div>
+      <FormSuccess
+        status="Enquiry received"
+        title="Thanks — we've got it."
+        body={`Your message about “${label}” has gone straight to the right person on the team.`}
+        steps={[
+          { title: 'Routed to the right person', body: 'Not a shared inbox, and not a bot.' },
+          { title: `A reply within ${within}`, body: 'Business days are Monday to Friday, South African time.' },
+          sent?.newsletter
+            ? { title: 'Confirm your Insights subscription', body: 'A separate email asks you to confirm. Nothing arrives until you do.' }
+            : { title: 'Need it sooner?', body: 'Reply to the confirmation email — it lands in the same place.' },
+        ]}
+        email={sent?.email}
+        actions={[
+          { label: 'Read Insights', href: '/blog' },
+          { label: 'Back to home', href: '/' },
+        ]}
+      />
     );
   }
 

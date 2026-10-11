@@ -15,5 +15,5 @@ https://lists.sonofgraig.com through the Cloudflare Tunnel; everything else retu
 ## Branding
 `brand/` overrides listmonk's built-in files. On the T110, `~/listmonk/static` is listmonk v6.2.0's
 `static/` with these copied over it, mounted read-only and loaded with `--static-dir`.
-`brand/custom.css` is applied as the public-page custom CSS (Settings → Appearance).
+`brand/custom.css` is the public-page custom CSS. Deploy everything with `bash ops/listmonk/apply-branding.sh` — it writes only that one settings row. Never save Settings in the UI/API to change it: masked passwords get stored and the SMTP key is wiped (2026-10-10).
 Campaigns carry no open pixel or tracked links (better deliverability and privacy).

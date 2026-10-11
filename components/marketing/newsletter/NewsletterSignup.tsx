@@ -2,10 +2,11 @@
 
 import { useCallback, useState } from 'react';
 import Link from 'next/link';
-import { MailCheck } from 'lucide-react';
+import { Check, Mail } from 'lucide-react';
 import { Field } from '@/components/ui/Field';
 import { Button } from '@/components/ui/Button';
 import { Turnstile } from '@/components/ui/Turnstile';
+import { FormSuccess } from '@/components/marketing/forms/FormSuccess';
 import { issueMessage } from '@/lib/forms/issueMessage';
 import { cn } from '@/lib/utils';
 
@@ -27,6 +28,7 @@ export function NewsletterSignup({ variant = 'card', source }: { variant?: 'card
   const [token, setToken] = useState<string | null>(null);
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [message, setMessage] = useState('');
+  const [sentTo, setSentTo] = useState<string | null>(null);
   const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
   const onToken = useCallback((t: string | null) => setToken(t), []);
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
@@ -52,7 +54,10 @@ export function NewsletterSignup({ variant = 'card', source }: { variant?: 'card
         }),
       });
       const data = await res.json().catch(() => ({}));
-      if (res.ok && data.ok) return setStatus('sent');
+      if (res.ok && data.ok) {
+        setSentTo(String(fd.get('email') ?? ''));
+        return setStatus('sent');
+      }
       if (data.error === 'validation' && data.issues) {
         const next: Partial<Record<string, string>> = {};
         for (const [k, v] of Object.entries(data.issues as Record<string, string[]>)) next[k] = v?.[0];
@@ -74,13 +79,18 @@ export function NewsletterSignup({ variant = 'card', source }: { variant?: 'card
 
   if (status === 'sent') {
     return (
-      <div role="status" className={cn('flex items-start gap-[var(--sp-3)]', !inline && 'py-[var(--sp-2)]')}>
-        <MailCheck size={20} aria-hidden="true" className="mt-0.5 shrink-0 text-[var(--sg-success)]" />
-        <div>
-          <p className="font-sans text-[15px] font-semibold text-[var(--sg-text-1)]">Check your inbox to confirm.</p>
-          <p className="text-body text-[var(--sg-text-3)] mt-1">We sent a confirmation link. You are only subscribed once you click it.</p>
-        </div>
-      </div>
+      <FormSuccess
+        compact={inline}
+        status="Check your inbox"
+        title="One step left — confirm by email."
+        body="We've sent you a confirmation link. You're only subscribed once you tap it."
+        steps={[
+          { title: 'Open the email from sonofgraig Insights', body: 'It usually arrives within a minute. Check spam if it hasn’t.' },
+          { title: 'Tap “Yes, subscribe me”', body: 'Until you do, we send you nothing at all.' },
+          { title: 'Your first issue within two weeks', body: 'Practical enterprise AI and POPIA writing. Unsubscribe in one click.' },
+        ]}
+        email={sentTo ?? undefined}
+      />
     );
   }
 
@@ -96,11 +106,30 @@ export function NewsletterSignup({ variant = 'card', source }: { variant?: 'card
       <input type="text" name="hp" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 opacity-0" />
 
       {inline ? (
-        <div className="flex flex-col gap-[var(--sp-2)] sm:flex-row">
-          <div className="flex-1">
-            <Field type="email" name="email" placeholder="Work email" aria-label="Email address" autoComplete="email" required error={errors.email} />
+        <div>
+          {/* One glass pill: the field and the button live inside it. */}
+          <div
+            className={cn(
+              'liquid-glass liquid-glass-strong flex items-center gap-[var(--sp-2)] rounded-full p-1.5 pl-[var(--sp-5)] transition-shadow focus-within:shadow-[0_0_0_4px_var(--sg-blue-glow)]',
+              errors.email && 'border-[var(--sg-danger-bd)]',
+            )}
+          >
+            <Mail size={16} aria-hidden="true" className="shrink-0 text-[var(--sg-text-4)]" />
+            <input
+              type="email"
+              name="email"
+              required
+              autoComplete="email"
+              placeholder="Work email"
+              aria-label="Email address"
+              aria-invalid={errors.email ? true : undefined}
+              className="min-w-0 flex-1 bg-transparent py-2 font-sans text-[14px] text-[var(--sg-text-1)] placeholder:text-[var(--sg-text-4)] focus:outline-none"
+            />
+            <Button type="submit" variant="primary" size="md" className="shrink-0 rounded-full px-5" loading={status === 'sending'}>
+              Subscribe
+            </Button>
           </div>
-          <Button type="submit" variant="primary" className="rounded-full px-6" loading={status === 'sending'}>Subscribe</Button>
+          {errors.email && <p className="mt-1.5 pl-[var(--sp-5)] text-[12px] text-[var(--sg-danger)]">{errors.email}</p>}
         </div>
       ) : (
         <>
@@ -117,19 +146,31 @@ export function NewsletterSignup({ variant = 'card', source }: { variant?: 'card
                   <label
                     key={t.value}
                     className={cn(
-                      'flex cursor-pointer items-start gap-[var(--sp-2)] rounded-[var(--r-lg)] border p-[var(--sp-3)] transition-colors',
-                      on ? 'border-[var(--sg-blue-border)] bg-[var(--sg-blue-glow)]' : 'border-[var(--sg-border)] hover:border-[var(--sg-border-md)]',
+                      'group flex cursor-pointer items-center gap-[var(--sp-3)] rounded-[18px] border p-[var(--sp-3)] pr-[var(--sp-4)] shadow-[inset_0_1px_0_var(--lg-edge)] transition-all',
+                      on
+                        ? 'border-[var(--sg-blue-border)] bg-[color-mix(in_srgb,var(--sg-blue)_8%,var(--lg-fill-strong))]'
+                        : 'border-[var(--lg-rim)] bg-[var(--lg-fill-strong)] hover:border-[var(--sg-border-md)]',
                     )}
                   >
                     <input
                       type="checkbox"
                       checked={on}
                       onChange={() => setTopics((cur) => (on ? cur.filter((x) => x !== t.value) : [...cur, t.value]))}
-                      className="mt-0.5 size-4 accent-[var(--sg-blue)]"
+                      className="peer sr-only"
                     />
-                    <span>
-                      <span className="block font-sans text-[14px] font-medium text-[var(--sg-text-1)]">{t.label}</span>
-                      <span className="block text-[12px] text-[var(--sg-text-4)]">{t.hint}</span>
+                    <span
+                      aria-hidden="true"
+                      className={cn(
+                        'grid size-6 shrink-0 place-items-center rounded-full border transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-[var(--sg-blue)]',
+                        on ? 'border-transparent text-white' : 'border-[var(--sg-border-md)] text-transparent',
+                      )}
+                      style={on ? { background: 'linear-gradient(135deg, #0EA5E9, #0B78DE)' } : undefined}
+                    >
+                      <Check size={14} strokeWidth={3} />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block font-sans text-[14px] font-semibold text-[var(--sg-text-1)]">{t.label}</span>
+                      <span className="block text-[12.5px] text-[var(--sg-text-4)]">{t.hint}</span>
                     </span>
                   </label>
                 );
