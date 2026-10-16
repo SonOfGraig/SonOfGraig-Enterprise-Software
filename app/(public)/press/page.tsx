@@ -86,7 +86,7 @@ export default function PressPage() {
         <div className="grid items-start gap-[var(--sp-10)] lg:grid-cols-[320px_1fr]">
           <Reveal blur>
             <figure className="overflow-hidden rounded-[var(--r-2xl)] border border-[var(--sg-border)] bg-[var(--sg-surface)]">
-              <Image src="/founder/tumiso-graig-ramaboya.jpg" alt="Tumiso Graig Ramaboya, founder and CEO of sonofgraig" width={896} height={1200} sizes="320px" className="h-auto w-full" />
+              <Image src="/founder/tumiso-graig-ramaboya.jpg" alt="Tumiso Graig Ramaboya, founder and CEO of sonofgraig" width={800} height={800} sizes="320px" className="h-auto w-full" />
               <figcaption className="flex items-center justify-between gap-3 px-[var(--sp-4)] py-[var(--sp-3)]">
                 <span className="text-[13px] text-[var(--sg-text-3)]">Founder photo</span>
                 <a href="/founder/tumiso-graig-ramaboya.jpg" download className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--sg-blue)]">

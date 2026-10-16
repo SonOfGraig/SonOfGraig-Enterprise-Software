@@ -16,6 +16,7 @@ import {
   footerLattice,
 } from './canvas/scenes';
 import * as more from './canvas/scenes2';
+import * as graig from './canvas/scenesGraig';
 
 // Per-scene render settings. Blurred scenes render at low DPR — the CSS filter
 // erases the detail anyway, and it quarters the GPU cost on older laptops.
@@ -51,6 +52,14 @@ const SCENES = {
   nebula: { scene: more.nebula },
   hexField: { scene: more.hexField },
   perspectiveFloor: { scene: more.perspectiveFloor },
+  // Graig's page only (scenesGraig.ts) — drawn for him, not ported
+  twinMerge: { scene: graig.twinMerge },
+  memoryRings: { scene: graig.memoryRings },
+  decisionBranches: { scene: graig.decisionBranches },
+  hashChain: { scene: graig.hashChain },
+  voicePrint: { scene: graig.voicePrint },
+  sealedVault: { scene: graig.sealedVault },
+  orbitField: { scene: graig.orbitField },
 };
 
 export type SceneName = keyof typeof SCENES;

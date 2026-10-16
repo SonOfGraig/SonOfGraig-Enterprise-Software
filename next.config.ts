@@ -91,6 +91,21 @@ const nextConfig: NextConfig = {
         destination: 'https://sonofgraig.com/:path*',
         permanent: true,
       },
+      // Graig's page lives at /graig but its home is graig.sonofgraig.com. On that
+      // host every path except his own page and its assets belongs to the main
+      // site; on the main site /graig hands over to his host.
+      {
+        source: '/:path((?!_next|graig|founder|api|favicon\\.ico|icon\\.svg|apple-icon|manifest\\.webmanifest).+)',
+        has: [{ type: 'host', value: 'graig.sonofgraig.com' }],
+        destination: 'https://sonofgraig.com/:path',
+        permanent: false,
+      },
+      {
+        source: '/graig',
+        has: [{ type: 'host', value: 'sonofgraig.com' }],
+        destination: 'https://graig.sonofgraig.com/',
+        permanent: false,
+      },
       { source: '/platform/timeline', destination: '/platform', permanent: true },
       { source: '/roadmap', destination: '/platform', permanent: true },
       // Not hiring yet (founder, 2026-10-10): old careers links land on About.
@@ -104,6 +119,16 @@ const nextConfig: NextConfig = {
       { source: '/trademarks', destination: '/terms', permanent: false },
       { source: '/about-ads', destination: '/privacy-policy#cookies', permanent: false },
     ];
+  },
+  // graig.sonofgraig.com/ is served by the /graig route (see redirects above).
+  async rewrites() {
+    return {
+      beforeFiles: [
+        { source: '/', has: [{ type: 'host', value: 'graig.sonofgraig.com' }], destination: '/graig' },
+      ],
+      afterFiles: [],
+      fallback: [],
+    };
   },
   async headers() {
     return [
