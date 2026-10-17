@@ -170,8 +170,10 @@ html.g-ready-hero .g-poster img { opacity: 0; }
 
 /* 05 · four seals */
 .g-seals { display: flex; flex-direction: column; }
-.g-seal { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding: 22px 0; border-top: 1px solid var(--sg-border); opacity: .5; transition: opacity .5s; }
-.g-seal.sealed { opacity: .8; }
+.g-seal { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding: 22px 0; border-top: 1px solid var(--sg-border); opacity: .7; transition: opacity .5s; }
+.g-seal.sealed { opacity: .86; }
+/* small labels stay readable (WCAG AA) even on a dimmed row */
+.g-seal .font-mono, .g-seal-state { color: rgba(255, 255, 255, .82); }
 .g-seal.on { opacity: 1; }
 .g-seal-mark { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--sg-border-md); color: var(--sg-text-3); transition: all .5s var(--ease-out, ease); }
 .g-seal.sealed .g-seal-mark { color: #fff; background: var(--sg-blue); border-color: var(--sg-blue); box-shadow: 0 0 0 6px var(--sg-blue-glow); }
