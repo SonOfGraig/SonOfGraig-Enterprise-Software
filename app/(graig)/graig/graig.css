@@ -202,3 +202,8 @@ html.g-ready-hero .g-poster img { opacity: 0; }
 .g-footer { margin-top: clamp(64px, 9vw, 112px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; border-top: 1px solid var(--sg-border); padding-top: 24px; text-align: left; font-size: 13px; color: var(--sg-text-3); }
 .g-footer a { color: var(--sg-text-2); text-underline-offset: 4px; }
 .g-footer a:hover { color: var(--sg-text-1); text-decoration: underline; }
+
+/* accessibility: the faintest text tokens fail WCAG AA on this page's small mono labels.
+   Lift them here only (company pages keep theirs). */
+.g-page .g-sec[data-theme='light'] { --sg-text-4: #6B7280; }
+.g-page .g-sec[data-theme='dark'] { --sg-text-3: rgba(255, 255, 255, 0.62); --sg-text-4: rgba(255, 255, 255, 0.55); }

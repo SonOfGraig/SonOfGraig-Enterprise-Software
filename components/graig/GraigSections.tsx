@@ -99,8 +99,7 @@ export function Hero() {
             (the stage starts on the first interaction — see GraigStage.tsx). */}
         <picture className="g-poster">
           <source media="(max-width: 639px)" srcSet="/graig/hero-poster-m.webp" type="image/webp" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/graig/hero-poster-d.webp" alt="" width={1440} height={378} fetchPriority="high" decoding="async" />
+          <img src="/graig/hero-poster-d.webp" alt="" width={1425} height={342} fetchPriority="high" decoding="sync" />
         </picture>
       </div>
       <div className="g-hero-states relative z-10 reveal-up" style={{ animationDelay: '1s' }}>
