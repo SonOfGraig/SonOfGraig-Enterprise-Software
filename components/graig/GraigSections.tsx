@@ -94,7 +94,15 @@ export function Hero() {
         </div>
       </div>
       {/* the pair stands here; the hero scene frames itself to this box */}
-      <div className="g-stage-zone relative z-10" aria-hidden="true" />
+      <div className="g-stage-zone relative z-10" aria-hidden="true">
+        {/* A still of the live scene: paints at once, then fades as the 3-D takes over
+            (the stage starts on the first interaction — see GraigStage.tsx). */}
+        <picture className="g-poster">
+          <source media="(max-width: 639px)" srcSet="/graig/hero-poster-m.webp" type="image/webp" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/graig/hero-poster-d.webp" alt="" width={1440} height={378} fetchPriority="high" decoding="async" />
+        </picture>
+      </div>
       <div className="g-hero-states relative z-10 reveal-up" style={{ animationDelay: '1s' }}>
         <OrbStates />
       </div>
@@ -135,7 +143,7 @@ export function Twin() {
         <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-[var(--sp-12)] items-center">
           <Reveal>
             <Eyebrow>01 · Why a twin</Eyebrow>
-            <h2 className="text-h2 text-[var(--sg-text-1)] mt-[var(--sp-4)] text-balance">A second mind, built from one person.</h2>
+            <h2 className="text-h2 text-[var(--sg-text-1)] mt-[var(--sp-4)] text-balance">An AI digital twin: a second mind, built from one person.</h2>
             <p className="text-body-lg text-[var(--sg-text-2)] mt-[var(--sp-6)]">
               An assistant knows facts about the world. A twin builds a model of one person: what he knows, how he decides,
               and where he could decide better. Graig is built from Tumiso&apos;s conversations, decisions and work, and he runs
@@ -386,7 +394,7 @@ export function Faq() {
         <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-[var(--sp-10)] items-start">
           <Reveal className="lg:sticky lg:top-[104px]">
             <Eyebrow>07 · Questions</Eyebrow>
-            <h2 className="text-h2 text-[var(--sg-text-1)] mt-[var(--sp-4)] text-balance">What people ask about Graig.</h2>
+            <h2 className="text-h2 text-[var(--sg-text-1)] mt-[var(--sp-4)] text-balance">What people ask about Graig, the AI digital twin.</h2>
             <p className="text-body-lg text-[var(--sg-text-2)] mt-[var(--sp-6)]">Short answers, in his own terms.</p>
           </Reveal>
           <Reveal delay={0.1}>

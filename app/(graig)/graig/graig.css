@@ -28,6 +28,9 @@ html:not(.g-gl) .g-sec { background: var(--g-ground); }
 }
 /* the hero runs as one column: copy, the stage zone the 3-D pair stands in, his states, the facts */
 .g-stage-zone { height: clamp(280px, 38vh, 420px); margin-top: -12px; pointer-events: none; }
+.g-poster, .g-poster img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.g-poster img { object-fit: cover; object-position: center; transition: opacity .9s var(--ease-out, ease); }
+html.g-ready-hero .g-poster img { opacity: 0; }
 .g-hero-states { display: flex; justify-content: center; padding: 0 var(--g-pad) 28px; }
 .g-hero-foot { position: relative; z-index: 10; border-top: 1px solid var(--sg-border); }
 @media (max-width: 639px) { .g-stage-zone { height: 300px; } }

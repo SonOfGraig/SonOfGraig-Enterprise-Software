@@ -15,7 +15,7 @@ import './graig.css';
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? process.env.APP_URL ?? 'https://sonofgraig.com';
 const TITLE = 'Graig — the AI digital twin of Tumiso Graig Ramaboya';
 const DESCRIPTION =
-  'Graig is the autonomous AI digital twin of Tumiso Graig Ramaboya, founder of sonofgraig. He remembers with receipts, learns how Tumiso decides, and works in public daily.';
+  'Graig is the AI digital twin of Tumiso Graig Ramaboya, founder of sonofgraig. He remembers with receipts, learns how Tumiso decides and works in public.';
 // Absolute: this page is also served as a static copy on GitHub Pages, where a relative
 // URL would resolve against the wrong host.
 const OG = [{ url: `${GRAIG_URL}/graig/og.png`, width: 1200, height: 630, alt: 'Graig — Tumiso, extended. The AI digital twin of Tumiso Graig Ramaboya.' }];

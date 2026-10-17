@@ -27,12 +27,22 @@ export function GraigStage() {
       import('./stage/engine').then(({ startStage }) => {
         if (!cancelled) stage = startStage({ canvas, root, loaders });
       });
-    // after first paint, when the main thread is free
-    const ric = (window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback;
-    const id = ric ? ric(start, { timeout: 1200 }) : window.setTimeout(start, 200);
+    // The live stage starts on the visitor's first interaction (a move, touch, scroll or
+    // key). Until then the hero is a still poster: the page paints and settles at once,
+    // and nothing heavy runs for a visitor (or a crawler) who never touches it.
+    const EVENTS = ['pointermove', 'pointerdown', 'touchstart', 'wheel', 'scroll', 'keydown'] as const;
+    let kicked = false;
+    const kick = () => {
+      if (kicked) return;
+      kicked = true;
+      EVENTS.forEach((e) => removeEventListener(e, kick));
+      void start();
+    };
+    EVENTS.forEach((e) => addEventListener(e, kick, { passive: true }));
+    if (new URLSearchParams(location.search).has('gl')) kick(); // ?gl: start at once (captures, debugging)
     return () => {
       cancelled = true;
-      if (!ric) window.clearTimeout(id);
+      EVENTS.forEach((e) => removeEventListener(e, kick));
       stage?.destroy();
     };
   }, []);

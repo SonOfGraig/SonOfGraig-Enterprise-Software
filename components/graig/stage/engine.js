@@ -24,6 +24,8 @@ export function startStage({ canvas, root, loaders }) {
     // weak GPUs (the i3 in the office) start lower; the governor raises it if frames allow
     const cores = navigator.hardwareConcurrency || 4;
     VP.maxDpr = Math.min(devicePixelRatio || 1, cores <= 4 ? 1.5 : 2);
+    const forced = +new URLSearchParams(location.search).get('dpr'); // ?dpr=2 for poster captures
+    if (forced) { VP.maxDpr = forced; VP.dpr = forced; VP.fixed = true; }
     if (!VP.dpr || VP.dpr > VP.maxDpr) VP.dpr = VP.maxDpr;
   };
   readViewport();
@@ -37,6 +39,19 @@ export function startStage({ canvas, root, loaders }) {
   } catch {
     return null; // no WebGL: the CSS section colours stay
   }
+  // A software GPU (SwiftShader / llvmpipe: headless crawlers, Lighthouse, machines
+  // without graphics drivers) takes seconds per shader and blocks the page — there the
+  // still poster stays and the stage never starts.
+  try {
+    const gl = renderer.getContext();
+    const dbg = gl.getExtension('WEBGL_debug_renderer_info');
+    const name = String(dbg ? gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER));
+    if (/swiftshader|llvmpipe|softpipe|software|microsoft basic render/i.test(name)) {
+      renderer.dispose();
+      document.documentElement.classList.add('g-gl-soft');
+      return null;
+    }
+  } catch { /* unknown: carry on */ }
   renderer.setPixelRatio(VP.dpr);
   renderer.setSize(VP.w, VP.h, false);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -193,6 +208,7 @@ export function startStage({ canvas, root, loaders }) {
       h.state = 'ready';
       h.born = performance.now();
       h.el.classList.add('g-ready');
+      document.documentElement.classList.add(`g-ready-${h.name}`); // lets the page retire its still poster
       try { renderer.compile(h.obj.scene, h.obj.camera); } catch { /* compiled on first draw */ }
     } catch (e) {
       h.state = 'missing';
@@ -233,7 +249,7 @@ export function startStage({ canvas, root, loaders }) {
 
     // governor: hold frames near vsync by trading pixel ratio (never below 1)
     if (!forced && dt > 0) ftAvg = ftAvg * 0.95 + dt * 1000 * 0.05;
-    if (!forced && now - lastGov > 2500) {
+    if (!forced && !VP.fixed && now - lastGov > 2500) {
       if (ftAvg > 24 && VP.dpr > 1) { VP.dpr = Math.max(1, VP.dpr - 0.25); resize(); lastGov = now; }
       else if (ftAvg < 15 && VP.dpr < VP.maxDpr) { VP.dpr = Math.min(VP.maxDpr, VP.dpr + 0.25); resize(); lastGov = now; }
     }
@@ -303,9 +319,11 @@ export function startStage({ canvas, root, loaders }) {
       }
     }
   }
+  // phones draw at 30 fps: half the GPU work and battery, and nothing here needs 60
+  let lastDraw = 0;
   function loop(now) {
     if (dead) return;
-    if (!document.hidden) frame(now);
+    if (!document.hidden && (!VP.mobile || now - lastDraw > 30)) { lastDraw = now; frame(now); }
     raf = requestAnimationFrame(loop);
   }
   raf = requestAnimationFrame(loop);
