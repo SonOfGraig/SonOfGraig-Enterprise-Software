@@ -177,3 +177,25 @@ html:not(.g-gl) .g-sec { background: var(--g-ground); }
 .g-seal-body { max-height: 0; overflow: hidden; margin-top: 0; transition: max-height .6s var(--ease-out, ease), margin .6s; }
 .g-seal.on .g-seal-body { max-height: 140px; margin-top: 8px; }
 @media (prefers-reduced-motion: reduce) { .g-receipts-body, .g-ledger-shape li, .g-loop li { animation: none; } .g-dial-arc { animation: none; stroke-dashoffset: 0; } }
+
+/* 01 · the quote takes the right column */
+.g-pullquote-lg { padding-left: 28px; }
+.g-pullquote-lg::before { width: 4px; }
+
+/* 06 · the original: a dossier, not a card */
+.g-dossier { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+@media (max-width: 899px) { .g-dossier { grid-template-columns: 1fr; } }
+.g-dossier-photo { position: relative; border-radius: 28px; overflow: hidden; aspect-ratio: 1; box-shadow: 0 30px 60px -30px rgba(13, 17, 23, .45), 0 0 0 1px var(--sg-border); max-width: 460px; }
+.g-dossier-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-out, ease); }
+.g-dossier-photo:hover img { transform: scale(1.03); }
+.g-dossier-stamp { position: absolute; left: 16px; bottom: 16px; border-radius: 999px; padding: 6px 12px; font-family: var(--font-jetbrains-mono), monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--sg-text-1); }
+.g-dossier-facts { margin-top: 28px; border-top: 1px solid var(--sg-border-md); }
+.g-dossier-facts > div { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--sg-border); }
+.g-dossier-facts dt { font-family: var(--font-jetbrains-mono), monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--sg-text-3); padding-top: 3px; }
+.g-dossier-facts dd { font-size: 15px; color: var(--sg-text-1); }
+.g-dossier-chip { border-radius: 999px; padding: 3px 10px; font-size: 12px; background: var(--sg-blue-glow); color: var(--sg-blue); }
+
+/* the closing line + legal */
+.g-footer { margin-top: clamp(64px, 9vw, 112px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; border-top: 1px solid var(--sg-border); padding-top: 24px; text-align: left; font-size: 13px; color: var(--sg-text-3); }
+.g-footer a { color: var(--sg-text-2); text-underline-offset: 4px; }
+.g-footer a:hover { color: var(--sg-text-1); text-decoration: underline; }

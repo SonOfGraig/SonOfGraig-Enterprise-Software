@@ -104,7 +104,7 @@ export async function create({ renderer, mobile }) {
       rig.rotation.y = rot - 0.35 + lock * 0.35;
       rig.rotation.x = 0.25 - lock * 0.1;
       const narrow = s.w / s.h < 0.9;
-      camera.position.set(s.pointer.x * 0.3, 0.5 - s.pointer.y * 0.2, narrow ? 13 : 10);
+      camera.position.set(s.pointer.x * 0.3, 0.5 - s.pointer.y * 0.2, narrow ? 13.5 : 11.5);
       camera.lookAt(0, 0, 0);
     },
     dispose() { scene.traverse((o) => { o.geometry?.dispose(); o.material?.dispose?.(); }); },

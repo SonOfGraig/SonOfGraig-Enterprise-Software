@@ -102,9 +102,9 @@ export async function create({ host, renderer, mobile }) {
       travel = damp(travel, focus >= 0 ? Math.max(0, Math.min(focus - 0.6, n - 3)) : clamp((s.progress - 0.25) / 0.6) * Math.min(4, n - 3), 3, dt);
       const at = path(travel);
       const narrow = s.w / s.h < 0.9;
-      camera.position.set(at.x + 3.2 + s.pointer.x * 0.35, at.y + 1.6 - s.pointer.y * 0.2, at.z + (narrow ? 9 : 7.2));
+      camera.position.set(at.x + 0.5 + s.pointer.x * 0.35, at.y + 1.8 - s.pointer.y * 0.2, at.z + (narrow ? 10 : 8.8));
       look.copy(path(travel + 1.5));
-      camera.lookAt(look.x + 0.4, look.y - 0.2, look.z);
+      camera.lookAt(look.x - 1.2, look.y - 0.3, look.z);
       // pulse runs from the newest block into the past, every 5 s
       const q = ((t * 0.2) % 1) * (n - 1);
       const k = Math.floor(q), f = q - k;

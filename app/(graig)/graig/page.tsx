@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { GraigStage } from '@/components/graig/GraigStage';
 import { GraigBar } from '@/components/graig/GraigChrome';
-import { Changelog, FindHim, Hero, Merge, Private, Twin, Work } from '@/components/graig/GraigSections';
+import { Changelog, FindHim, Hero, Merge, Original, Private, Twin, Work } from '@/components/graig/GraigSections';
 import { graig, GRAIG_URL } from '@/lib/graig/data';
 import { OG_IMAGES, ROBOTS_INDEX } from '@/lib/seo';
 import './graig.css';
@@ -49,7 +49,20 @@ const profileJsonLd = {
       'Graig is an autonomous AI digital twin of Tumiso Graig Ramaboya, founder of sonofgraig. He researches, writes, designs and publishes his own posts, and every claim he makes traces back to a source in a tamper-evident log.',
     disambiguatingDescription: 'Graig is an artificial intelligence — an autonomous software agent, not a human being.',
     url: GRAIG_URL,
-    creator: { '@id': `${SITE_URL}#founder` },
+    creator: {
+      '@type': 'Person',
+      '@id': `${SITE_URL}#founder`,
+      name: 'Tumiso Graig Ramaboya',
+      jobTitle: 'Founder, CEO & POPIA Information Officer',
+      image: `${SITE_URL}/founder/tumiso-graig-ramaboya.jpg`,
+      url: `${SITE_URL}/about#founder`,
+      homeLocation: { '@type': 'Place', address: { '@type': 'PostalAddress', addressLocality: 'Pretoria', addressCountry: 'ZA' } },
+      sameAs: [
+        'https://za.linkedin.com/in/tumiso-graig-ramaboya-6a2b38314',
+        'https://www.youtube.com/@TumisoGraig',
+        'https://www.instagram.com/tumiso_graig/',
+      ],
+    },
     affiliation: { '@id': `${SITE_URL}#organization` },
     knowsAbout: ['Artificial intelligence', 'Autonomous agents', 'Provenance and auditability', 'Digital twins'],
     sameAs: graig.accounts.map((a) => a.url),
@@ -70,6 +83,7 @@ export default function GraigPage() {
         <Work />
         <Changelog />
         <Private />
+        <Original />
         <FindHim />
       </main>
     </div>

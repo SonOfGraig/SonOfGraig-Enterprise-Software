@@ -5,7 +5,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
 import { useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
-import { SceneBackground } from '@/components/fx/SceneBackground';
+import { VolumetricRays } from '@/components/fx/VolumetricRays';
 import { WordReveal } from '@/components/fx/WordReveal';
 import { Magnetic } from '@/components/fx/Magnetic';
 import { AIDevHeroCard } from './AIDevHeroCard';
@@ -24,9 +24,7 @@ export function HeroSection() {
 
   return (
     <section ref={ref} className="relative overflow-hidden grain" style={{ background: 'var(--sg-bg)' }}>
-      {/* Founder's pick (2026-10-17): the layered waves from the platform page's
-          "How it is funded" section, as the home hero's ground. */}
-      <SceneBackground scene="acousticWaves" />
+      <VolumetricRays />
       <div
         aria-hidden="true"
         className="absolute inset-x-0 bottom-0 h-1/2 pointer-events-none"

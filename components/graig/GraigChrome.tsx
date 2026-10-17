@@ -26,6 +26,7 @@ const LINKS = [
   { href: '#work', label: 'Work' },
   { href: '#changelog', label: 'Log' },
   { href: '#private', label: 'Privacy' },
+  { href: '#original', label: 'Tumiso' },
 ];
 
 // The main site's nav, made Graig's: the same glass header bar (lg-fill-strong, rim,
