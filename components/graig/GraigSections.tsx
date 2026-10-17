@@ -47,6 +47,14 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="text-label text-[var(--sg-blue)]">{children}</p>;
 }
 
+/** The hero's second button goes to the first section that is live on this build:
+ *  drafts are hidden in production until Tumiso approves them. */
+export const SECOND = graig.demo
+  ? { href: '#work', label: 'Watch him work' }
+  : graig.changelog.length
+    ? { href: '#changelog', label: 'Read his log' }
+    : { href: '#original', label: 'Meet the original' };
+
 // ── Hero ──────────────────────────────────────────────────────────────────
 export function Hero() {
   const { ledger } = graig;
@@ -78,7 +86,7 @@ export function Hero() {
           </Magnetic>
           <Magnetic>
             <Button variant="secondary" size="lg" className="w-full sm:w-auto rounded-full px-7" asChild>
-              <a href={graig.demo ? '#work' : '#changelog'}>Watch him work</a>
+              <a href={SECOND.href}>{SECOND.label}</a>
             </Button>
           </Magnetic>
         </div>

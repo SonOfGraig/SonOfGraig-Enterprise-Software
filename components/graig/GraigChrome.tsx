@@ -68,10 +68,13 @@ function BarLink({ href, label, active, pill, onHover }: { href: string; label: 
   );
 }
 
-export function GraigBar({ follow }: { follow?: { label: string; href: string } }) {
+export function GraigBar({ follow, second }: { follow?: { label: string; href: string }; second?: { label: string; href: string } }) {
   const [theme, setTheme] = useState<'dark' | 'light'>('light');
   const [active, setActive] = useState('');
   const [hovered, setHovered] = useState<string | null>(null);
+  // only link the sections this build actually has (unapproved drafts are left out)
+  const [links, setLinks] = useState(LINKS);
+  useEffect(() => { setLinks(LINKS.filter((l) => document.getElementById(l.href.slice(1)))); }, []);
   useEffect(() => {
     let raf = 0;
     const read = () => {
@@ -103,15 +106,17 @@ export function GraigBar({ follow }: { follow?: { label: string; href: string } 
         </span>
       </a>
       <nav aria-label="Graig" className="hidden md:flex items-center gap-0.5" onMouseLeave={() => setHovered(null)}>
-        {LINKS.map((l) => {
+        {links.map((l) => {
           const id = l.href.slice(1);
           return <BarLink key={l.href} href={l.href} label={l.label} active={active === id} pill={pillOn === id} onHover={() => setHovered(id)} />;
         })}
       </nav>
       <div className="flex items-center gap-3">
-        <Button variant="secondary" size="sm" className="hidden sm:inline-flex" asChild>
-          <a href="#work">Watch him work</a>
-        </Button>
+        {second && (
+          <Button variant="secondary" size="sm" className="hidden sm:inline-flex" asChild>
+            <a href={second.href}>{second.label}</a>
+          </Button>
+        )}
         {follow && (
           <Button variant="primary" size="sm" asChild>
             <a href={follow.href} target="_blank" rel="me noopener noreferrer">{follow.label}</a>

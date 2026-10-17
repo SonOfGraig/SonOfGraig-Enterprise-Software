@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { GraigStage } from '@/components/graig/GraigStage';
 import { GraigBar } from '@/components/graig/GraigChrome';
-import { Changelog, FindHim, Hero, Merge, Original, Private, Twin, Work } from '@/components/graig/GraigSections';
+import { Changelog, FindHim, Hero, Merge, Original, Private, SECOND, Twin, Work } from '@/components/graig/GraigSections';
 import { graig, GRAIG_URL } from '@/lib/graig/data';
 import { OG_IMAGES, ROBOTS_INDEX } from '@/lib/seo';
 import './graig.css';
@@ -75,7 +75,7 @@ export default function GraigPage() {
     <div className="g-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profileJsonLd) }} />
       <GraigStage />
-      <GraigBar follow={first ? { label: 'Follow', href: first.url } : undefined} />
+      <GraigBar follow={first ? { label: 'Follow', href: first.url } : undefined} second={SECOND} />
       <main>
         <Hero />
         <Twin />
