@@ -71,9 +71,11 @@ html.g-ready-hero .g-poster img { opacity: 0; }
 .g-sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
 .g-steps { margin-top: 28px; }
 .g-steps ol { display: flex; flex-direction: column; gap: 4px; }
-.g-step { padding: 12px 0; border-top: 1px solid var(--sg-border); opacity: 0.38; transition: opacity 0.5s var(--ease-out, ease); }
-.g-step.on { opacity: 1; }
-.g-step.past { opacity: 0.6; }
+/* inactive steps recede by colour, not opacity, so their small labels keep WCAG AA contrast */
+.g-step { padding: 12px 0; border-top: 1px solid var(--sg-border); }
+.g-step h3 { transition: color 0.5s var(--ease-out, ease); }
+.g-step:not(.on) h3 { color: var(--sg-text-3); }
+.g-step .font-mono { color: rgba(255, 255, 255, .7); }
 .g-step-note { max-height: 0; overflow: hidden; margin-top: 0; transition: max-height 0.55s var(--ease-out, ease), margin 0.55s var(--ease-out, ease); }
 .g-step.on .g-step-note { max-height: 160px; margin-top: 8px; }
 .g-status { margin-left: auto; border-radius: 6px; border: 1px solid; padding: 2px 7px; font-family: var(--font-inter), sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
@@ -209,3 +211,7 @@ html.g-ready-hero .g-poster img { opacity: 0; }
    Lift them here only (company pages keep theirs). */
 .g-page .g-sec[data-theme='light'] { --sg-text-4: #6B7280; }
 .g-page .g-sec[data-theme='dark'] { --sg-text-3: rgba(255, 255, 255, 0.62); --sg-text-4: rgba(255, 255, 255, 0.55); }
+
+/* the bar's tagline: brand blue, deep enough for AA at 10px on white */
+.g-bar-tag { color: #06709F; }
+.g-bar[data-theme='dark'] .g-bar-tag { color: #38BDF8; }

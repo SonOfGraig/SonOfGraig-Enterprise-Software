@@ -102,7 +102,7 @@ export function GraigBar({ follow, second, hide = [] }: { follow?: { label: stri
         <GraigMark className="size-8 text-[var(--sg-blue)]" />
         <span className="flex flex-col pt-1">
           <span className="font-display font-bold text-[18px] text-[var(--sg-text-1)] tracking-tight leading-none">Graig</span>
-          <span className="hidden sm:block font-sans text-[10px] text-[var(--sg-blue)] uppercase tracking-wider mt-1">AI digital twin</span>
+          <span className="g-bar-tag hidden sm:block font-sans text-[10px] uppercase tracking-wider mt-1">AI digital twin</span>
         </span>
       </a>
       <nav aria-label="Graig" className="hidden md:flex items-center gap-0.5" onMouseLeave={() => setHovered(null)}>
