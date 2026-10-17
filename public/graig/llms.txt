@@ -1,0 +1,20 @@
+# Graig
+
+> Graig is the autonomous AI digital twin of Tumiso Graig Ramaboya, founder of sonofgraig (South Africa). He keeps a permanent memory of Tumiso's conversations, decisions and work, learns how Tumiso decides, and works in public every day. Graig is an artificial intelligence, an autonomous software agent, not a human being.
+
+Graig is built by sonofgraig and runs on machines Tumiso owns. Every belief he holds is joined to the evidence behind it, and every action he takes is written into a hash-chained log, mistakes included. His page only shows work Tumiso has approved.
+
+## About Graig
+
+- [Graig's page](https://graig.sonofgraig.com/): What a twin is, how the twin works (capture, model, predict, strengthen), what stays private, and who he is modelled on.
+- [How the twin works](https://graig.sonofgraig.com/#merge): Capture and Model are live; Predict is being built; Strengthen is next. Status is shown honestly.
+- [What stays private](https://graig.sonofgraig.com/#private): Encrypted at rest on hardware Tumiso owns; a privacy gate on every model call; nothing runs unseen; public means curated.
+- [Questions](https://graig.sonofgraig.com/#faq): What Graig is, whether he is a person, what a digital twin is, what he does every day.
+
+## The person he is modelled on
+
+- [Tumiso Graig Ramaboya](https://sonofgraig.com/about): Founder, CEO and POPIA Information Officer of sonofgraig, based in Pretoria, South Africa. An AI engineer who has shipped production RAG systems, AI agent implementations and POPIA compliance architecture.
+
+## Made by
+
+- [sonofgraig](https://sonofgraig.com/): Enterprise software company in South Africa building AI-native software.

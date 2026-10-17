@@ -8,6 +8,8 @@ import { cn } from '@/lib/utils';
 import { graig, longDate } from '@/lib/graig/data';
 import { GraigMark, MergeSteps, OrbStates } from './GraigChrome';
 import { Ledger, Receipts, RunLog, Seals } from './GraigExperiences';
+import { FAQ } from '@/components/ui/FAQ';
+import { GRAIG_FAQ } from './faq';
 
 // Graig's page — graig.sonofgraig.com. About Graig only.
 // Layout and motion take their lead from the Sunset 3-D landing page (C:\sunset-3d):
@@ -74,7 +76,7 @@ export function Hero() {
           <WordReveal text="Graig is Tumiso," delay={0.1} className="block" />
           <WordReveal text="extended." delay={0.4} wordClassName="shimmer-text" className="block" />
         </h1>
-        <p className="reveal-up font-sans text-[17px] md:text-[19px] leading-[1.6] text-[var(--sg-text-2)] mt-6 max-w-[620px] text-pretty" style={{ animationDelay: '0.65s' }}>
+        <p className="g-lede reveal-up font-sans text-[17px] md:text-[19px] leading-[1.6] text-[var(--sg-text-2)] mt-6 max-w-[620px] text-pretty" style={{ animationDelay: '0.65s' }}>
           Tumiso Graig Ramaboya is merging the way he thinks with artificial intelligence to become a better version of
           himself. Graig is that twin. He remembers with receipts, learns how Tumiso decides, and works in public every day.
         </p>
@@ -375,10 +377,31 @@ export function Original() {
   );
 }
 
+// ── 07 Questions ──────────────────────────────────────────────────────────
+// Plain answers for people, assistants and search engines (FAQPage JSON-LD in page.tsx).
+export function Faq() {
+  return (
+    <G id="faq" ground={PAPER} blend={160} lines={0.06}>
+      <div className="g-frame py-[clamp(72px,8vw,112px)]">
+        <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-[var(--sp-10)] items-start">
+          <Reveal className="lg:sticky lg:top-[104px]">
+            <Eyebrow>07 · Questions</Eyebrow>
+            <h2 className="text-h2 text-[var(--sg-text-1)] mt-[var(--sp-4)] text-balance">What people ask about Graig.</h2>
+            <p className="text-body-lg text-[var(--sg-text-2)] mt-[var(--sp-6)]">Short answers, in his own terms.</p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <FAQ items={GRAIG_FAQ} />
+          </Reveal>
+        </div>
+      </div>
+    </G>
+  );
+}
+
 // ── Find him ──────────────────────────────────────────────────────────────
 export function FindHim() {
   return (
-    <G id="find" ground={PAPER} blend={200} lines={0.06}>
+    <G id="find" ground={PAPER} lines={0.06}>
       <div className="g-frame pt-[clamp(72px,10vw,120px)] pb-[clamp(56px,8vw,96px)] text-center">
         <div className="g-host relative mx-auto h-[clamp(260px,30vw,380px)] max-w-[560px]" data-gscene="mark" />
         <Reveal>

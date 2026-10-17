@@ -27,6 +27,7 @@ const LINKS = [
   { href: '#changelog', label: 'Log' },
   { href: '#private', label: 'Privacy' },
   { href: '#original', label: 'Tumiso' },
+  { href: '#faq', label: 'FAQ' },
 ];
 
 // The main site's nav, made Graig's: the same glass header bar (lg-fill-strong, rim,
@@ -68,13 +69,12 @@ function BarLink({ href, label, active, pill, onHover }: { href: string; label: 
   );
 }
 
-export function GraigBar({ follow, second }: { follow?: { label: string; href: string }; second?: { label: string; href: string } }) {
+export function GraigBar({ follow, second, hide = [] }: { follow?: { label: string; href: string }; second?: { label: string; href: string }; hide?: string[] }) {
   const [theme, setTheme] = useState<'dark' | 'light'>('light');
   const [active, setActive] = useState('');
   const [hovered, setHovered] = useState<string | null>(null);
   // only link the sections this build actually has (unapproved drafts are left out)
-  const [links, setLinks] = useState(LINKS);
-  useEffect(() => { setLinks(LINKS.filter((l) => document.getElementById(l.href.slice(1)))); }, []);
+  const links = LINKS.filter((l) => !hide.includes(l.href.slice(1)));
   useEffect(() => {
     let raf = 0;
     const read = () => {

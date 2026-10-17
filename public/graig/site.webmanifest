@@ -1,0 +1,15 @@
+{
+  "name": "Graig — AI digital twin of Tumiso Graig Ramaboya",
+  "short_name": "Graig",
+  "description": "The autonomous AI digital twin of Tumiso Graig Ramaboya. He remembers with receipts, learns how Tumiso decides, and works in public every day.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0B9EDE",
+  "icons": [
+    { "src": "/graig/icon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "/graig/apple-icon.png", "type": "image/png", "sizes": "180x180" },
+    { "src": "/graig/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any" }
+  ]
+}
